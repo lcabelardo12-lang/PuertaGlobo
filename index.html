@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Import Dental BO</title>
+    <meta name="theme-color" content="#0056b3">
+    <style>
+        :root { --primary: #0056b3; --bg: #f4f7f6; --card: #ffffff; --text: #333; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        h1 { text-align: center; color: var(--primary); font-size: 1.5rem; }
+        .card { background: var(--card); border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
+        input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; box-sizing: border-box; }
+        .row { display: flex; gap: 10px; }
+        .row > div { flex: 1; }
+        button { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+        button:hover { background: #004494; }
+        .results { background: #e8f4fd; border-left: 5px solid var(--primary); padding: 15px; border-radius: 8px; display: none; }
+        .results h3 { margin-top: 0; color: var(--primary); }
+        .result-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; }
+        .total { font-weight: bold; font-size: 1.2rem; border-top: 2px solid var(--primary); padding-top: 10px; margin-top: 10px; }
+        .links { margin-top: 15px; display: flex; gap: 10px; }
+        .links a { flex: 1; text-align: center; padding: 10px; background: #28a745; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem; }
+        .links a.alibaba { background: #ff6a00; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🦷 Calculadora Import. Dental BO</h1>
+        
+        <div class="card">
+            <label>Nombre del Producto (para búsquedas)</label>
+            <input type="text" id="productName" placeholder="Ej: Dental Unit Premium">
+
+            <div class="row">
+                <div>
+                    <label>Valor Producto (USD)</label>
+                    <input type="number" id="fobValue" placeholder="0.00" step="0.01">
+                </div>
+                <div>
+                    <label>Peso Bruto (Kg)</label>
+                    <input type="number" id="weight" placeholder="0" step="0.1">
+                </div>
+            </div>
+
+            <label>Incoterm</label>
+            <select id="incoterm">
+                <option value="FOB">FOB (Tú pagas flete desde puerto chino)</option>
+                <option value="EXW">EXW (Tú pagas todo desde la fábrica)</option>
+                <option value="CIF">CIF (Proveedor paga flete hasta puerto destino)</option>
+            </select>
+
+            <div class="row">
+                <div>
+                    <label>Flete + Seguro Estimado (USD)</label>
+                    <input type="number" id="freight" placeholder="0.00" step="0.01">
+                </div>
+                <div>
+                    <label>Gravamen Arancelario (%)</label>
+                    <input type="number" id="gaRate" value="10" step="0.1">
+                </div>
+            </div>
+
+            <div class="row">
+                <div>
+                    <label>Tasa de Cambio Oficial (BCB)</label>
+                    <input type="number" id="rateOfficial" value="6.96" step="0.01">
+                </div>
+                <div>
+                    <label>Tasa de Mercado Real (BOB/USD)</label>
+                    <input type="number" id="rateMarket" value="8.50" step="0.01" style="border-color: #ff9800;">
+                </div>
+            </div>
+
+            <label>Honorarios Despachante de Aduanas (Bs)</label>
+            <input type="number" id="despachante" value="800" step="10">
+
+            <button onclick="calculate()">Calcular Importación</button>
+        </div>
+
+        <div class="card results" id="resultsCard">
+            <h3>📊 Desglose de Costos</h3>
+            <div class="result-row"><span>Valor CIF (USD):</span> <span id="resCIF">0.00</span></div>
+            <div class="result-row"><span>Valor CIF (Bs):</span> <span id="resCIFBs">0.00</span></div>
+            <div class="result-row"><span>Gravamen Arancelario (GA):</span> <span id="resGA">0.00</span></div>
+            <div class="result-row"><span>IVA Importación (14.94%):</span> <span id="resIVA">0.00</span></div>
+            <div class="result-row"><span>Tasa de Servicios (0.15%):</span> <span id="resTasa">0.00</span></div>
+            <div class="result-row"><span>Despachante de Aduanas:</span> <span id="resDesp">0.00</span></div>
+            <div class="result-row total"><span>Costo Total Puesto en Bolivia:</span> <span id="resTotal">0.00 Bs</span></div>
+            <div class="result-row" style="color: #666; font-size: 0.85rem; margin-top:5px;">
+                <span>Costo Total en USD (a tasa de mercado):</span> <span id="resTotalUSD">0.00 USD</span>
+            </div>
+
+            <div class="links">
+                <a id="linkMic" href="#" target="_blank">Buscar en Made-in-China</a>
+                <a id="linkAlibaba" class="alibaba" href="#" target="_blank">Buscar en Alibaba</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            // Obtener valores
+            const fob = parseFloat(document.getElementById('fobValue').value) || 0;
+            const freight = parseFloat(document.getElementById('freight').value) || 0;
+            const gaRate = parseFloat(document.getElementById('gaRate').value) || 0;
+            const rateMarket = parseFloat(document.getElementById('rateMarket').value) || 6.96;
+            const despachanteBs = parseFloat(document.getElementById('despachante').value) || 0;
+            const productName = document.getElementById('productName').value || 'dental equipment';
+
+            // Cálculos base (en USD)
+            const cifUSD = fob + freight;
+            
+            // Convertir CIF a Bolivianos para cálculo de impuestos (usando tasa oficial o la que el usuario decida aplicar para base imponible)
+            // Nota: Aduana usa la tasa oficial del día, pero tú pagas los impuestos con bolivianos que compraste a tasa de mercado.
+            // Para simplificar y ser realista con tu bolsillo, calcularemos los impuestos sobre el valor en Bs a tasa de mercado.
+            const cifBs = cifUSD * rateMarket;
+
+            const gaBs = cifBs * (gaRate / 100);
+            const baseIVA = cifBs + gaBs;
+            const ivaBs = baseIVA * 0.1494;
+            const tasaBs = cifBs * 0.0015;
+
+            const totalBs = cifBs + gaBs + ivaBs + tasaBs + despachanteBs;
+            const totalUSD = totalBs / rateMarket;
+
+            // Mostrar resultados
+            document.getElementById('resCIF').textContent = cifUSD.toFixed(2) + ' USD';
+            document.getElementById('resCIFBs').textContent = cifBs.toFixed(2) + ' Bs';
+            document.getElementById('resGA').textContent = gaBs.toFixed(2) + ' Bs';
+            document.getElementById('resIVA').textContent = ivaBs.toFixed(2) + ' Bs';
+            document.getElementById('resTasa').textContent = tasaBs.toFixed(2) + ' Bs';
+            document.getElementById('resDesp').textContent = despachanteBs.toFixed(2) + ' Bs';
+            document.getElementById('resTotal').textContent = totalBs.toFixed(2) + ' Bs';
+            document.getElementById('resTotalUSD').textContent = totalUSD.toFixed(2) + ' USD';
+
+            // Actualizar enlaces dinámicos
+            const encodedProduct = encodeURIComponent(productName + " manufacturer");
+            document.getElementById('linkMic').href = `https://www.made-in-china.com/products-search/hot-china-products/${encodeURIComponent(productName)}.html`;
+            document.getElementById('linkAlibaba').href = `https://www.alibaba.com/trade/search?fsb=y&IndexArea=product_en&CatId=&SearchText=${encodedProduct}`;
+
+            // Mostrar tarjeta
+            document.getElementById('resultsCard').style.display = 'block';
+        }
+    </script>
+    <!-- Registra el Service Worker para hacerla una PWA instalable -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('Service Worker registrado con �xito:', registration.scope);
+            })
+            .catch(error => {
+              console.log('Fallo en el registro del Service Worker:', error);
+            });
+        });
+      }
+    </script>
+</body>
+</html>
+</body>
+</html>
