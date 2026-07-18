@@ -2,114 +2,348 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DUAVA Puente - Gestión de Comercio Exterior</title>
-    
-    <!-- AQUÍ ESTÁ EL TRADUCTOR PARA LEER GOOGLE SHEETS (PapaParse) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1D4ED8">
+    <title>DUAVA Puente</title>
+    <link rel="manifest" href="./manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <!-- Librería para leer Google Sheets -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary-color: #94A3B8;
-            --bg-color: #F8FAFC;
+            --bg-color: #F1F5F9;
             --card-bg: #FFFFFF;
             --text-main: #0F172A;
             --text-light: #64748B;
+            --primary: #64748B; /* Color por defecto, se sobrescribe al login */
             --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
         }
-        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; transition: all 0.5s ease; }
 
-        /* ========== LOGIN SCREEN ========== */
-        #loginScreen { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .login-container { background: var(--card-bg); border-radius: 24px; padding: 48px 40px; width: 100%; max-width: 440px; box-shadow: var(--shadow); }
-        .app-title { text-align: center; margin-bottom: 8px; letter-spacing: -0.5px; }
-        .app-title .duava { font-size: 2.4rem; font-weight: 800; color: #0F172A; }
-        .app-title .puente { font-size: 2.4rem; font-weight: 400; color: #0F172A; margin-left: 8px; }
-        .app-subtitle { text-align: center; font-size: 1rem; font-weight: 400; color: var(--text-light); margin-bottom: 48px; letter-spacing: 0.5px; }
-        .user-buttons { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
-        .user-btn { padding: 20px 24px; border: 2px solid #E2E8F0; border-radius: 16px; background: #FFFFFF; cursor: pointer; transition: all 0.3s ease; text-align: left; }
-        .user-btn:hover { border-color: #CBD5E1; transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04); }
-        .user-btn.active-abelardo { border-color: #1E3A8A; background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 100%); }
-        .user-btn.active-tania { border-color: #C77D8A; background: linear-gradient(135deg, #FDF2F8 0%, #FFFFFF 100%); }
-        .user-name { font-size: 1.15rem; font-weight: 600; color: #0F172A; margin-bottom: 4px; }
-        .user-role { font-size: 0.9rem; font-weight: 400; color: var(--text-light); }
-        .password-section { margin-bottom: 24px; }
-        .password-label { display: block; font-size: 0.85rem; font-weight: 500; color: var(--text-light); margin-bottom: 10px; }
-        .password-input { width: 100%; padding: 16px 20px; border: 2px solid #E2E8F0; border-radius: 12px; font-size: 1rem; outline: none; transition: all 0.3s ease; background: #F8FAFC; color: #0F172A; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.5s ease;
+        }
+
+        /* ========== PANTALLA DE LOGIN ========== */
+        #loginScreen {
+            width: 100%;
+            max-width: 420px;
+            padding: 24px;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .header { text-align: center; margin-bottom: 40px; }
+        .app-title { 
+            font-size: 2.4rem; 
+            letter-spacing: -1px; 
+            margin-bottom: 8px; 
+        }
+        .app-title .duava { font-weight: 800; color: #0F172A; }
+        .app-title .puente { font-weight: 400; color: #475569; margin-left: 4px; }
+        .app-subtitle { font-size: 1rem; color: var(--text-light); font-weight: 500; letter-spacing: 0.5px; }
+
+        .user-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .user-btn {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid #E2E8F0;
+            border-radius: 14px;
+            background: #FFFFFF;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .user-btn:last-child { margin-bottom: 0; }
+        .user-btn:active { transform: scale(0.98); }
+        
+        .user-info h3 { font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin-bottom: 2px; }
+        .user-info p { font-size: 0.85rem; color: var(--text-light); font-weight: 500; }
+        .check-icon { 
+            width: 24px; height: 24px; border-radius: 50%; border: 2px solid #CBD5E1; 
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s; 
+        }
+        .check-icon svg { width: 14px; height: 14px; fill: none; stroke: white; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity 0.2s; }
+
+        /* Estados activos vibrantes */
+        .user-btn.active-abelardo { border-color: #1D4ED8; background: #EFF6FF; }
+        .user-btn.active-abelardo .check-icon { background: #1D4ED8; border-color: #1D4ED8; }
+        .user-btn.active-abelardo .check-icon svg { opacity: 1; }
+
+        .user-btn.active-tania { border-color: #BE185D; background: #FDF2F8; }
+        .user-btn.active-tania .check-icon { background: #BE185D; border-color: #BE185D; }
+        .user-btn.active-tania .check-icon svg { opacity: 1; }
+
+        .input-wrapper { position: relative; margin-top: 24px; }
+        .password-input {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid #E2E8F0;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #F8FAFC;
+            color: #0F172A;
+        }
         .password-input::placeholder { color: #94A3B8; }
-        .password-input.abelardo-theme { border-color: #1E3A8A; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.08); }
-        .password-input.tania-theme { border-color: #C77D8A; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(199, 125, 138, 0.08); }
-        .error-message { color: #EF4444; font-size: 0.85rem; text-align: center; margin-top: 16px; opacity: 0; transition: opacity 0.3s ease; height: 20px; font-weight: 500; }
+        
+        .password-input.abelardo-theme { border-color: #1D4ED8; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.1); }
+        .password-input.tania-theme { border-color: #BE185D; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(190, 24, 93, 0.1); }
+
+        .error-message {
+            color: #EF4444;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            height: 20px;
+            font-weight: 600;
+        }
         .error-message.show { opacity: 1; }
 
-        /* ========== DASHBOARD ========== */
-        #dashboardScreen { display: none; }
-        .top-bar { background: var(--primary-color); color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
-        .user-info { font-weight: 500; font-size: 0.95rem; }
-        .logout-btn { padding: 8px 16px; background: rgba(255, 255, 255, 0.2); color: white; border: none; border-radius: 8px; font-size: 0.85rem; cursor: pointer; transition: background 0.3s; }
-        .nav-container { display: flex; overflow-x: auto; background: white; padding: 12px 16px; gap: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); }
-        .nav-btn { flex: 1; min-width: 110px; padding: 12px 16px; background: #F1F5F9; color: var(--text-main); border: none; border-radius: 10px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
-        .nav-btn.active { background: var(--primary-color); color: white; }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+        .shake { animation: shake 0.3s ease-in-out; }
+
+        /* ========== PANTALLA PRINCIPAL (DASHBOARD) ========== */
+        #dashboardScreen { display: none; width: 100%; min-height: 100vh; }
+        
+        .top-bar {
+            background: var(--primary);
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .user-info-top { font-weight: 600; font-size: 0.95rem; }
+        .logout-btn {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .logout-btn:hover { background: rgba(255, 255, 255, 0.3); }
+
+        .nav-container {
+            display: flex;
+            overflow-x: auto;
+            background: white;
+            padding: 12px 16px;
+            gap: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            scrollbar-width: none;
+        }
+        .nav-container::-webkit-scrollbar { display: none; }
+        
+        .nav-btn {
+            flex: 1;
+            min-width: 110px;
+            padding: 12px 16px;
+            background: #F1F5F9;
+            color: var(--text-main);
+            border: none;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .nav-btn.active { background: var(--primary); color: white; }
+
         .content-area { padding: 24px; max-width: 900px; margin: 0 auto; }
-        .phase-card { background: white; padding: 32px; border-radius: 16px; box-shadow: var(--shadow); margin-bottom: 24px; display: none; }
+        
+        .phase-card {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+            display: none;
+            animation: slideUp 0.4s ease;
+        }
         .phase-card.active { display: block; }
-        .phase-title { color: var(--primary-color); font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #F1F5F9; }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .phase-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #F1F5F9;
+        }
+
         .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; font-size: 0.9rem; font-weight: 500; color: var(--text-light); margin-bottom: 8px; }
-        .input-group input, .input-group select { width: 100%; padding: 12px 16px; border: 2px solid #E2E8F0; border-radius: 10px; font-size: 1rem; outline: none; transition: border-color 0.3s; }
-        .input-group input:focus, .input-group select:focus { border-color: var(--primary-color); }
-        .checkbox-group { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-        .checkbox-group input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; }
-        .checkbox-group label { font-size: 0.95rem; color: var(--text-main); cursor: pointer; }
-        .action-btn { width: 100%; padding: 14px; background: var(--primary-color); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; margin-top: 16px; }
+        .input-group label { display: block; font-size: 0.9rem; font-weight: 600; color: var(--text-light); margin-bottom: 8px; }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #E2E8F0;
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .input-group input:focus, .input-group select:focus { border-color: var(--primary); }
+
+        .checkbox-group { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .checkbox-group input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: var(--primary); }
+        .checkbox-group label { font-size: 0.95rem; color: var(--text-main); cursor: pointer; font-weight: 500; }
+
+        .action-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 16px;
+        }
+        .action-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* Calculadora */
         .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .result-box { background: #F8FAFC; padding: 20px; border-radius: 12px; margin-top: 20px; border-left: 4px solid var(--primary-color); display: none; }
+        .result-box {
+            background: #F8FAFC;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 4px solid var(--primary);
+            display: none;
+        }
         .result-box.show { display: block; }
         .result-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.95rem; }
-        .result-label { color: var(--text-light); }
-        .result-value { font-weight: 600; color: var(--text-main); }
-        .result-total { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); padding-top: 12px; border-top: 2px solid #E2E8F0; margin-top: 12px; }
-        .alert-box { background: #FEF2F2; color: #991B1B; padding: 16px; border-radius: 10px; margin-top: 16px; font-size: 0.9rem; display: none; border-left: 4px solid #EF4444; }
+        .result-label { color: var(--text-light); font-weight: 500; }
+        .result-value { font-weight: 700; color: var(--text-main); }
+        .result-total {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            padding-top: 12px;
+            border-top: 2px solid #E2E8F0;
+            margin-top: 12px;
+        }
+        .alert-box {
+            background: #FEF2F2;
+            color: #991B1B;
+            padding: 16px;
+            border-radius: 10px;
+            margin-top: 16px;
+            font-size: 0.9rem;
+            display: none;
+            border-left: 4px solid #EF4444;
+            font-weight: 600;
+        }
         .alert-box.show { display: block; }
-        body.tema-ceo { --primary-color: #1E3A8A; }
-        body.tema-tania { --primary-color: #C77D8A; }
-        @media (max-width: 600px) { .calc-grid { grid-template-columns: 1fr; } .login-container { padding: 32px 24px; } .app-title .duava, .app-title .puente { font-size: 2rem; } }
+
+        /* Temas Globales */
+        body.tema-ceo { --primary: #1D4ED8; }
+        body.tema-tania { --primary: #BE185D; }
+
+        @media (max-width: 600px) {
+            .calc-grid { grid-template-columns: 1fr; }
+            .login-container { padding: 32px 24px; }
+            .app-title { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- LOGIN SCREEN -->
+    <!-- PANTALLA DE LOGIN -->
     <div id="loginScreen">
-        <div class="login-container">
+        <div class="header">
             <h1 class="app-title">
                 <span class="duava">DUAVA</span><span class="puente">Puente</span>
             </h1>
             <p class="app-subtitle">Gestión de Comercio Exterior</p>
-            <div class="user-buttons">
-                <button class="user-btn" id="btnAbelardo" onclick="selectUser('abelardo')">
-                    <div class="user-name">Abelardo</div>
-                    <div class="user-role">CEO</div>
-                </button>
-                <button class="user-btn" id="btnTania" onclick="selectUser('tania')">
-                    <div class="user-name">Tania</div>
-                    <div class="user-role">Responsable de Comercio Internacional</div>
-                </button>
-            </div>
-            <div class="password-section">
-                <label class="password-label">Contraseña</label>
-                <input type="password" class="password-input" id="passwordInput" placeholder="Ingresa tu contraseña" oninput="checkPassword()">
-            </div>
-            <div class="error-message" id="errorMessage">Contraseña incorrecta</div>
         </div>
+
+        <div class="user-card">
+            <button class="user-btn" id="btnAbelardo" onclick="selectUser('abelardo')">
+                <div class="user-info">
+                    <h3>Abelardo</h3>
+                    <p>CEO</p>
+                </div>
+                <div class="check-icon">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+            </button>
+
+            <button class="user-btn" id="btnTania" onclick="selectUser('tania')">
+                <div class="user-info">
+                    <h3>Tania</h3>
+                    <p>Responsable de Comercio Internacional</p>
+                </div>
+                <div class="check-icon">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+            </button>
+        </div>
+
+        <div class="input-wrapper">
+            <input 
+                type="password" 
+                class="password-input" 
+                id="passwordInput" 
+                placeholder="Ingresa tu contraseña"
+                oninput="checkPassword()"
+                autocomplete="off"
+            >
+        </div>
+        <div class="error-message" id="errorMessage">Contraseña incorrecta</div>
     </div>
 
-    <!-- DASHBOARD SCREEN -->
+    <!-- PANTALLA PRINCIPAL (DASHBOARD) -->
     <div id="dashboardScreen">
         <div class="top-bar">
-            <div class="user-info" id="topBarInfo">Bienvenido</div>
+            <div class="user-info-top" id="topBarInfo">Bienvenido</div>
             <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesión</button>
         </div>
+
         <div class="nav-container">
             <button class="nav-btn active" onclick="mostrarFase(1)">1. Radar</button>
             <button class="nav-btn" onclick="mostrarFase(2)">2. Negociación</button>
@@ -117,6 +351,7 @@
             <button class="nav-btn" onclick="mostrarFase(4)">4. Nacionalización</button>
             <button class="nav-btn" onclick="mostrarFase(5)">5. Recepción</button>
         </div>
+
         <div class="content-area">
             <!-- FASE 1 -->
             <div id="fase1" class="phase-card active">
@@ -127,6 +362,7 @@
                 <div class="checkbox-group"><input type="checkbox" id="checkCE"><label for="checkCE">Cuenta con Certificado CE / FDA</label></div>
                 <button class="action-btn">Guardar Evaluación</button>
             </div>
+
             <!-- FASE 2 -->
             <div id="fase2" class="phase-card">
                 <h2 class="phase-title">2. Negociación y Proforma</h2>
@@ -135,6 +371,7 @@
                 <div class="input-group"><label>Incoterm</label><select><option>FOB</option><option>EXW</option><option>CIF</option></select></div>
                 <button class="action-btn">Registrar Proforma</button>
             </div>
+
             <!-- FASE 3 -->
             <div id="fase3" class="phase-card">
                 <h2 class="phase-title">3. Logística Internacional</h2>
@@ -142,14 +379,14 @@
                 <div class="input-group"><label>Costo de Flete (USD)</label><input type="number" placeholder="0.00"></div>
                 <button class="action-btn">Registrar Logística</button>
             </div>
+
             <!-- FASE 4 (CALCULADORA) -->
             <div id="fase4" class="phase-card">
                 <h2 class="phase-title">4. Nacionalización y Costos</h2>
-                <p style="color: var(--text-light); margin-bottom: 24px;">Calculadora de impuestos aduaneros (Datos desde Google Sheets).</p>
+                <p style="color: var(--text-light); margin-bottom: 24px;">Calculadora de impuestos aduaneros (Datos en tiempo real desde Google Sheets).</p>
                 
                 <div class="input-group">
                     <label>Seleccionar Producto</label>
-                    <!-- El menú se llena solo con los datos de tu Google Sheet -->
                     <select id="calcProducto" onchange="actualizarDatosProducto()">
                         <option value="">-- Cargando productos desde Google Sheets... --</option>
                     </select>
@@ -167,12 +404,15 @@
                     <div class="result-row"><span class="result-label">IVA (14.94%):</span><span class="result-value" id="resIVA">0.00 Bs</span></div>
                     <div class="result-row result-total"><span class="result-label">Total Impuestos:</span><span class="result-value" id="resTotal">0.00 Bs</span></div>
                 </div>
-                <div class="alert-box" id="alertAgemed"> <strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario.</div>
+                <div class="alert-box" id="alertAgemed"> <strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario o Certificado de Libre Venta.</div>
             </div>
+
             <!-- FASE 5 -->
             <div id="fase5" class="phase-card">
                 <h2 class="phase-title">5. Recepción y Postventa</h2>
                 <div class="checkbox-group"><input type="checkbox" id="checkCaja"><label for="checkCaja">Caja sin daños visibles</label></div>
+                <div class="checkbox-group"><input type="checkbox" id="checkContenido"><label for="checkContenido">Contenido coincide con Packing List</label></div>
+                <div class="input-group"><label>Fecha de Inicio de Garantía</label><input type="date"></div>
                 <button class="action-btn">Finalizar Recepción</button>
             </div>
         </div>
@@ -182,37 +422,27 @@
         // ==========================================
         // 1. CONEXIÓN A GOOGLE SHEETS
         // ==========================================
-        
-        //  AQUÍ PEGAS TU ENLACE DE GOOGLE SHEETS 
-        const enlaceGoogleSheet = "https://docs.google.com/spreadsheets/d/1CdI4J1KqBTifUDHBLNESEzrXN5gaLOthcxNS3UVdn8I/export?format=csv&sheet=Productos"; 
-        //  AQUÍ PEGAS TU ENLACE DE GOOGLE SHEETS 
-
-        let productosDB = {}; // Aquí se guardarán los datos reales
+        const enlaceGoogleSheet = "https://docs.google.com/spreadsheets/d/1CdI4J1KqBTifUDHBLNESEzrXN5gaLOthcxNS3UVdn8I/export?format=csv&gid=0";
+        let productosDB = {};
 
         function cargarDatosDeGoogle() {
-            if (enlaceGoogleSheet === "https://docs.google.com/spreadsheets/d/1CdI4J1KqBTifUDHBLNESEzrXN5gaLOthcxNS3UVdn8I/export?format=csv&sheet=Productos") {
-                console.log("Aún no has pegado tu enlace de Google Sheets");
-                return;
-            }
-
             Papa.parse(enlaceGoogleSheet, {
                 download: true,
                 header: true,
                 complete: function(results) {
                     const datos = results.data;
                     const select = document.getElementById('calcProducto');
-                    select.innerHTML = '<option value="">-- Elige un producto --</option>'; // Limpiar mensaje de carga
+                    select.innerHTML = '<option value="">-- Elige un producto --</option>';
 
                     datos.forEach(fila => {
-                        // Asumiendo que las columnas en tu Sheet se llaman: Nombre, Partida, GA, Agemed
-                        if (fila.Nombre) {
+                        // Asume columnas: Nombre, Partida, GA, Agemed
+                        if (fila.Nombre && fila.Nombre.trim() !== "") {
                             productosDB[fila.Nombre] = {
                                 partida: fila.Partida || "N/A",
                                 ga: parseFloat(fila.GA) || 0,
-                                agemed: fila.Agemed && fila.Agemed.toUpperCase() === "SI"
+                                agemed: fila.Agemed && fila.Agemed.toUpperCase().trim() === "SI"
                             };
                             
-                            // Agregar al menú desplegable
                             const option = document.createElement('option');
                             option.value = fila.Nombre;
                             option.textContent = fila.Nombre;
@@ -228,11 +458,11 @@
             });
         }
 
-        // Llamar a la función apenas se abre la app
+        // Iniciar carga al abrir la app
         cargarDatosDeGoogle();
 
         // ==========================================
-        // 2. BASE DE DATOS DE USUARIOS (Fija)
+        // 2. LÓGICA DE USUARIOS Y LOGIN
         // ==========================================
         const usuariosDB = {
             abelardo: { nombre: 'Abelardo', cargo: 'CEO', password: 'Abelardo', tema: 'tema-ceo' },
@@ -246,12 +476,16 @@
             document.getElementById('btnAbelardo').classList.remove('active-abelardo');
             document.getElementById('btnTania').classList.remove('active-tania');
             
-            if (userType === 'abelardo') document.getElementById('btnAbelardo').classList.add('active-abelardo');
-            else document.getElementById('btnTania').classList.add('active-tania');
+            if (userType === 'abelardo') {
+                document.getElementById('btnAbelardo').classList.add('active-abelardo');
+            } else {
+                document.getElementById('btnTania').classList.add('active-tania');
+            }
             
             const passwordInput = document.getElementById('passwordInput');
             passwordInput.classList.remove('abelardo-theme', 'tania-theme');
             passwordInput.classList.add(usuariosDB[userType].tema);
+            
             passwordInput.value = '';
             document.getElementById('errorMessage').classList.remove('show');
             passwordInput.focus();
@@ -259,18 +493,25 @@
 
         function checkPassword() {
             if (!selectedUser) return;
+            
             const passwordInput = document.getElementById('passwordInput');
             const enteredPassword = passwordInput.value;
             const user = usuariosDB[selectedUser];
             const errorMsg = document.getElementById('errorMessage');
+            const loginContainer = document.querySelector('.user-card');
 
             if (enteredPassword === user.password) {
+                // Contraseña correcta: esperar 800ms y entrar
                 setTimeout(() => { abrirApp(user); }, 800);
             } else if (enteredPassword.length >= user.password.length) {
+                // Contraseña incorrecta: mostrar error, vibrar y borrar
                 errorMsg.classList.add('show');
+                loginContainer.classList.add('shake');
+                
                 setTimeout(() => {
                     passwordInput.value = '';
                     errorMsg.classList.remove('show');
+                    loginContainer.classList.remove('shake');
                 }, 1500);
             } else {
                 errorMsg.classList.remove('show');
@@ -287,16 +528,20 @@
         function cerrarSesion() {
             document.body.className = "";
             document.getElementById('dashboardScreen').style.display = 'none';
-            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('loginScreen').style.display = 'block';
             document.getElementById('passwordInput').value = '';
             document.getElementById('btnAbelardo').classList.remove('active-abelardo');
             document.getElementById('btnTania').classList.remove('active-tania');
             selectedUser = null;
         }
 
+        // ==========================================
+        // 3. LÓGICA DE LA APP (Fases y Calculadora)
+        // ==========================================
         function mostrarFase(numero) {
             document.querySelectorAll('.phase-card').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            
             document.getElementById('fase' + numero).classList.add('active');
             document.querySelectorAll('.nav-btn')[numero - 1].classList.add('active');
         }
@@ -304,6 +549,7 @@
         function actualizarDatosProducto() {
             const prod = document.getElementById('calcProducto').value;
             const alertBox = document.getElementById('alertAgemed');
+            
             if (prod && productosDB[prod]) {
                 alertBox.classList.toggle('show', productosDB[prod].agemed);
                 calcular();
