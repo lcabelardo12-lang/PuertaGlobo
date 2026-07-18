@@ -14,802 +14,647 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-    <script>
-    if('serviceWorker' in navigator){
-      navigator.serviceWorker.register('./sw.js').catch(function(){});
-    }
-    </script>
-
+    <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(function(){});}</script>
     <style>
-        :root {
-            --bg-color: #E8E3DB;
-            --card-bg: #FFFFFF;
-            --text-main: #0F172A;
-            --text-light: #64748B;
-            --primary: #0C1E3A;
-            --primary-light: #D4DDE8;
-            --primary-dark: #091428;
-            --shadow: 0 10px 40px rgba(0,0,0,0.08);
-            --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
-        }
+        :root{--bg:#E8E3DB;--card:#FFF;--txt:#0F172A;--txt2:#64748B;--pri:#0C1E3A;--priL:#D4DDE8;--priD:#091428;--sh:0 10px 40px rgba(0,0,0,.08)}
+        *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+        html,body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;min-height:-webkit-fill-available;display:flex;justify-content:center;align-items:center;overflow-x:hidden}
+        body.tema-ceo{--pri:#0C1E3A;--priL:#D4DDE8;--priD:#091428}
+        body.tema-tania{--pri:#5E1638;--priL:#E8D0DD;--priD:#3D0E25}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        @keyframes slideUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        /* LOGIN */
+        #loginScreen{width:100%;max-width:420px;padding:24px;animation:fadeIn .6s ease}
+        .header{text-align:center;margin-bottom:40px}
+        .app-title{font-size:2.4rem;letter-spacing:-1px;margin-bottom:8px}
+        .app-title .duava{font-weight:800;color:#0F172A}
+        .app-title .puente{font-weight:400;color:#475569;margin-left:4px}
+        .app-subtitle{font-size:1rem;color:var(--txt2);font-weight:500;letter-spacing:.5px}
+        .user-card{background:var(--card);border-radius:20px;padding:24px;box-shadow:var(--sh);margin-bottom:20px}
+        .user-btn{width:100%;padding:18px 20px;border:2px solid #E2E8F0;border-radius:14px;background:#FFF;text-align:left;cursor:pointer;transition:all .2s;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
+        .user-btn:last-child{margin-bottom:0}.user-btn:active{transform:scale(.98)}
+        .user-info h3{font-size:1.1rem;font-weight:700;color:var(--txt);margin-bottom:2px}
+        .user-info p{font-size:.85rem;color:var(--txt2);font-weight:500}
+        .check-icon{width:24px;height:24px;border-radius:50%;border:2px solid #CBD5E1;display:flex;align-items:center;justify-content:center;transition:all .2s}
+        .check-icon svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .2s}
+        .user-btn.active-abelardo{border-color:#0C1E3A;background:#E8EDF4}
+        .user-btn.active-abelardo .check-icon{background:#0C1E3A;border-color:#0C1E3A}
+        .user-btn.active-abelardo .check-icon svg{opacity:1}
+        .user-btn.active-tania{border-color:#5E1638;background:#F4E8EF}
+        .user-btn.active-tania .check-icon{background:#5E1638;border-color:#5E1638}
+        .user-btn.active-tania .check-icon svg{opacity:1}
+        .input-wrapper{position:relative;margin-top:24px}
+        .password-input{width:100%;padding:18px 60px 18px 20px;border:2px solid #E2E8F0;border-radius:14px;font-size:1.1rem;font-family:'Inter',sans-serif;outline:none;transition:all .3s;background:#F8FAFC;color:#0F172A}
+        .password-input::placeholder{color:#94A3B8}
+        .password-input.abelardo-theme{border-color:#0C1E3A;background:#FFF;box-shadow:0 0 0 4px rgba(12,30,58,.1)}
+        .password-input.tania-theme{border-color:#5E1638;background:#FFF;box-shadow:0 0 0 4px rgba(94,22,56,.1)}
+        .submit-btn{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:10px;border:none;background:#CBD5E1;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
+        .submit-btn.ready-abelardo{background:#0C1E3A}.submit-btn.ready-tania{background:#5E1638}
+        .submit-btn:active{transform:translateY(-50%) scale(.92)}
+        .submit-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+        .error-msg{color:#EF4444;font-size:.9rem;text-align:center;margin-top:16px;opacity:0;transition:opacity .3s;height:20px;font-weight:600}
+        .error-msg.show{opacity:1}.shake{animation:shake .3s ease-in-out}
 
-        html, body {
-            font-family: 'Inter', system-ui, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            min-height: -webkit-fill-available;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-        }
+        /* DASHBOARD */
+        #dashboardScreen{display:none;width:100%;min-height:100vh;min-height:-webkit-fill-available}
+        .top-bar{background:var(--pri);color:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+        .top-bar-info{font-weight:600;font-size:.95rem}
+        .logout-btn{padding:8px 16px;background:#E8E3DB;color:var(--pri);border:none;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .3s}
+        .logout-btn:hover{opacity:.85}
+        .nav-container{display:flex;overflow-x:auto;background:#fff;padding:12px 16px;gap:10px;box-shadow:0 2px 8px rgba(0,0,0,.06);scrollbar-width:none}
+        .nav-container::-webkit-scrollbar{display:none}
+        .nav-btn{flex-shrink:0;min-width:auto;padding:12px 16px;background:#F1F5F9;color:var(--txt);border:none;border-radius:10px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .3s;white-space:nowrap;text-align:center}
+        .nav-btn.active{background:var(--pri);color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+        .content-area{padding:24px;max-width:900px;margin:0 auto}
+        .tab-content{display:none;animation:slideUp .4s ease}.tab-content.active{display:block}
+        .phase-title{color:var(--pri);font-size:1.5rem;font-weight:700;margin-bottom:6px}
+        .phase-desc{color:var(--txt2);margin-bottom:24px;font-size:.9rem;line-height:1.5;padding-bottom:16px;border-bottom:2px solid #F1F5F9}
+        .card{background:#fff;padding:32px;border-radius:16px;box-shadow:var(--sh);margin-bottom:24px}
+        .input-group{margin-bottom:20px}
+        .input-group label{display:block;font-size:.9rem;font-weight:600;color:var(--txt2);margin-bottom:8px}
+        .input-group input,.input-group select{width:100%;padding:14px 16px;border:2px solid #E2E8F0;border-radius:10px;font-size:1rem;outline:none;transition:border-color .3s,box-shadow .3s;font-family:'Inter',sans-serif;background:#FAFBFC}
+        .input-group input:focus,.input-group select:focus{border-color:var(--pri);box-shadow:0 0 0 3px var(--priL);background:#fff}
+        .checkbox-group{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding:12px 16px;background:#F8FAFC;border-radius:10px;transition:background .2s}
+        .checkbox-group:hover{background:#F1F5F9}
+        .checkbox-group input[type="checkbox"]{width:20px;height:20px;cursor:pointer;accent-color:var(--pri)}
+        .checkbox-group label{font-size:.95rem;color:var(--txt);cursor:pointer;font-weight:500}
+        .action-btn{width:100%;padding:16px;background:var(--pri);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s;margin-top:16px;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+        .action-btn:hover{opacity:.92;transform:translateY(-1px)}.action-btn:active{transform:translateY(0)}
+        .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .result-box{background:#F8FAFC;padding:20px;border-radius:12px;margin-top:20px;border-left:4px solid var(--pri);display:none}
+        .result-box.show{display:block}
+        .result-row{display:flex;justify-content:space-between;margin-bottom:12px;font-size:.95rem}
+        .result-label{color:var(--txt2);font-weight:500}.result-value{font-weight:700;color:var(--txt)}
+        .result-total{font-size:1.2rem;font-weight:800;color:var(--pri);padding-top:12px;border-top:2px solid #E2E8F0;margin-top:12px}
+        .alert-box{background:#FEF2F2;color:#991B1B;padding:16px;border-radius:10px;margin-top:16px;font-size:.9rem;display:none;border-left:4px solid #EF4444;font-weight:600}
+        .alert-box.show{display:block}
+        .status-msg{padding:12px 16px;border-radius:10px;font-size:.85rem;font-weight:600;margin-top:12px;display:none}
+        .status-msg.success{display:block;background:#F0FDF4;color:#166534;border:1px solid #BBF7D0}
+        .status-msg.warn{display:block;background:#FFFBEB;color:#92400E;border:1px solid #FDE68A}
 
-        body.tema-ceo {
-            --primary: #0C1E3A;
-            --primary-light: #D4DDE8;
-            --primary-dark: #091428;
-        }
-        body.tema-tania {
-            --primary: #5E1638;
-            --primary-light: #E8D0DD;
-            --primary-dark: #3D0E25;
-        }
+        /* STEPPER */
+        .stepper-bar{display:flex;align-items:center;justify-content:center;margin-bottom:24px;padding:16px 0;overflow-x:auto}
+        .step-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;background:#F1F5F9;color:#94A3B8;border:2px solid #E2E8F0;transition:all .3s;cursor:pointer;flex-shrink:0}
+        .step-dot.active{background:var(--pri);color:#fff;border-color:var(--pri)}
+        .step-dot.done{background:var(--priL);color:var(--pri);border-color:var(--pri)}
+        .step-line{width:12px;height:2px;background:#E2E8F0;transition:background .3s;flex-shrink:0}
+        .step-line.done{background:var(--pri)}
+        .step-form{display:none;animation:slideUp .3s ease}.step-form.active{display:block}
+        .step-nav{display:flex;gap:12px;margin-top:24px;padding-top:16px;border-top:2px solid #F1F5F9}
+        .step-nav button{flex:1;padding:14px;border-radius:10px;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .3s}
+        .step-nav .btn-prev{background:#F1F5F9;color:var(--txt);border:none}
+        .step-nav .btn-next{background:var(--pri);color:#fff;border:none;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+        .step-nav .btn-complete{background:#166534;color:#fff;border:none;box-shadow:0 4px 14px rgba(0,0,0,.15)}
 
-        /* ========== LOGIN ========== */
-        #loginScreen {
-            width: 100%;
-            max-width: 420px;
-            padding: 24px;
-            animation: fadeIn 0.6s ease;
-        }
+        /* REQUISITOS */
+        .req-panel{background:#F8FAFC;border-radius:12px;padding:20px;margin-top:16px;border:1px solid #E2E8F0}
+        .req-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--pri);margin-bottom:12px}
+        .req-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F1F5F9}
+        .req-row:last-child{border-bottom:none}
+        .req-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+        .req-dot.si{background:#16A34A}.req-dot.no{background:#D1D5DB}
+        .req-name{font-size:.9rem;font-weight:500;color:var(--txt);flex:1}
+        .req-tag{font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.3px}
+        .req-tag.si{background:#DCFCE7;color:#166534}.req-tag.no{background:#F3F4F6;color:#6B7280}
 
-        .header { text-align: center; margin-bottom: 40px; }
-        .app-title { font-size: 2.4rem; letter-spacing: -1px; margin-bottom: 8px; }
-        .app-title .duava { font-weight: 800; color: #0F172A; }
-        .app-title .puente { font-weight: 400; color: #475569; margin-left: 4px; }
-        .app-subtitle { font-size: 1rem; color: var(--text-light); font-weight: 500; letter-spacing: 0.5px; }
+        .doc-panel{background:#FAFBFC;border-radius:12px;padding:20px;margin-top:16px;border:1px solid #E2E8F0}
+        .doc-hint{font-size:.75rem;color:#94A3B8;margin-bottom:12px;font-weight:500}
+        .doc-item{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;margin-bottom:8px;border-radius:8px;cursor:pointer;transition:all .2s}
+        .doc-item:active{transform:scale(.98)}
+        .doc-item.pendiente{background:#F9FAFB;border:1px solid #E5E7EB}
+        .doc-item.solicitado{background:#FFFBEB;border:1px solid #FDE68A}
+        .doc-item.recibido{background:#F0FDF4;border:1px solid #BBF7D0}
+        .doc-name{font-size:.9rem;font-weight:500;color:var(--txt)}
+        .doc-badge{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.3px;padding:3px 8px;border-radius:4px}
+        .doc-badge.pendiente{background:#F3F4F6;color:#6B7280}
+        .doc-badge.solicitado{background:#FEF3C7;color:#92400E}
+        .doc-badge.recibido{background:#D1FAE5;color:#065F46}
 
-        .user-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: var(--shadow);
-            margin-bottom: 20px;
-        }
+        .restriction-box{background:#FEF2F2;border-left:3px solid #EF4444;padding:12px 16px;border-radius:8px;font-size:.9rem;font-weight:500;color:#991B1B;margin-top:4px}
 
-        .user-btn {
-            width: 100%;
-            padding: 18px 20px;
-            border: 2px solid #E2E8F0;
-            border-radius: 14px;
-            background: #FFFFFF;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .user-btn:last-child { margin-bottom: 0; }
-        .user-btn:active { transform: scale(0.98); }
+        .paso-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F1F5F9}
+        .paso-item:last-child{border-bottom:none}
+        .paso-num{width:24px;height:24px;border-radius:50%;background:var(--priL);color:var(--pri);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+        .paso-text{font-size:.85rem;color:var(--txt);font-weight:500}
 
-        .user-info h3 { font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin-bottom: 2px; }
-        .user-info p { font-size: 0.85rem; color: var(--text-light); font-weight: 500; }
-        .check-icon {
-            width: 24px; height: 24px; border-radius: 50%; border: 2px solid #CBD5E1;
-            display: flex; align-items: center; justify-content: center; transition: all 0.2s;
-        }
-        .check-icon svg { width: 14px; height: 14px; fill: none; stroke: white; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity 0.2s; }
+        .provider-reminder{background:#EFF6FF;border-left:3px solid #3B82F6;padding:14px 16px;border-radius:8px;margin-bottom:16px}
+        .provider-reminder h4{font-size:.75rem;font-weight:700;color:#1E40AF;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+        .provider-reminder li{font-size:.85rem;color:#1E3A8A;padding:2px 0;list-style:none}
+        .provider-reminder li::before{content:"→ ";color:#3B82F6;font-weight:700}
 
-        .user-btn.active-abelardo { border-color: #0C1E3A; background: #E8EDF4; }
-        .user-btn.active-abelardo .check-icon { background: #0C1E3A; border-color: #0C1E3A; }
-        .user-btn.active-abelardo .check-icon svg { opacity: 1; }
+        /* IMPORT CARDS */
+        .import-card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;transition:all .2s}
+        .import-card:active{transform:scale(.98)}
+        .import-card-info{flex:1}
+        .import-card-title{font-size:.95rem;font-weight:700;color:var(--txt);margin-bottom:4px}
+        .import-card-meta{font-size:.8rem;color:var(--txt2)}
+        .import-card-actions{display:flex;gap:8px;margin-left:12px}
+        .import-card-btn{padding:8px 14px;border-radius:8px;border:none;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s}
+        .import-card-btn.continue{background:var(--pri);color:#fff}
+        .import-card-btn.delete{background:#FEF2F2;color:#991B1B}
+        .import-badge{display:inline-block;padding:3px 8px;border-radius:6px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+        .import-badge.active{background:#FEF3C7;color:#92400E}
+        .import-badge.done{background:#D1FAE5;color:#065F46}
+        .empty-state{text-align:center;padding:40px 20px;color:#94A3B8;font-size:.9rem}
 
-        .user-btn.active-tania { border-color: #5E1638; background: #F4E8EF; }
-        .user-btn.active-tania .check-icon { background: #5E1638; border-color: #5E1638; }
-        .user-btn.active-tania .check-icon svg { opacity: 1; }
+        /* GLOSARIO */
+        .glosario-search{margin-bottom:20px;position:relative}
+        .glosario-search input{width:100%;padding:14px 16px 14px 44px;border:2px solid #E2E8F0;border-radius:10px;font-size:1rem;outline:none;background:#FAFBFC;font-family:'Inter',sans-serif;transition:border-color .3s}
+        .glosario-search input:focus{border-color:var(--pri)}
+        .glosario-search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:#94A3B8;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .glosario-list{display:flex;flex-direction:column;gap:10px}
+        .glosario-item{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;cursor:pointer;transition:all .2s}
+        .glosario-item:active{transform:scale(.98);background:#F1F5F9}
+        .glosario-item-title{font-size:.95rem;font-weight:600;color:var(--txt);flex:1}
+        .glosario-item-arrow{color:#CBD5E1;font-size:1.2rem;margin-left:10px}
+        .glosario-count{font-size:.8rem;color:#94A3B8;margin-bottom:16px;font-weight:500}
+        .glosario-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;display:flex;align-items:flex-end;justify-content:center}
+        .glosario-overlay.hidden{display:none}
+        .glosario-modal{background:#fff;width:100%;max-width:480px;max-height:90vh;border-radius:18px 18px 0 0;display:flex;flex-direction:column;overflow:hidden;animation:slideUp .3s ease}
+        .glosario-modal-top{padding:20px 24px;border-bottom:1px solid #E2E8F0;display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0}
+        .glosario-modal-top h3{font-size:1.15rem;font-weight:700;color:var(--pri);line-height:1.3;flex:1;margin-right:12px}
+        .glosario-close{width:32px;height:32px;border-radius:50%;border:none;background:#F1F5F9;color:#64748B;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .glosario-modal-body{padding:24px;overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
+        .glosario-section{margin-bottom:24px}.glosario-section:last-child{margin-bottom:0}
+        .glosario-section-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pri);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #E2E8F0}
+        .glosario-section-text{font-size:.95rem;color:var(--txt);line-height:1.8;word-wrap:break-word}
+        .glosario-source-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--pri);color:#fff;border:none;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .2s;margin-top:4px}
+        .glosario-source-btn:hover{opacity:.9}
+        .glosario-source-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
 
-        .input-wrapper { position: relative; margin-top: 24px; }
-        .password-input {
-            width: 100%;
-            padding: 18px 60px 18px 20px;
-            border: 2px solid #E2E8F0;
-            border-radius: 14px;
-            font-size: 1.1rem;
-            font-family: 'Inter', sans-serif;
-            outline: none;
-            transition: all 0.3s ease;
-            background: #F8FAFC;
-            color: #0F172A;
-        }
-        .password-input::placeholder { color: #94A3B8; }
-        .password-input.abelardo-theme { border-color: #0C1E3A; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(12,30,58,0.1); }
-        .password-input.tania-theme { border-color: #5E1638; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(94,22,56,0.1); }
-
-        .submit-btn {
-            position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
-            width: 40px; height: 40px; border-radius: 10px; border: none;
-            background: #CBD5E1; color: white; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;
-        }
-        .submit-btn.ready-abelardo { background: #0C1E3A; }
-        .submit-btn.ready-tania { background: #5E1638; }
-        .submit-btn:active { transform: translateY(-50%) scale(0.92); }
-        .submit-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-
-        .error-message {
-            color: #EF4444; font-size: 0.9rem; text-align: center;
-            margin-top: 16px; opacity: 0; transition: opacity 0.3s ease;
-            height: 20px; font-weight: 600;
-        }
-        .error-message.show { opacity: 1; }
-
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
-        .shake { animation: shake 0.3s ease-in-out; }
-
-        /* ========== DASHBOARD ========== */
-        #dashboardScreen { display: none; width: 100%; min-height: 100vh; min-height: -webkit-fill-available; }
-
-        .top-bar {
-            background: var(--primary); color: white;
-            padding: 16px 24px; display: flex; justify-content: space-between;
-            align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-        .user-info-top { font-weight: 600; font-size: 0.95rem; }
-        .logout-btn {
-            padding: 8px 16px; background: #E8E3DB; color: var(--primary);
-            border: none; border-radius: 8px; font-size: 0.85rem;
-            font-weight: 600; cursor: pointer; transition: all 0.3s;
-        }
-        .logout-btn:hover { opacity: 0.85; }
-
-        .nav-container {
-            display: flex; overflow-x: auto; background: white;
-            padding: 12px 16px; gap: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06); scrollbar-width: none;
-        }
-        .nav-container::-webkit-scrollbar { display: none; }
-
-        .nav-btn {
-            flex-shrink: 0; min-width: auto; padding: 12px 16px;
-            background: #F1F5F9; color: var(--text-main); border: none;
-            border-radius: 10px; font-size: 0.8rem; font-weight: 600;
-            cursor: pointer; transition: all 0.3s; white-space: nowrap; text-align: center;
-        }
-        .nav-btn.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-
-        .content-area { padding: 24px; max-width: 900px; margin: 0 auto; }
-
-        .phase-card {
-            background: white; padding: 32px; border-radius: 16px;
-            box-shadow: var(--shadow); margin-bottom: 24px;
-            display: none; animation: slideUp 0.4s ease;
-        }
-        .phase-card.active { display: block; }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .phase-title { color: var(--primary); font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
-        .phase-desc { color: var(--text-light); margin-bottom: 24px; font-size: 0.9rem; line-height: 1.5; padding-bottom: 16px; border-bottom: 2px solid #F1F5F9; }
-
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; font-size: 0.9rem; font-weight: 600; color: var(--text-light); margin-bottom: 8px; }
-        .input-group input, .input-group select {
-            width: 100%; padding: 14px 16px; border: 2px solid #E2E8F0;
-            border-radius: 10px; font-size: 1rem; outline: none;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            font-family: 'Inter', sans-serif; background: #FAFBFC;
-        }
-        .input-group input:focus, .input-group select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); background: #fff; }
-
-        .checkbox-group { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding: 12px 16px; background: #F8FAFC; border-radius: 10px; transition: background 0.2s; }
-        .checkbox-group:hover { background: #F1F5F9; }
-        .checkbox-group input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: var(--primary); }
-        .checkbox-group label { font-size: 0.95rem; color: var(--text-main); cursor: pointer; font-weight: 500; }
-
-        .action-btn {
-            width: 100%; padding: 16px; background: var(--primary); color: white;
-            border: none; border-radius: 10px; font-size: 1rem; font-weight: 600;
-            cursor: pointer; transition: all 0.3s; margin-top: 16px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-        }
-        .action-btn:hover { opacity: 0.92; transform: translateY(-1px); }
-        .action-btn:active { transform: translateY(0); }
-
-        .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .result-box {
-            background: #F8FAFC; padding: 20px; border-radius: 12px;
-            margin-top: 20px; border-left: 4px solid var(--primary); display: none;
-        }
-        .result-box.show { display: block; }
-        .result-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.95rem; }
-        .result-label { color: var(--text-light); font-weight: 500; }
-        .result-value { font-weight: 700; color: var(--text-main); }
-        .result-total { font-size: 1.2rem; font-weight: 800; color: var(--primary); padding-top: 12px; border-top: 2px solid #E2E8F0; margin-top: 12px; }
-        .alert-box {
-            background: #FEF2F2; color: #991B1B; padding: 16px; border-radius: 10px;
-            margin-top: 16px; font-size: 0.9rem; display: none;
-            border-left: 4px solid #EF4444; font-weight: 600;
-        }
-        .alert-box.show { display: block; }
-
-        .status-msg { padding: 12px 16px; border-radius: 10px; font-size: 0.85rem; font-weight: 600; margin-top: 12px; display: none; }
-        .status-msg.success { display: block; background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
-
-        /* ========== GLOSARIO ========== */
-        .glosario-search { margin-bottom: 20px; position: relative; }
-        .glosario-search input {
-            width: 100%; padding: 14px 16px 14px 44px;
-            border: 2px solid #E2E8F0; border-radius: 10px;
-            font-size: 1rem; outline: none; background: #FAFBFC;
-            font-family: 'Inter', sans-serif; transition: border-color 0.3s;
-        }
-        .glosario-search input:focus { border-color: var(--primary); }
-        .glosario-search svg {
-            position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-            width: 18px; height: 18px; stroke: #94A3B8; fill: none;
-            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
-        }
-        .glosario-list { display: flex; flex-direction: column; gap: 10px; }
-        .glosario-item {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 14px 18px; background: #F8FAFC; border: 1px solid #E2E8F0;
-            border-radius: 10px; cursor: pointer; transition: all 0.2s;
-        }
-        .glosario-item:active { transform: scale(0.98); background: #F1F5F9; }
-        .glosario-item-title { font-size: 0.95rem; font-weight: 600; color: var(--text-main); flex: 1; }
-        .glosario-item-arrow { color: #CBD5E1; font-size: 1.2rem; margin-left: 10px; }
-        .glosario-empty { text-align: center; padding: 40px 20px; color: #94A3B8; font-size: 0.9rem; }
-        .glosario-count { font-size: 0.8rem; color: #94A3B8; margin-bottom: 16px; font-weight: 500; }
-
-        .glosario-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-            z-index: 300; display: flex; align-items: flex-end; justify-content: center;
-        }
-        .glosario-overlay.hidden { display: none; }
-        .glosario-modal {
-            background: white; width: 100%; max-width: 480px;
-            max-height: 90vh; border-radius: 18px 18px 0 0;
-            display: flex; flex-direction: column; overflow: hidden;
-            animation: slideUp 0.3s ease;
-        }
-        .glosario-modal-top {
-            padding: 20px 24px; border-bottom: 1px solid #E2E8F0;
-            display: flex; align-items: flex-start; justify-content: space-between; flex-shrink: 0;
-        }
-        .glosario-modal-top h3 {
-            font-size: 1.15rem; font-weight: 700; color: var(--primary);
-            line-height: 1.3; flex: 1; margin-right: 12px;
-        }
-        .glosario-close {
-            width: 32px; height: 32px; border-radius: 50%; border: none;
-            background: #F1F5F9; color: #64748B; font-size: 1.2rem;
-            cursor: pointer; display: flex; align-items: center;
-            justify-content: center; flex-shrink: 0; transition: background 0.2s;
-        }
-        .glosario-close:hover { background: #E2E8F0; }
-        .glosario-modal-body {
-            padding: 24px; overflow-y: auto; flex: 1; -webkit-overflow-scrolling: touch;
-        }
-        .glosario-section { margin-bottom: 24px; }
-        .glosario-section:last-child { margin-bottom: 0; }
-        .glosario-section-label {
-            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1px; color: var(--primary); margin-bottom: 8px;
-            padding-bottom: 6px; border-bottom: 1px solid #E2E8F0;
-        }
-        .glosario-section-text {
-            font-size: 0.95rem; color: var(--text-main); line-height: 1.8; word-wrap: break-word;
-        }
-        .glosario-source-btn {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 10px 18px; background: var(--primary); color: white;
-            border: none; border-radius: 8px; font-size: 0.85rem;
-            font-weight: 600; cursor: pointer; text-decoration: none;
-            transition: opacity 0.2s; margin-top: 4px;
-        }
-        .glosario-source-btn:hover { opacity: 0.9; }
-        .glosario-source-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
-        .glosario-loading { text-align: center; padding: 40px 20px; color: #94A3B8; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        @media (max-width: 600px) {
-            .calc-grid { grid-template-columns: 1fr; }
-            .app-title { font-size: 2rem; }
-            .phase-card { padding: 24px 20px; }
-        }
+        @media(max-width:600px){.calc-grid{grid-template-columns:1fr}.app-title{font-size:2rem}.card{padding:24px 20px}.step-dot{width:24px;height:24px;font-size:.65rem}.step-line{width:8px}}
     </style>
 </head>
 <body>
 
-    <!-- LOGIN -->
-    <div id="loginScreen">
-        <div class="header">
-            <h1 class="app-title">
-                <span class="duava">DUAVA</span><span class="puente">Puente</span>
-            </h1>
-            <p class="app-subtitle">Gesti&oacute;n de Comercio Exterior</p>
-        </div>
-
-        <div class="user-card">
-            <button class="user-btn" id="btnAbelardo" onclick="selectUser('abelardo')">
-                <div class="user-info">
-                    <h3>Abelardo</h3>
-                    <p>CEO</p>
-                </div>
-                <div class="check-icon">
-                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-            </button>
-            <button class="user-btn" id="btnTania" onclick="selectUser('tania')">
-                <div class="user-info">
-                    <h3>Tania</h3>
-                    <p>Responsable de Comercio Internacional</p>
-                </div>
-                <div class="check-icon">
-                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-            </button>
-        </div>
-
-        <div class="input-wrapper">
-            <input type="password" class="password-input" id="passwordInput"
-                placeholder="Ingresa tu contrase&ntilde;a"
-                oninput="onPasswordInput()"
-                onkeydown="if(event.key==='Enter')intentarLogin()"
-                autocomplete="off">
-            <button class="submit-btn" id="submitBtn" onclick="intentarLogin()">
-                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
-        </div>
-        <div class="error-message" id="errorMessage">Contrase&ntilde;a incorrecta</div>
+<!-- LOGIN -->
+<div id="loginScreen">
+    <div class="header">
+        <h1 class="app-title"><span class="duava">DUAVA</span><span class="puente">Puente</span></h1>
+        <p class="app-subtitle">Gestión de Comercio Exterior</p>
     </div>
+    <div class="user-card">
+        <button class="user-btn" id="btnAbelardo" onclick="selectUser('abelardo')">
+            <div class="user-info"><h3>Abelardo</h3><p>CEO</p></div>
+            <div class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        </button>
+        <button class="user-btn" id="btnTania" onclick="selectUser('tania')">
+            <div class="user-info"><h3>Tania</h3><p>Responsable de Comercio Internacional</p></div>
+            <div class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        </button>
+    </div>
+    <div class="input-wrapper">
+        <input type="password" class="password-input" id="passwordInput" placeholder="Ingresa tu contraseña" oninput="onPwdInput()" onkeydown="if(event.key==='Enter')intentarLogin()" autocomplete="off">
+        <button class="submit-btn" id="submitBtn" onclick="intentarLogin()"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="error-msg" id="errorMsg">Contraseña incorrecta</div>
+</div>
 
-    <!-- DASHBOARD -->
-    <div id="dashboardScreen">
-        <div class="top-bar">
-            <div class="user-info-top" id="topBarInfo">Bienvenido</div>
-            <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesi&oacute;n</button>
-        </div>
+<!-- DASHBOARD -->
+<div id="dashboardScreen">
+    <div class="top-bar">
+        <div class="top-bar-info" id="topInfo">Bienvenido</div>
+        <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesión</button>
+    </div>
+    <div class="nav-container">
+        <button class="nav-btn active" onclick="switchTab(1)">Importación</button>
+        <button class="nav-btn" onclick="switchTab(2)">Mis casos</button>
+        <button class="nav-btn" onclick="switchTab(3)">Calculadora</button>
+        <button class="nav-btn" onclick="switchTab(4)">Glosario</button>
+    </div>
+    <div class="content-area">
 
-        <div class="nav-container">
-            <button class="nav-btn active" onclick="mostrarFase(1)">Radar</button>
-            <button class="nav-btn" onclick="mostrarFase(2)">Negociaci&oacute;n</button>
-            <button class="nav-btn" onclick="mostrarFase(3)">Log&iacute;stica</button>
-            <button class="nav-btn" onclick="mostrarFase(4)">Nacionalizaci&oacute;n</button>
-            <button class="nav-btn" onclick="mostrarFase(5)">Recepci&oacute;n</button>
-            <button class="nav-btn" onclick="mostrarFase(6)">Glosario</button>
-        </div>
-
-        <div class="content-area">
-            <!-- FASE 1 -->
-            <div id="fase1" class="phase-card active">
-                <h2 class="phase-title">1. Radar de Proveedores</h2>
-                <p class="phase-desc">Evaluaci&oacute;n inicial y verificaci&oacute;n de documentos del proveedor.</p>
-                <div class="input-group"><label>Nombre del Proveedor</label><input type="text" id="f1Proveedor" placeholder="Ej: Foshan Gladen Medical"></div>
-                <div class="input-group"><label>Pa&iacute;s de Origen</label><input type="text" id="f1Pais" placeholder="Ej: China"></div>
-                <div class="checkbox-group"><input type="checkbox" id="checkISO"><label for="checkISO">Cuenta con ISO 13485 vigente</label></div>
-                <div class="checkbox-group"><input type="checkbox" id="checkCE"><label for="checkCE">Cuenta con Certificado CE / FDA</label></div>
-                <div class="checkbox-group"><input type="checkbox" id="checkMuestra"><label for="checkMuestra">Solicit&oacute; muestra del producto</label></div>
-                <button class="action-btn" onclick="guardarFase(1)">Guardar Evaluaci&oacute;n</button>
-                <div class="status-msg" id="status1"></div>
-            </div>
-
-            <!-- FASE 2 -->
-            <div id="fase2" class="phase-card">
-                <h2 class="phase-title">2. Negociaci&oacute;n y Proforma</h2>
-                <p class="phase-desc">Registro de datos de la Factura Proforma y condiciones comerciales.</p>
-                <div class="input-group"><label>N&uacute;mero de Proforma</label><input type="text" id="f2Proforma" placeholder="Ej: PI-2026-001"></div>
-                <div class="calc-grid">
-                    <div class="input-group"><label>Incoterm</label>
-                        <select id="f2Incoterm"><option>FOB</option><option>EXW</option><option>CIF</option><option>DDP</option></select>
-                    </div>
-                    <div class="input-group"><label>Moneda</label>
-                        <select id="f2Moneda"><option>USD</option><option>EUR</option><option>CNY</option></select>
-                    </div>
-                </div>
-                <div class="calc-grid">
-                    <div class="input-group"><label>Monto Total</label><input type="number" id="f2Monto" placeholder="0.00"></div>
-                    <div class="input-group"><label>Plazo de Pago</label>
-                        <select id="f2Plazo"><option>30% anticipo - 70% BL</option><option>100% anticipado</option><option>LC a la vista</option><option>Otro</option></select>
-                    </div>
-                </div>
-                <div class="input-group"><label>Fecha Estimada de Embarque</label><input type="date" id="f2Fecha"></div>
-                <button class="action-btn" onclick="guardarFase(2)">Registrar Proforma</button>
-                <div class="status-msg" id="status2"></div>
-            </div>
-
-            <!-- FASE 3 -->
-            <div id="fase3" class="phase-card">
-                <h2 class="phase-title">3. Log&iacute;stica Internacional</h2>
-                <p class="phase-desc">Seguimiento de flete, ruta de env&iacute;o y documentaci&oacute;n de transporte.</p>
-                <div class="calc-grid">
-                    <div class="input-group"><label>Tipo de Env&iacute;o</label>
-                        <select id="f3Tipo"><option>Mar&iacute;timo FCL</option><option>Mar&iacute;timo LCL</option><option>A&eacute;reo</option><option>Terrestre</option></select>
-                    </div>
-                    <div class="input-group"><label>N&uacute;mero de Contenedor</label><input type="text" id="f3Contenedor" placeholder="Ej: TCLU1234567"></div>
-                </div>
-                <div class="calc-grid">
-                    <div class="input-group"><label>Costo de Flete (USD)</label><input type="number" id="f3Flete" placeholder="0.00"></div>
-                    <div class="input-group"><label>Seguro (USD)</label><input type="number" id="f3Seguro" placeholder="0.00"></div>
-                </div>
-                <div class="input-group"><label>Puerto de Origen</label><input type="text" id="f3Origen" placeholder="Ej: Shenzhen, China"></div>
-                <div class="input-group"><label>Puerto de Destino</label><input type="text" id="f3Destino" placeholder="Ej: Arica, Bolivia"></div>
-                <button class="action-btn" onclick="guardarFase(3)">Registrar Log&iacute;stica</button>
-                <div class="status-msg" id="status3"></div>
-            </div>
-
-            <!-- FASE 4 -->
-            <div id="fase4" class="phase-card">
-                <h2 class="phase-title">4. Nacionalizaci&oacute;n y Costos</h2>
-                <p class="phase-desc">Calculadora de impuestos aduaneros. Datos cargados desde Google Sheets.</p>
+        <!-- TAB 1: IMPORTACION -->
+        <div id="tab1" class="tab-content active">
+            <div id="newImportStart" class="card">
+                <h2 class="phase-title">Nueva Importación</h2>
+                <p class="phase-desc">Ingresa un nombre para esta importación y comienza el proceso guiado paso a paso.</p>
                 <div class="input-group">
-                    <label>Seleccionar Producto</label>
-                    <select id="calcProducto" onchange="actualizarDatosProducto()">
-                        <option value="">-- Cargando productos... --</option>
-                    </select>
+                    <label>Nombre de la importación</label>
+                    <input type="text" id="importNameInput" placeholder="Ej: Autoclave XYZ - Julio 2026">
                 </div>
+                <button class="action-btn" onclick="crearImportacion()">Iniciar Importación</button>
+                <div id="startStatus" class="status-msg"></div>
+            </div>
+            <div id="stepperContainer" class="card" style="display:none">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                    <h2 class="phase-title" id="stepperTitle" style="margin-bottom:0"></h2>
+                    <button onclick="cerrarStepper()" style="background:none;border:none;color:#94A3B8;font-size:1.4rem;cursor:pointer;padding:4px 8px">&times;</button>
+                </div>
+                <p class="phase-desc" id="stepperDesc" style="margin-top:4px"></p>
+                <div class="stepper-bar" id="stepperBar"></div>
+
+                <!-- PASO 1: PRODUCTO -->
+                <div id="step1" class="step-form">
+                    <div class="input-group">
+                        <label>Seleccionar Producto</label>
+                        <select id="f1Producto" onchange="onStep1Producto()"><option value="">-- Elige un producto --</option></select>
+                    </div>
+                    <div id="reqPanel" style="display:none">
+                        <div class="req-panel">
+                            <div class="req-title">Requisitos de documentación</div>
+                            <div id="reqBadges"></div>
+                        </div>
+                        <div class="doc-panel" id="docPanel" style="display:none;margin-top:16px">
+                            <div class="req-title">Seguimiento de documentos</div>
+                            <p class="doc-hint">Toca cada documento para cambiar su estado: pendiente → solicitado → recibido</p>
+                            <div id="docList"></div>
+                        </div>
+                        <div id="restrPanel" style="display:none;margin-top:16px">
+                            <div class="req-title">Restricciones</div>
+                            <div id="restrContent"></div>
+                        </div>
+                        <div id="pasosPanel" style="display:none;margin-top:16px">
+                            <div class="req-title">Pasos recomendados</div>
+                            <div id="pasosContent"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PASO 2: PROVEEDOR -->
+                <div id="step2" class="step-form">
+                    <div id="providerReminder"></div>
+                    <div class="input-group"><label>Nombre del Proveedor</label><input type="text" id="f2Proveedor" placeholder="Ej: Foshan Gladen Medical"></div>
+                    <div class="input-group"><label>País de Origen</label><input type="text" id="f2Pais" placeholder="Ej: China"></div>
+                    <div class="checkbox-group"><input type="checkbox" id="f2ISO"><label for="f2ISO">Cuenta con ISO 13485 vigente</label></div>
+                    <div class="checkbox-group"><input type="checkbox" id="f2CE"><label for="f2CE">Cuenta con Certificado CE / FDA</label></div>
+                    <div class="checkbox-group"><input type="checkbox" id="f2Muestra"><label for="f2Muestra">Solicitó muestra del producto</label></div>
+                </div>
+
+                <!-- PASO 3: NEGOCIACION -->
+                <div id="step3" class="step-form">
+                    <div class="input-group"><label>Número de Proforma</label><input type="text" id="f3Proforma" placeholder="Ej: PI-2026-001"></div>
+                    <div class="calc-grid">
+                        <div class="input-group"><label>Incoterm</label><select id="f3Incoterm"><option>FOB</option><option>EXW</option><option>CIF</option><option>DDP</option></select></div>
+                        <div class="input-group"><label>Moneda</label><select id="f3Moneda"><option>USD</option><option>EUR</option><option>CNY</option></select></div>
+                    </div>
+                    <div class="calc-grid">
+                        <div class="input-group"><label>Monto Total</label><input type="number" id="f3Monto" placeholder="0.00"></div>
+                        <div class="input-group"><label>Plazo de Pago</label><select id="f3Plazo"><option>30% anticipo - 70% BL</option><option>100% anticipado</option><option>LC a la vista</option><option>Otro</option></select></div>
+                    </div>
+                    <div class="input-group"><label>Fecha Estimada de Embarque</label><input type="date" id="f3Fecha"></div>
+                </div>
+
+                <!-- PASO 4: LOGISTICA -->
+                <div id="step4" class="step-form">
+                    <div class="calc-grid">
+                        <div class="input-group"><label>Tipo de Envío</label><select id="f4Tipo"><option>Marítimo FCL</option><option>Marítimo LCL</option><option>Aéreo</option><option>Terrestre</option></select></div>
+                        <div class="input-group"><label>Número de Contenedor</label><input type="text" id="f4Contenedor" placeholder="Ej: TCLU1234567"></div>
+                    </div>
+                    <div class="calc-grid">
+                        <div class="input-group"><label>Costo de Flete (USD)</label><input type="number" id="f4Flete" placeholder="0.00"></div>
+                        <div class="input-group"><label>Seguro (USD)</label><input type="number" id="f4Seguro" placeholder="0.00"></div>
+                    </div>
+                    <div class="input-group"><label>Puerto de Origen</label><input type="text" id="f4Origen" placeholder="Ej: Shenzhen, China"></div>
+                    <div class="input-group"><label>Puerto de Destino</label><input type="text" id="f4Destino" placeholder="Ej: Arica, Bolivia"></div>
+                </div>
+
+                <!-- PASO 5: NACIONALIZACION -->
+                <div id="step5" class="step-form">
+                    <p style="font-size:.85rem;color:var(--txt2);margin-bottom:16px">Calculadora de impuestos basada en el producto seleccionado en el Paso 1.</p>
+                    <div class="calc-grid">
+                        <div class="input-group"><label>Valor FOB (USD)</label><input type="number" id="f5FOB" placeholder="0.00" oninput="calcularLocal()"></div>
+                        <div class="input-group"><label>Flete + Seguro (USD)</label><input type="number" id="f5FleteSeg" placeholder="0.00" oninput="calcularLocal()"></div>
+                    </div>
+                    <div class="input-group"><label>Tasa de Cambio (Bs/USD)</label><input type="number" id="f5Tasa" value="6.96" step="0.01" oninput="calcularLocal()"></div>
+                    <div class="result-box" id="f5Result">
+                        <div class="result-row"><span class="result-label">Partida Arancelaria:</span><span class="result-value" id="rPartida">-</span></div>
+                        <div class="result-row"><span class="result-label">Valor CIF (USD):</span><span class="result-value" id="rCIF">0.00</span></div>
+                        <div class="result-row"><span class="result-label">Gravamen Arancelario:</span><span class="result-value" id="rGA">0.00 Bs</span></div>
+                        <div class="result-row"><span class="result-label">IVA (14.94%):</span><span class="result-value" id="rIVA">0.00 Bs</span></div>
+                        <div class="result-row result-total"><span class="result-label">Total Impuestos:</span><span class="result-value" id="rTotal">0.00 Bs</span></div>
+                    </div>
+                    <div class="alert-box" id="f5Alert"><strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario o Certificado de Libre Venta.</div>
+                </div>
+
+                <!-- PASO 6: RECEPCION -->
+                <div id="step6" class="step-form">
+                    <div class="input-group"><label>Fecha de Recepción</label><input type="date" id="f6Fecha"></div>
+                    <div class="checkbox-group"><input type="checkbox" id="f6Caja"><label for="f6Caja">Caja sin daños visibles</label></div>
+                    <div class="checkbox-group"><input type="checkbox" id="f6Contenido"><label for="f6Contenido">Contenido coincide con Packing List</label></div>
+                    <div class="checkbox-group"><input type="checkbox" id="f6Funciona"><label for="f6Funciona">Equipo enciende y funciona correctamente</label></div>
+                    <div class="input-group"><label>Fecha de Inicio de Garantía</label><input type="date" id="f6Garantia"></div>
+                    <div class="input-group"><label>Observaciones</label><input type="text" id="f6Obs" placeholder="Notas adicionales"></div>
+                </div>
+
+                <div class="step-nav" id="stepNav"></div>
+                <div id="stepStatus" class="status-msg"></div>
+            </div>
+        </div>
+
+        <!-- TAB 2: MIS CASOS -->
+        <div id="tab2" class="tab-content">
+            <div class="card">
+                <h2 class="phase-title">Mis Importaciones</h2>
+                <p class="phase-desc">Tus casos en curso y completados.</p>
+                <div id="secActivas"><h3 style="font-size:.8rem;font-weight:700;color:#92400E;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">En curso</h3><div id="listaActivas"></div></div>
+                <div id="secCompletadas" style="margin-top:24px"><h3 style="font-size:.8rem;font-weight:700;color:#065F46;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Completadas</h3><div id="listaCompletadas"></div></div>
+            </div>
+        </div>
+
+        <!-- TAB 3: CALCULADORA -->
+        <div id="tab3" class="tab-content">
+            <div class="card">
+                <h2 class="phase-title">Calculadora de Costos</h2>
+                <p class="phase-desc">Calcula los impuestos de nacionalización para cualquier producto.</p>
+                <div class="input-group"><label>Seleccionar Producto</label><select id="calcProd" onchange="onCalcProdChange()"><option value="">-- Cargando... --</option></select></div>
                 <div class="calc-grid">
-                    <div class="input-group"><label>Valor FOB (USD)</label><input type="number" id="calcFOB" placeholder="0.00" oninput="calcular()"></div>
-                    <div class="input-group"><label>Flete + Seguro (USD)</label><input type="number" id="calcFlete" placeholder="0.00" oninput="calcular()"></div>
+                    <div class="input-group"><label>Valor FOB (USD)</label><input type="number" id="calcFOB" placeholder="0.00" oninput="calcularStandalone()"></div>
+                    <div class="input-group"><label>Flete + Seguro (USD)</label><input type="number" id="calcFlete" placeholder="0.00" oninput="calcularStandalone()"></div>
                 </div>
-                <div class="input-group"><label>Tasa de Cambio (Bs/USD)</label><input type="number" id="calcTasa" value="6.96" step="0.01" oninput="calcular()"></div>
-                <div class="result-box" id="calcResultados">
-                    <div class="result-row"><span class="result-label">Partida Arancelaria:</span><span class="result-value" id="resPartida">-</span></div>
-                    <div class="result-row"><span class="result-label">Valor CIF (USD):</span><span class="result-value" id="resCIF">0.00</span></div>
-                    <div class="result-row"><span class="result-label">Gravamen Arancelario (GA):</span><span class="result-value" id="resGA">0.00 Bs</span></div>
-                    <div class="result-row"><span class="result-label">IVA (14.94%):</span><span class="result-value" id="resIVA">0.00 Bs</span></div>
-                    <div class="result-row result-total"><span class="result-label">Total Impuestos:</span><span class="result-value" id="resTotal">0.00 Bs</span></div>
+                <div class="input-group"><label>Tasa de Cambio (Bs/USD)</label><input type="number" id="calcTasa" value="6.96" step="0.01" oninput="calcularStandalone()"></div>
+                <div class="result-box" id="calcResult">
+                    <div class="result-row"><span class="result-label">Partida Arancelaria:</span><span class="result-value" id="cPartida">-</span></div>
+                    <div class="result-row"><span class="result-label">Valor CIF (USD):</span><span class="result-value" id="cCIF">0.00</span></div>
+                    <div class="result-row"><span class="result-label">Gravamen Arancelario:</span><span class="result-value" id="cGA">0.00 Bs</span></div>
+                    <div class="result-row"><span class="result-label">IVA (14.94%):</span><span class="result-value" id="cIVA">0.00 Bs</span></div>
+                    <div class="result-row result-total"><span class="result-label">Total Impuestos:</span><span class="result-value" id="cTotal">0.00 Bs</span></div>
                 </div>
-                <div class="alert-box" id="alertAgemed"><strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario o Certificado de Libre Venta.</div>
+                <div class="alert-box" id="calcAlert"><strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario.</div>
             </div>
+        </div>
 
-            <!-- FASE 5 -->
-            <div id="fase5" class="phase-card">
-                <h2 class="phase-title">5. Recepci&oacute;n y Postventa</h2>
-                <p class="phase-desc">Verificaci&oacute;n final del producto recibido y activaci&oacute;n de garant&iacute;a.</p>
-                <div class="input-group"><label>Fecha de Recepci&oacute;n</label><input type="date" id="f5Fecha"></div>
-                <div class="checkbox-group"><input type="checkbox" id="checkCaja"><label for="checkCaja">Caja sin da&ntilde;os visibles</label></div>
-                <div class="checkbox-group"><input type="checkbox" id="checkContenido"><label for="checkContenido">Contenido coincide con Packing List</label></div>
-                <div class="checkbox-group"><input type="checkbox" id="checkFunciona"><label for="checkFunciona">Equipo enciende y funciona correctamente</label></div>
-                <div class="input-group"><label>Fecha de Inicio de Garant&iacute;a</label><input type="date" id="f5Garantia"></div>
-                <div class="input-group"><label>Observaciones</label><input type="text" id="f5Obs" placeholder="Notas adicionales sobre el estado del producto"></div>
-                <button class="action-btn" onclick="guardarFase(5)">Finalizar Recepci&oacute;n</button>
-                <div class="status-msg" id="status5"></div>
-            </div>
-
-            <!-- FASE 6: GLOSARIO -->
-            <div id="fase6" class="phase-card">
-                <h2 class="phase-title">Glosario de T&eacute;rminos</h2>
-                <p class="phase-desc">Definiciones oficiales de documentos y t&eacute;rminos de importaci&oacute;n seg&uacute;n la normativa boliviana.</p>
+        <!-- TAB 4: GLOSARIO -->
+        <div id="tab4" class="tab-content">
+            <div class="card">
+                <h2 class="phase-title">Glosario de Términos</h2>
+                <p class="phase-desc">Definiciones oficiales de documentos y términos de importación.</p>
                 <div class="glosario-search">
                     <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    <input type="text" id="glosarioInput" placeholder="Buscar t&eacute;rmino o documento..." oninput="filtrarGlosario()">
+                    <input type="text" id="glosarioInput" placeholder="Buscar término..." oninput="filtrarGlosario()">
                 </div>
                 <p class="glosario-count" id="glosarioCount"></p>
-                <div class="glosario-list" id="glosarioList">
-                    <div class="glosario-loading">Cargando glosario...</div>
-                </div>
+                <div class="glosario-list" id="glosarioList"><div style="text-align:center;padding:40px;color:#94A3B8">Cargando glosario...</div></div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- MODAL GLOSARIO -->
-    <div class="glosario-overlay hidden" id="glosarioOverlay" onclick="if(event.target===this)cerrarGlosario()">
-        <div class="glosario-modal">
-            <div class="glosario-modal-top">
-                <h3 id="glosarioTitle"></h3>
-                <button class="glosario-close" onclick="cerrarGlosario()">&times;</button>
-            </div>
-            <div class="glosario-modal-body" id="glosarioBody"></div>
-        </div>
+<!-- MODAL GLOSARIO -->
+<div class="glosario-overlay hidden" id="glosarioOverlay" onclick="if(event.target===this)cerrarGlosario()">
+    <div class="glosario-modal">
+        <div class="glosario-modal-top"><h3 id="glosarioTitle"></h3><button class="glosario-close" onclick="cerrarGlosario()">&times;</button></div>
+        <div class="glosario-modal-body" id="glosarioBody"></div>
     </div>
+</div>
 
-    <script>
-        // ==========================================
-        // UTILITY
-        // ==========================================
-        function hx(s) {
-            return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-        }
+<script>
+function hx(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 
-        // ==========================================
-        // 1. GOOGLE SHEETS - PRODUCTOS
-        // ==========================================
-        const enlaceGoogleSheet = "https://docs.google.com/spreadsheets/d/1CdI4J1KqBTifUDHBLNESEzrXN5gaLOthcxNS3UVdn8I/export?format=csv&gid=0";
-        let productosDB = {};
+var SID="1CdI4J1KqBTifUDHBLNESEzrXN5gaLOthcxNS3UVdn8I";
+var PROD_URL="https://docs.google.com/spreadsheets/d/"+SID+"/export?format=csv&gid=0";
+var GLOS_GID="382618591";
+var GLOS_URL="https://docs.google.com/spreadsheets/d/"+SID+"/export?format=csv&gid="+GLOS_GID;
 
-        function cargarDatosDeGoogle() {
-            try {
-                Papa.parse(enlaceGoogleSheet, {
-                    download: true, header: true,
-                    complete: function(results) {
-                        const datos = results.data;
-                        const select = document.getElementById('calcProducto');
-                        select.innerHTML = '<option value="">-- Elige un producto --</option>';
-                        datos.forEach(fila => {
-                            if (fila.Nombre && fila.Nombre.trim() !== "") {
-                                productosDB[fila.Nombre] = {
-                                    partida: fila.Partida || "N/A",
-                                    ga: parseFloat(fila.GA) || 0,
-                                    agemed: fila.Agemed && fila.Agemed.toUpperCase().trim() === "SI"
-                                };
-                                const opt = document.createElement('option');
-                                opt.value = fila.Nombre;
-                                opt.textContent = fila.Nombre;
-                                select.appendChild(opt);
-                            }
-                        });
-                        console.log("Productos cargados:", Object.keys(productosDB).length);
-                    },
-                    error: function(err) {
-                        console.error("Error productos:", err);
-                        document.getElementById('calcProducto').innerHTML = '<option value="">-- Error al cargar datos --</option>';
-                    }
-                });
-            } catch(e) { console.error("Error PapaParse productos:", e); }
-        }
+var productosDB={};
+var glosarioDB=[];
+var glosarioLoaded=false;
+var allImports=[];
+var curImport=null;
+var curStep=1;
+var selectedUser=null;
 
-        // ==========================================
-        // 2. GOOGLE SHEETS - GLOSARIO
-        // ==========================================
-        const glosarioSheetId = "1CdI4J1KqBTifUDHBLNESEzrXN5gaLOthcxNS3UVdn8I";
-        const glosarioGID = "382618591";
-        const glosarioURL = "https://docs.google.com/spreadsheets/d/" + glosarioSheetId + "/export?format=csv&gid=" + glosarioGID;
-        let glosarioDB = [];
-        let glosarioLoaded = false;
+var USERS={abelardo:{n:"Abelardo",c:"CEO",p:"7512",t:"tema-ceo"},tania:{n:"Tania",c:"Responsable de Comercio Internacional",p:"TA25",t:"tema-tania"}};
+var STEP_T=["Producto","Proveedor","Negociación","Logística","Nacionalización","Recepción"];
+var STEP_D=[
+    "Selecciona el producto y revisa qué documentos y requisitos necesitas para importarlo.",
+    "Registra los datos del proveedor. La app te indica qué documentos pedirle.",
+    "Datos de la Factura Proforma y condiciones comerciales.",
+    "Seguimiento de flete, ruta y documentación de transporte.",
+    "Calculadora de impuestos aduaneros para este producto.",
+    "Verificación del producto recibido y activación de garantía."
+];
 
-        function cargarGlosario() {
-            if (glosarioLoaded) return;
-            try {
-                Papa.parse(glosarioURL, {
-                    download: true, header: true,
-                    complete: function(results) {
-                        glosarioDB = [];
-                        results.data.forEach(function(fila) {
-                            var keys = Object.keys(fila);
-                            var termino = keys.length >= 1 ? (fila[keys[0]] || "").trim() : "";
-                            var definicion = keys.length >= 2 ? (fila[keys[1]] || "").trim() : "";
-                            var aplicacion = keys.length >= 3 ? (fila[keys[2]] || "").trim() : "";
-                            var fuente = keys.length >= 4 ? (fila[keys[3]] || "").trim() : "";
-                            if (termino) {
-                                glosarioDB.push({ termino: termino, definicion: definicion, aplicacion: aplicacion, fuente: fuente });
-                            }
-                        });
-                        glosarioLoaded = true;
-                        console.log("Glosario cargado:", glosarioDB.length, "terminos");
-                        renderGlosario(glosarioDB);
-                    },
-                    error: function(err) {
-                        console.error("Error glosario:", err);
-                        document.getElementById("glosarioList").innerHTML = '<div class="glosario-empty">Error al cargar el glosario.</div>';
-                    }
-                });
-            } catch(e) {
-                console.error("Error PapaParse glosario:", e);
-                document.getElementById("glosarioList").innerHTML = '<div class="glosario-empty">Error al cargar el glosario.</div>';
-            }
-        }
+// ========== STORAGE ==========
+function loadImports(){try{allImports=JSON.parse(localStorage.getItem("puente_imports")||"[]")}catch(e){allImports=[]}}
+function saveImports(){try{localStorage.setItem("puente_imports",JSON.stringify(allImports))}catch(e){}}
 
-        function renderGlosario(lista) {
-            var container = document.getElementById("glosarioList");
-            var count = document.getElementById("glosarioCount");
-            count.textContent = lista.length + " t\u00e9rminos disponibles";
-            if (!lista.length) {
-                container.innerHTML = '<div class="glosario-empty">No se encontraron t\u00e9rminos.</div>';
-                return;
-            }
-            var html = "";
-            for (var i = 0; i < lista.length; i++) {
-                html += '<div class="glosario-item" onclick="abrirGlosarioItem(' + i + ')">';
-                html += '<span class="glosario-item-title">' + hx(lista[i].termino) + '</span>';
-                html += '<span class="glosario-item-arrow">\u203A</span>';
-                html += '</div>';
-            }
-            container.innerHTML = html;
-        }
+// ========== LOGIN ==========
+function selectUser(t){
+    selectedUser=t;
+    document.getElementById("btnAbelardo").classList.remove("active-abelardo");
+    document.getElementById("btnTania").classList.remove("active-tania");
+    document.getElementById("submitBtn").className="submit-btn";
+    if(t==="abelardo"){document.getElementById("btnAbelardo").classList.add("active-abelardo");document.getElementById("submitBtn").classList.add("ready-abelardo")}
+    else{document.getElementById("btnTania").classList.add("active-tania");document.getElementById("submitBtn").classList.add("ready-tania")}
+    var pi=document.getElementById("passwordInput");
+    pi.classList.remove("abelardo-theme","tania-theme");pi.classList.add(USERS[t].t);
+    pi.value="";pi.blur();document.getElementById("errorMsg").classList.remove("show");
+}
+function onPwdInput(){if(!selectedUser)return;var v=document.getElementById("passwordInput").value;var u=USERS[selectedUser];document.getElementById("errorMsg").classList.toggle("show",v.length>=u.p.length&&v!==u.p)}
+function intentarLogin(){if(!selectedUser)return;var pi=document.getElementById("passwordInput");var u=USERS[selectedUser];if(pi.value===u.p)abrirApp(u);else{document.getElementById("errorMsg").classList.add("show");document.querySelector(".user-card").classList.add("shake");setTimeout(function(){pi.value="";document.getElementById("errorMsg").classList.remove("show");document.querySelector(".user-card").classList.remove("shake")},1500)}}
+function abrirApp(u){document.getElementById("loginScreen").style.display="none";document.getElementById("dashboardScreen").style.display="block";document.body.className=u.t;document.getElementById("topInfo").textContent="Hola, "+u.n+" | "+u.c;loadImports();renderMisCasos();cargarProductos()}
+function cerrarSesion(){if(curImport)saveStepData();document.body.className="";document.getElementById("dashboardScreen").style.display="none";document.getElementById("loginScreen").style.display="block";document.getElementById("passwordInput").value="";document.getElementById("btnAbelardo").classList.remove("active-abelardo");document.getElementById("btnTania").classList.remove("active-tania");document.getElementById("submitBtn").className="submit-btn";selectedUser=null}
 
-        function filtrarGlosario() {
-            var term = document.getElementById("glosarioInput").value.toLowerCase().trim();
-            if (!term) { renderGlosario(glosarioDB); return; }
-            var filtered = [];
-            for (var i = 0; i < glosarioDB.length; i++) {
-                var s = (glosarioDB[i].termino + " " + glosarioDB[i].definicion + " " + glosarioDB[i].aplicacion).toLowerCase();
-                if (s.indexOf(term) >= 0) filtered.push(glosarioDB[i]);
-            }
-            renderGlosario(filtered);
-        }
+// ========== NAV ==========
+function switchTab(n){if(curImport&&n!==1)saveStepData();document.querySelectorAll(".tab-content").forEach(function(el){el.classList.remove("active")});document.querySelectorAll(".nav-btn").forEach(function(el){el.classList.remove("active")});document.getElementById("tab"+n).classList.add("active");document.querySelectorAll(".nav-btn")[n-1].classList.add("active");if(n===2)renderMisCasos();if(n===4&&!glosarioLoaded)cargarGlosario();window.scrollTo({top:0,behavior:"smooth"})}
 
-        function abrirGlosarioItem(index) {
-            var item = glosarioDB[index];
-            if (!item) return;
-            document.getElementById("glosarioTitle").textContent = item.termino;
-            var body = document.getElementById("glosarioBody");
-            var html = "";
-            if (item.definicion) {
-                html += '<div class="glosario-section">';
-                html += '<div class="glosario-section-label">Definici\u00f3n T\u00e9cnica y Legal</div>';
-                html += '<div class="glosario-section-text">' + hx(item.definicion) + '</div>';
-                html += '</div>';
-            }
-            if (item.aplicacion) {
-                html += '<div class="glosario-section">';
-                html += '<div class="glosario-section-label">Aplicaci\u00f3n en la Importaci\u00f3n a Bolivia</div>';
-                html += '<div class="glosario-section-text">' + hx(item.aplicacion) + '</div>';
-                html += '</div>';
-            }
-            if (item.fuente) {
-                html += '<div class="glosario-section">';
-                html += '<div class="glosario-section-label">Fuente Legal Oficial</div>';
-                html += '<div class="glosario-section-text">' + renderFuente(item.fuente) + '</div>';
-                html += '</div>';
-            }
-            body.innerHTML = html;
-            document.getElementById("glosarioOverlay").classList.remove("hidden");
-        }
-
-        function renderFuente(texto) {
-            var urlRegex = /(https?:\/\/[^\s<]+)/g;
-            var parts = texto.split(urlRegex);
-            var html = "";
-            for (var i = 0; i < parts.length; i++) {
-                if (parts[i].match(urlRegex)) {
-                    html += '<a class="glosario-source-btn" href="' + hx(parts[i]) + '" target="_blank" rel="noopener">';
-                    html += '<svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
-                    html += 'Ver fuente oficial</a>';
-                } else if (parts[i].trim()) {
-                    html += '<span>' + hx(parts[i].trim()) + '</span><br>';
+// ========== GOOGLE SHEETS: PRODUCTOS ==========
+function cargarProductos(){
+    try{Papa.parse(PROD_URL,{download:true,header:true,
+        complete:function(r){
+            var s1=document.getElementById("f1Producto");
+            var s2=document.getElementById("calcProd");
+            s1.innerHTML='<option value="">-- Elige un producto --</option>';
+            s2.innerHTML='<option value="">-- Elige un producto --</option>';
+            r.data.forEach(function(raw){
+                var f={};for(var k in raw)f[k.trim()]=raw[k];
+                if(f.Nombre&&f.Nombre.trim()){
+                    productosDB[f.Nombre]={
+                        partida:f.Partida||"N/A",ga:parseFloat(f.GA)||0,
+                        agemed:!!(f.Agemed&&f.Agemed.toUpperCase().trim()==="SI"),
+                        reqCE:!!(f["Requiere CE"]&&f["Requiere CE"].toUpperCase().trim()==="SI"),
+                        reqISO:!!(f["Requiere ISO"]&&f["Requiere ISO"].toUpperCase().trim()==="SI"),
+                        reqCFG:!!(f["Requiere CFG"]&&f["Requiere CFG"].toUpperCase().trim()==="SI"),
+                        reqOrigen:!!(f["Requiere Origen"]&&f["Requiere Origen"].toUpperCase().trim()==="SI"),
+                        documentos:f.Documentos||"",restricciones:f.Restricciones||"",pasos:f.Pasos||""
+                    };
+                    var o1=document.createElement("option");o1.value=f.Nombre;o1.textContent=f.Nombre;s1.appendChild(o1);
+                    var o2=document.createElement("option");o2.value=f.Nombre;o2.textContent=f.Nombre;s2.appendChild(o2);
                 }
-            }
-            return html;
-        }
+            });
+            console.log("Productos:",Object.keys(productosDB).length);
+            if(curImport)loadStepData();
+        },error:function(e){console.error("Error productos:",e)}
+    })}catch(e){console.error(e)}
+}
 
-        function cerrarGlosario() {
-            document.getElementById("glosarioOverlay").classList.add("hidden");
-        }
+// ========== GOOGLE SHEETS: GLOSARIO ==========
+function cargarGlosario(){if(glosarioLoaded)return;
+    try{Papa.parse(GLOS_URL,{download:true,header:true,
+        complete:function(r){glosarioDB=[];
+            r.data.forEach(function(raw){var f={};for(var k in raw)f[k.trim()]=raw[k];var keys=Object.keys(f);var t=keys.length>=1?(f[keys[0]]||"").trim():"";
+                if(t)glosarioDB.push({termino:t,definicion:keys.length>=2?(f[keys[1]]||"").trim():"",aplicacion:keys.length>=3?(f[keys[2]]||"").trim():"",fuente:keys.length>=4?(f[keys[3]]||"").trim():""});
+            });glosarioLoaded=true;console.log("Glosario:",glosarioDB.length);renderGlosario(glosarioDB);
+        },error:function(e){console.error("Error glosario:",e);document.getElementById("glosarioList").innerHTML='<div class="empty-state">Error al cargar.</div>'}
+    })}catch(e){console.error(e)}
+}
+function renderGlosario(lista){var c=document.getElementById("glosarioList");document.getElementById("glosarioCount").textContent=lista.length+" términos";if(!lista.length){c.innerHTML='<div class="empty-state">No se encontraron términos.</div>';return}var h="";for(var i=0;i<lista.length;i++)h+='<div class="glosario-item" onclick="abrirGlosarioItem('+i+')"><span class="glosario-item-title">'+hx(lista[i].termino)+'</span><span class="glosario-item-arrow">\u203A</span></div>';c.innerHTML=h}
+function filtrarGlosario(){var t=document.getElementById("glosarioInput").value.toLowerCase().trim();if(!t){renderGlosario(glosarioDB);return}var f=[];for(var i=0;i<glosarioDB.length;i++){var s=(glosarioDB[i].termino+" "+glosarioDB[i].definicion+" "+glosarioDB[i].aplicacion).toLowerCase();if(s.indexOf(t)>=0)f.push(glosarioDB[i])}renderGlosario(f)}
+function abrirGlosarioItem(i){var it=glosarioDB[i];if(!it)return;document.getElementById("glosarioTitle").textContent=it.termino;var b=document.getElementById("glosarioBody");var h="";if(it.definicion)h+='<div class="glosario-section"><div class="glosario-section-label">Definición Técnica y Legal</div><div class="glosario-section-text">'+hx(it.definicion)+'</div></div>';if(it.aplicacion)h+='<div class="glosario-section"><div class="glosario-section-label">Aplicación en Bolivia</div><div class="glosario-section-text">'+hx(it.aplicacion)+'</div></div>';if(it.fuente)h+='<div class="glosario-section"><div class="glosario-section-label">Fuente Legal Oficial</div><div class="glosario-section-text">'+renderFuente(it.fuente)+'</div></div>';b.innerHTML=h;document.getElementById("glosarioOverlay").classList.remove("hidden")}
+function renderFuente(txt){var re=/(https?:\/\/[^\s<]+)/g;var p=txt.split(re);var h="";for(var i=0;i<p.length;i++){if(p[i].match(re))h+='<a class="glosario-source-btn" href="'+hx(p[i])+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver fuente oficial</a>';else if(p[i].trim())h+='<span>'+hx(p[i].trim())+'</span><br>'}return h}
+function cerrarGlosario(){document.getElementById("glosarioOverlay").classList.add("hidden")}
 
-        // ==========================================
-        // 3. LOGIN
-        // ==========================================
-        const usuariosDB = {
-            abelardo: { nombre: 'Abelardo', cargo: 'CEO', password: '7512', tema: 'tema-ceo' },
-            tania: { nombre: 'Tania', cargo: 'Responsable de Comercio Internacional', password: 'TA25', tema: 'tema-tania' }
-        };
+// ========== IMPORTS ==========
+function crearImportacion(){
+    var nm=document.getElementById("importNameInput").value.trim();
+    if(!nm){var ss=document.getElementById("startStatus");ss.className="status-msg warn";ss.textContent="\u26A0 Escribe un nombre para esta importación.";setTimeout(function(){ss.className="status-msg"},3000);return}
+    if(curImport)saveStepData();
+    var imp={id:"imp_"+Date.now(),nombre:nm,estado:"en_curso",paso:1,fecha:new Date().toISOString().split("T")[0],
+        fase1:{producto:"",docStatus:{}},
+        fase2:{proveedor:"",pais:"",iso:false,ce:false,muestra:false},
+        fase3:{proforma:"",incoterm:"FOB",moneda:"USD",monto:"",plazo:"30% anticipo - 70% BL",fecha:""},
+        fase4:{tipo:"Marítimo FCL",contenedor:"",flete:"",seguro:"",origen:"",destino:""},
+        fase5:{fob:"",fleteSeg:"",tasa:"6.96"},
+        fase6:{fecha:"",caja:false,contenido:false,funciona:false,garantia:"",obs:""}
+    };
+    allImports.unshift(imp);saveImports();curImport=imp;curStep=1;
+    document.getElementById("importNameInput").value="";showStepper();
+}
+function continuarImportacion(id){for(var i=0;i<allImports.length;i++){if(allImports[i].id===id){curImport=allImports[i];break}}if(!curImport)return;curStep=curImport.paso||1;switchTab(1);showStepper();loadStepData()}
+function eliminarImportacion(id){if(!confirm("¿Eliminar esta importación?"))return;allImports=allImports.filter(function(x){return x.id!==id});saveImports();renderMisCasos()}
+function completarImportacion(){
+    saveStepData();var faltas=[];
+    if(!curImport.fase1.producto)faltas.push("Producto (Paso 1)");
+    if(!curImport.fase2.proveedor)faltas.push("Proveedor (Paso 2)");
+    if(faltas.length){var ss=document.getElementById("stepStatus");ss.className="status-msg warn";ss.textContent="\u26A0 Faltan datos: "+faltas.join(", ");setTimeout(function(){ss.className="status-msg"},5000);return}
+    curImport.estado="completada";curImport.paso=6;saveImports();
+    var ss=document.getElementById("stepStatus");ss.className="status-msg success";ss.textContent="\u2714 Importación completada exitosamente.";
+    setTimeout(function(){ss.className="status-msg";curImport=null;hideStepper();switchTab(2)},2000);
+}
+function renderMisCasos(){
+    var la=document.getElementById("listaActivas");var lc=document.getElementById("listaCompletadas");
+    var activas=allImports.filter(function(x){return x.estado==="en_curso"});
+    var completadas=allImports.filter(function(x){return x.estado==="completada"});
+    if(!activas.length)la.innerHTML='<div class="empty-state">No hay importaciones en curso.</div>';
+    else{var h="";activas.forEach(function(imp){h+='<div class="import-card"><div class="import-card-info"><div class="import-card-title">'+hx(imp.nombre)+'</div><div class="import-card-meta"><span class="import-badge active">Paso '+(imp.paso||1)+'/6</span> · '+imp.fecha+'</div></div><div class="import-card-actions"><button class="import-card-btn continue" onclick="continuarImportacion(\''+imp.id+'\')">Continuar</button><button class="import-card-btn delete" onclick="eliminarImportacion(\''+imp.id+'\')">Eliminar</button></div></div>'});la.innerHTML=h}
+    if(!completadas.length)lc.innerHTML='<div class="empty-state">No hay importaciones completadas.</div>';
+    else{var h="";completadas.forEach(function(imp){h+='<div class="import-card"><div class="import-card-info"><div class="import-card-title">'+hx(imp.nombre)+'</div><div class="import-card-meta"><span class="import-badge done">Completada</span> · '+imp.fecha+'</div></div><div class="import-card-actions"><button class="import-card-btn delete" onclick="eliminarImportacion(\''+imp.id+'\')">Eliminar</button></div></div>'});lc.innerHTML=h}
+}
 
-        let selectedUser = null;
+// ========== STEPPER ==========
+function showStepper(){document.getElementById("newImportStart").style.display="none";document.getElementById("stepperContainer").style.display="block";document.getElementById("stepperTitle").textContent=curImport.nombre;renderStepperBar();goToStep(curStep)}
+function hideStepper(){document.getElementById("stepperContainer").style.display="none";document.getElementById("newImportStart").style.display="block"}
+function cerrarStepper(){saveStepData();curImport=null;hideStepper()}
+function renderStepperBar(){var bar=document.getElementById("stepperBar");var h="";for(var i=1;i<=6;i++){if(i>1)h+='<div class="step-line'+(i<=curStep?" done":"")+'"></div>';var cls=i<curStep?"done":i===curStep?"active":"";h+='<div class="step-dot '+cls+'" onclick="jumpStep('+i+')">'+i+'</div>'}bar.innerHTML=h}
+function goToStep(n){if(n<1||n>6)return;saveStepData();curStep=n;curImport.paso=n;saveImports();for(var i=1;i<=6;i++){var el=document.getElementById("step"+i);if(el)el.classList.toggle("active",i===n)}document.getElementById("stepperDesc").textContent=STEP_D[n-1];renderStepperBar();renderStepNav()}
+function jumpStep(n){goToStep(n)}
+function nextStep(){saveStepData();if(curStep>=6){completarImportacion();return}goToStep(curStep+1)}
+function prevStep(){saveStepData();if(curStep>1)goToStep(curStep-1)}
+function renderStepNav(){var nav=document.getElementById("stepNav");var prev='<button class="btn-prev" onclick="prevStep()" '+(curStep<=1?"disabled style='opacity:.4;pointer-events:none'":"")+'>Anterior</button>';var next=curStep>=6?'<button class="btn-next btn-complete" onclick="nextStep()">Completar Importación</button>':'<button class="btn-next" onclick="nextStep()">Siguiente</button>';nav.innerHTML=prev+next}
 
-        function selectUser(userType) {
-            selectedUser = userType;
-            document.getElementById('btnAbelardo').classList.remove('active-abelardo');
-            document.getElementById('btnTania').classList.remove('active-tania');
-            document.getElementById('submitBtn').className = 'submit-btn';
+// ========== STEP 1: PRODUCTO & REQUISITOS ==========
+function onStep1Producto(){
+    var prod=document.getElementById("f1Producto").value;
+    var panel=document.getElementById("reqPanel");
+    if(!prod||!productosDB[prod]){panel.style.display="none";return}
+    panel.style.display="block";
+    var d=productosDB[prod];
+    // Badges
+    var badges="";
+    badges+=reqBadge("Registro AGEMED",d.agemed);
+    badges+=reqBadge("Certificado CE",d.reqCE);
+    badges+=reqBadge("ISO 13485",d.reqISO);
+    badges+=reqBadge("Certificado de Libre Venta (CFG)",d.reqCFG);
+    badges+=reqBadge("Certificado de Origen",d.reqOrigen);
+    document.getElementById("reqBadges").innerHTML=badges;
+    // Documentos checklist
+    if(d.documentos){
+        var docs=d.documentos.split(",");
+        var ds=curImport&&curImport.fase1?curImport.fase1.docStatus||{}:{};
+        var h="";docs.forEach(function(doc){var dn=doc.trim();if(dn){var st=ds[dn]||"pendiente";h+=docItem(dn,st)}});
+        document.getElementById("docList").innerHTML=h;
+        document.getElementById("docPanel").style.display="block";
+    }else document.getElementById("docPanel").style.display="none";
+    // Restricciones
+    if(d.restricciones){document.getElementById("restrContent").innerHTML='<div class="restriction-box">\u26A0 '+hx(d.restricciones)+'</div>';document.getElementById("restrPanel").style.display="block"}
+    else document.getElementById("restrPanel").style.display="none";
+    // Pasos
+    if(d.pasos){document.getElementById("pasosContent").innerHTML=parsePasos(d.pasos);document.getElementById("pasosPanel").style.display="block"}
+    else document.getElementById("pasosPanel").style.display="none";
+}
+function reqBadge(name,needed){return'<div class="req-row"><span class="req-dot '+(needed?"si":"no")+'"></span><span class="req-name">'+hx(name)+'</span><span class="req-tag '+(needed?"si":"no")+'">'+(needed?"Necesita":"No requiere")+'</span></div>'}
+function docItem(name,status){return'<div class="doc-item '+status+'" onclick="toggleDoc(\''+hx(name).replace(/'/g,"\\'")+'\')"><span class="doc-name">'+hx(name)+'</span><span class="doc-badge '+status+'">'+status+'</span></div>'}
+function toggleDoc(name){
+    if(!curImport)return;if(!curImport.fase1.docStatus)curImport.fase1.docStatus={};
+    var cur=curImport.fase1.docStatus[name]||"pendiente";
+    var nxt=cur==="pendiente"?"solicitado":cur==="solicitado"?"recibido":"pendiente";
+    curImport.fase1.docStatus[name]=nxt;saveImports();onStep1Producto();
+}
+function parsePasos(text){var parts=text.split(/\d+\./);var h="";var n=0;parts.forEach(function(p){var t=p.trim();if(t){n++;h+='<div class="paso-item"><span class="paso-num">'+n+'</span><span class="paso-text">'+hx(t)+'</span></div>'}});return h}
 
-            if (userType === 'abelardo') {
-                document.getElementById('btnAbelardo').classList.add('active-abelardo');
-                document.getElementById('submitBtn').classList.add('ready-abelardo');
-            } else {
-                document.getElementById('btnTania').classList.add('active-tania');
-                document.getElementById('submitBtn').classList.add('ready-tania');
-            }
+// ========== STEP 2: PROVEEDOR (recordatorio) ==========
+function renderProviderReminder(){
+    var el=document.getElementById("providerReminder");
+    if(!curImport||!curImport.fase1.producto){el.innerHTML="";return}
+    var d=productosDB[curImport.fase1.producto];
+    if(!d){el.innerHTML="";return}
+    var items=[];
+    if(d.reqCE)items.push("Certificado CE del fabricante");
+    if(d.reqISO)items.push("ISO 13485 del proveedor");
+    if(d.reqCFG)items.push("Certificado de Libre Venta");
+    if(d.reqOrigen)items.push("Certificado de Origen");
+    if(!items.length){el.innerHTML="";return}
+    var h='<div class="provider-reminder"><h4>Documentos que debes pedir al proveedor</h4><ul>';
+    items.forEach(function(it){h+='<li>'+hx(it)+'</li>'});
+    h+='</ul></div>';el.innerHTML=h;
+}
 
-            var passwordInput = document.getElementById('passwordInput');
-            passwordInput.classList.remove('abelardo-theme', 'tania-theme');
-            passwordInput.classList.add(usuariosDB[userType].tema);
-            passwordInput.value = '';
-            passwordInput.blur();
-            document.getElementById('errorMessage').classList.remove('show');
-        }
+// ========== STEP 5: CALCULADORA LOCAL ==========
+function calcularLocal(){
+    var prod=curImport?curImport.fase1.producto:"";
+    var fob=parseFloat(document.getElementById("f5FOB").value)||0;
+    var flete=parseFloat(document.getElementById("f5FleteSeg").value)||0;
+    var tasa=parseFloat(document.getElementById("f5Tasa").value)||6.96;
+    if(prod&&productosDB[prod]&&(fob>0||flete>0)){
+        var d=productosDB[prod];var cif=fob+flete;var cifBs=cif*tasa;var ga=cifBs*d.ga;var iva=(cifBs+ga)*0.1494;var tot=ga+iva;
+        document.getElementById("rPartida").textContent=d.partida;document.getElementById("rCIF").textContent=cif.toFixed(2);
+        document.getElementById("rGA").textContent=ga.toFixed(2)+" Bs";document.getElementById("rIVA").textContent=iva.toFixed(2)+" Bs";
+        document.getElementById("rTotal").textContent=tot.toFixed(2)+" Bs";document.getElementById("f5Result").classList.add("show");
+        document.getElementById("f5Alert").classList.toggle("show",d.agemed);
+    }else{document.getElementById("f5Result").classList.remove("show");document.getElementById("f5Alert").classList.remove("show")}
+}
 
-        function onPasswordInput() {
-            if (!selectedUser) return;
-            var v = document.getElementById('passwordInput').value;
-            var user = usuariosDB[selectedUser];
-            if (v.length >= user.password.length && v !== user.password) {
-                document.getElementById('errorMessage').classList.add('show');
-            } else {
-                document.getElementById('errorMessage').classList.remove('show');
-            }
-        }
+// ========== CALCULADORA STANDALONE ==========
+function onCalcProdChange(){var p=document.getElementById("calcProd").value;if(p&&productosDB[p]){document.getElementById("calcAlert").classList.toggle("show",productosDB[p].agemed);calcularStandalone()}else{document.getElementById("calcResult").classList.remove("show");document.getElementById("calcAlert").classList.remove("show")}}
+function calcularStandalone(){var p=document.getElementById("calcProd").value;var fob=parseFloat(document.getElementById("calcFOB").value)||0;var flete=parseFloat(document.getElementById("calcFlete").value)||0;var tasa=parseFloat(document.getElementById("calcTasa").value)||6.96;if(p&&productosDB[p]&&(fob>0||flete>0)){var d=productosDB[p];var cif=fob+flete;var cifBs=cif*tasa;var ga=cifBs*d.ga;var iva=(cifBs+ga)*0.1494;var tot=ga+iva;document.getElementById("cPartida").textContent=d.partida;document.getElementById("cCIF").textContent=cif.toFixed(2);document.getElementById("cGA").textContent=ga.toFixed(2)+" Bs";document.getElementById("cIVA").textContent=iva.toFixed(2)+" Bs";document.getElementById("cTotal").textContent=tot.toFixed(2)+" Bs";document.getElementById("calcResult").classList.add("show")}else document.getElementById("calcResult").classList.remove("show")}
 
-        function intentarLogin() {
-            if (!selectedUser) return;
-            var passwordInput = document.getElementById('passwordInput');
-            var user = usuariosDB[selectedUser];
-            var errorMsg = document.getElementById('errorMessage');
-            var loginContainer = document.querySelector('.user-card');
+// ========== SAVE/LOAD STEP DATA ==========
+function saveStepData(){
+    if(!curImport)return;
+    var p=curStep;
+    if(p===1){curImport.fase1.producto=document.getElementById("f1Producto").value}
+    else if(p===2){var f=curImport.fase2;f.proveedor=document.getElementById("f2Proveedor").value;f.pais=document.getElementById("f2Pais").value;f.iso=document.getElementById("f2ISO").checked;f.ce=document.getElementById("f2CE").checked;f.muestra=document.getElementById("f2Muestra").checked}
+    else if(p===3){var f=curImport.fase3;f.proforma=document.getElementById("f3Proforma").value;f.incoterm=document.getElementById("f3Incoterm").value;f.moneda=document.getElementById("f3Moneda").value;f.monto=document.getElementById("f3Monto").value;f.plazo=document.getElementById("f3Plazo").value;f.fecha=document.getElementById("f3Fecha").value}
+    else if(p===4){var f=curImport.fase4;f.tipo=document.getElementById("f4Tipo").value;f.contenedor=document.getElementById("f4Contenedor").value;f.flete=document.getElementById("f4Flete").value;f.seguro=document.getElementById("f4Seguro").value;f.origen=document.getElementById("f4Origen").value;f.destino=document.getElementById("f4Destino").value}
+    else if(p===5){var f=curImport.fase5;f.fob=document.getElementById("f5FOB").value;f.fleteSeg=document.getElementById("f5FleteSeg").value;f.tasa=document.getElementById("f5Tasa").value}
+    else if(p===6){var f=curImport.fase6;f.fecha=document.getElementById("f6Fecha").value;f.caja=document.getElementById("f6Caja").checked;f.contenido=document.getElementById("f6Contenido").checked;f.funciona=document.getElementById("f6Funciona").checked;f.garantia=document.getElementById("f6Garantia").value;f.obs=document.getElementById("f6Obs").value}
+    saveImports();
+}
+function loadStepData(){
+    if(!curImport)return;
+    var f1=curImport.fase1||{};var f2=curImport.fase2||{};var f3=curImport.fase3||{};var f4=curImport.fase4||{};var f5=curImport.fase5||{};var f6=curImport.fase6||{};
+    document.getElementById("f1Producto").value=f1.producto||"";
+    document.getElementById("f2Proveedor").value=f2.proveedor||"";document.getElementById("f2Pais").value=f2.pais||"";
+    document.getElementById("f2ISO").checked=!!f2.iso;document.getElementById("f2CE").checked=!!f2.ce;document.getElementById("f2Muestra").checked=!!f2.muestra;
+    document.getElementById("f3Proforma").value=f3.proforma||"";document.getElementById("f3Incoterm").value=f3.incoterm||"FOB";
+    document.getElementById("f3Moneda").value=f3.moneda||"USD";document.getElementById("f3Monto").value=f3.monto||"";
+    document.getElementById("f3Plazo").value=f3.plazo||"30% anticipo - 70% BL";document.getElementById("f3Fecha").value=f3.fecha||"";
+    document.getElementById("f4Tipo").value=f4.tipo||"Marítimo FCL";document.getElementById("f4Contenedor").value=f4.contenedor||"";
+    document.getElementById("f4Flete").value=f4.flete||"";document.getElementById("f4Seguro").value=f4.seguro||"";
+    document.getElementById("f4Origen").value=f4.origen||"";document.getElementById("f4Destino").value=f4.destino||"";
+    document.getElementById("f5FOB").value=f5.fob||"";document.getElementById("f5FleteSeg").value=f5.fleteSeg||"";
+    document.getElementById("f5Tasa").value=f5.tasa||"6.96";
+    document.getElementById("f6Fecha").value=f6.fecha||"";document.getElementById("f6Caja").checked=!!f6.caja;
+    document.getElementById("f6Contenido").checked=!!f6.contenido;document.getElementById("f6Funciona").checked=!!f6.funciona;
+    document.getElementById("f6Garantia").value=f6.garantia||"";document.getElementById("f6Obs").value=f6.obs||"";
+    onStep1Producto();renderProviderReminder();calcularLocal();
+}
 
-            if (passwordInput.value === user.password) {
-                abrirApp(user);
-            } else {
-                errorMsg.classList.add('show');
-                loginContainer.classList.add('shake');
-                setTimeout(function() {
-                    passwordInput.value = '';
-                    errorMsg.classList.remove('show');
-                    loginContainer.classList.remove('shake');
-                }, 1500);
-            }
-        }
-
-        function abrirApp(user) {
-            document.getElementById('loginScreen').style.display = 'none';
-            document.getElementById('dashboardScreen').style.display = 'block';
-            document.body.className = user.tema;
-            document.getElementById('topBarInfo').textContent = 'Hola, ' + user.nombre + ' | ' + user.cargo;
-            cargarDatosDeGoogle();
-        }
-
-        function cerrarSesion() {
-            document.body.className = "";
-            document.getElementById('dashboardScreen').style.display = 'none';
-            document.getElementById('loginScreen').style.display = 'block';
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('btnAbelardo').classList.remove('active-abelardo');
-            document.getElementById('btnTania').classList.remove('active-tania');
-            document.getElementById('submitBtn').className = 'submit-btn';
-            selectedUser = null;
-        }
-
-        // ==========================================
-        // 4. FASES Y CALCULADORA
-        // ==========================================
-        function mostrarFase(numero) {
-            document.querySelectorAll('.phase-card').forEach(function(el) { el.classList.remove('active'); });
-            document.querySelectorAll('.nav-btn').forEach(function(el) { el.classList.remove('active'); });
-            document.getElementById('fase' + numero).classList.add('active');
-            document.querySelectorAll('.nav-btn')[numero - 1].classList.add('active');
-            if (numero === 6 && !glosarioLoaded) cargarGlosario();
-        }
-
-        function guardarFase(num) {
-            var msg = document.getElementById('status' + num);
-            msg.className = 'status-msg success';
-            msg.textContent = '\u2714 Datos guardados correctamente.';
-            setTimeout(function() { msg.className = 'status-msg'; }, 3000);
-        }
-
-        function actualizarDatosProducto() {
-            var prod = document.getElementById('calcProducto').value;
-            var alertBox = document.getElementById('alertAgemed');
-            if (prod && productosDB[prod]) {
-                alertBox.classList.toggle('show', productosDB[prod].agemed);
-                calcular();
-            } else {
-                document.getElementById('calcResultados').classList.remove('show');
-                alertBox.classList.remove('show');
-            }
-        }
-
-        function calcular() {
-            var prod = document.getElementById('calcProducto').value;
-            var fob = parseFloat(document.getElementById('calcFOB').value) || 0;
-            var flete = parseFloat(document.getElementById('calcFlete').value) || 0;
-            var tasa = parseFloat(document.getElementById('calcTasa').value) || 6.96;
-
-            if (prod && productosDB[prod] && (fob > 0 || flete > 0)) {
-                var data = productosDB[prod];
-                var cifUSD = fob + flete;
-                var cifBs = cifUSD * tasa;
-                var gaBs = cifBs * data.ga;
-                var baseIVA = cifBs + gaBs;
-                var ivaBs = baseIVA * 0.1494;
-                var totalBs = gaBs + ivaBs;
-
-                document.getElementById('resPartida').textContent = data.partida;
-                document.getElementById('resCIF').textContent = cifUSD.toFixed(2);
-                document.getElementById('resGA').textContent = gaBs.toFixed(2) + ' Bs';
-                document.getElementById('resIVA').textContent = ivaBs.toFixed(2) + ' Bs';
-                document.getElementById('resTotal').textContent = totalBs.toFixed(2) + ' Bs';
-                document.getElementById('calcResultados').classList.add('show');
-            } else {
-                document.getElementById('calcResultados').classList.remove('show');
-            }
-        }
-    </script>
+// ========== INIT ==========
+document.addEventListener("DOMContentLoaded",function(){loadImports()});
+</script>
 </body>
 </html>
