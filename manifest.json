@@ -1,20 +1,19 @@
 {
   "name": "DUAVA Puente",
-  "short_name": "DUAVA",
-  "description": "Gestión de Comercio Exterior",
+  "short_name": "Puente",
   "start_url": "./index.html",
   "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#F8FAFC",
-  "theme_color": "#1E3A8A",
+  "background_color": "#F1F5F9",
+  "theme_color": "#1D4ED8",
+  "description": "Gestión de Comercio Exterior",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      "src": "./logo192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      "src": "./logo512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
