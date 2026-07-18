@@ -3,163 +3,341 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Import Dental BO</title>
-    <meta name="theme-color" content="#0056b3">
+    <title>DUAVA Puente - Gestión de Comercio Exterior</title>
+    
+    <!-- AQUÍ ESTÁ EL TRADUCTOR PARA LEER GOOGLE SHEETS (PapaParse) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+
     <style>
-        :root { --primary: #0056b3; --bg: #f4f7f6; --card: #ffffff; --text: #333; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; }
-        .container { max-width: 600px; margin: 0 auto; }
-        h1 { text-align: center; color: var(--primary); font-size: 1.5rem; }
-        .card { background: var(--card); border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
-        input, select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; box-sizing: border-box; }
-        .row { display: flex; gap: 10px; }
-        .row > div { flex: 1; }
-        button { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.3s; }
-        button:hover { background: #004494; }
-        .results { background: #e8f4fd; border-left: 5px solid var(--primary); padding: 15px; border-radius: 8px; display: none; }
-        .results h3 { margin-top: 0; color: var(--primary); }
-        .result-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; }
-        .total { font-weight: bold; font-size: 1.2rem; border-top: 2px solid var(--primary); padding-top: 10px; margin-top: 10px; }
-        .links { margin-top: 15px; display: flex; gap: 10px; }
-        .links a { flex: 1; text-align: center; padding: 10px; background: #28a745; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem; }
-        .links a.alibaba { background: #ff6a00; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-color: #94A3B8;
+            --bg-color: #F8FAFC;
+            --card-bg: #FFFFFF;
+            --text-main: #0F172A;
+            --text-light: #64748B;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; transition: all 0.5s ease; }
+
+        /* ========== LOGIN SCREEN ========== */
+        #loginScreen { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .login-container { background: var(--card-bg); border-radius: 24px; padding: 48px 40px; width: 100%; max-width: 440px; box-shadow: var(--shadow); }
+        .app-title { text-align: center; margin-bottom: 8px; letter-spacing: -0.5px; }
+        .app-title .duava { font-size: 2.4rem; font-weight: 800; color: #0F172A; }
+        .app-title .puente { font-size: 2.4rem; font-weight: 400; color: #0F172A; margin-left: 8px; }
+        .app-subtitle { text-align: center; font-size: 1rem; font-weight: 400; color: var(--text-light); margin-bottom: 48px; letter-spacing: 0.5px; }
+        .user-buttons { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+        .user-btn { padding: 20px 24px; border: 2px solid #E2E8F0; border-radius: 16px; background: #FFFFFF; cursor: pointer; transition: all 0.3s ease; text-align: left; }
+        .user-btn:hover { border-color: #CBD5E1; transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04); }
+        .user-btn.active-abelardo { border-color: #1E3A8A; background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 100%); }
+        .user-btn.active-tania { border-color: #C77D8A; background: linear-gradient(135deg, #FDF2F8 0%, #FFFFFF 100%); }
+        .user-name { font-size: 1.15rem; font-weight: 600; color: #0F172A; margin-bottom: 4px; }
+        .user-role { font-size: 0.9rem; font-weight: 400; color: var(--text-light); }
+        .password-section { margin-bottom: 24px; }
+        .password-label { display: block; font-size: 0.85rem; font-weight: 500; color: var(--text-light); margin-bottom: 10px; }
+        .password-input { width: 100%; padding: 16px 20px; border: 2px solid #E2E8F0; border-radius: 12px; font-size: 1rem; outline: none; transition: all 0.3s ease; background: #F8FAFC; color: #0F172A; }
+        .password-input::placeholder { color: #94A3B8; }
+        .password-input.abelardo-theme { border-color: #1E3A8A; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.08); }
+        .password-input.tania-theme { border-color: #C77D8A; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(199, 125, 138, 0.08); }
+        .error-message { color: #EF4444; font-size: 0.85rem; text-align: center; margin-top: 16px; opacity: 0; transition: opacity 0.3s ease; height: 20px; font-weight: 500; }
+        .error-message.show { opacity: 1; }
+
+        /* ========== DASHBOARD ========== */
+        #dashboardScreen { display: none; }
+        .top-bar { background: var(--primary-color); color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+        .user-info { font-weight: 500; font-size: 0.95rem; }
+        .logout-btn { padding: 8px 16px; background: rgba(255, 255, 255, 0.2); color: white; border: none; border-radius: 8px; font-size: 0.85rem; cursor: pointer; transition: background 0.3s; }
+        .nav-container { display: flex; overflow-x: auto; background: white; padding: 12px 16px; gap: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); }
+        .nav-btn { flex: 1; min-width: 110px; padding: 12px 16px; background: #F1F5F9; color: var(--text-main); border: none; border-radius: 10px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .nav-btn.active { background: var(--primary-color); color: white; }
+        .content-area { padding: 24px; max-width: 900px; margin: 0 auto; }
+        .phase-card { background: white; padding: 32px; border-radius: 16px; box-shadow: var(--shadow); margin-bottom: 24px; display: none; }
+        .phase-card.active { display: block; }
+        .phase-title { color: var(--primary-color); font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #F1F5F9; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; font-size: 0.9rem; font-weight: 500; color: var(--text-light); margin-bottom: 8px; }
+        .input-group input, .input-group select { width: 100%; padding: 12px 16px; border: 2px solid #E2E8F0; border-radius: 10px; font-size: 1rem; outline: none; transition: border-color 0.3s; }
+        .input-group input:focus, .input-group select:focus { border-color: var(--primary-color); }
+        .checkbox-group { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+        .checkbox-group input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; }
+        .checkbox-group label { font-size: 0.95rem; color: var(--text-main); cursor: pointer; }
+        .action-btn { width: 100%; padding: 14px; background: var(--primary-color); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; margin-top: 16px; }
+        .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .result-box { background: #F8FAFC; padding: 20px; border-radius: 12px; margin-top: 20px; border-left: 4px solid var(--primary-color); display: none; }
+        .result-box.show { display: block; }
+        .result-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.95rem; }
+        .result-label { color: var(--text-light); }
+        .result-value { font-weight: 600; color: var(--text-main); }
+        .result-total { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); padding-top: 12px; border-top: 2px solid #E2E8F0; margin-top: 12px; }
+        .alert-box { background: #FEF2F2; color: #991B1B; padding: 16px; border-radius: 10px; margin-top: 16px; font-size: 0.9rem; display: none; border-left: 4px solid #EF4444; }
+        .alert-box.show { display: block; }
+        body.tema-ceo { --primary-color: #1E3A8A; }
+        body.tema-tania { --primary-color: #C77D8A; }
+        @media (max-width: 600px) { .calc-grid { grid-template-columns: 1fr; } .login-container { padding: 32px 24px; } .app-title .duava, .app-title .puente { font-size: 2rem; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>ðŸ¦· Calculadora Import. Dental BO</h1>
-        
-        <div class="card">
-            <label>Nombre del Producto (para bÃºsquedas)</label>
-            <input type="text" id="productName" placeholder="Ej: Dental Unit Premium">
 
-            <div class="row">
-                <div>
-                    <label>Valor Producto (USD)</label>
-                    <input type="number" id="fobValue" placeholder="0.00" step="0.01">
-                </div>
-                <div>
-                    <label>Peso Bruto (Kg)</label>
-                    <input type="number" id="weight" placeholder="0" step="0.1">
-                </div>
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen">
+        <div class="login-container">
+            <h1 class="app-title">
+                <span class="duava">DUAVA</span><span class="puente">Puente</span>
+            </h1>
+            <p class="app-subtitle">Gestión de Comercio Exterior</p>
+            <div class="user-buttons">
+                <button class="user-btn" id="btnAbelardo" onclick="selectUser('abelardo')">
+                    <div class="user-name">Abelardo</div>
+                    <div class="user-role">CEO</div>
+                </button>
+                <button class="user-btn" id="btnTania" onclick="selectUser('tania')">
+                    <div class="user-name">Tania</div>
+                    <div class="user-role">Responsable de Comercio Internacional</div>
+                </button>
             </div>
-
-            <label>Incoterm</label>
-            <select id="incoterm">
-                <option value="FOB">FOB (TÃº pagas flete desde puerto chino)</option>
-                <option value="EXW">EXW (TÃº pagas todo desde la fÃ¡brica)</option>
-                <option value="CIF">CIF (Proveedor paga flete hasta puerto destino)</option>
-            </select>
-
-            <div class="row">
-                <div>
-                    <label>Flete + Seguro Estimado (USD)</label>
-                    <input type="number" id="freight" placeholder="0.00" step="0.01">
-                </div>
-                <div>
-                    <label>Gravamen Arancelario (%)</label>
-                    <input type="number" id="gaRate" value="10" step="0.1">
-                </div>
+            <div class="password-section">
+                <label class="password-label">Contraseña</label>
+                <input type="password" class="password-input" id="passwordInput" placeholder="Ingresa tu contraseña" oninput="checkPassword()">
             </div>
-
-            <div class="row">
-                <div>
-                    <label>Tasa de Cambio Oficial (BCB)</label>
-                    <input type="number" id="rateOfficial" value="6.96" step="0.01">
-                </div>
-                <div>
-                    <label>Tasa de Mercado Real (BOB/USD)</label>
-                    <input type="number" id="rateMarket" value="8.50" step="0.01" style="border-color: #ff9800;">
-                </div>
-            </div>
-
-            <label>Honorarios Despachante de Aduanas (Bs)</label>
-            <input type="number" id="despachante" value="800" step="10">
-
-            <button onclick="calculate()">Calcular ImportaciÃ³n</button>
+            <div class="error-message" id="errorMessage">Contraseña incorrecta</div>
         </div>
+    </div>
 
-        <div class="card results" id="resultsCard">
-            <h3>ðŸ“Š Desglose de Costos</h3>
-            <div class="result-row"><span>Valor CIF (USD):</span> <span id="resCIF">0.00</span></div>
-            <div class="result-row"><span>Valor CIF (Bs):</span> <span id="resCIFBs">0.00</span></div>
-            <div class="result-row"><span>Gravamen Arancelario (GA):</span> <span id="resGA">0.00</span></div>
-            <div class="result-row"><span>IVA ImportaciÃ³n (14.94%):</span> <span id="resIVA">0.00</span></div>
-            <div class="result-row"><span>Tasa de Servicios (0.15%):</span> <span id="resTasa">0.00</span></div>
-            <div class="result-row"><span>Despachante de Aduanas:</span> <span id="resDesp">0.00</span></div>
-            <div class="result-row total"><span>Costo Total Puesto en Bolivia:</span> <span id="resTotal">0.00 Bs</span></div>
-            <div class="result-row" style="color: #666; font-size: 0.85rem; margin-top:5px;">
-                <span>Costo Total en USD (a tasa de mercado):</span> <span id="resTotalUSD">0.00 USD</span>
+    <!-- DASHBOARD SCREEN -->
+    <div id="dashboardScreen">
+        <div class="top-bar">
+            <div class="user-info" id="topBarInfo">Bienvenido</div>
+            <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesión</button>
+        </div>
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="mostrarFase(1)">1. Radar</button>
+            <button class="nav-btn" onclick="mostrarFase(2)">2. Negociación</button>
+            <button class="nav-btn" onclick="mostrarFase(3)">3. Logística</button>
+            <button class="nav-btn" onclick="mostrarFase(4)">4. Nacionalización</button>
+            <button class="nav-btn" onclick="mostrarFase(5)">5. Recepción</button>
+        </div>
+        <div class="content-area">
+            <!-- FASE 1 -->
+            <div id="fase1" class="phase-card active">
+                <h2 class="phase-title">1. Radar de Proveedores</h2>
+                <p style="color: var(--text-light); margin-bottom: 24px;">Evaluación inicial y verificación de documentos del proveedor.</p>
+                <div class="input-group"><label>Nombre del Proveedor</label><input type="text" placeholder="Ej: Foshan Gladen Medical"></div>
+                <div class="checkbox-group"><input type="checkbox" id="checkISO"><label for="checkISO">Cuenta con ISO 13485 vigente</label></div>
+                <div class="checkbox-group"><input type="checkbox" id="checkCE"><label for="checkCE">Cuenta con Certificado CE / FDA</label></div>
+                <button class="action-btn">Guardar Evaluación</button>
             </div>
-
-            <div class="links">
-                <a id="linkMic" href="#" target="_blank">Buscar en Made-in-China</a>
-                <a id="linkAlibaba" class="alibaba" href="#" target="_blank">Buscar en Alibaba</a>
+            <!-- FASE 2 -->
+            <div id="fase2" class="phase-card">
+                <h2 class="phase-title">2. Negociación y Proforma</h2>
+                <p style="color: var(--text-light); margin-bottom: 24px;">Registro de datos de la Factura Proforma.</p>
+                <div class="input-group"><label>Número de Proforma</label><input type="text" placeholder="Ej: PI-2026-001"></div>
+                <div class="input-group"><label>Incoterm</label><select><option>FOB</option><option>EXW</option><option>CIF</option></select></div>
+                <button class="action-btn">Registrar Proforma</button>
+            </div>
+            <!-- FASE 3 -->
+            <div id="fase3" class="phase-card">
+                <h2 class="phase-title">3. Logística Internacional</h2>
+                <p style="color: var(--text-light); margin-bottom: 24px;">Seguimiento de flete y ruta de envío.</p>
+                <div class="input-group"><label>Costo de Flete (USD)</label><input type="number" placeholder="0.00"></div>
+                <button class="action-btn">Registrar Logística</button>
+            </div>
+            <!-- FASE 4 (CALCULADORA) -->
+            <div id="fase4" class="phase-card">
+                <h2 class="phase-title">4. Nacionalización y Costos</h2>
+                <p style="color: var(--text-light); margin-bottom: 24px;">Calculadora de impuestos aduaneros (Datos desde Google Sheets).</p>
+                
+                <div class="input-group">
+                    <label>Seleccionar Producto</label>
+                    <!-- El menú se llena solo con los datos de tu Google Sheet -->
+                    <select id="calcProducto" onchange="actualizarDatosProducto()">
+                        <option value="">-- Cargando productos desde Google Sheets... --</option>
+                    </select>
+                </div>
+                <div class="calc-grid">
+                    <div class="input-group"><label>Valor FOB (USD)</label><input type="number" id="calcFOB" placeholder="0.00" oninput="calcular()"></div>
+                    <div class="input-group"><label>Flete + Seguro (USD)</label><input type="number" id="calcFlete" placeholder="0.00" oninput="calcular()"></div>
+                </div>
+                <div class="input-group"><label>Tasa de Cambio (Bs/USD)</label><input type="number" id="calcTasa" value="6.96" step="0.01" oninput="calcular()"></div>
+                
+                <div class="result-box" id="calcResultados">
+                    <div class="result-row"><span class="result-label">Partida Arancelaria:</span><span class="result-value" id="resPartida">-</span></div>
+                    <div class="result-row"><span class="result-label">Valor CIF (USD):</span><span class="result-value" id="resCIF">0.00</span></div>
+                    <div class="result-row"><span class="result-label">Gravamen Arancelario (GA):</span><span class="result-value" id="resGA">0.00 Bs</span></div>
+                    <div class="result-row"><span class="result-label">IVA (14.94%):</span><span class="result-value" id="resIVA">0.00 Bs</span></div>
+                    <div class="result-row result-total"><span class="result-label">Total Impuestos:</span><span class="result-value" id="resTotal">0.00 Bs</span></div>
+                </div>
+                <div class="alert-box" id="alertAgemed"> <strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario.</div>
+            </div>
+            <!-- FASE 5 -->
+            <div id="fase5" class="phase-card">
+                <h2 class="phase-title">5. Recepción y Postventa</h2>
+                <div class="checkbox-group"><input type="checkbox" id="checkCaja"><label for="checkCaja">Caja sin daños visibles</label></div>
+                <button class="action-btn">Finalizar Recepción</button>
             </div>
         </div>
     </div>
 
     <script>
-        function calculate() {
-            // Obtener valores
-            const fob = parseFloat(document.getElementById('fobValue').value) || 0;
-            const freight = parseFloat(document.getElementById('freight').value) || 0;
-            const gaRate = parseFloat(document.getElementById('gaRate').value) || 0;
-            const rateMarket = parseFloat(document.getElementById('rateMarket').value) || 6.96;
-            const despachanteBs = parseFloat(document.getElementById('despachante').value) || 0;
-            const productName = document.getElementById('productName').value || 'dental equipment';
+        // ==========================================
+        // 1. CONEXIÓN A GOOGLE SHEETS
+        // ==========================================
+        
+        //  AQUÍ PEGAS TU ENLACE DE GOOGLE SHEETS 
+        const enlaceGoogleSheet = "https://docs.google.com/spreadsheets/d/1CdI4J1KqBTifUDHBLNESEzrXN5gaLOthcxNS3UVdn8I/export?format=csv&sheet=Productos"; 
+        //  AQUÍ PEGAS TU ENLACE DE GOOGLE SHEETS 
 
-            // CÃ¡lculos base (en USD)
-            const cifUSD = fob + freight;
+        let productosDB = {}; // Aquí se guardarán los datos reales
+
+        function cargarDatosDeGoogle() {
+            if (enlaceGoogleSheet === "https://docs.google.com/spreadsheets/d/1CdI4J1KqBTifUDHBLNESEzrXN5gaLOthcxNS3UVdn8I/export?format=csv&sheet=Productos") {
+                console.log("Aún no has pegado tu enlace de Google Sheets");
+                return;
+            }
+
+            Papa.parse(enlaceGoogleSheet, {
+                download: true,
+                header: true,
+                complete: function(results) {
+                    const datos = results.data;
+                    const select = document.getElementById('calcProducto');
+                    select.innerHTML = '<option value="">-- Elige un producto --</option>'; // Limpiar mensaje de carga
+
+                    datos.forEach(fila => {
+                        // Asumiendo que las columnas en tu Sheet se llaman: Nombre, Partida, GA, Agemed
+                        if (fila.Nombre) {
+                            productosDB[fila.Nombre] = {
+                                partida: fila.Partida || "N/A",
+                                ga: parseFloat(fila.GA) || 0,
+                                agemed: fila.Agemed && fila.Agemed.toUpperCase() === "SI"
+                            };
+                            
+                            // Agregar al menú desplegable
+                            const option = document.createElement('option');
+                            option.value = fila.Nombre;
+                            option.textContent = fila.Nombre;
+                            select.appendChild(option);
+                        }
+                    });
+                    console.log("Datos cargados exitosamente:", productosDB);
+                },
+                error: function(err) {
+                    console.error("Error al leer Google Sheets:", err);
+                    document.getElementById('calcProducto').innerHTML = '<option value="">-- Error al cargar datos --</option>';
+                }
+            });
+        }
+
+        // Llamar a la función apenas se abre la app
+        cargarDatosDeGoogle();
+
+        // ==========================================
+        // 2. BASE DE DATOS DE USUARIOS (Fija)
+        // ==========================================
+        const usuariosDB = {
+            abelardo: { nombre: 'Abelardo', cargo: 'CEO', password: 'Abelardo', tema: 'tema-ceo' },
+            tania: { nombre: 'Tania', cargo: 'Responsable de Comercio Internacional', password: 'Tania', tema: 'tema-tania' }
+        };
+
+        let selectedUser = null;
+
+        function selectUser(userType) {
+            selectedUser = userType;
+            document.getElementById('btnAbelardo').classList.remove('active-abelardo');
+            document.getElementById('btnTania').classList.remove('active-tania');
             
-            // Convertir CIF a Bolivianos para cÃ¡lculo de impuestos (usando tasa oficial o la que el usuario decida aplicar para base imponible)
-            // Nota: Aduana usa la tasa oficial del dÃ­a, pero tÃº pagas los impuestos con bolivianos que compraste a tasa de mercado.
-            // Para simplificar y ser realista con tu bolsillo, calcularemos los impuestos sobre el valor en Bs a tasa de mercado.
-            const cifBs = cifUSD * rateMarket;
+            if (userType === 'abelardo') document.getElementById('btnAbelardo').classList.add('active-abelardo');
+            else document.getElementById('btnTania').classList.add('active-tania');
+            
+            const passwordInput = document.getElementById('passwordInput');
+            passwordInput.classList.remove('abelardo-theme', 'tania-theme');
+            passwordInput.classList.add(usuariosDB[userType].tema);
+            passwordInput.value = '';
+            document.getElementById('errorMessage').classList.remove('show');
+            passwordInput.focus();
+        }
 
-            const gaBs = cifBs * (gaRate / 100);
-            const baseIVA = cifBs + gaBs;
-            const ivaBs = baseIVA * 0.1494;
-            const tasaBs = cifBs * 0.0015;
+        function checkPassword() {
+            if (!selectedUser) return;
+            const passwordInput = document.getElementById('passwordInput');
+            const enteredPassword = passwordInput.value;
+            const user = usuariosDB[selectedUser];
+            const errorMsg = document.getElementById('errorMessage');
 
-            const totalBs = cifBs + gaBs + ivaBs + tasaBs + despachanteBs;
-            const totalUSD = totalBs / rateMarket;
+            if (enteredPassword === user.password) {
+                setTimeout(() => { abrirApp(user); }, 800);
+            } else if (enteredPassword.length >= user.password.length) {
+                errorMsg.classList.add('show');
+                setTimeout(() => {
+                    passwordInput.value = '';
+                    errorMsg.classList.remove('show');
+                }, 1500);
+            } else {
+                errorMsg.classList.remove('show');
+            }
+        }
 
-            // Mostrar resultados
-            document.getElementById('resCIF').textContent = cifUSD.toFixed(2) + ' USD';
-            document.getElementById('resCIFBs').textContent = cifBs.toFixed(2) + ' Bs';
-            document.getElementById('resGA').textContent = gaBs.toFixed(2) + ' Bs';
-            document.getElementById('resIVA').textContent = ivaBs.toFixed(2) + ' Bs';
-            document.getElementById('resTasa').textContent = tasaBs.toFixed(2) + ' Bs';
-            document.getElementById('resDesp').textContent = despachanteBs.toFixed(2) + ' Bs';
-            document.getElementById('resTotal').textContent = totalBs.toFixed(2) + ' Bs';
-            document.getElementById('resTotalUSD').textContent = totalUSD.toFixed(2) + ' USD';
+        function abrirApp(user) {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('dashboardScreen').style.display = 'block';
+            document.body.className = user.tema;
+            document.getElementById('topBarInfo').textContent = `Hola, ${user.nombre} | ${user.cargo}`;
+        }
 
-            // Actualizar enlaces dinÃ¡micos
-            const encodedProduct = encodeURIComponent(productName + " manufacturer");
-            document.getElementById('linkMic').href = `https://www.made-in-china.com/products-search/hot-china-products/${encodeURIComponent(productName)}.html`;
-            document.getElementById('linkAlibaba').href = `https://www.alibaba.com/trade/search?fsb=y&IndexArea=product_en&CatId=&SearchText=${encodedProduct}`;
+        function cerrarSesion() {
+            document.body.className = "";
+            document.getElementById('dashboardScreen').style.display = 'none';
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('btnAbelardo').classList.remove('active-abelardo');
+            document.getElementById('btnTania').classList.remove('active-tania');
+            selectedUser = null;
+        }
 
-            // Mostrar tarjeta
-            document.getElementById('resultsCard').style.display = 'block';
+        function mostrarFase(numero) {
+            document.querySelectorAll('.phase-card').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById('fase' + numero).classList.add('active');
+            document.querySelectorAll('.nav-btn')[numero - 1].classList.add('active');
+        }
+
+        function actualizarDatosProducto() {
+            const prod = document.getElementById('calcProducto').value;
+            const alertBox = document.getElementById('alertAgemed');
+            if (prod && productosDB[prod]) {
+                alertBox.classList.toggle('show', productosDB[prod].agemed);
+                calcular();
+            } else {
+                document.getElementById('calcResultados').classList.remove('show');
+                alertBox.classList.remove('show');
+            }
+        }
+
+        function calcular() {
+            const prod = document.getElementById('calcProducto').value;
+            const fob = parseFloat(document.getElementById('calcFOB').value) || 0;
+            const flete = parseFloat(document.getElementById('calcFlete').value) || 0;
+            const tasa = parseFloat(document.getElementById('calcTasa').value) || 6.96;
+
+            if (prod && productosDB[prod] && (fob > 0 || flete > 0)) {
+                const data = productosDB[prod];
+                const cifUSD = fob + flete;
+                const cifBs = cifUSD * tasa;
+                const gaBs = cifBs * data.ga;
+                const baseIVA = cifBs + gaBs;
+                const ivaBs = baseIVA * 0.1494;
+                const totalBs = gaBs + ivaBs;
+
+                document.getElementById('resPartida').textContent = data.partida;
+                document.getElementById('resCIF').textContent = cifUSD.toFixed(2);
+                document.getElementById('resGA').textContent = gaBs.toFixed(2) + ' Bs';
+                document.getElementById('resIVA').textContent = ivaBs.toFixed(2) + ' Bs';
+                document.getElementById('resTotal').textContent = totalBs.toFixed(2) + ' Bs';
+                document.getElementById('calcResultados').classList.add('show');
+            } else {
+                document.getElementById('calcResultados').classList.remove('show');
+            }
         }
     </script>
-    <!-- Registra el Service Worker para hacerla una PWA instalable -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-              console.log('Service Worker registrado con éxito:', registration.scope);
-            })
-            .catch(error => {
-              console.log('Fallo en el registro del Service Worker:', error);
-            });
-        });
-      }
-    </script>
-</body>
-</html>
 </body>
 </html>
