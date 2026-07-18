@@ -9,16 +9,16 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="full-screen" content="yes">
     <title>DUAVA Puente</title>
-        <link rel="manifest" href="./manifest.json">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <script>
     if('serviceWorker' in navigator){
       navigator.serviceWorker.register('./sw.js').catch(function(){});
     }
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 
     <style>
         :root {
@@ -29,8 +29,8 @@
             --primary: #0C1E3A;
             --primary-light: #D4DDE8;
             --primary-dark: #091428;
-            --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+            --shadow: 0 10px 40px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -127,26 +127,14 @@
             color: #0F172A;
         }
         .password-input::placeholder { color: #94A3B8; }
-        .password-input.abelardo-theme { border-color: #0C1E3A; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(12, 30, 58, 0.1); }
-        .password-input.tania-theme { border-color: #5E1638; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(94, 22, 56, 0.1); }
+        .password-input.abelardo-theme { border-color: #0C1E3A; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(12,30,58,0.1); }
+        .password-input.tania-theme { border-color: #5E1638; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(94,22,56,0.1); }
 
         .submit-btn {
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            border: none;
-            background: #CBD5E1;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
+            position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+            width: 40px; height: 40px; border-radius: 10px; border: none;
+            background: #CBD5E1; color: white; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;
         }
         .submit-btn.ready-abelardo { background: #0C1E3A; }
         .submit-btn.ready-tania { background: #5E1638; }
@@ -154,123 +142,67 @@
         .submit-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 
         .error-message {
-            color: #EF4444;
-            font-size: 0.9rem;
-            text-align: center;
-            margin-top: 16px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            height: 20px;
-            font-weight: 600;
+            color: #EF4444; font-size: 0.9rem; text-align: center;
+            margin-top: 16px; opacity: 0; transition: opacity 0.3s ease;
+            height: 20px; font-weight: 600;
         }
         .error-message.show { opacity: 1; }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-6px); }
-            75% { transform: translateX(6px); }
-        }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
         .shake { animation: shake 0.3s ease-in-out; }
 
         /* ========== DASHBOARD ========== */
         #dashboardScreen { display: none; width: 100%; min-height: 100vh; min-height: -webkit-fill-available; }
 
         .top-bar {
-            background: var(--primary);
-            color: white;
-            padding: 16px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            background: var(--primary); color: white;
+            padding: 16px 24px; display: flex; justify-content: space-between;
+            align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         .user-info-top { font-weight: 600; font-size: 0.95rem; }
-                .logout-btn {
-            padding: 8px 16px;
-            background: rgba(232,227,219,0.35);
-            color: white;
-            border: 1px solid rgba(255,255,255,0.25);
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
+        .logout-btn {
+            padding: 8px 16px; background: #E8E3DB; color: var(--primary);
+            border: none; border-radius: 8px; font-size: 0.85rem;
+            font-weight: 600; cursor: pointer; transition: all 0.3s;
         }
-        .logout-btn:hover { background: rgba(232,227,219,0.5); }
+        .logout-btn:hover { opacity: 0.85; }
 
         .nav-container {
-            display: flex;
-            overflow-x: auto;
-            background: white;
-            padding: 12px 16px;
-            gap: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            scrollbar-width: none;
+            display: flex; overflow-x: auto; background: white;
+            padding: 12px 16px; gap: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); scrollbar-width: none;
         }
         .nav-container::-webkit-scrollbar { display: none; }
 
         .nav-btn {
-            flex-shrink: 0;
-            min-width: auto;
-            padding: 12px 16px;
-            background: #F1F5F9;
-            color: var(--text-main);
-            border: none;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            white-space: nowrap;
-            text-align: center;
+            flex-shrink: 0; min-width: auto; padding: 12px 16px;
+            background: #F1F5F9; color: var(--text-main); border: none;
+            border-radius: 10px; font-size: 0.8rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s; white-space: nowrap; text-align: center;
         }
         .nav-btn.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 
         .content-area { padding: 24px; max-width: 900px; margin: 0 auto; }
 
         .phase-card {
-            background: white;
-            padding: 32px;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            margin-bottom: 24px;
-            display: none;
-            animation: slideUp 0.4s ease;
+            background: white; padding: 32px; border-radius: 16px;
+            box-shadow: var(--shadow); margin-bottom: 24px;
+            display: none; animation: slideUp 0.4s ease;
         }
         .phase-card.active { display: block; }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .phase-title {
-            color: var(--primary);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-        .phase-desc {
-            color: var(--text-light);
-            margin-bottom: 24px;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            padding-bottom: 16px;
-            border-bottom: 2px solid #F1F5F9;
-        }
+        .phase-title { color: var(--primary); font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+        .phase-desc { color: var(--text-light); margin-bottom: 24px; font-size: 0.9rem; line-height: 1.5; padding-bottom: 16px; border-bottom: 2px solid #F1F5F9; }
 
         .input-group { margin-bottom: 20px; }
         .input-group label { display: block; font-size: 0.9rem; font-weight: 600; color: var(--text-light); margin-bottom: 8px; }
         .input-group input, .input-group select {
-            width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #E2E8F0;
-            border-radius: 10px;
-            font-size: 1rem;
-            outline: none;
+            width: 100%; padding: 14px 16px; border: 2px solid #E2E8F0;
+            border-radius: 10px; font-size: 1rem; outline: none;
             transition: border-color 0.3s, box-shadow 0.3s;
-            font-family: 'Inter', sans-serif;
-            background: #FAFBFC;
+            font-family: 'Inter', sans-serif; background: #FAFBFC;
         }
         .input-group input:focus, .input-group select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); background: #fff; }
 
@@ -280,17 +212,9 @@
         .checkbox-group label { font-size: 0.95rem; color: var(--text-main); cursor: pointer; font-weight: 500; }
 
         .action-btn {
-            width: 100%;
-            padding: 16px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 16px;
+            width: 100%; padding: 16px; background: var(--primary); color: white;
+            border: none; border-radius: 10px; font-size: 1rem; font-weight: 600;
+            cursor: pointer; transition: all 0.3s; margin-top: 16px;
             box-shadow: 0 4px 14px rgba(0,0,0,0.15);
         }
         .action-btn:hover { opacity: 0.92; transform: translateY(-1px); }
@@ -298,47 +222,99 @@
 
         .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .result-box {
-            background: #F8FAFC;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 20px;
-            border-left: 4px solid var(--primary);
-            display: none;
+            background: #F8FAFC; padding: 20px; border-radius: 12px;
+            margin-top: 20px; border-left: 4px solid var(--primary); display: none;
         }
         .result-box.show { display: block; }
         .result-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.95rem; }
         .result-label { color: var(--text-light); font-weight: 500; }
         .result-value { font-weight: 700; color: var(--text-main); }
-        .result-total {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--primary);
-            padding-top: 12px;
-            border-top: 2px solid #E2E8F0;
-            margin-top: 12px;
-        }
+        .result-total { font-size: 1.2rem; font-weight: 800; color: var(--primary); padding-top: 12px; border-top: 2px solid #E2E8F0; margin-top: 12px; }
         .alert-box {
-            background: #FEF2F2;
-            color: #991B1B;
-            padding: 16px;
-            border-radius: 10px;
-            margin-top: 16px;
-            font-size: 0.9rem;
-            display: none;
-            border-left: 4px solid #EF4444;
-            font-weight: 600;
+            background: #FEF2F2; color: #991B1B; padding: 16px; border-radius: 10px;
+            margin-top: 16px; font-size: 0.9rem; display: none;
+            border-left: 4px solid #EF4444; font-weight: 600;
         }
         .alert-box.show { display: block; }
 
-        .status-msg {
-            padding: 12px 16px;
-            border-radius: 10px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-top: 12px;
-            display: none;
-        }
+        .status-msg { padding: 12px 16px; border-radius: 10px; font-size: 0.85rem; font-weight: 600; margin-top: 12px; display: none; }
         .status-msg.success { display: block; background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
+
+        /* ========== GLOSARIO ========== */
+        .glosario-search { margin-bottom: 20px; position: relative; }
+        .glosario-search input {
+            width: 100%; padding: 14px 16px 14px 44px;
+            border: 2px solid #E2E8F0; border-radius: 10px;
+            font-size: 1rem; outline: none; background: #FAFBFC;
+            font-family: 'Inter', sans-serif; transition: border-color 0.3s;
+        }
+        .glosario-search input:focus { border-color: var(--primary); }
+        .glosario-search svg {
+            position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+            width: 18px; height: 18px; stroke: #94A3B8; fill: none;
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .glosario-list { display: flex; flex-direction: column; gap: 10px; }
+        .glosario-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 18px; background: #F8FAFC; border: 1px solid #E2E8F0;
+            border-radius: 10px; cursor: pointer; transition: all 0.2s;
+        }
+        .glosario-item:active { transform: scale(0.98); background: #F1F5F9; }
+        .glosario-item-title { font-size: 0.95rem; font-weight: 600; color: var(--text-main); flex: 1; }
+        .glosario-item-arrow { color: #CBD5E1; font-size: 1.2rem; margin-left: 10px; }
+        .glosario-empty { text-align: center; padding: 40px 20px; color: #94A3B8; font-size: 0.9rem; }
+        .glosario-count { font-size: 0.8rem; color: #94A3B8; margin-bottom: 16px; font-weight: 500; }
+
+        .glosario-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+            z-index: 300; display: flex; align-items: flex-end; justify-content: center;
+        }
+        .glosario-overlay.hidden { display: none; }
+        .glosario-modal {
+            background: white; width: 100%; max-width: 480px;
+            max-height: 90vh; border-radius: 18px 18px 0 0;
+            display: flex; flex-direction: column; overflow: hidden;
+            animation: slideUp 0.3s ease;
+        }
+        .glosario-modal-top {
+            padding: 20px 24px; border-bottom: 1px solid #E2E8F0;
+            display: flex; align-items: flex-start; justify-content: space-between; flex-shrink: 0;
+        }
+        .glosario-modal-top h3 {
+            font-size: 1.15rem; font-weight: 700; color: var(--primary);
+            line-height: 1.3; flex: 1; margin-right: 12px;
+        }
+        .glosario-close {
+            width: 32px; height: 32px; border-radius: 50%; border: none;
+            background: #F1F5F9; color: #64748B; font-size: 1.2rem;
+            cursor: pointer; display: flex; align-items: center;
+            justify-content: center; flex-shrink: 0; transition: background 0.2s;
+        }
+        .glosario-close:hover { background: #E2E8F0; }
+        .glosario-modal-body {
+            padding: 24px; overflow-y: auto; flex: 1; -webkit-overflow-scrolling: touch;
+        }
+        .glosario-section { margin-bottom: 24px; }
+        .glosario-section:last-child { margin-bottom: 0; }
+        .glosario-section-label {
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--primary); margin-bottom: 8px;
+            padding-bottom: 6px; border-bottom: 1px solid #E2E8F0;
+        }
+        .glosario-section-text {
+            font-size: 0.95rem; color: var(--text-main); line-height: 1.8; word-wrap: break-word;
+        }
+        .glosario-source-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 10px 18px; background: var(--primary); color: white;
+            border: none; border-radius: 8px; font-size: 0.85rem;
+            font-weight: 600; cursor: pointer; text-decoration: none;
+            transition: opacity 0.2s; margin-top: 4px;
+        }
+        .glosario-source-btn:hover { opacity: 0.9; }
+        .glosario-source-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
+        .glosario-loading { text-align: center; padding: 40px 20px; color: #94A3B8; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -370,7 +346,6 @@
                     <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
             </button>
-
             <button class="user-btn" id="btnTania" onclick="selectUser('tania')">
                 <div class="user-info">
                     <h3>Tania</h3>
@@ -383,15 +358,11 @@
         </div>
 
         <div class="input-wrapper">
-            <input
-                type="password"
-                class="password-input"
-                id="passwordInput"
+            <input type="password" class="password-input" id="passwordInput"
                 placeholder="Ingresa tu contrase&ntilde;a"
                 oninput="onPasswordInput()"
                 onkeydown="if(event.key==='Enter')intentarLogin()"
-                autocomplete="off"
-            >
+                autocomplete="off">
             <button class="submit-btn" id="submitBtn" onclick="intentarLogin()">
                 <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
@@ -412,6 +383,7 @@
             <button class="nav-btn" onclick="mostrarFase(3)">Log&iacute;stica</button>
             <button class="nav-btn" onclick="mostrarFase(4)">Nacionalizaci&oacute;n</button>
             <button class="nav-btn" onclick="mostrarFase(5)">Recepci&oacute;n</button>
+            <button class="nav-btn" onclick="mostrarFase(6)">Glosario</button>
         </div>
 
         <div class="content-area">
@@ -510,12 +482,44 @@
                 <button class="action-btn" onclick="guardarFase(5)">Finalizar Recepci&oacute;n</button>
                 <div class="status-msg" id="status5"></div>
             </div>
+
+            <!-- FASE 6: GLOSARIO -->
+            <div id="fase6" class="phase-card">
+                <h2 class="phase-title">Glosario de T&eacute;rminos</h2>
+                <p class="phase-desc">Definiciones oficiales de documentos y t&eacute;rminos de importaci&oacute;n seg&uacute;n la normativa boliviana.</p>
+                <div class="glosario-search">
+                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" id="glosarioInput" placeholder="Buscar t&eacute;rmino o documento..." oninput="filtrarGlosario()">
+                </div>
+                <p class="glosario-count" id="glosarioCount"></p>
+                <div class="glosario-list" id="glosarioList">
+                    <div class="glosario-loading">Cargando glosario...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL GLOSARIO -->
+    <div class="glosario-overlay hidden" id="glosarioOverlay" onclick="if(event.target===this)cerrarGlosario()">
+        <div class="glosario-modal">
+            <div class="glosario-modal-top">
+                <h3 id="glosarioTitle"></h3>
+                <button class="glosario-close" onclick="cerrarGlosario()">&times;</button>
+            </div>
+            <div class="glosario-modal-body" id="glosarioBody"></div>
         </div>
     </div>
 
     <script>
         // ==========================================
-        // 1. GOOGLE SHEETS
+        // UTILITY
+        // ==========================================
+        function hx(s) {
+            return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        }
+
+        // ==========================================
+        // 1. GOOGLE SHEETS - PRODUCTOS
         // ==========================================
         const enlaceGoogleSheet = "https://docs.google.com/spreadsheets/d/1CdI4J1KqBTifUDHBLNESEzrXN5gaLOthcxNS3UVdn8I/export?format=csv&gid=0";
         let productosDB = {};
@@ -523,13 +527,11 @@
         function cargarDatosDeGoogle() {
             try {
                 Papa.parse(enlaceGoogleSheet, {
-                    download: true,
-                    header: true,
+                    download: true, header: true,
                     complete: function(results) {
                         const datos = results.data;
                         const select = document.getElementById('calcProducto');
                         select.innerHTML = '<option value="">-- Elige un producto --</option>';
-                        let count = 0;
                         datos.forEach(fila => {
                             if (fila.Nombre && fila.Nombre.trim() !== "") {
                                 productosDB[fila.Nombre] = {
@@ -537,28 +539,142 @@
                                     ga: parseFloat(fila.GA) || 0,
                                     agemed: fila.Agemed && fila.Agemed.toUpperCase().trim() === "SI"
                                 };
-                                const option = document.createElement('option');
-                                option.value = fila.Nombre;
-                                option.textContent = fila.Nombre;
-                                select.appendChild(option);
-                                count++;
+                                const opt = document.createElement('option');
+                                opt.value = fila.Nombre;
+                                opt.textContent = fila.Nombre;
+                                select.appendChild(opt);
                             }
                         });
-                        console.log("Productos cargados:", count);
+                        console.log("Productos cargados:", Object.keys(productosDB).length);
                     },
                     error: function(err) {
-                        console.error("Error Google Sheets:", err);
+                        console.error("Error productos:", err);
                         document.getElementById('calcProducto').innerHTML = '<option value="">-- Error al cargar datos --</option>';
                     }
                 });
-            } catch(e) {
-                console.error("Error PapaParse:", e);
-                document.getElementById('calcProducto').innerHTML = '<option value="">-- Error al cargar datos --</option>';
-            }
+            } catch(e) { console.error("Error PapaParse productos:", e); }
         }
 
         // ==========================================
-        // 2. LOGIN
+        // 2. GOOGLE SHEETS - GLOSARIO
+        // ==========================================
+        const glosarioSheetId = "1CdI4J1KqBTifUDHBLNESEzrXN5gaLOthcxNS3UVdn8I";
+        const glosarioGID = "382618591";
+        const glosarioURL = "https://docs.google.com/spreadsheets/d/" + glosarioSheetId + "/export?format=csv&gid=" + glosarioGID;
+        let glosarioDB = [];
+        let glosarioLoaded = false;
+
+        function cargarGlosario() {
+            if (glosarioLoaded) return;
+            try {
+                Papa.parse(glosarioURL, {
+                    download: true, header: true,
+                    complete: function(results) {
+                        glosarioDB = [];
+                        results.data.forEach(function(fila) {
+                            var keys = Object.keys(fila);
+                            var termino = keys.length >= 1 ? (fila[keys[0]] || "").trim() : "";
+                            var definicion = keys.length >= 2 ? (fila[keys[1]] || "").trim() : "";
+                            var aplicacion = keys.length >= 3 ? (fila[keys[2]] || "").trim() : "";
+                            var fuente = keys.length >= 4 ? (fila[keys[3]] || "").trim() : "";
+                            if (termino) {
+                                glosarioDB.push({ termino: termino, definicion: definicion, aplicacion: aplicacion, fuente: fuente });
+                            }
+                        });
+                        glosarioLoaded = true;
+                        console.log("Glosario cargado:", glosarioDB.length, "terminos");
+                        renderGlosario(glosarioDB);
+                    },
+                    error: function(err) {
+                        console.error("Error glosario:", err);
+                        document.getElementById("glosarioList").innerHTML = '<div class="glosario-empty">Error al cargar el glosario.</div>';
+                    }
+                });
+            } catch(e) {
+                console.error("Error PapaParse glosario:", e);
+                document.getElementById("glosarioList").innerHTML = '<div class="glosario-empty">Error al cargar el glosario.</div>';
+            }
+        }
+
+        function renderGlosario(lista) {
+            var container = document.getElementById("glosarioList");
+            var count = document.getElementById("glosarioCount");
+            count.textContent = lista.length + " t\u00e9rminos disponibles";
+            if (!lista.length) {
+                container.innerHTML = '<div class="glosario-empty">No se encontraron t\u00e9rminos.</div>';
+                return;
+            }
+            var html = "";
+            for (var i = 0; i < lista.length; i++) {
+                html += '<div class="glosario-item" onclick="abrirGlosarioItem(' + i + ')">';
+                html += '<span class="glosario-item-title">' + hx(lista[i].termino) + '</span>';
+                html += '<span class="glosario-item-arrow">\u203A</span>';
+                html += '</div>';
+            }
+            container.innerHTML = html;
+        }
+
+        function filtrarGlosario() {
+            var term = document.getElementById("glosarioInput").value.toLowerCase().trim();
+            if (!term) { renderGlosario(glosarioDB); return; }
+            var filtered = [];
+            for (var i = 0; i < glosarioDB.length; i++) {
+                var s = (glosarioDB[i].termino + " " + glosarioDB[i].definicion + " " + glosarioDB[i].aplicacion).toLowerCase();
+                if (s.indexOf(term) >= 0) filtered.push(glosarioDB[i]);
+            }
+            renderGlosario(filtered);
+        }
+
+        function abrirGlosarioItem(index) {
+            var item = glosarioDB[index];
+            if (!item) return;
+            document.getElementById("glosarioTitle").textContent = item.termino;
+            var body = document.getElementById("glosarioBody");
+            var html = "";
+            if (item.definicion) {
+                html += '<div class="glosario-section">';
+                html += '<div class="glosario-section-label">Definici\u00f3n T\u00e9cnica y Legal</div>';
+                html += '<div class="glosario-section-text">' + hx(item.definicion) + '</div>';
+                html += '</div>';
+            }
+            if (item.aplicacion) {
+                html += '<div class="glosario-section">';
+                html += '<div class="glosario-section-label">Aplicaci\u00f3n en la Importaci\u00f3n a Bolivia</div>';
+                html += '<div class="glosario-section-text">' + hx(item.aplicacion) + '</div>';
+                html += '</div>';
+            }
+            if (item.fuente) {
+                html += '<div class="glosario-section">';
+                html += '<div class="glosario-section-label">Fuente Legal Oficial</div>';
+                html += '<div class="glosario-section-text">' + renderFuente(item.fuente) + '</div>';
+                html += '</div>';
+            }
+            body.innerHTML = html;
+            document.getElementById("glosarioOverlay").classList.remove("hidden");
+        }
+
+        function renderFuente(texto) {
+            var urlRegex = /(https?:\/\/[^\s<]+)/g;
+            var parts = texto.split(urlRegex);
+            var html = "";
+            for (var i = 0; i < parts.length; i++) {
+                if (parts[i].match(urlRegex)) {
+                    html += '<a class="glosario-source-btn" href="' + hx(parts[i]) + '" target="_blank" rel="noopener">';
+                    html += '<svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+                    html += 'Ver fuente oficial</a>';
+                } else if (parts[i].trim()) {
+                    html += '<span>' + hx(parts[i].trim()) + '</span><br>';
+                }
+            }
+            return html;
+        }
+
+        function cerrarGlosario() {
+            document.getElementById("glosarioOverlay").classList.add("hidden");
+        }
+
+        // ==========================================
+        // 3. LOGIN
         // ==========================================
         const usuariosDB = {
             abelardo: { nombre: 'Abelardo', cargo: 'CEO', password: '7512', tema: 'tema-ceo' },
@@ -581,18 +697,18 @@
                 document.getElementById('submitBtn').classList.add('ready-tania');
             }
 
-            const passwordInput = document.getElementById('passwordInput');
+            var passwordInput = document.getElementById('passwordInput');
             passwordInput.classList.remove('abelardo-theme', 'tania-theme');
             passwordInput.classList.add(usuariosDB[userType].tema);
             passwordInput.value = '';
-            passwordInput.focus();
+            passwordInput.blur();
             document.getElementById('errorMessage').classList.remove('show');
         }
 
         function onPasswordInput() {
             if (!selectedUser) return;
-            const v = document.getElementById('passwordInput').value;
-            const user = usuariosDB[selectedUser];
+            var v = document.getElementById('passwordInput').value;
+            var user = usuariosDB[selectedUser];
             if (v.length >= user.password.length && v !== user.password) {
                 document.getElementById('errorMessage').classList.add('show');
             } else {
@@ -602,17 +718,17 @@
 
         function intentarLogin() {
             if (!selectedUser) return;
-            const passwordInput = document.getElementById('passwordInput');
-            const user = usuariosDB[selectedUser];
-            const errorMsg = document.getElementById('errorMessage');
-            const loginContainer = document.querySelector('.user-card');
+            var passwordInput = document.getElementById('passwordInput');
+            var user = usuariosDB[selectedUser];
+            var errorMsg = document.getElementById('errorMessage');
+            var loginContainer = document.querySelector('.user-card');
 
             if (passwordInput.value === user.password) {
                 abrirApp(user);
             } else {
                 errorMsg.classList.add('show');
                 loginContainer.classList.add('shake');
-                setTimeout(() => {
+                setTimeout(function() {
                     passwordInput.value = '';
                     errorMsg.classList.remove('show');
                     loginContainer.classList.remove('shake');
@@ -640,25 +756,26 @@
         }
 
         // ==========================================
-        // 3. FASES Y CALCULADORA
+        // 4. FASES Y CALCULADORA
         // ==========================================
         function mostrarFase(numero) {
-            document.querySelectorAll('.phase-card').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.phase-card').forEach(function(el) { el.classList.remove('active'); });
+            document.querySelectorAll('.nav-btn').forEach(function(el) { el.classList.remove('active'); });
             document.getElementById('fase' + numero).classList.add('active');
             document.querySelectorAll('.nav-btn')[numero - 1].classList.add('active');
+            if (numero === 6 && !glosarioLoaded) cargarGlosario();
         }
 
         function guardarFase(num) {
             var msg = document.getElementById('status' + num);
             msg.className = 'status-msg success';
             msg.textContent = '\u2714 Datos guardados correctamente.';
-            setTimeout(function(){ msg.className = 'status-msg'; }, 3000);
+            setTimeout(function() { msg.className = 'status-msg'; }, 3000);
         }
 
         function actualizarDatosProducto() {
-            const prod = document.getElementById('calcProducto').value;
-            const alertBox = document.getElementById('alertAgemed');
+            var prod = document.getElementById('calcProducto').value;
+            var alertBox = document.getElementById('alertAgemed');
             if (prod && productosDB[prod]) {
                 alertBox.classList.toggle('show', productosDB[prod].agemed);
                 calcular();
@@ -669,19 +786,19 @@
         }
 
         function calcular() {
-            const prod = document.getElementById('calcProducto').value;
-            const fob = parseFloat(document.getElementById('calcFOB').value) || 0;
-            const flete = parseFloat(document.getElementById('calcFlete').value) || 0;
-            const tasa = parseFloat(document.getElementById('calcTasa').value) || 6.96;
+            var prod = document.getElementById('calcProducto').value;
+            var fob = parseFloat(document.getElementById('calcFOB').value) || 0;
+            var flete = parseFloat(document.getElementById('calcFlete').value) || 0;
+            var tasa = parseFloat(document.getElementById('calcTasa').value) || 6.96;
 
             if (prod && productosDB[prod] && (fob > 0 || flete > 0)) {
-                const data = productosDB[prod];
-                const cifUSD = fob + flete;
-                const cifBs = cifUSD * tasa;
-                const gaBs = cifBs * data.ga;
-                const baseIVA = cifBs + gaBs;
-                const ivaBs = baseIVA * 0.1494;
-                const totalBs = gaBs + ivaBs;
+                var data = productosDB[prod];
+                var cifUSD = fob + flete;
+                var cifBs = cifUSD * tasa;
+                var gaBs = cifBs * data.ga;
+                var baseIVA = cifBs + gaBs;
+                var ivaBs = baseIVA * 0.1494;
+                var totalBs = gaBs + ivaBs;
 
                 document.getElementById('resPartida').textContent = data.partida;
                 document.getElementById('resCIF').textContent = cifUSD.toFixed(2);
