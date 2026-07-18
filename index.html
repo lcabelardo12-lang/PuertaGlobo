@@ -25,7 +25,6 @@
         @keyframes slideUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
         @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 
-        /* LOGIN */
         #loginScreen{width:100%;max-width:420px;padding:24px;animation:fadeIn .6s ease}
         .header{text-align:center;margin-bottom:40px}
         .app-title{font-size:2.4rem;letter-spacing:-1px;margin-bottom:8px}
@@ -57,15 +56,13 @@
         .error-msg{color:#EF4444;font-size:.9rem;text-align:center;margin-top:16px;opacity:0;transition:opacity .3s;height:20px;font-weight:600}
         .error-msg.show{opacity:1}.shake{animation:shake .3s ease-in-out}
 
-        /* DASHBOARD */
         #dashboardScreen{display:none;width:100%;min-height:100vh;min-height:-webkit-fill-available}
         .top-bar{background:var(--pri);color:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 20px rgba(0,0,0,.2)}
         .top-bar-info{font-weight:600;font-size:.95rem}
         .logout-btn{padding:8px 16px;background:#E8E3DB;color:var(--pri);border:none;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .3s}
-        .logout-btn:hover{opacity:.85}
         .nav-container{display:flex;overflow-x:auto;background:#fff;padding:12px 16px;gap:10px;box-shadow:0 2px 8px rgba(0,0,0,.06);scrollbar-width:none}
         .nav-container::-webkit-scrollbar{display:none}
-        .nav-btn{flex-shrink:0;min-width:auto;padding:12px 16px;background:#F1F5F9;color:var(--txt);border:none;border-radius:10px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .3s;white-space:nowrap;text-align:center}
+        .nav-btn{flex-shrink:0;padding:12px 16px;background:#F1F5F9;color:var(--txt);border:none;border-radius:10px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .3s;white-space:nowrap}
         .nav-btn.active{background:var(--pri);color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.15)}
         .content-area{padding:24px;max-width:900px;margin:0 auto}
         .tab-content{display:none;animation:slideUp .4s ease}.tab-content.active{display:block}
@@ -76,15 +73,13 @@
         .input-group label{display:block;font-size:.9rem;font-weight:600;color:var(--txt2);margin-bottom:8px}
         .input-group input,.input-group select{width:100%;padding:14px 16px;border:2px solid #E2E8F0;border-radius:10px;font-size:1rem;outline:none;transition:border-color .3s,box-shadow .3s;font-family:'Inter',sans-serif;background:#FAFBFC}
         .input-group input:focus,.input-group select:focus{border-color:var(--pri);box-shadow:0 0 0 3px var(--priL);background:#fff}
-        .checkbox-group{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding:12px 16px;background:#F8FAFC;border-radius:10px;transition:background .2s}
-        .checkbox-group:hover{background:#F1F5F9}
+        .checkbox-group{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding:12px 16px;background:#F8FAFC;border-radius:10px}
         .checkbox-group input[type="checkbox"]{width:20px;height:20px;cursor:pointer;accent-color:var(--pri)}
         .checkbox-group label{font-size:.95rem;color:var(--txt);cursor:pointer;font-weight:500}
         .action-btn{width:100%;padding:16px;background:var(--pri);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s;margin-top:16px;box-shadow:0 4px 14px rgba(0,0,0,.15)}
-        .action-btn:hover{opacity:.92;transform:translateY(-1px)}.action-btn:active{transform:translateY(0)}
+        .action-btn:hover{opacity:.92}.action-btn:active{transform:translateY(1px)}
         .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-        .result-box{background:#F8FAFC;padding:20px;border-radius:12px;margin-top:20px;border-left:4px solid var(--pri);display:none}
-        .result-box.show{display:block}
+        .result-box{background:#F8FAFC;padding:20px;border-radius:12px;margin-top:20px;border-left:4px solid var(--pri)}
         .result-row{display:flex;justify-content:space-between;margin-bottom:12px;font-size:.95rem}
         .result-label{color:var(--txt2);font-weight:500}.result-value{font-weight:700;color:var(--txt)}
         .result-total{font-size:1.2rem;font-weight:800;color:var(--pri);padding-top:12px;border-top:2px solid #E2E8F0;margin-top:12px}
@@ -94,72 +89,58 @@
         .status-msg.success{display:block;background:#F0FDF4;color:#166534;border:1px solid #BBF7D0}
         .status-msg.warn{display:block;background:#FFFBEB;color:#92400E;border:1px solid #FDE68A}
 
-        /* STEPPER */
         .stepper-bar{display:flex;align-items:center;justify-content:center;margin-bottom:24px;padding:16px 0;overflow-x:auto}
         .step-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;background:#F1F5F9;color:#94A3B8;border:2px solid #E2E8F0;transition:all .3s;cursor:pointer;flex-shrink:0}
-        .step-dot.active{background:var(--pri);color:#fff;border-color:var(--pri)}
-        .step-dot.done{background:var(--priL);color:var(--pri);border-color:var(--pri)}
-        .step-line{width:12px;height:2px;background:#E2E8F0;transition:background .3s;flex-shrink:0}
-        .step-line.done{background:var(--pri)}
+        .step-dot.active{background:var(--pri);color:#fff;border-color:var(--pri)}.step-dot.done{background:var(--priL);color:var(--pri);border-color:var(--pri)}
+        .step-line{width:12px;height:2px;background:#E2E8F0;transition:background .3s;flex-shrink:0}.step-line.done{background:var(--pri)}
         .step-form{display:none;animation:slideUp .3s ease}.step-form.active{display:block}
         .step-nav{display:flex;gap:12px;margin-top:24px;padding-top:16px;border-top:2px solid #F1F5F9}
         .step-nav button{flex:1;padding:14px;border-radius:10px;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .3s}
         .step-nav .btn-prev{background:#F1F5F9;color:var(--txt);border:none}
         .step-nav .btn-next{background:var(--pri);color:#fff;border:none;box-shadow:0 4px 14px rgba(0,0,0,.15)}
-        .step-nav .btn-complete{background:#166534;color:#fff;border:none;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+        .step-nav .btn-complete{background:#166534;color:#fff;border:none}
 
-        /* REQUISITOS */
         .req-panel{background:#F8FAFC;border-radius:12px;padding:20px;margin-top:16px;border:1px solid #E2E8F0}
         .req-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--pri);margin-bottom:12px}
-        .req-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F1F5F9}
-        .req-row:last-child{border-bottom:none}
-        .req-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-        .req-dot.si{background:#16A34A}.req-dot.no{background:#D1D5DB}
+        .req-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F1F5F9}.req-row:last-child{border-bottom:none}
+        .req-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}.req-dot.si{background:#16A34A}.req-dot.no{background:#D1D5DB}
         .req-name{font-size:.9rem;font-weight:500;color:var(--txt);flex:1}
         .req-tag{font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.3px}
         .req-tag.si{background:#DCFCE7;color:#166534}.req-tag.no{background:#F3F4F6;color:#6B7280}
-
         .doc-panel{background:#FAFBFC;border-radius:12px;padding:20px;margin-top:16px;border:1px solid #E2E8F0}
         .doc-hint{font-size:.75rem;color:#94A3B8;margin-bottom:12px;font-weight:500}
         .doc-item{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;margin-bottom:8px;border-radius:8px;cursor:pointer;transition:all .2s}
-        .doc-item:active{transform:scale(.98)}
-        .doc-item.pendiente{background:#F9FAFB;border:1px solid #E5E7EB}
-        .doc-item.solicitado{background:#FFFBEB;border:1px solid #FDE68A}
-        .doc-item.recibido{background:#F0FDF4;border:1px solid #BBF7D0}
+        .doc-item.pendiente{background:#F9FAFB;border:1px solid #E5E7EB}.doc-item.solicitado{background:#FFFBEB;border:1px solid #FDE68A}.doc-item.recibido{background:#F0FDF4;border:1px solid #BBF7D0}
         .doc-name{font-size:.9rem;font-weight:500;color:var(--txt)}
         .doc-badge{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.3px;padding:3px 8px;border-radius:4px}
-        .doc-badge.pendiente{background:#F3F4F6;color:#6B7280}
-        .doc-badge.solicitado{background:#FEF3C7;color:#92400E}
-        .doc-badge.recibido{background:#D1FAE5;color:#065F46}
-
+        .doc-badge.pendiente{background:#F3F4F6;color:#6B7280}.doc-badge.solicitado{background:#FEF3C7;color:#92400E}.doc-badge.recibido{background:#D1FAE5;color:#065F46}
         .restriction-box{background:#FEF2F2;border-left:3px solid #EF4444;padding:12px 16px;border-radius:8px;font-size:.9rem;font-weight:500;color:#991B1B;margin-top:4px}
-
-        .paso-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F1F5F9}
-        .paso-item:last-child{border-bottom:none}
+        .paso-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F1F5F9}.paso-item:last-child{border-bottom:none}
         .paso-num{width:24px;height:24px;border-radius:50%;background:var(--priL);color:var(--pri);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
         .paso-text{font-size:.85rem;color:var(--txt);font-weight:500}
-
         .provider-reminder{background:#EFF6FF;border-left:3px solid #3B82F6;padding:14px 16px;border-radius:8px;margin-bottom:16px}
         .provider-reminder h4{font-size:.75rem;font-weight:700;color:#1E40AF;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
         .provider-reminder li{font-size:.85rem;color:#1E3A8A;padding:2px 0;list-style:none}
         .provider-reminder li::before{content:"→ ";color:#3B82F6;font-weight:700}
 
-        /* IMPORT CARDS */
+        .equipo-card{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px;margin-bottom:12px}
+        .equipo-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+        .equipo-num{font-size:.75rem;font-weight:700;color:var(--pri);background:var(--priL);padding:4px 10px;border-radius:6px}
+        .equipo-del{background:none;border:none;color:#EF4444;font-size:1.2rem;cursor:pointer;padding:4px 8px;border-radius:6px;line-height:1}
+        .add-equip-btn{width:100%;padding:14px;background:transparent;color:var(--txt2);border:2px dashed #CBD5E1;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;margin-top:12px}
+        .add-equip-btn:active{background:#F1F5F9;border-color:#94A3B8}
+
         .import-card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;transition:all .2s}
-        .import-card:active{transform:scale(.98)}
         .import-card-info{flex:1}
         .import-card-title{font-size:.95rem;font-weight:700;color:var(--txt);margin-bottom:4px}
         .import-card-meta{font-size:.8rem;color:var(--txt2)}
         .import-card-actions{display:flex;gap:8px;margin-left:12px}
         .import-card-btn{padding:8px 14px;border-radius:8px;border:none;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s}
-        .import-card-btn.continue{background:var(--pri);color:#fff}
-        .import-card-btn.delete{background:#FEF2F2;color:#991B1B}
+        .import-card-btn.continue{background:var(--pri);color:#fff}.import-card-btn.delete{background:#FEF2F2;color:#991B1B}
         .import-badge{display:inline-block;padding:3px 8px;border-radius:6px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-        .import-badge.active{background:#FEF3C7;color:#92400E}
-        .import-badge.done{background:#D1FAE5;color:#065F46}
+        .import-badge.active{background:#FEF3C7;color:#92400E}.import-badge.done{background:#D1FAE5;color:#065F46}
         .empty-state{text-align:center;padding:40px 20px;color:#94A3B8;font-size:.9rem}
 
-        /* GLOSARIO */
         .glosario-search{margin-bottom:20px;position:relative}
         .glosario-search input{width:100%;padding:14px 16px 14px 44px;border:2px solid #E2E8F0;border-radius:10px;font-size:1rem;outline:none;background:#FAFBFC;font-family:'Inter',sans-serif;transition:border-color .3s}
         .glosario-search input:focus{border-color:var(--pri)}
@@ -181,15 +162,25 @@
         .glosario-section-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pri);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #E2E8F0}
         .glosario-section-text{font-size:.95rem;color:var(--txt);line-height:1.8;word-wrap:break-word}
         .glosario-source-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--pri);color:#fff;border:none;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .2s;margin-top:4px}
-        .glosario-source-btn:hover{opacity:.9}
         .glosario-source-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+
+        .tax-info{background:#F0FDF4;padding:10px 14px;border-radius:8px;font-size:.8rem;color:#166534;margin-top:4px}
+        .tax-info.warn{background:#FEF2F2;color:#991B1B}
+        .eq-result-card{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:20px;margin-bottom:16px}
+        .eq-result-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+        .tax-section{margin-top:12px;padding-top:12px;border-top:1px solid #E2E8F0}
+        .tax-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--pri);margin-bottom:8px}
+        .profit-badge{padding:4px 10px;border-radius:6px;font-size:.75rem;font-weight:700}
+        .profit-badge.si{background:#D1FAE5;color:#065F46}.profit-badge.no{background:#FEE2E2;color:#991B1B}
+        .big-profit{text-align:center;padding:24px;border-radius:12px;border:2px solid}
+        .big-profit.si{background:#F0FDF4;border-color:#16A34A}.big-profit.no{background:#FEF2F2;border-color:#EF4444}
+        .big-profit-text{font-size:1.8rem;font-weight:800}.big-profit-text.si{color:#166534}.big-profit-text.no{color:#991B1B}
 
         @media(max-width:600px){.calc-grid{grid-template-columns:1fr}.app-title{font-size:2rem}.card{padding:24px 20px}.step-dot{width:24px;height:24px;font-size:.65rem}.step-line{width:8px}}
     </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="loginScreen">
     <div class="header">
         <h1 class="app-title"><span class="duava">DUAVA</span><span class="puente">Puente</span></h1>
@@ -212,7 +203,6 @@
     <div class="error-msg" id="errorMsg">Contraseña incorrecta</div>
 </div>
 
-<!-- DASHBOARD -->
 <div id="dashboardScreen">
     <div class="top-bar">
         <div class="top-bar-info" id="topInfo">Bienvenido</div>
@@ -226,15 +216,12 @@
     </div>
     <div class="content-area">
 
-        <!-- TAB 1: IMPORTACION -->
+        <!-- TAB 1 -->
         <div id="tab1" class="tab-content active">
             <div id="newImportStart" class="card">
                 <h2 class="phase-title">Nueva Importación</h2>
                 <p class="phase-desc">Ingresa un nombre para esta importación y comienza el proceso guiado paso a paso.</p>
-                <div class="input-group">
-                    <label>Nombre de la importación</label>
-                    <input type="text" id="importNameInput" placeholder="Ej: Autoclave XYZ - Julio 2026">
-                </div>
+                <div class="input-group"><label>Nombre de la importación</label><input type="text" id="importNameInput" placeholder="Ej: Autoclave XYZ - Julio 2026"></div>
                 <button class="action-btn" onclick="crearImportacion()">Iniciar Importación</button>
                 <div id="startStatus" class="status-msg"></div>
             </div>
@@ -246,34 +233,17 @@
                 <p class="phase-desc" id="stepperDesc" style="margin-top:4px"></p>
                 <div class="stepper-bar" id="stepperBar"></div>
 
-                <!-- PASO 1: PRODUCTO -->
                 <div id="step1" class="step-form">
-                    <div class="input-group">
-                        <label>Seleccionar Producto</label>
-                        <select id="f1Producto" onchange="onStep1Producto()"><option value="">-- Elige un producto --</option></select>
-                    </div>
+                    <div class="input-group"><label>Seleccionar Producto</label><select id="f1Producto" onchange="onStep1Producto()"><option value="">-- Elige un producto --</option></select></div>
                     <div id="reqPanel" style="display:none">
-                        <div class="req-panel">
-                            <div class="req-title">Requisitos de documentación</div>
-                            <div id="reqBadges"></div>
-                        </div>
-                        <div class="doc-panel" id="docPanel" style="display:none;margin-top:16px">
-                            <div class="req-title">Seguimiento de documentos</div>
-                            <p class="doc-hint">Toca cada documento para cambiar su estado: pendiente → solicitado → recibido</p>
-                            <div id="docList"></div>
-                        </div>
-                        <div id="restrPanel" style="display:none;margin-top:16px">
-                            <div class="req-title">Restricciones</div>
-                            <div id="restrContent"></div>
-                        </div>
-                        <div id="pasosPanel" style="display:none;margin-top:16px">
-                            <div class="req-title">Pasos recomendados</div>
-                            <div id="pasosContent"></div>
-                        </div>
+                        <div class="req-panel"><div class="req-title">Requisitos de documentación</div><div id="reqBadges"></div></div>
+                        <div style="margin-top:16px"><div class="req-panel"><div class="req-title">Equipos de esta importación</div><div id="equiposList"></div><button class="add-equip-btn" onclick="addEquipoImport()">+ Agregar Equipo</button></div></div>
+                        <div class="doc-panel" id="docPanel" style="display:none;margin-top:16px"><div class="req-title">Seguimiento de documentos</div><p class="doc-hint">Toca cada documento para cambiar su estado: pendiente → solicitado → recibido</p><div id="docList"></div></div>
+                        <div id="restrPanel" style="display:none;margin-top:16px"><div class="req-title">Restricciones</div><div id="restrContent"></div></div>
+                        <div id="pasosPanel" style="display:none;margin-top:16px"><div class="req-title">Pasos recomendados</div><div id="pasosContent"></div></div>
                     </div>
                 </div>
 
-                <!-- PASO 2: PROVEEDOR -->
                 <div id="step2" class="step-form">
                     <div id="providerReminder"></div>
                     <div class="input-group"><label>Nombre del Proveedor</label><input type="text" id="f2Proveedor" placeholder="Ej: Foshan Gladen Medical"></div>
@@ -283,53 +253,38 @@
                     <div class="checkbox-group"><input type="checkbox" id="f2Muestra"><label for="f2Muestra">Solicitó muestra del producto</label></div>
                 </div>
 
-                <!-- PASO 3: NEGOCIACION -->
                 <div id="step3" class="step-form">
                     <div class="input-group"><label>Número de Proforma</label><input type="text" id="f3Proforma" placeholder="Ej: PI-2026-001"></div>
-                    <div class="calc-grid">
-                        <div class="input-group"><label>Incoterm</label><select id="f3Incoterm"><option>FOB</option><option>EXW</option><option>CIF</option><option>DDP</option></select></div>
-                        <div class="input-group"><label>Moneda</label><select id="f3Moneda"><option>USD</option><option>EUR</option><option>CNY</option></select></div>
-                    </div>
-                    <div class="calc-grid">
-                        <div class="input-group"><label>Monto Total</label><input type="number" id="f3Monto" placeholder="0.00"></div>
-                        <div class="input-group"><label>Plazo de Pago</label><select id="f3Plazo"><option>30% anticipo - 70% BL</option><option>100% anticipado</option><option>LC a la vista</option><option>Otro</option></select></div>
-                    </div>
+                    <div class="calc-grid"><div class="input-group"><label>Incoterm</label><select id="f3Incoterm"><option>FOB</option><option>EXW</option><option>CIF</option><option>DDP</option></select></div><div class="input-group"><label>Moneda</label><select id="f3Moneda"><option>USD</option><option>EUR</option><option>CNY</option></select></div></div>
+                    <div class="calc-grid"><div class="input-group"><label>Monto Total</label><input type="number" id="f3Monto" placeholder="0.00"></div><div class="input-group"><label>Plazo de Pago</label><select id="f3Plazo"><option>30% anticipo - 70% BL</option><option>100% anticipado</option><option>LC a la vista</option><option>Otro</option></select></div></div>
                     <div class="input-group"><label>Fecha Estimada de Embarque</label><input type="date" id="f3Fecha"></div>
                 </div>
 
-                <!-- PASO 4: LOGISTICA -->
                 <div id="step4" class="step-form">
-                    <div class="calc-grid">
-                        <div class="input-group"><label>Tipo de Envío</label><select id="f4Tipo"><option>Marítimo FCL</option><option>Marítimo LCL</option><option>Aéreo</option><option>Terrestre</option></select></div>
-                        <div class="input-group"><label>Número de Contenedor</label><input type="text" id="f4Contenedor" placeholder="Ej: TCLU1234567"></div>
-                    </div>
-                    <div class="calc-grid">
-                        <div class="input-group"><label>Costo de Flete (USD)</label><input type="number" id="f4Flete" placeholder="0.00"></div>
-                        <div class="input-group"><label>Seguro (USD)</label><input type="number" id="f4Seguro" placeholder="0.00"></div>
-                    </div>
+                    <div class="calc-grid"><div class="input-group"><label>Tipo de Envío</label><select id="f4Tipo"><option>Marítimo FCL</option><option>Marítimo LCL</option><option>Aéreo</option><option>Terrestre</option></select></div><div class="input-group"><label>Número de Contenedor</label><input type="text" id="f4Contenedor" placeholder="Ej: TCLU1234567"></div></div>
+                    <div class="calc-grid"><div class="input-group"><label>Costo de Flete (USD)</label><input type="number" id="f4Flete" placeholder="0.00"></div><div class="input-group"><label>Seguro (USD)</label><input type="number" id="f4Seguro" placeholder="0.00"></div></div>
                     <div class="input-group"><label>Puerto de Origen</label><input type="text" id="f4Origen" placeholder="Ej: Shenzhen, China"></div>
                     <div class="input-group"><label>Puerto de Destino</label><input type="text" id="f4Destino" placeholder="Ej: Arica, Bolivia"></div>
                 </div>
 
-                <!-- PASO 5: NACIONALIZACION -->
                 <div id="step5" class="step-form">
-                    <p style="font-size:.85rem;color:var(--txt2);margin-bottom:16px">Calculadora de impuestos basada en el producto seleccionado en el Paso 1.</p>
+                    <p style="font-size:.85rem;color:var(--txt2);margin-bottom:16px">Resumen económico con impuestos detallados por nombre.</p>
                     <div class="calc-grid">
                         <div class="input-group"><label>Valor FOB (USD)</label><input type="number" id="f5FOB" placeholder="0.00" oninput="calcularLocal()"></div>
                         <div class="input-group"><label>Flete + Seguro (USD)</label><input type="number" id="f5FleteSeg" placeholder="0.00" oninput="calcularLocal()"></div>
                     </div>
-                    <div class="input-group"><label>Tasa de Cambio (Bs/USD)</label><input type="number" id="f5Tasa" value="6.96" step="0.01" oninput="calcularLocal()"></div>
-                    <div class="result-box" id="f5Result">
+                    <div class="input-group"><label>Tasa de Cambio (Bs/USD)</label><input type="number" id="f5Tasa" placeholder="Ej: 6.96" step="0.01" oninput="calcularLocal()"></div>
+                    <div class="result-box" id="f5Result" style="display:none">
                         <div class="result-row"><span class="result-label">Partida Arancelaria:</span><span class="result-value" id="rPartida">-</span></div>
-                        <div class="result-row"><span class="result-label">Valor CIF (USD):</span><span class="result-value" id="rCIF">0.00</span></div>
-                        <div class="result-row"><span class="result-label">Gravamen Arancelario:</span><span class="result-value" id="rGA">0.00 Bs</span></div>
-                        <div class="result-row"><span class="result-label">IVA (14.94%):</span><span class="result-value" id="rIVA">0.00 Bs</span></div>
-                        <div class="result-row result-total"><span class="result-label">Total Impuestos:</span><span class="result-value" id="rTotal">0.00 Bs</span></div>
+                        <div class="result-row"><span class="result-label">Valor CIF (USD):</span><span class="result-value" id="rCIF">-</span></div>
+                        <div id="r5TaxBreak"></div>
+                        <div class="result-row result-total"><span class="result-label">Total Impuestos:</span><span class="result-value" id="rTotal">-</span></div>
+                        <div class="result-row"><span class="result-label">Costo Total Bolivia (USD):</span><span class="result-value" id="rTotalUSD">-</span></div>
+                        <div class="result-row"><span class="result-label">Costo Total Bolivia (Bs):</span><span class="result-value" id="rTotalBs">-</span></div>
                     </div>
                     <div class="alert-box" id="f5Alert"><strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario o Certificado de Libre Venta.</div>
                 </div>
 
-                <!-- PASO 6: RECEPCION -->
                 <div id="step6" class="step-form">
                     <div class="input-group"><label>Fecha de Recepción</label><input type="date" id="f6Fecha"></div>
                     <div class="checkbox-group"><input type="checkbox" id="f6Caja"><label for="f6Caja">Caja sin daños visibles</label></div>
@@ -344,7 +299,7 @@
             </div>
         </div>
 
-        <!-- TAB 2: MIS CASOS -->
+        <!-- TAB 2 -->
         <div id="tab2" class="tab-content">
             <div class="card">
                 <h2 class="phase-title">Mis Importaciones</h2>
@@ -354,37 +309,48 @@
             </div>
         </div>
 
-        <!-- TAB 3: CALCULADORA -->
+        <!-- TAB 3: CALCULADORA LOTES -->
         <div id="tab3" class="tab-content">
-            <div class="card">
-                <h2 class="phase-title">Calculadora de Costos</h2>
-                <p class="phase-desc">Calcula los impuestos de nacionalización para cualquier producto.</p>
-                <div class="input-group"><label>Seleccionar Producto</label><select id="calcProd" onchange="onCalcProdChange()"><option value="">-- Cargando... --</option></select></div>
-                <div class="calc-grid">
-                    <div class="input-group"><label>Valor FOB (USD)</label><input type="number" id="calcFOB" placeholder="0.00" oninput="calcularStandalone()"></div>
-                    <div class="input-group"><label>Flete + Seguro (USD)</label><input type="number" id="calcFlete" placeholder="0.00" oninput="calcularStandalone()"></div>
+            <div id="calcListView" class="card">
+                <h2 class="phase-title">Calculadora de Rentabilidad</h2>
+                <p class="phase-desc">Crea lotes de importación, agrega equipos y calcula costos reales con impuestos detallados.</p>
+                <button class="action-btn" onclick="nuevoLote()">+ Nuevo Lote</button>
+                <div id="lotesListContainer" style="margin-top:20px"></div>
+            </div>
+            <div id="calcEditorView" style="display:none">
+                <div class="card">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                        <h2 class="phase-title" id="loteEditorTitle" style="margin-bottom:0">Nuevo Lote</h2>
+                        <button onclick="cerrarLoteEditor()" style="background:none;border:none;color:#94A3B8;font-size:1.4rem;cursor:pointer;padding:4px 8px">&times;</button>
+                    </div>
+                    <div class="input-group"><label>Nombre del Lote</label><input type="text" id="loteNombre" placeholder="Ej: Autoclaves Julio 2026"></div>
+                    <div class="req-panel">
+                        <div class="req-title">Equipos del Lote</div>
+                        <div id="loteEquipos"></div>
+                        <button class="add-equip-btn" onclick="addLoteEquipo()">+ Agregar Equipo</button>
+                    </div>
+                    <div style="margin-top:20px;padding-top:16px;border-top:2px solid #F1F5F9">
+                        <div class="calc-grid"><div class="input-group"><label>Flete Total (USD)</label><input type="number" id="loteFlete" placeholder="0.00" step="0.01"></div><div class="input-group"><label>Seguro Total (USD)</label><input type="number" id="loteSeguro" placeholder="0.00" step="0.01"></div></div>
+                        <div class="input-group"><label>Tasa de Cambio (Bs/USD)</label><input type="number" id="loteTasa" placeholder="Ej: 6.96" step="0.01"></div>
+                    </div>
+                    <button class="action-btn" onclick="calcularLote()">Calcular</button>
+                    <button class="action-btn" onclick="guardarLote()" style="background:#166534;margin-top:8px">Guardar Lote</button>
+                    <div id="loteCalcStatus" class="status-msg"></div>
                 </div>
-                <div class="input-group"><label>Tasa de Cambio (Bs/USD)</label><input type="number" id="calcTasa" value="6.96" step="0.01" oninput="calcularStandalone()"></div>
-                <div class="result-box" id="calcResult">
-                    <div class="result-row"><span class="result-label">Partida Arancelaria:</span><span class="result-value" id="cPartida">-</span></div>
-                    <div class="result-row"><span class="result-label">Valor CIF (USD):</span><span class="result-value" id="cCIF">0.00</span></div>
-                    <div class="result-row"><span class="result-label">Gravamen Arancelario:</span><span class="result-value" id="cGA">0.00 Bs</span></div>
-                    <div class="result-row"><span class="result-label">IVA (14.94%):</span><span class="result-value" id="cIVA">0.00 Bs</span></div>
-                    <div class="result-row result-total"><span class="result-label">Total Impuestos:</span><span class="result-value" id="cTotal">0.00 Bs</span></div>
+                <div id="loteResultadoView" style="display:none">
+                    <div class="card" id="loteResumenEquipos"></div>
+                    <div class="card" id="loteResumenTotal"></div>
+                    <button class="action-btn" onclick="compartirWhatsApp()" style="background:#25D366;margin-top:8px">Compartir por WhatsApp</button>
                 </div>
-                <div class="alert-box" id="calcAlert"><strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario.</div>
             </div>
         </div>
 
-        <!-- TAB 4: GLOSARIO -->
+        <!-- TAB 4 -->
         <div id="tab4" class="tab-content">
             <div class="card">
                 <h2 class="phase-title">Glosario de Términos</h2>
                 <p class="phase-desc">Definiciones oficiales de documentos y términos de importación.</p>
-                <div class="glosario-search">
-                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    <input type="text" id="glosarioInput" placeholder="Buscar término..." oninput="filtrarGlosario()">
-                </div>
+                <div class="glosario-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="glosarioInput" placeholder="Buscar término..." oninput="filtrarGlosario()"></div>
                 <p class="glosario-count" id="glosarioCount"></p>
                 <div class="glosario-list" id="glosarioList"><div style="text-align:center;padding:40px;color:#94A3B8">Cargando glosario...</div></div>
             </div>
@@ -392,7 +358,6 @@
     </div>
 </div>
 
-<!-- MODAL GLOSARIO -->
 <div class="glosario-overlay hidden" id="glosarioOverlay" onclick="if(event.target===this)cerrarGlosario()">
     <div class="glosario-modal">
         <div class="glosario-modal-top"><h3 id="glosarioTitle"></h3><button class="glosario-close" onclick="cerrarGlosario()">&times;</button></div>
@@ -412,26 +377,24 @@ var productosDB={};
 var glosarioDB=[];
 var glosarioLoaded=false;
 var allImports=[];
+var allLotes=[];
 var curImport=null;
 var curStep=1;
 var selectedUser=null;
+var curLote=null;
+var curLoteEquipos=[];
+var _loteResults=null;
 
 var USERS={abelardo:{n:"Abelardo",c:"CEO",p:"7512",t:"tema-ceo"},tania:{n:"Tania",c:"Responsable de Comercio Internacional",p:"TA25",t:"tema-tania"}};
-var STEP_T=["Producto","Proveedor","Negociación","Logística","Nacionalización","Recepción"];
-var STEP_D=[
-    "Selecciona el producto y revisa qué documentos y requisitos necesitas para importarlo.",
-    "Registra los datos del proveedor. La app te indica qué documentos pedirle.",
-    "Datos de la Factura Proforma y condiciones comerciales.",
-    "Seguimiento de flete, ruta y documentación de transporte.",
-    "Calculadora de impuestos aduaneros para este producto.",
-    "Verificación del producto recibido y activación de garantía."
-];
+var STEP_D=["Selecciona el producto, revisa requisitos y agrega los equipos específicos de esta importación.","Registra los datos del proveedor. La app te indica qué documentos pedirle.","Datos de la Factura Proforma y condiciones comerciales.","Seguimiento de flete, ruta y documentación de transporte.","Resumen económico con impuestos detallados en USD y Bs.","Verificación del producto recibido y activación de garantía."];
 
-// ========== STORAGE ==========
+/* ===== STORAGE ===== */
 function loadImports(){try{allImports=JSON.parse(localStorage.getItem("puente_imports")||"[]")}catch(e){allImports=[]}}
 function saveImports(){try{localStorage.setItem("puente_imports",JSON.stringify(allImports))}catch(e){}}
+function loadLotes(){try{allLotes=JSON.parse(localStorage.getItem("puente_lotes")||"[]")}catch(e){allLotes=[]}}
+function saveLotes(){try{localStorage.setItem("puente_lotes",JSON.stringify(allLotes))}catch(e){}}
 
-// ========== LOGIN ==========
+/* ===== LOGIN ===== */
 function selectUser(t){
     selectedUser=t;
     document.getElementById("btnAbelardo").classList.remove("active-abelardo");
@@ -445,83 +408,65 @@ function selectUser(t){
 }
 function onPwdInput(){if(!selectedUser)return;var v=document.getElementById("passwordInput").value;var u=USERS[selectedUser];document.getElementById("errorMsg").classList.toggle("show",v.length>=u.p.length&&v!==u.p)}
 function intentarLogin(){if(!selectedUser)return;var pi=document.getElementById("passwordInput");var u=USERS[selectedUser];if(pi.value===u.p)abrirApp(u);else{document.getElementById("errorMsg").classList.add("show");document.querySelector(".user-card").classList.add("shake");setTimeout(function(){pi.value="";document.getElementById("errorMsg").classList.remove("show");document.querySelector(".user-card").classList.remove("shake")},1500)}}
-function abrirApp(u){document.getElementById("loginScreen").style.display="none";document.getElementById("dashboardScreen").style.display="block";document.body.className=u.t;document.getElementById("topInfo").textContent="Hola, "+u.n+" | "+u.c;loadImports();renderMisCasos();cargarProductos()}
+function abrirApp(u){document.getElementById("loginScreen").style.display="none";document.getElementById("dashboardScreen").style.display="block";document.body.className=u.t;document.getElementById("topInfo").textContent="Hola, "+u.n+" | "+u.c;loadImports();loadLotes();renderMisCasos();renderLotesList();cargarProductos()}
 function cerrarSesion(){if(curImport)saveStepData();document.body.className="";document.getElementById("dashboardScreen").style.display="none";document.getElementById("loginScreen").style.display="block";document.getElementById("passwordInput").value="";document.getElementById("btnAbelardo").classList.remove("active-abelardo");document.getElementById("btnTania").classList.remove("active-tania");document.getElementById("submitBtn").className="submit-btn";selectedUser=null}
 
-// ========== NAV ==========
-function switchTab(n){if(curImport&&n!==1)saveStepData();document.querySelectorAll(".tab-content").forEach(function(el){el.classList.remove("active")});document.querySelectorAll(".nav-btn").forEach(function(el){el.classList.remove("active")});document.getElementById("tab"+n).classList.add("active");document.querySelectorAll(".nav-btn")[n-1].classList.add("active");if(n===2)renderMisCasos();if(n===4&&!glosarioLoaded)cargarGlosario();window.scrollTo({top:0,behavior:"smooth"})}
+/* ===== NAV ===== */
+function switchTab(n){if(curImport&&n!==1)saveStepData();document.querySelectorAll(".tab-content").forEach(function(el){el.classList.remove("active")});document.querySelectorAll(".nav-btn").forEach(function(el){el.classList.remove("active")});document.getElementById("tab"+n).classList.add("active");document.querySelectorAll(".nav-btn")[n-1].classList.add("active");if(n===2)renderMisCasos();if(n===3)renderLotesList();if(n===4&&!glosarioLoaded)cargarGlosario();window.scrollTo({top:0,behavior:"smooth"})}
 
-// ========== GOOGLE SHEETS: PRODUCTOS ==========
+/* ===== PRODUCTOS ===== */
 function cargarProductos(){
     try{Papa.parse(PROD_URL,{download:true,header:true,
         complete:function(r){
             var s1=document.getElementById("f1Producto");
-            var s2=document.getElementById("calcProd");
             s1.innerHTML='<option value="">-- Elige un producto --</option>';
-            s2.innerHTML='<option value="">-- Elige un producto --</option>';
             r.data.forEach(function(raw){
                 var f={};for(var k in raw)f[k.trim()]=raw[k];
                 if(f.Nombre&&f.Nombre.trim()){
-                    productosDB[f.Nombre]={
-                        partida:f.Partida||"N/A",ga:parseFloat(f.GA)||0,
-                        agemed:!!(f.Agemed&&f.Agemed.toUpperCase().trim()==="SI"),
-                        reqCE:!!(f["Requiere CE"]&&f["Requiere CE"].toUpperCase().trim()==="SI"),
-                        reqISO:!!(f["Requiere ISO"]&&f["Requiere ISO"].toUpperCase().trim()==="SI"),
-                        reqCFG:!!(f["Requiere CFG"]&&f["Requiere CFG"].toUpperCase().trim()==="SI"),
-                        reqOrigen:!!(f["Requiere Origen"]&&f["Requiere Origen"].toUpperCase().trim()==="SI"),
-                        documentos:f.Documentos||"",restricciones:f.Restricciones||"",pasos:f.Pasos||""
-                    };
+                    productosDB[f.Nombre]={partida:f.Partida||"N/A",ga:parseFloat(f.GA)||0,agemed:!!(f.Agemed&&f.Agemed.toUpperCase().trim()==="SI"),reqCE:!!(f["Requiere CE"]&&f["Requiere CE"].toUpperCase().trim()==="SI"),reqISO:!!(f["Requiere ISO"]&&f["Requiere ISO"].toUpperCase().trim()==="SI"),reqCFG:!!(f["Requiere CFG"]&&f["Requiere CFG"].toUpperCase().trim()==="SI"),reqOrigen:!!(f["Requiere Origen"]&&f["Requiere Origen"].toUpperCase().trim()==="SI"),documentos:f.Documentos||"",restricciones:f.Restricciones||"",pasos:f.Pasos||""};
                     var o1=document.createElement("option");o1.value=f.Nombre;o1.textContent=f.Nombre;s1.appendChild(o1);
-                    var o2=document.createElement("option");o2.value=f.Nombre;o2.textContent=f.Nombre;s2.appendChild(o2);
                 }
             });
-            console.log("Productos:",Object.keys(productosDB).length);
             if(curImport)loadStepData();
         },error:function(e){console.error("Error productos:",e)}
     })}catch(e){console.error(e)}
 }
 
-// ========== GOOGLE SHEETS: GLOSARIO ==========
+/* ===== GLOSARIO ===== */
 function cargarGlosario(){if(glosarioLoaded)return;
-    try{Papa.parse(GLOS_URL,{download:true,header:true,
-        complete:function(r){glosarioDB=[];
-            r.data.forEach(function(raw){var f={};for(var k in raw)f[k.trim()]=raw[k];var keys=Object.keys(f);var t=keys.length>=1?(f[keys[0]]||"").trim():"";
-                if(t)glosarioDB.push({termino:t,definicion:keys.length>=2?(f[keys[1]]||"").trim():"",aplicacion:keys.length>=3?(f[keys[2]]||"").trim():"",fuente:keys.length>=4?(f[keys[3]]||"").trim():""});
-            });glosarioLoaded=true;console.log("Glosario:",glosarioDB.length);renderGlosario(glosarioDB);
-        },error:function(e){console.error("Error glosario:",e);document.getElementById("glosarioList").innerHTML='<div class="empty-state">Error al cargar.</div>'}
-    })}catch(e){console.error(e)}
-}
-function renderGlosario(lista){var c=document.getElementById("glosarioList");document.getElementById("glosarioCount").textContent=lista.length+" términos";if(!lista.length){c.innerHTML='<div class="empty-state">No se encontraron términos.</div>';return}var h="";for(var i=0;i<lista.length;i++)h+='<div class="glosario-item" onclick="abrirGlosarioItem('+i+')"><span class="glosario-item-title">'+hx(lista[i].termino)+'</span><span class="glosario-item-arrow">\u203A</span></div>';c.innerHTML=h}
+    try{Papa.parse(GLOS_URL,{download:true,header:true,complete:function(r){glosarioDB=[];
+        r.data.forEach(function(raw){var f={};for(var k in raw)f[k.trim()]=raw[k];var keys=Object.keys(f);var t=keys.length>=1?(f[keys[0]]||"").trim():"";
+            if(t)glosarioDB.push({termino:t,definicion:keys.length>=2?(f[keys[1]]||"").trim():"",aplicacion:keys.length>=3?(f[keys[2]]||"").trim():"",fuente:keys.length>=4?(f[keys[3]]||"").trim():""});
+        });glosarioLoaded=true;renderGlosario(glosarioDB);
+    },error:function(e){document.getElementById("glosarioList").innerHTML='<div class="empty-state">Error al cargar.</div>'}})}catch(e){}}
+function renderGlosario(lista){var c=document.getElementById("glosarioList");document.getElementById("glosarioCount").textContent=lista.length+" términos";if(!lista.length){c.innerHTML='<div class="empty-state">No se encontraron.</div>';return}var h="";for(var i=0;i<lista.length;i++)h+='<div class="glosario-item" onclick="abrirGlosarioItem('+i+')"><span class="glosario-item-title">'+hx(lista[i].termino)+'</span><span class="glosario-item-arrow">\u203A</span></div>';c.innerHTML=h}
 function filtrarGlosario(){var t=document.getElementById("glosarioInput").value.toLowerCase().trim();if(!t){renderGlosario(glosarioDB);return}var f=[];for(var i=0;i<glosarioDB.length;i++){var s=(glosarioDB[i].termino+" "+glosarioDB[i].definicion+" "+glosarioDB[i].aplicacion).toLowerCase();if(s.indexOf(t)>=0)f.push(glosarioDB[i])}renderGlosario(f)}
-function abrirGlosarioItem(i){var it=glosarioDB[i];if(!it)return;document.getElementById("glosarioTitle").textContent=it.termino;var b=document.getElementById("glosarioBody");var h="";if(it.definicion)h+='<div class="glosario-section"><div class="glosario-section-label">Definición Técnica y Legal</div><div class="glosario-section-text">'+hx(it.definicion)+'</div></div>';if(it.aplicacion)h+='<div class="glosario-section"><div class="glosario-section-label">Aplicación en Bolivia</div><div class="glosario-section-text">'+hx(it.aplicacion)+'</div></div>';if(it.fuente)h+='<div class="glosario-section"><div class="glosario-section-label">Fuente Legal Oficial</div><div class="glosario-section-text">'+renderFuente(it.fuente)+'</div></div>';b.innerHTML=h;document.getElementById("glosarioOverlay").classList.remove("hidden")}
-function renderFuente(txt){var re=/(https?:\/\/[^\s<]+)/g;var p=txt.split(re);var h="";for(var i=0;i<p.length;i++){if(p[i].match(re))h+='<a class="glosario-source-btn" href="'+hx(p[i])+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver fuente oficial</a>';else if(p[i].trim())h+='<span>'+hx(p[i].trim())+'</span><br>'}return h}
+function abrirGlosarioItem(i){var it=glosarioDB[i];if(!it)return;document.getElementById("glosarioTitle").textContent=it.termino;var b=document.getElementById("glosarioBody");var h="";if(it.definicion)h+='<div class="glosario-section"><div class="glosario-section-label">Definición</div><div class="glosario-section-text">'+hx(it.definicion)+'</div></div>';if(it.aplicacion)h+='<div class="glosario-section"><div class="glosario-section-label">Aplicación en Bolivia</div><div class="glosario-section-text">'+hx(it.aplicacion)+'</div></div>';if(it.fuente)h+='<div class="glosario-section"><div class="glosario-section-label">Fuente Legal</div><div class="glosario-section-text">'+renderFuente(it.fuente)+'</div></div>';b.innerHTML=h;document.getElementById("glosarioOverlay").classList.remove("hidden")}
+function renderFuente(txt){var re=/(https?:\/\/[^\s<]+)/g;var p=txt.split(re);var h="";for(var i=0;i<p.length;i++){if(p[i].match(re))h+='<a class="glosario-source-btn" href="'+hx(p[i])+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver fuente</a>';else if(p[i].trim())h+='<span>'+hx(p[i].trim())+'</span><br>'}return h}
 function cerrarGlosario(){document.getElementById("glosarioOverlay").classList.add("hidden")}
 
-// ========== IMPORTS ==========
+/* ===== IMPORT CRUD ===== */
 function crearImportacion(){
     var nm=document.getElementById("importNameInput").value.trim();
-    if(!nm){var ss=document.getElementById("startStatus");ss.className="status-msg warn";ss.textContent="\u26A0 Escribe un nombre para esta importación.";setTimeout(function(){ss.className="status-msg"},3000);return}
+    if(!nm){var ss=document.getElementById("startStatus");ss.className="status-msg warn";ss.textContent="\u26A0 Escribe un nombre.";setTimeout(function(){ss.className="status-msg"},3000);return}
     if(curImport)saveStepData();
     var imp={id:"imp_"+Date.now(),nombre:nm,estado:"en_curso",paso:1,fecha:new Date().toISOString().split("T")[0],
-        fase1:{producto:"",docStatus:{}},
-        fase2:{proveedor:"",pais:"",iso:false,ce:false,muestra:false},
+        fase1:{producto:"",equipos:[],docStatus:{}},fase2:{proveedor:"",pais:"",iso:false,ce:false,muestra:false},
         fase3:{proforma:"",incoterm:"FOB",moneda:"USD",monto:"",plazo:"30% anticipo - 70% BL",fecha:""},
         fase4:{tipo:"Marítimo FCL",contenedor:"",flete:"",seguro:"",origen:"",destino:""},
-        fase5:{fob:"",fleteSeg:"",tasa:"6.96"},
-        fase6:{fecha:"",caja:false,contenido:false,funciona:false,garantia:"",obs:""}
-    };
+        fase5:{tasa:""},fase6:{fecha:"",caja:false,contenido:false,funciona:false,garantia:"",obs:""}};
     allImports.unshift(imp);saveImports();curImport=imp;curStep=1;
     document.getElementById("importNameInput").value="";showStepper();
 }
 function continuarImportacion(id){for(var i=0;i<allImports.length;i++){if(allImports[i].id===id){curImport=allImports[i];break}}if(!curImport)return;curStep=curImport.paso||1;switchTab(1);showStepper();loadStepData()}
-function eliminarImportacion(id){if(!confirm("¿Eliminar esta importación?"))return;allImports=allImports.filter(function(x){return x.id!==id});saveImports();renderMisCasos()}
+function eliminarImportacion(id){if(!confirm("¿Eliminar?"))return;allImports=allImports.filter(function(x){return x.id!==id});saveImports();renderMisCasos()}
 function completarImportacion(){
     saveStepData();var faltas=[];
     if(!curImport.fase1.producto)faltas.push("Producto (Paso 1)");
     if(!curImport.fase2.proveedor)faltas.push("Proveedor (Paso 2)");
-    if(faltas.length){var ss=document.getElementById("stepStatus");ss.className="status-msg warn";ss.textContent="\u26A0 Faltan datos: "+faltas.join(", ");setTimeout(function(){ss.className="status-msg"},5000);return}
+    if(faltas.length){var ss=document.getElementById("stepStatus");ss.className="status-msg warn";ss.textContent="\u26A0 Faltan: "+faltas.join(", ");setTimeout(function(){ss.className="status-msg"},5000);return}
     curImport.estado="completada";curImport.paso=6;saveImports();
-    var ss=document.getElementById("stepStatus");ss.className="status-msg success";ss.textContent="\u2714 Importación completada exitosamente.";
+    var ss=document.getElementById("stepStatus");ss.className="status-msg success";ss.textContent="\u2714 Importación completada.";
     setTimeout(function(){ss.className="status-msg";curImport=null;hideStepper();switchTab(2)},2000);
 }
 function renderMisCasos(){
@@ -530,11 +475,11 @@ function renderMisCasos(){
     var completadas=allImports.filter(function(x){return x.estado==="completada"});
     if(!activas.length)la.innerHTML='<div class="empty-state">No hay importaciones en curso.</div>';
     else{var h="";activas.forEach(function(imp){h+='<div class="import-card"><div class="import-card-info"><div class="import-card-title">'+hx(imp.nombre)+'</div><div class="import-card-meta"><span class="import-badge active">Paso '+(imp.paso||1)+'/6</span> · '+imp.fecha+'</div></div><div class="import-card-actions"><button class="import-card-btn continue" onclick="continuarImportacion(\''+imp.id+'\')">Continuar</button><button class="import-card-btn delete" onclick="eliminarImportacion(\''+imp.id+'\')">Eliminar</button></div></div>'});la.innerHTML=h}
-    if(!completadas.length)lc.innerHTML='<div class="empty-state">No hay importaciones completadas.</div>';
+    if(!completadas.length)lc.innerHTML='<div class="empty-state">No hay completadas.</div>';
     else{var h="";completadas.forEach(function(imp){h+='<div class="import-card"><div class="import-card-info"><div class="import-card-title">'+hx(imp.nombre)+'</div><div class="import-card-meta"><span class="import-badge done">Completada</span> · '+imp.fecha+'</div></div><div class="import-card-actions"><button class="import-card-btn delete" onclick="eliminarImportacion(\''+imp.id+'\')">Eliminar</button></div></div>'});lc.innerHTML=h}
 }
 
-// ========== STEPPER ==========
+/* ===== STEPPER ===== */
 function showStepper(){document.getElementById("newImportStart").style.display="none";document.getElementById("stepperContainer").style.display="block";document.getElementById("stepperTitle").textContent=curImport.nombre;renderStepperBar();goToStep(curStep)}
 function hideStepper(){document.getElementById("stepperContainer").style.display="none";document.getElementById("newImportStart").style.display="block"}
 function cerrarStepper(){saveStepData();curImport=null;hideStepper()}
@@ -545,116 +490,271 @@ function nextStep(){saveStepData();if(curStep>=6){completarImportacion();return}
 function prevStep(){saveStepData();if(curStep>1)goToStep(curStep-1)}
 function renderStepNav(){var nav=document.getElementById("stepNav");var prev='<button class="btn-prev" onclick="prevStep()" '+(curStep<=1?"disabled style='opacity:.4;pointer-events:none'":"")+'>Anterior</button>';var next=curStep>=6?'<button class="btn-next btn-complete" onclick="nextStep()">Completar Importación</button>':'<button class="btn-next" onclick="nextStep()">Siguiente</button>';nav.innerHTML=prev+next}
 
-// ========== STEP 1: PRODUCTO & REQUISITOS ==========
+/* ===== STEP 1 ===== */
 function onStep1Producto(){
-    var prod=document.getElementById("f1Producto").value;
-    var panel=document.getElementById("reqPanel");
-    if(!prod||!productosDB[prod]){panel.style.display="none";return}
-    panel.style.display="block";
+    var prod=document.getElementById("f1Producto").value;var panel=document.getElementById("reqPanel");
+    if(!prod||!productosDB[prod]){panel.style.display="none";return}panel.style.display="block";
     var d=productosDB[prod];
-    // Badges
-    var badges="";
-    badges+=reqBadge("Registro AGEMED",d.agemed);
-    badges+=reqBadge("Certificado CE",d.reqCE);
-    badges+=reqBadge("ISO 13485",d.reqISO);
-    badges+=reqBadge("Certificado de Libre Venta (CFG)",d.reqCFG);
-    badges+=reqBadge("Certificado de Origen",d.reqOrigen);
+    var badges=reqBadge("Registro AGEMED",d.agemed)+reqBadge("Certificado CE",d.reqCE)+reqBadge("ISO 13485",d.reqISO)+reqBadge("Certificado de Libre Venta",d.reqCFG)+reqBadge("Certificado de Origen",d.reqOrigen);
     document.getElementById("reqBadges").innerHTML=badges;
-    // Documentos checklist
-    if(d.documentos){
-        var docs=d.documentos.split(",");
-        var ds=curImport&&curImport.fase1?curImport.fase1.docStatus||{}:{};
-        var h="";docs.forEach(function(doc){var dn=doc.trim();if(dn){var st=ds[dn]||"pendiente";h+=docItem(dn,st)}});
-        document.getElementById("docList").innerHTML=h;
-        document.getElementById("docPanel").style.display="block";
-    }else document.getElementById("docPanel").style.display="none";
-    // Restricciones
-    if(d.restricciones){document.getElementById("restrContent").innerHTML='<div class="restriction-box">\u26A0 '+hx(d.restricciones)+'</div>';document.getElementById("restrPanel").style.display="block"}
-    else document.getElementById("restrPanel").style.display="none";
-    // Pasos
-    if(d.pasos){document.getElementById("pasosContent").innerHTML=parsePasos(d.pasos);document.getElementById("pasosPanel").style.display="block"}
-    else document.getElementById("pasosPanel").style.display="none";
+    renderEquiposImport();
+    if(d.documentos){var docs=d.documentos.split(",");var ds=curImport&&curImport.fase1?curImport.fase1.docStatus||{}:{};var h="";docs.forEach(function(doc){var dn=doc.trim();if(dn){var st=ds[dn]||"pendiente";h+=docItem(dn,st)}});document.getElementById("docList").innerHTML=h;document.getElementById("docPanel").style.display="block"}else document.getElementById("docPanel").style.display="none";
+    if(d.restricciones){document.getElementById("restrContent").innerHTML='<div class="restriction-box">\u26A0 '+hx(d.restricciones)+'</div>';document.getElementById("restrPanel").style.display="block"}else document.getElementById("restrPanel").style.display="none";
+    if(d.pasos){document.getElementById("pasosContent").innerHTML=parsePasos(d.pasos);document.getElementById("pasosPanel").style.display="block"}else document.getElementById("pasosPanel").style.display="none";
 }
 function reqBadge(name,needed){return'<div class="req-row"><span class="req-dot '+(needed?"si":"no")+'"></span><span class="req-name">'+hx(name)+'</span><span class="req-tag '+(needed?"si":"no")+'">'+(needed?"Necesita":"No requiere")+'</span></div>'}
 function docItem(name,status){return'<div class="doc-item '+status+'" onclick="toggleDoc(\''+hx(name).replace(/'/g,"\\'")+'\')"><span class="doc-name">'+hx(name)+'</span><span class="doc-badge '+status+'">'+status+'</span></div>'}
-function toggleDoc(name){
-    if(!curImport)return;if(!curImport.fase1.docStatus)curImport.fase1.docStatus={};
-    var cur=curImport.fase1.docStatus[name]||"pendiente";
-    var nxt=cur==="pendiente"?"solicitado":cur==="solicitado"?"recibido":"pendiente";
-    curImport.fase1.docStatus[name]=nxt;saveImports();onStep1Producto();
-}
+function toggleDoc(name){if(!curImport)return;if(!curImport.fase1.docStatus)curImport.fase1.docStatus={};var cur=curImport.fase1.docStatus[name]||"pendiente";var nxt=cur==="pendiente"?"solicitado":cur==="solicitado"?"recibido":"pendiente";curImport.fase1.docStatus[name]=nxt;saveImports();onStep1Producto()}
 function parsePasos(text){var parts=text.split(/\d+\./);var h="";var n=0;parts.forEach(function(p){var t=p.trim();if(t){n++;h+='<div class="paso-item"><span class="paso-num">'+n+'</span><span class="paso-text">'+hx(t)+'</span></div>'}});return h}
+function addEquipoImport(){if(!curImport)return;if(!curImport.fase1.equipos)curImport.fase1.equipos=[];curImport.fase1.equipos.push({marca:"",modelo:"",cantidad:1});saveImports();renderEquiposImport()}
+function removeEquipoImport(i){if(!curImport||!curImport.fase1.equipos)return;curImport.fase1.equipos.splice(i,1);saveImports();renderEquiposImport()}
+function updateEquipoImport(i,f,v){if(!curImport||!curImport.fase1.equipos)return;curImport.fase1.equipos[i][f]=v;saveImports()}
+function renderEquiposImport(){if(!curImport)return;if(!curImport.fase1.equipos)curImport.fase1.equipos=[];var equipos=curImport.fase1.equipos;var el=document.getElementById("equiposList");if(!equipos.length){el.innerHTML='<div style="text-align:center;padding:16px;color:#94A3B8;font-size:.85rem">Agrega equipos.</div>';return}var h="";equipos.forEach(function(eq,i){h+='<div class="equipo-card"><div class="equipo-header"><span class="equipo-num">Equipo '+(i+1)+'</span><button class="equipo-del" onclick="removeEquipoImport('+i+')">&times;</button></div><div class="calc-grid"><div class="input-group"><label>Marca</label><input type="text" value="'+hx(eq.marca)+'" oninput="updateEquipoImport('+i+',\'marca\',this.value)"></div><div class="input-group"><label>Modelo</label><input type="text" value="'+hx(eq.modelo)+'" oninput="updateEquipoImport('+i+',\'modelo\',this.value)"></div></div><div class="input-group"><label>Cantidad</label><input type="number" value="'+eq.cantidad+'" min="1" oninput="updateEquipoImport('+i+',\'cantidad\',parseInt(this.value)||1)"></div></div>'});el.innerHTML=h}
 
-// ========== STEP 2: PROVEEDOR (recordatorio) ==========
-function renderProviderReminder(){
-    var el=document.getElementById("providerReminder");
-    if(!curImport||!curImport.fase1.producto){el.innerHTML="";return}
-    var d=productosDB[curImport.fase1.producto];
-    if(!d){el.innerHTML="";return}
-    var items=[];
-    if(d.reqCE)items.push("Certificado CE del fabricante");
-    if(d.reqISO)items.push("ISO 13485 del proveedor");
-    if(d.reqCFG)items.push("Certificado de Libre Venta");
-    if(d.reqOrigen)items.push("Certificado de Origen");
-    if(!items.length){el.innerHTML="";return}
-    var h='<div class="provider-reminder"><h4>Documentos que debes pedir al proveedor</h4><ul>';
-    items.forEach(function(it){h+='<li>'+hx(it)+'</li>'});
-    h+='</ul></div>';el.innerHTML=h;
-}
+/* ===== STEP 2 ===== */
+function renderProviderReminder(){var el=document.getElementById("providerReminder");if(!curImport||!curImport.fase1.producto){el.innerHTML="";return}var d=productosDB[curImport.fase1.producto];if(!d){el.innerHTML="";return}var items=[];if(d.reqCE)items.push("Certificado CE");if(d.reqISO)items.push("ISO 13485");if(d.reqCFG)items.push("Certificado de Libre Venta");if(d.reqOrigen)items.push("Certificado de Origen");if(!items.length){el.innerHTML="";return}var h='<div class="provider-reminder"><h4>Documentos que debes pedir al proveedor</h4><ul>';items.forEach(function(it){h+='<li>'+hx(it)+'</li>'});h+='</ul></div>';el.innerHTML=h}
 
-// ========== STEP 5: CALCULADORA LOCAL ==========
+/* ===== STEP 5: IMPUESTOS DETALLADOS ===== */
 function calcularLocal(){
     var prod=curImport?curImport.fase1.producto:"";
     var fob=parseFloat(document.getElementById("f5FOB").value)||0;
     var flete=parseFloat(document.getElementById("f5FleteSeg").value)||0;
-    var tasa=parseFloat(document.getElementById("f5Tasa").value)||6.96;
-    if(prod&&productosDB[prod]&&(fob>0||flete>0)){
-        var d=productosDB[prod];var cif=fob+flete;var cifBs=cif*tasa;var ga=cifBs*d.ga;var iva=(cifBs+ga)*0.1494;var tot=ga+iva;
-        document.getElementById("rPartida").textContent=d.partida;document.getElementById("rCIF").textContent=cif.toFixed(2);
-        document.getElementById("rGA").textContent=ga.toFixed(2)+" Bs";document.getElementById("rIVA").textContent=iva.toFixed(2)+" Bs";
-        document.getElementById("rTotal").textContent=tot.toFixed(2)+" Bs";document.getElementById("f5Result").classList.add("show");
+    var tasa=parseFloat(document.getElementById("f5Tasa").value)||0;
+    if(prod&&productosDB[prod]&&(fob>0||flete>0)&&tasa>0){
+        var d=productosDB[prod];var cif=fob+flete;var cifBs=cif*tasa;
+        var ga=cifBs*d.ga;var iva=(cifBs+ga)*0.1494;var totalImp=ga+iva;
+        var totalUSD=cif+(totalImp/tasa);var totalBs=cifBs+totalImp;
+        document.getElementById("rPartida").textContent=d.partida+" (GA: "+(d.ga*100).toFixed(1)+"%)";
+        document.getElementById("rCIF").textContent="$"+cif.toFixed(2)+" USD / "+cifBs.toFixed(2)+" Bs";
+        var taxH="";
+        if(d.ga>0)taxH+=resumenRow("Gravamen Arancelario ("+(d.ga*100).toFixed(1)+"%)",ga/tasa,tasa);
+        taxH+=resumenRow("IVA (14.94%)",iva/tasa,tasa);
+        document.getElementById("r5TaxBreak").innerHTML=taxH;
+        document.getElementById("rTotal").textContent="$"+(totalImp/tasa).toFixed(2)+" USD / "+totalImp.toFixed(2)+" Bs";
+        document.getElementById("rTotalUSD").textContent="$"+totalUSD.toFixed(2)+" USD";
+        document.getElementById("rTotalBs").textContent=totalBs.toFixed(2)+" Bs";
+        document.getElementById("f5Result").style.display="block";
         document.getElementById("f5Alert").classList.toggle("show",d.agemed);
-    }else{document.getElementById("f5Result").classList.remove("show");document.getElementById("f5Alert").classList.remove("show")}
+    }else{document.getElementById("f5Result").style.display="none";document.getElementById("f5Alert").classList.remove("show")}
 }
 
-// ========== CALCULADORA STANDALONE ==========
-function onCalcProdChange(){var p=document.getElementById("calcProd").value;if(p&&productosDB[p]){document.getElementById("calcAlert").classList.toggle("show",productosDB[p].agemed);calcularStandalone()}else{document.getElementById("calcResult").classList.remove("show");document.getElementById("calcAlert").classList.remove("show")}}
-function calcularStandalone(){var p=document.getElementById("calcProd").value;var fob=parseFloat(document.getElementById("calcFOB").value)||0;var flete=parseFloat(document.getElementById("calcFlete").value)||0;var tasa=parseFloat(document.getElementById("calcTasa").value)||6.96;if(p&&productosDB[p]&&(fob>0||flete>0)){var d=productosDB[p];var cif=fob+flete;var cifBs=cif*tasa;var ga=cifBs*d.ga;var iva=(cifBs+ga)*0.1494;var tot=ga+iva;document.getElementById("cPartida").textContent=d.partida;document.getElementById("cCIF").textContent=cif.toFixed(2);document.getElementById("cGA").textContent=ga.toFixed(2)+" Bs";document.getElementById("cIVA").textContent=iva.toFixed(2)+" Bs";document.getElementById("cTotal").textContent=tot.toFixed(2)+" Bs";document.getElementById("calcResult").classList.add("show")}else document.getElementById("calcResult").classList.remove("show")}
+/* ===== RESUMEN ROW HELPER ===== */
+function resumenRow(label,usd,tasa){
+    var bs=usd*tasa;
+    return'<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:.85rem"><span style="color:var(--txt2);font-weight:500">'+hx(label)+'</span><span style="font-weight:600">$'+usd.toFixed(2)+' USD / '+bs.toFixed(2)+' Bs</span></div>';
+}
 
-// ========== SAVE/LOAD STEP DATA ==========
+/* ===== CALCULADORA LOTES ===== */
+function renderLotesList(){
+    var el=document.getElementById("lotesListContainer");
+    if(!allLotes.length){el.innerHTML='<div class="empty-state">No hay lotes guardados.</div>';return}
+    var h="";allLotes.forEach(function(l){
+        h+='<div class="import-card"><div class="import-card-info"><div class="import-card-title">'+hx(l.nombre)+'</div><div class="import-card-meta">'+l.equipos.length+' equipos · '+l.fecha+'</div></div><div class="import-card-actions"><button class="import-card-btn continue" onclick="editarLote(\''+l.id+'\')">Editar</button><button class="import-card-btn delete" onclick="eliminarLote(\''+l.id+'\')">Eliminar</button></div></div>';
+    });el.innerHTML=h;
+}
+function nuevoLote(){
+    curLote=null;curLoteEquipos=[];
+    document.getElementById("calcListView").style.display="none";
+    document.getElementById("calcEditorView").style.display="block";
+    document.getElementById("loteEditorTitle").textContent="Nuevo Lote";
+    document.getElementById("loteNombre").value="";
+    document.getElementById("loteFlete").value="";document.getElementById("loteSeguro").value="";document.getElementById("loteTasa").value="";
+    document.getElementById("loteResultadoView").style.display="none";
+    renderLoteEquipos();
+}
+function editarLote(id){
+    var lote=null;for(var i=0;i<allLotes.length;i++){if(allLotes[i].id===id){lote=allLotes[i];break}}if(!lote)return;
+    curLote=lote;curLoteEquipos=JSON.parse(JSON.stringify(lote.equipos));
+    document.getElementById("calcListView").style.display="none";
+    document.getElementById("calcEditorView").style.display="block";
+    document.getElementById("loteEditorTitle").textContent="Editar Lote";
+    document.getElementById("loteNombre").value=lote.nombre;
+    document.getElementById("loteFlete").value=lote.flete||"";
+    document.getElementById("loteSeguro").value=lote.seguro||"";
+    document.getElementById("loteTasa").value=lote.tasa||"";
+    document.getElementById("loteResultadoView").style.display="none";
+    renderLoteEquipos();
+}
+function cerrarLoteEditor(){
+    curLote=null;curLoteEquipos=[];
+    document.getElementById("calcEditorView").style.display="none";
+    document.getElementById("calcListView").style.display="block";
+    renderLotesList();
+}
+function eliminarLote(id){if(!confirm("¿Eliminar lote?"))return;allLotes=allLotes.filter(function(x){return x.id!==id});saveLotes();renderLotesList()}
+function guardarLote(){
+    var nombre=document.getElementById("loteNombre").value.trim();
+    if(!nombre){var ss=document.getElementById("loteCalcStatus");ss.className="status-msg warn";ss.textContent="\u26A0 Ponle nombre al lote.";setTimeout(function(){ss.className="status-msg"},3000);return}
+    var flete=parseFloat(document.getElementById("loteFlete").value)||0;
+    var seguro=parseFloat(document.getElementById("loteSeguro").value)||0;
+    var tasa=parseFloat(document.getElementById("loteTasa").value)||0;
+    if(curLote){curLote.nombre=nombre;curLote.equipos=curLoteEquipos;curLote.flete=flete;curLote.seguro=seguro;curLote.tasa=tasa}
+    else{var l={id:"lote_"+Date.now(),nombre:nombre,fecha:new Date().toISOString().split("T")[0],equipos:curLoteEquipos,flete:flete,seguro:seguro,tasa:tasa};allLotes.unshift(l);curLote=l}
+    saveLotes();var ss=document.getElementById("loteCalcStatus");ss.className="status-msg success";ss.textContent="\u2714 Lote guardado.";setTimeout(function(){ss.className="status-msg"},3000);
+}
+function addLoteEquipo(){curLoteEquipos.push({producto:"",marca:"",modelo:"",cantidad:1,precioCompra:0,precioVenta:0});renderLoteEquipos()}
+function removeLoteEquipo(i){curLoteEquipos.splice(i,1);renderLoteEquipos()}
+function updateLoteEquipo(i,f,v){curLoteEquipos[i][f]=v}
+function renderLoteEquipos(){
+    var el=document.getElementById("loteEquipos");
+    if(!curLoteEquipos.length){el.innerHTML='<div style="text-align:center;padding:16px;color:#94A3B8;font-size:.85rem">Agrega equipos al lote.</div>';return}
+    var h="";var prodKeys=Object.keys(productosDB);
+    curLoteEquipos.forEach(function(eq,i){
+        h+='<div class="equipo-card"><div class="equipo-header"><span class="equipo-num">Equipo '+(i+1)+'</span><button class="equipo-del" onclick="removeLoteEquipo('+i+')">&times;</button></div>';
+        h+='<div class="input-group"><label>Producto (para calcular impuestos)</label><select onchange="updateLoteEquipo('+i+',\'producto\',this.value);renderLoteEquipos()">';
+        h+='<option value="">-- Selecciona producto --</option>';
+        prodKeys.forEach(function(n){h+='<option value="'+hx(n)+'"'+(eq.producto===n?' selected':'')+'>'+hx(n)+'</option>'});
+        h+='</select></div>';
+        h+='<div class="calc-grid"><div class="input-group"><label>Marca</label><input type="text" value="'+hx(eq.marca)+'" placeholder="Ej: BrandX" oninput="updateLoteEquipo('+i+',\'marca\',this.value)"></div><div class="input-group"><label>Modelo</label><input type="text" value="'+hx(eq.modelo)+'" placeholder="Ej: MX-200" oninput="updateLoteEquipo('+i+',\'modelo\',this.value)"></div></div>';
+        h+='<div class="calc-grid"><div class="input-group"><label>Cantidad</label><input type="number" value="'+eq.cantidad+'" min="1" oninput="updateLoteEquipo('+i+',\'cantidad\',parseFloat(this.value)||1)"></div><div class="input-group"><label>Precio Compra c/u (USD)</label><input type="number" value="'+eq.precioCompra+'" step="0.01" oninput="updateLoteEquipo('+i+',\'precioCompra\',parseFloat(this.value)||0)"></div></div>';
+        h+='<div class="input-group"><label>Precio Venta c/u (USD)</label><input type="number" value="'+eq.precioVenta+'" step="0.01" oninput="updateLoteEquipo('+i+',\'precioVenta\',parseFloat(this.value)||0)"></div>';
+        if(eq.producto&&productosDB[eq.producto]){
+            var d=productosDB[eq.producto];
+            h+='<div class="tax-info'+(d.agemed?' warn':'')+'"><strong>Partida:</strong> '+hx(d.partida)+' · <strong>GA:</strong> '+(d.ga*100).toFixed(1)+'%';
+            if(d.agemed)h+=' · <strong>AGEMED</strong>';
+            h+='</div>';
+        }
+        h+='</div>';
+    });el.innerHTML=h;
+}
+
+/* ===== CALCULAR LOTE ===== */
+function calcularLote(){
+    if(!curLoteEquipos.length){alert("Agrega al menos un equipo.");return}
+    var flete=parseFloat(document.getElementById("loteFlete").value)||0;
+    var seguro=parseFloat(document.getElementById("loteSeguro").value)||0;
+    var tasa=parseFloat(document.getElementById("loteTasa").value)||0;
+    if(tasa<=0){alert("Ingresa la tasa de cambio.");return}
+
+    var totalCompra=0;curLoteEquipos.forEach(function(eq){totalCompra+=eq.cantidad*eq.precioCompra});
+    var results=[];var ltCompra=0,ltFlete=0,ltSeguro=0,ltGA=0,ltIVA=0,ltImpUSD=0,ltCosto=0,ltVenta=0;
+
+    curLoteEquipos.forEach(function(eq,i){
+        var costoChina=eq.cantidad*eq.precioCompra;
+        var fProrr=totalCompra>0?(costoChina/totalCompra)*flete:0;
+        var sProrr=totalCompra>0?(costoChina/totalCompra)*seguro:0;
+        var cif=costoChina+fProrr+sProrr;var cifBs=cif*tasa;
+        var gaPct=0,partida="N/A",agemed=false,taxes=[];
+        if(eq.producto&&productosDB[eq.producto]){var d=productosDB[eq.producto];gaPct=d.ga;partida=d.partida;agemed=d.agemed}
+        var ga=cifBs*gaPct;var gaUSD=tasa>0?ga/tasa:0;
+        if(gaPct>0)taxes.push({nombre:"Gravamen Arancelario ("+(gaPct*100).toFixed(1)+"%)",usd:gaUSD,bs:ga});
+        var iva=(cifBs+ga)*0.1494;var ivaUSD=tasa>0?iva/tasa:0;
+        taxes.push({nombre:"IVA (14.94%)",usd:ivaUSD,bs:iva});
+        var totalImp=ga+iva;var totalImpUSD=gaUSD+ivaUSD;
+        var costoBoliviaUSD=cif+totalImpUSD;var costoBoliviaBs=cifBs+totalImp;
+        var ventaUSD=eq.cantidad*eq.precioVenta;var ventaBs=ventaUSD*tasa;
+        var gananciaUSD=ventaUSD-costoBoliviaUSD;var gananciaBs=gananciaUSD*tasa;
+        var pct=costoBoliviaUSD>0?(gananciaUSD/costoBoliviaUSD)*100:0;
+        results.push({eq:eq,costoChina:costoChina,fleteProrr:fProrr,seguroProrr:sProrr,cif:cif,cifBs:cifBs,partida:partida,agemed:agemed,taxes:taxes,totalImpUSD:totalImpUSD,totalImpBs:totalImp,costoBoliviaUSD:costoBoliviaUSD,costoBoliviaBs:costoBoliviaBs,ventaUSD:ventaUSD,ventaBs:ventaBs,gananciaUSD:gananciaUSD,gananciaBs:gananciaBs,pct:pct});
+        ltCompra+=costoChina;ltFlete+=fProrr;ltSeguro+=sProrr;ltGA+=ga;ltIVA+=iva;ltImpUSD+=totalImpUSD;ltCosto+=costoBoliviaUSD;ltVenta+=ventaUSD;
+    });
+    _loteResults={nombre:document.getElementById("loteNombre").value||"Sin nombre",tasa:tasa,flete:flete,seguro:seguro,results:results,totalCompra:ltCompra,totalFlete:ltFlete,totalSeguro:ltSeguro,totalGA:ltGA,totalIVA:ltIVA,totalImpUSD:ltImpUSD,totalCostoBolivia:ltCosto,totalVenta:ltVenta,gananciaTotal:ltVenta-ltCosto,pctTotal:ltCosto>0?((ltVenta-ltCosto)/ltCosto*100):0};
+    renderLoteResultado(results,tasa);
+}
+
+function renderLoteResultado(results,tasa){
+    var h1='<h2 class="phase-title">Resumen por Equipo</h2><p class="phase-desc">Desglose de costos, impuestos por nombre, y rentabilidad de cada equipo.</p>';
+    results.forEach(function(r,i){
+        var c=r.gananciaUSD>0;
+        h1+='<div class="eq-result-card"><div class="eq-result-header"><div><strong style="font-size:1rem">'+hx(r.eq.marca||"Equipo "+(i+1))+' '+hx(r.eq.modelo||"")+'</strong><div style="font-size:.8rem;color:var(--txt2)">×'+r.eq.cantidad+' · '+hx(r.eq.producto||"Sin producto")+' · Partida: '+hx(r.partida)+'</div></div><span class="profit-badge '+(c?"si":"no")+'">'+(c?"✓ CONVIENE":"✗ NO CONVIENE")+'</span></div>';
+        h1+='<div style="font-size:.85rem">';
+        h1+=resumenRow("Costo en China",r.costoChina,tasa);
+        if(r.fleteProrr>0)h1+=resumenRow("Flete (prorrateado)",r.fleteProrr,tasa);
+        if(r.seguroProrr>0)h1+=resumenRow("Seguro (prorrateado)",r.seguroProrr,tasa);
+        h1+=resumenRowBold("Valor CIF",r.cif,tasa);
+        h1+='<div class="tax-section"><div class="tax-label">Impuestos</div>';
+        r.taxes.forEach(function(tax){h1+=resumenRow(tax.nombre,tax.usd,tasa)});
+        h1+=resumenRowBold("Total Impuestos",r.totalImpUSD,tasa)+'</div>';
+        h1+='<div class="tax-section">';
+        h1+=resumenRowBold("Costo Total Bolivia",r.costoBoliviaUSD,tasa);
+        h1+=resumenRow("Precio de Venta",r.ventaUSD,tasa);
+        h1+='<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:.95rem;font-weight:800;color:'+(c?'#166534':'#991B1B')+'"><span>Ganancia ('+r.pct.toFixed(1)+'%)</span><span>$'+r.gananciaUSD.toFixed(2)+' USD / '+r.gananciaBs.toFixed(2)+' Bs</span></div></div>';
+        if(r.agemed)h1+='<div style="background:#FEF2F2;padding:10px 14px;border-radius:8px;font-size:.8rem;color:#991B1B;margin-top:12px;border-left:3px solid #EF4444"><strong>⚠ AGEMED:</strong> Requiere Registro Sanitario o Certificado de Libre Venta.</div>';
+        h1+='</div></div>';
+    });
+    document.getElementById("loteResumenEquipos").innerHTML=h1;
+
+    var lr=_loteResults;var cl=lr.gananciaTotal>0;
+    var h2='<h2 class="phase-title">Resumen del Lote</h2><p class="phase-desc">Totales de la importación completa.</p>';
+    h2+=resumenRow("Total Costo China",lr.totalCompra,tasa);
+    h2+=resumenRow("Total Flete",lr.totalFlete,tasa);
+    h2+=resumenRow("Total Seguro",lr.totalSeguro,tasa);
+    h2+=resumenRowBold("Valor CIF Total",lr.totalCompra+lr.totalFlete+lr.totalSeguro,tasa);
+    h2+='<div class="tax-section"><div class="tax-label">Impuestos Totales</div>';
+    if(lr.totalGA>0)h2+=resumenRow("Gravamen Arancelario (total)",lr.totalGA/tasa,tasa);
+    h2+=resumenRow("IVA (14.94%) (total)",lr.totalIVA/tasa,tasa);
+    h2+=resumenRowBold("Total Impuestos",lr.totalImpUSD,tasa)+'</div>';
+    h2+='<div class="tax-section">';
+    h2+=resumenRowBold("Costo Total Bolivia",lr.totalCostoBolivia,tasa);
+    h2+=resumenRow("Venta Total",lr.totalVenta,tasa)+'</div>';
+    h2+='<div class="big-profit '+(cl?"si":"no")+'" style="margin-top:20px">';
+    h2+='<div class="big-profit-text '+(cl?"si":"no")+'">'+(cl?"✓ CONVIENE":"✗ NO CONVIENE")+'</div>';
+    h2+='<div style="font-size:1.3rem;font-weight:700;margin-top:8px;color:'+(cl?'#166534':'#991B1B')+'">$'+lr.gananciaTotal.toFixed(2)+' USD / '+(lr.gananciaTotal*tasa).toFixed(2)+' Bs</div>';
+    h2+='<div style="font-size:1rem;margin-top:4px;color:var(--txt2)">Margen: '+lr.pctTotal.toFixed(1)+'%</div></div>';
+    document.getElementById("loteResumenTotal").innerHTML=h2;
+    document.getElementById("loteResultadoView").style.display="block";
+    document.getElementById("loteResultadoView").scrollIntoView({behavior:"smooth"});
+}
+
+function resumenRowBold(label,usd,tasa){
+    var bs=usd*tasa;
+    return'<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:.95rem;font-weight:700"><span style="color:var(--txt2)">'+hx(label)+'</span><span>$'+usd.toFixed(2)+' USD / '+bs.toFixed(2)+' Bs</span></div>';
+}
+
+/* ===== WHATSAPP ===== */
+function compartirWhatsApp(){
+    var lr=_loteResults;if(!lr)return;var t=lr.tasa;
+    var msg="📊 *DUAVA Puente - Análisis de Lote*\n📋 "+lr.nombre+"\n💱 Tasa: "+t+" Bs/USD\n\n";
+    lr.results.forEach(function(r,i){
+        var c=r.gananciaUSD>0;
+        msg+="*Equipo "+(i+1)+": "+(r.eq.marca||"")+" "+(r.eq.modelo||"")+"* (×"+r.eq.cantidad+")\n";
+        msg+="Producto: "+(r.eq.producto||"N/A")+"\nPartida: "+r.partida+"\n";
+        msg+="  Costo China: $"+r.costoChina.toFixed(2)+" / "+(r.costoChina*t).toFixed(2)+" Bs\n";
+        if(r.fleteProrr>0)msg+="  Flete: $"+r.fleteProrr.toFixed(2)+" / "+(r.fleteProrr*t).toFixed(2)+" Bs\n";
+        if(r.seguroProrr>0)msg+="  Seguro: $"+r.seguroProrr.toFixed(2)+" / "+(r.seguroProrr*t).toFixed(2)+" Bs\n";
+        msg+="  CIF: $"+r.cif.toFixed(2)+" / "+r.cifBs.toFixed(2)+" Bs\n";
+        r.taxes.forEach(function(tax){msg+="  "+tax.nombre+": $"+tax.usd.toFixed(2)+" / "+tax.bs.toFixed(2)+" Bs\n"});
+        msg+="  Total Impuestos: $"+r.totalImpUSD.toFixed(2)+" / "+r.totalImpBs.toFixed(2)+" Bs\n";
+        msg+="  Costo Bolivia: $"+r.costoBoliviaUSD.toFixed(2)+" / "+r.costoBoliviaBs.toFixed(2)+" Bs\n";
+        msg+="  Venta: $"+r.ventaUSD.toFixed(2)+" / "+r.ventaBs.toFixed(2)+" Bs\n";
+        msg+="  *Ganancia: $"+r.gananciaUSD.toFixed(2)+" / "+r.gananciaBs.toFixed(2)+" Bs ("+r.pct.toFixed(1)+"%)*\n";
+        msg+=(c?"  ✅ CONVIENE\n\n":"  ❌ NO CONVIENE\n\n");
+    });
+    msg+="━━━━━━━━━━━━━━━━\n*RESUMEN DEL LOTE*\n";
+    msg+="Costo Total: $"+lr.totalCostoBolivia.toFixed(2)+" / "+(lr.totalCostoBolivia*t).toFixed(2)+" Bs\n";
+    msg+="Venta Total: $"+lr.totalVenta.toFixed(2)+" / "+(lr.totalVenta*t).toFixed(2)+" Bs\n";
+    msg+="*Ganancia: $"+lr.gananciaTotal.toFixed(2)+" / "+(lr.gananciaTotal*t).toFixed(2)+" Bs ("+lr.pctTotal.toFixed(1)+"%)*\n";
+    msg+=(lr.gananciaTotal>0?"✅ EL LOTE CONVIENE":"❌ EL LOTE NO CONVIENE");
+    window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank");
+}
+
+/* ===== SAVE/LOAD STEPS ===== */
 function saveStepData(){
-    if(!curImport)return;
-    var p=curStep;
-    if(p===1){curImport.fase1.producto=document.getElementById("f1Producto").value}
+    if(!curImport)return;var p=curStep;
+    if(p===1)curImport.fase1.producto=document.getElementById("f1Producto").value;
     else if(p===2){var f=curImport.fase2;f.proveedor=document.getElementById("f2Proveedor").value;f.pais=document.getElementById("f2Pais").value;f.iso=document.getElementById("f2ISO").checked;f.ce=document.getElementById("f2CE").checked;f.muestra=document.getElementById("f2Muestra").checked}
     else if(p===3){var f=curImport.fase3;f.proforma=document.getElementById("f3Proforma").value;f.incoterm=document.getElementById("f3Incoterm").value;f.moneda=document.getElementById("f3Moneda").value;f.monto=document.getElementById("f3Monto").value;f.plazo=document.getElementById("f3Plazo").value;f.fecha=document.getElementById("f3Fecha").value}
     else if(p===4){var f=curImport.fase4;f.tipo=document.getElementById("f4Tipo").value;f.contenedor=document.getElementById("f4Contenedor").value;f.flete=document.getElementById("f4Flete").value;f.seguro=document.getElementById("f4Seguro").value;f.origen=document.getElementById("f4Origen").value;f.destino=document.getElementById("f4Destino").value}
-    else if(p===5){var f=curImport.fase5;f.fob=document.getElementById("f5FOB").value;f.fleteSeg=document.getElementById("f5FleteSeg").value;f.tasa=document.getElementById("f5Tasa").value}
+    else if(p===5)curImport.fase5.tasa=document.getElementById("f5Tasa").value;
     else if(p===6){var f=curImport.fase6;f.fecha=document.getElementById("f6Fecha").value;f.caja=document.getElementById("f6Caja").checked;f.contenido=document.getElementById("f6Contenido").checked;f.funciona=document.getElementById("f6Funciona").checked;f.garantia=document.getElementById("f6Garantia").value;f.obs=document.getElementById("f6Obs").value}
     saveImports();
 }
 function loadStepData(){
     if(!curImport)return;
     var f1=curImport.fase1||{};var f2=curImport.fase2||{};var f3=curImport.fase3||{};var f4=curImport.fase4||{};var f5=curImport.fase5||{};var f6=curImport.fase6||{};
+    if(!f1.equipos)f1.equipos=[];
     document.getElementById("f1Producto").value=f1.producto||"";
     document.getElementById("f2Proveedor").value=f2.proveedor||"";document.getElementById("f2Pais").value=f2.pais||"";
     document.getElementById("f2ISO").checked=!!f2.iso;document.getElementById("f2CE").checked=!!f2.ce;document.getElementById("f2Muestra").checked=!!f2.muestra;
-    document.getElementById("f3Proforma").value=f3.proforma||"";document.getElementById("f3Incoterm").value=f3.incoterm||"FOB";
-    document.getElementById("f3Moneda").value=f3.moneda||"USD";document.getElementById("f3Monto").value=f3.monto||"";
-    document.getElementById("f3Plazo").value=f3.plazo||"30% anticipo - 70% BL";document.getElementById("f3Fecha").value=f3.fecha||"";
-    document.getElementById("f4Tipo").value=f4.tipo||"Marítimo FCL";document.getElementById("f4Contenedor").value=f4.contenedor||"";
-    document.getElementById("f4Flete").value=f4.flete||"";document.getElementById("f4Seguro").value=f4.seguro||"";
-    document.getElementById("f4Origen").value=f4.origen||"";document.getElementById("f4Destino").value=f4.destino||"";
-    document.getElementById("f5FOB").value=f5.fob||"";document.getElementById("f5FleteSeg").value=f5.fleteSeg||"";
-    document.getElementById("f5Tasa").value=f5.tasa||"6.96";
-    document.getElementById("f6Fecha").value=f6.fecha||"";document.getElementById("f6Caja").checked=!!f6.caja;
-    document.getElementById("f6Contenido").checked=!!f6.contenido;document.getElementById("f6Funciona").checked=!!f6.funciona;
-    document.getElementById("f6Garantia").value=f6.garantia||"";document.getElementById("f6Obs").value=f6.obs||"";
+    document.getElementById("f3Proforma").value=f3.proforma||"";document.getElementById("f3Incoterm").value=f3.incoterm||"FOB";document.getElementById("f3Moneda").value=f3.moneda||"USD";document.getElementById("f3Monto").value=f3.monto||"";document.getElementById("f3Plazo").value=f3.plazo||"30% anticipo - 70% BL";document.getElementById("f3Fecha").value=f3.fecha||"";
+    document.getElementById("f4Tipo").value=f4.tipo||"Marítimo FCL";document.getElementById("f4Contenedor").value=f4.contenedor||"";document.getElementById("f4Flete").value=f4.flete||"";document.getElementById("f4Seguro").value=f4.seguro||"";document.getElementById("f4Origen").value=f4.origen||"";document.getElementById("f4Destino").value=f4.destino||"";
+    document.getElementById("f5Tasa").value=f5.tasa||"";
+    document.getElementById("f6Fecha").value=f6.fecha||"";document.getElementById("f6Caja").checked=!!f6.caja;document.getElementById("f6Contenido").checked=!!f6.contenido;document.getElementById("f6Funciona").checked=!!f6.funciona;document.getElementById("f6Garantia").value=f6.garantia||"";document.getElementById("f6Obs").value=f6.obs||"";
     onStep1Producto();renderProviderReminder();calcularLocal();
 }
 
-// ========== INIT ==========
-document.addEventListener("DOMContentLoaded",function(){loadImports()});
+/* ===== INIT ===== */
+document.addEventListener("DOMContentLoaded",function(){loadImports();loadLotes()});
 </script>
 </body>
 </html>
