@@ -1,4 +1,4 @@
-const CACHE_NAME = 'import-dental-v1';
+const CACHE_NAME = 'duava-puente-v1';
 const urlsToCache = [
   '/',
   '/index.html',
