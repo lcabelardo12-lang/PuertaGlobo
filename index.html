@@ -9,17 +9,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
-    <!-- Librería para leer Google Sheets -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-    
+
     <style>
         :root {
             --bg-color: #F1F5F9;
             --card-bg: #FFFFFF;
             --text-main: #0F172A;
             --text-light: #64748B;
-            --primary: #64748B; /* Color por defecto, se sobrescribe al login */
+            --primary: #1D4ED8;
+            --primary-light: #DBEAFE;
+            --primary-dark: #1E40AF;
             --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -35,7 +37,18 @@
             transition: background-color 0.5s ease;
         }
 
-        /* ========== PANTALLA DE LOGIN ========== */
+        body.tema-ceo {
+            --primary: #1D4ED8;
+            --primary-light: #DBEAFE;
+            --primary-dark: #1E40AF;
+        }
+        body.tema-tania {
+            --primary: #BE185D;
+            --primary-light: #FCE7F3;
+            --primary-dark: #9D174D;
+        }
+
+        /* ========== LOGIN ========== */
         #loginScreen {
             width: 100%;
             max-width: 420px;
@@ -44,11 +57,7 @@
         }
 
         .header { text-align: center; margin-bottom: 40px; }
-        .app-title { 
-            font-size: 2.4rem; 
-            letter-spacing: -1px; 
-            margin-bottom: 8px; 
-        }
+        .app-title { font-size: 2.4rem; letter-spacing: -1px; margin-bottom: 8px; }
         .app-title .duava { font-weight: 800; color: #0F172A; }
         .app-title .puente { font-weight: 400; color: #475569; margin-left: 4px; }
         .app-subtitle { font-size: 1rem; color: var(--text-light); font-weight: 500; letter-spacing: 0.5px; }
@@ -77,16 +86,15 @@
         }
         .user-btn:last-child { margin-bottom: 0; }
         .user-btn:active { transform: scale(0.98); }
-        
+
         .user-info h3 { font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin-bottom: 2px; }
         .user-info p { font-size: 0.85rem; color: var(--text-light); font-weight: 500; }
-        .check-icon { 
-            width: 24px; height: 24px; border-radius: 50%; border: 2px solid #CBD5E1; 
-            display: flex; align-items: center; justify-content: center; transition: all 0.2s; 
+        .check-icon {
+            width: 24px; height: 24px; border-radius: 50%; border: 2px solid #CBD5E1;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s;
         }
         .check-icon svg { width: 14px; height: 14px; fill: none; stroke: white; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity 0.2s; }
 
-        /* Estados activos vibrantes */
         .user-btn.active-abelardo { border-color: #1D4ED8; background: #EFF6FF; }
         .user-btn.active-abelardo .check-icon { background: #1D4ED8; border-color: #1D4ED8; }
         .user-btn.active-abelardo .check-icon svg { opacity: 1; }
@@ -98,7 +106,7 @@
         .input-wrapper { position: relative; margin-top: 24px; }
         .password-input {
             width: 100%;
-            padding: 18px 20px;
+            padding: 18px 60px 18px 20px;
             border: 2px solid #E2E8F0;
             border-radius: 14px;
             font-size: 1.1rem;
@@ -109,9 +117,39 @@
             color: #0F172A;
         }
         .password-input::placeholder { color: #94A3B8; }
-        
         .password-input.abelardo-theme { border-color: #1D4ED8; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.1); }
         .password-input.tania-theme { border-color: #BE185D; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(190, 24, 93, 0.1); }
+
+        .submit-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: none;
+            background: #CBD5E1;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .submit-btn.ready-abelardo { background: #1D4ED8; }
+        .submit-btn.ready-tania { background: #BE185D; }
+        .submit-btn:active { transform: translateY(-50%) scale(0.92); }
+        .submit-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+        .password-hint {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: #94A3B8;
+            font-weight: 500;
+        }
 
         .error-message {
             color: #EF4444;
@@ -132,9 +170,9 @@
         }
         .shake { animation: shake 0.3s ease-in-out; }
 
-        /* ========== PANTALLA PRINCIPAL (DASHBOARD) ========== */
+        /* ========== DASHBOARD ========== */
         #dashboardScreen { display: none; width: 100%; min-height: 100vh; }
-        
+
         .top-bar {
             background: var(--primary);
             color: white;
@@ -142,7 +180,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
         .user-info-top { font-weight: 600; font-size: 0.95rem; }
         .logout-btn {
@@ -164,11 +202,11 @@
             background: white;
             padding: 12px 16px;
             gap: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             scrollbar-width: none;
         }
         .nav-container::-webkit-scrollbar { display: none; }
-        
+
         .nav-btn {
             flex: 1;
             min-width: 110px;
@@ -183,10 +221,10 @@
             transition: all 0.3s;
             white-space: nowrap;
         }
-        .nav-btn.active { background: var(--primary); color: white; }
+        .nav-btn.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 
         .content-area { padding: 24px; max-width: 900px; margin: 0 auto; }
-        
+
         .phase-card {
             background: white;
             padding: 32px;
@@ -197,7 +235,7 @@
             animation: slideUp 0.4s ease;
         }
         .phase-card.active { display: block; }
-        
+
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -207,8 +245,14 @@
             color: var(--primary);
             font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
+            margin-bottom: 6px;
+        }
+        .phase-desc {
+            color: var(--text-light);
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            padding-bottom: 16px;
             border-bottom: 2px solid #F1F5F9;
         }
 
@@ -221,12 +265,14 @@
             border-radius: 10px;
             font-size: 1rem;
             outline: none;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s, box-shadow 0.3s;
             font-family: 'Inter', sans-serif;
+            background: #FAFBFC;
         }
-        .input-group input:focus, .input-group select:focus { border-color: var(--primary); }
+        .input-group input:focus, .input-group select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); background: #fff; }
 
-        .checkbox-group { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .checkbox-group { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding: 12px 16px; background: #F8FAFC; border-radius: 10px; transition: background 0.2s; }
+        .checkbox-group:hover { background: #F1F5F9; }
         .checkbox-group input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: var(--primary); }
         .checkbox-group label { font-size: 0.95rem; color: var(--text-main); cursor: pointer; font-weight: 500; }
 
@@ -242,8 +288,10 @@
             cursor: pointer;
             transition: all 0.3s;
             margin-top: 16px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
         }
-        .action-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        .action-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+        .action-btn:active { transform: translateY(0); }
 
         /* Calculadora */
         .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -280,14 +328,23 @@
         }
         .alert-box.show { display: block; }
 
-        /* Temas Globales */
-        body.tema-ceo { --primary: #1D4ED8; }
-        body.tema-tania { --primary: #BE185D; }
+        .status-msg {
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 12px;
+            display: none;
+        }
+        .status-msg.success { display: block; background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
+        .status-msg.error { display: block; background: #FEF2F2; color: #991B1B; border: 1px solid #FECACA; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         @media (max-width: 600px) {
             .calc-grid { grid-template-columns: 1fr; }
-            .login-container { padding: 32px 24px; }
             .app-title { font-size: 2rem; }
+            .phase-card { padding: 24px 20px; }
         }
     </style>
 </head>
@@ -299,7 +356,7 @@
             <h1 class="app-title">
                 <span class="duava">DUAVA</span><span class="puente">Puente</span>
             </h1>
-            <p class="app-subtitle">Gestión de Comercio Exterior</p>
+            <p class="app-subtitle">Gesti&oacute;n de Comercio Exterior</p>
         </div>
 
         <div class="user-card">
@@ -325,70 +382,105 @@
         </div>
 
         <div class="input-wrapper">
-            <input 
-                type="password" 
-                class="password-input" 
-                id="passwordInput" 
-                placeholder="Ingresa tu contraseña"
-                oninput="checkPassword()"
+            <input
+                type="password"
+                class="password-input"
+                id="passwordInput"
+                placeholder="Ingresa tu contrase&ntilde;a"
+                oninput="onPasswordInput()"
+                onkeydown="if(event.key==='Enter')intentarLogin()"
                 autocomplete="off"
             >
+            <button class="submit-btn" id="submitBtn" onclick="intentarLogin()">
+                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
         </div>
-        <div class="error-message" id="errorMessage">Contraseña incorrecta</div>
+        <p class="password-hint" id="passwordHint"></p>
+        <div class="error-message" id="errorMessage">Contrase&ntilde;a incorrecta</div>
     </div>
 
-    <!-- PANTALLA PRINCIPAL (DASHBOARD) -->
+    <!-- PANTALLA PRINCIPAL -->
     <div id="dashboardScreen">
         <div class="top-bar">
             <div class="user-info-top" id="topBarInfo">Bienvenido</div>
-            <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesión</button>
+            <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesi&oacute;n</button>
         </div>
 
         <div class="nav-container">
             <button class="nav-btn active" onclick="mostrarFase(1)">1. Radar</button>
-            <button class="nav-btn" onclick="mostrarFase(2)">2. Negociación</button>
-            <button class="nav-btn" onclick="mostrarFase(3)">3. Logística</button>
-            <button class="nav-btn" onclick="mostrarFase(4)">4. Nacionalización</button>
-            <button class="nav-btn" onclick="mostrarFase(5)">5. Recepción</button>
+            <button class="nav-btn" onclick="mostrarFase(2)">2. Negociaci&oacute;n</button>
+            <button class="nav-btn" onclick="mostrarFase(3)">3. Log&iacute;stica</button>
+            <button class="nav-btn" onclick="mostrarFase(4)">4. Nacionalizaci&oacute;n</button>
+            <button class="nav-btn" onclick="mostrarFase(5)">5. Recepci&oacute;n</button>
         </div>
 
         <div class="content-area">
             <!-- FASE 1 -->
             <div id="fase1" class="phase-card active">
                 <h2 class="phase-title">1. Radar de Proveedores</h2>
-                <p style="color: var(--text-light); margin-bottom: 24px;">Evaluación inicial y verificación de documentos del proveedor.</p>
-                <div class="input-group"><label>Nombre del Proveedor</label><input type="text" placeholder="Ej: Foshan Gladen Medical"></div>
+                <p class="phase-desc">Evaluaci&oacute;n inicial y verificaci&oacute;n de documentos del proveedor.</p>
+                <div class="input-group"><label>Nombre del Proveedor</label><input type="text" id="f1Proveedor" placeholder="Ej: Foshan Gladen Medical"></div>
+                <div class="input-group"><label>Pa&iacute;s de Origen</label><input type="text" id="f1Pais" placeholder="Ej: China"></div>
                 <div class="checkbox-group"><input type="checkbox" id="checkISO"><label for="checkISO">Cuenta con ISO 13485 vigente</label></div>
                 <div class="checkbox-group"><input type="checkbox" id="checkCE"><label for="checkCE">Cuenta con Certificado CE / FDA</label></div>
-                <button class="action-btn">Guardar Evaluación</button>
+                <div class="checkbox-group"><input type="checkbox" id="checkMuestra"><label for="checkMuestra">Solicit&oacute; muestra del producto</label></div>
+                <button class="action-btn" onclick="guardarFase(1)">Guardar Evaluaci&oacute;n</button>
+                <div class="status-msg" id="status1"></div>
             </div>
 
             <!-- FASE 2 -->
             <div id="fase2" class="phase-card">
-                <h2 class="phase-title">2. Negociación y Proforma</h2>
-                <p style="color: var(--text-light); margin-bottom: 24px;">Registro de datos de la Factura Proforma.</p>
-                <div class="input-group"><label>Número de Proforma</label><input type="text" placeholder="Ej: PI-2026-001"></div>
-                <div class="input-group"><label>Incoterm</label><select><option>FOB</option><option>EXW</option><option>CIF</option></select></div>
-                <button class="action-btn">Registrar Proforma</button>
+                <h2 class="phase-title">2. Negociaci&oacute;n y Proforma</h2>
+                <p class="phase-desc">Registro de datos de la Factura Proforma y condiciones comerciales.</p>
+                <div class="input-group"><label>N&uacute;mero de Proforma</label><input type="text" id="f2Proforma" placeholder="Ej: PI-2026-001"></div>
+                <div class="calc-grid">
+                    <div class="input-group"><label>Incoterm</label>
+                        <select id="f2Incoterm"><option>FOB</option><option>EXW</option><option>CIF</option><option>DDP</option></select>
+                    </div>
+                    <div class="input-group"><label>Moneda</label>
+                        <select id="f2Moneda"><option>USD</option><option>EUR</option><option>CNY</option></select>
+                    </div>
+                </div>
+                <div class="calc-grid">
+                    <div class="input-group"><label>Monto Total</label><input type="number" id="f2Monto" placeholder="0.00"></div>
+                    <div class="input-group"><label>Plazo de Pago</label>
+                        <select id="f2Plazo"><option>30% anticipo - 70% BL</option><option>100% anticipado</option><option>LC a la vista</option><option>Otro</option></select>
+                    </div>
+                </div>
+                <div class="input-group"><label>Fecha Estimada de Embarque</label><input type="date" id="f2Fecha"></div>
+                <button class="action-btn" onclick="guardarFase(2)">Registrar Proforma</button>
+                <div class="status-msg" id="status2"></div>
             </div>
 
             <!-- FASE 3 -->
             <div id="fase3" class="phase-card">
-                <h2 class="phase-title">3. Logística Internacional</h2>
-                <p style="color: var(--text-light); margin-bottom: 24px;">Seguimiento de flete y ruta de envío.</p>
-                <div class="input-group"><label>Costo de Flete (USD)</label><input type="number" placeholder="0.00"></div>
-                <button class="action-btn">Registrar Logística</button>
+                <h2 class="phase-title">3. Log&iacute;stica Internacional</h2>
+                <p class="phase-desc">Seguimiento de flete, ruta de env&iacute;o y documentaci&oacute;n de transporte.</p>
+                <div class="calc-grid">
+                    <div class="input-group"><label>Tipo de Env&iacute;o</label>
+                        <select id="f3Tipo"><option>Mar&iacute;timo FCL</option><option>Mar&iacute;timo LCL</option><option>A&eacute;reo</option><option>Terrestre</option></select>
+                    </div>
+                    <div class="input-group"><label>N&uacute;mero de Contenedor</label><input type="text" id="f3Contenedor" placeholder="Ej: TCLU1234567"></div>
+                </div>
+                <div class="calc-grid">
+                    <div class="input-group"><label>Costo de Flete (USD)</label><input type="number" id="f3Flete" placeholder="0.00"></div>
+                    <div class="input-group"><label>Seguro (USD)</label><input type="number" id="f3Seguro" placeholder="0.00"></div>
+                </div>
+                <div class="input-group"><label>Puerto de Origen</label><input type="text" id="f3Origen" placeholder="Ej: Shenzhen, China"></div>
+                <div class="input-group"><label>Puerto de Destino</label><input type="text" id="f3Destino" placeholder="Ej: Arica, Bolivia"></div>
+                <button class="action-btn" onclick="guardarFase(3)">Registrar Log&iacute;stica</button>
+                <div class="status-msg" id="status3"></div>
             </div>
 
-            <!-- FASE 4 (CALCULADORA) -->
+            <!-- FASE 4 -->
             <div id="fase4" class="phase-card">
-                <h2 class="phase-title">4. Nacionalización y Costos</h2>
-                <p style="color: var(--text-light); margin-bottom: 24px;">Calculadora de impuestos aduaneros (Datos en tiempo real desde Google Sheets).</p>
-                
+                <h2 class="phase-title">4. Nacionalizaci&oacute;n y Costos</h2>
+                <p class="phase-desc">Calculadora de impuestos aduaneros. Datos cargados desde Google Sheets.</p>
+
                 <div class="input-group">
                     <label>Seleccionar Producto</label>
                     <select id="calcProducto" onchange="actualizarDatosProducto()">
-                        <option value="">-- Cargando productos desde Google Sheets... --</option>
+                        <option value="">-- Cargando productos... --</option>
                     </select>
                 </div>
                 <div class="calc-grid">
@@ -396,7 +488,7 @@
                     <div class="input-group"><label>Flete + Seguro (USD)</label><input type="number" id="calcFlete" placeholder="0.00" oninput="calcular()"></div>
                 </div>
                 <div class="input-group"><label>Tasa de Cambio (Bs/USD)</label><input type="number" id="calcTasa" value="6.96" step="0.01" oninput="calcular()"></div>
-                
+
                 <div class="result-box" id="calcResultados">
                     <div class="result-row"><span class="result-label">Partida Arancelaria:</span><span class="result-value" id="resPartida">-</span></div>
                     <div class="result-row"><span class="result-label">Valor CIF (USD):</span><span class="result-value" id="resCIF">0.00</span></div>
@@ -404,69 +496,78 @@
                     <div class="result-row"><span class="result-label">IVA (14.94%):</span><span class="result-value" id="resIVA">0.00 Bs</span></div>
                     <div class="result-row result-total"><span class="result-label">Total Impuestos:</span><span class="result-value" id="resTotal">0.00 Bs</span></div>
                 </div>
-                <div class="alert-box" id="alertAgemed"> <strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario o Certificado de Libre Venta.</div>
+                <div class="alert-box" id="alertAgemed"><strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario o Certificado de Libre Venta.</div>
             </div>
 
             <!-- FASE 5 -->
             <div id="fase5" class="phase-card">
-                <h2 class="phase-title">5. Recepción y Postventa</h2>
-                <div class="checkbox-group"><input type="checkbox" id="checkCaja"><label for="checkCaja">Caja sin daños visibles</label></div>
+                <h2 class="phase-title">5. Recepci&oacute;n y Postventa</h2>
+                <p class="phase-desc">Verificaci&oacute;n final del producto recibido y activaci&oacute;n de garant&iacute;a.</p>
+                <div class="input-group"><label>Fecha de Recepci&oacute;n</label><input type="date" id="f5Fecha"></div>
+                <div class="checkbox-group"><input type="checkbox" id="checkCaja"><label for="checkCaja">Caja sin da&ntilde;os visibles</label></div>
                 <div class="checkbox-group"><input type="checkbox" id="checkContenido"><label for="checkContenido">Contenido coincide con Packing List</label></div>
-                <div class="input-group"><label>Fecha de Inicio de Garantía</label><input type="date"></div>
-                <button class="action-btn">Finalizar Recepción</button>
+                <div class="checkbox-group"><input type="checkbox" id="checkFunciona"><label for="checkFunciona">Equipo enciende y funciona correctamente</label></div>
+                <div class="input-group"><label>Fecha de Inicio de Garant&iacute;a</label><input type="date" id="f5Garantia"></div>
+                <div class="input-group"><label>Observaciones</label><input type="text" id="f5Obs" placeholder="Notas adicionales sobre el estado del producto"></div>
+                <button class="action-btn" onclick="guardarFase(5)">Finalizar Recepci&oacute;n</button>
+                <div class="status-msg" id="status5"></div>
             </div>
         </div>
     </div>
 
     <script>
         // ==========================================
-        // 1. CONEXIÓN A GOOGLE SHEETS
+        // 1. GOOGLE SHEETS
         // ==========================================
         const enlaceGoogleSheet = "https://docs.google.com/spreadsheets/d/1CdI4J1KqBTifUDHBLNESEzrXN5gaLOthcxNS3UVdn8I/export?format=csv&gid=0";
         let productosDB = {};
+        let sheetsLoaded = false;
 
         function cargarDatosDeGoogle() {
-            Papa.parse(enlaceGoogleSheet, {
-                download: true,
-                header: true,
-                complete: function(results) {
-                    const datos = results.data;
-                    const select = document.getElementById('calcProducto');
-                    select.innerHTML = '<option value="">-- Elige un producto --</option>';
+            try {
+                Papa.parse(enlaceGoogleSheet, {
+                    download: true,
+                    header: true,
+                    complete: function(results) {
+                        const datos = results.data;
+                        const select = document.getElementById('calcProducto');
+                        select.innerHTML = '<option value="">-- Elige un producto --</option>';
+                        let count = 0;
 
-                    datos.forEach(fila => {
-                        // Asume columnas: Nombre, Partida, GA, Agemed
-                        if (fila.Nombre && fila.Nombre.trim() !== "") {
-                            productosDB[fila.Nombre] = {
-                                partida: fila.Partida || "N/A",
-                                ga: parseFloat(fila.GA) || 0,
-                                agemed: fila.Agemed && fila.Agemed.toUpperCase().trim() === "SI"
-                            };
-                            
-                            const option = document.createElement('option');
-                            option.value = fila.Nombre;
-                            option.textContent = fila.Nombre;
-                            select.appendChild(option);
-                        }
-                    });
-                    console.log("Datos cargados exitosamente:", productosDB);
-                },
-                error: function(err) {
-                    console.error("Error al leer Google Sheets:", err);
-                    document.getElementById('calcProducto').innerHTML = '<option value="">-- Error al cargar datos --</option>';
-                }
-            });
+                        datos.forEach(fila => {
+                            if (fila.Nombre && fila.Nombre.trim() !== "") {
+                                productosDB[fila.Nombre] = {
+                                    partida: fila.Partida || "N/A",
+                                    ga: parseFloat(fila.GA) || 0,
+                                    agemed: fila.Agemed && fila.Agemed.toUpperCase().trim() === "SI"
+                                };
+                                const option = document.createElement('option');
+                                option.value = fila.Nombre;
+                                option.textContent = fila.Nombre;
+                                select.appendChild(option);
+                                count++;
+                            }
+                        });
+                        sheetsLoaded = true;
+                        console.log("Productos cargados:", count);
+                    },
+                    error: function(err) {
+                        console.error("Error Google Sheets:", err);
+                        document.getElementById('calcProducto').innerHTML = '<option value="">-- Error al cargar datos --</option>';
+                    }
+                });
+            } catch(e) {
+                console.error("Error PapaParse:", e);
+                document.getElementById('calcProducto').innerHTML = '<option value="">-- Error al cargar datos --</option>';
+            }
         }
 
-        // Iniciar carga al abrir la app
-        cargarDatosDeGoogle();
-
         // ==========================================
-        // 2. LÓGICA DE USUARIOS Y LOGIN
+        // 2. LOGIN
         // ==========================================
         const usuariosDB = {
-            abelardo: { nombre: 'Abelardo', cargo: 'CEO', password: 'Abelardo', tema: 'tema-ceo' },
-            tania: { nombre: 'Tania', cargo: 'Responsable de Comercio Internacional', password: 'Tania', tema: 'tema-tania' }
+            abelardo: { nombre: 'Abelardo', cargo: 'CEO', password: 'Abelardo', tema: 'tema-ceo', hint: 'Abelardo' },
+            tania: { nombre: 'Tania', cargo: 'Responsable de Comercio Internacional', password: 'Tania', tema: 'tema-tania', hint: 'Tania' }
         };
 
         let selectedUser = null;
@@ -475,46 +576,53 @@
             selectedUser = userType;
             document.getElementById('btnAbelardo').classList.remove('active-abelardo');
             document.getElementById('btnTania').classList.remove('active-tania');
-            
+            document.getElementById('submitBtn').className = 'submit-btn';
+
             if (userType === 'abelardo') {
                 document.getElementById('btnAbelardo').classList.add('active-abelardo');
+                document.getElementById('submitBtn').classList.add('ready-abelardo');
             } else {
                 document.getElementById('btnTania').classList.add('active-tania');
+                document.getElementById('submitBtn').classList.add('ready-tania');
             }
-            
+
             const passwordInput = document.getElementById('passwordInput');
             passwordInput.classList.remove('abelardo-theme', 'tania-theme');
             passwordInput.classList.add(usuariosDB[userType].tema);
-            
             passwordInput.value = '';
-            document.getElementById('errorMessage').classList.remove('show');
             passwordInput.focus();
+            document.getElementById('errorMessage').classList.remove('show');
+            document.getElementById('passwordHint').textContent = 'Contrase\u00f1a: ' + usuariosDB[userType].hint;
         }
 
-        function checkPassword() {
+        function onPasswordInput() {
             if (!selectedUser) return;
-            
+            const v = document.getElementById('passwordInput').value;
+            const user = usuariosDB[selectedUser];
+            if (v.length >= user.password.length && v !== user.password) {
+                document.getElementById('errorMessage').classList.add('show');
+            } else {
+                document.getElementById('errorMessage').classList.remove('show');
+            }
+        }
+
+        function intentarLogin() {
+            if (!selectedUser) return;
             const passwordInput = document.getElementById('passwordInput');
-            const enteredPassword = passwordInput.value;
             const user = usuariosDB[selectedUser];
             const errorMsg = document.getElementById('errorMessage');
             const loginContainer = document.querySelector('.user-card');
 
-            if (enteredPassword === user.password) {
-                // Contraseña correcta: esperar 800ms y entrar
-                setTimeout(() => { abrirApp(user); }, 800);
-            } else if (enteredPassword.length >= user.password.length) {
-                // Contraseña incorrecta: mostrar error, vibrar y borrar
+            if (passwordInput.value === user.password) {
+                abrirApp(user);
+            } else {
                 errorMsg.classList.add('show');
                 loginContainer.classList.add('shake');
-                
                 setTimeout(() => {
                     passwordInput.value = '';
                     errorMsg.classList.remove('show');
                     loginContainer.classList.remove('shake');
                 }, 1500);
-            } else {
-                errorMsg.classList.remove('show');
             }
         }
 
@@ -522,7 +630,8 @@
             document.getElementById('loginScreen').style.display = 'none';
             document.getElementById('dashboardScreen').style.display = 'block';
             document.body.className = user.tema;
-            document.getElementById('topBarInfo').textContent = `Hola, ${user.nombre} | ${user.cargo}`;
+            document.getElementById('topBarInfo').textContent = 'Hola, ' + user.nombre + ' | ' + user.cargo;
+            cargarDatosDeGoogle();
         }
 
         function cerrarSesion() {
@@ -530,26 +639,33 @@
             document.getElementById('dashboardScreen').style.display = 'none';
             document.getElementById('loginScreen').style.display = 'block';
             document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordHint').textContent = '';
             document.getElementById('btnAbelardo').classList.remove('active-abelardo');
             document.getElementById('btnTania').classList.remove('active-tania');
+            document.getElementById('submitBtn').className = 'submit-btn';
             selectedUser = null;
         }
 
         // ==========================================
-        // 3. LÓGICA DE LA APP (Fases y Calculadora)
+        // 3. FASES Y CALCULADORA
         // ==========================================
         function mostrarFase(numero) {
             document.querySelectorAll('.phase-card').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
-            
             document.getElementById('fase' + numero).classList.add('active');
             document.querySelectorAll('.nav-btn')[numero - 1].classList.add('active');
+        }
+
+        function guardarFase(num) {
+            var msg = document.getElementById('status' + num);
+            msg.className = 'status-msg success';
+            msg.textContent = '\u2714 Datos guardados correctamente.';
+            setTimeout(function(){ msg.className = 'status-msg'; }, 3000);
         }
 
         function actualizarDatosProducto() {
             const prod = document.getElementById('calcProducto').value;
             const alertBox = document.getElementById('alertAgemed');
-            
             if (prod && productosDB[prod]) {
                 alertBox.classList.toggle('show', productosDB[prod].agemed);
                 calcular();
