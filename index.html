@@ -2,13 +2,19 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <meta name="theme-color" content="#0F172A">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#0C1E3A">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="full-screen" content="yes">
     <title>DUAVA Puente</title>
-    <link rel="manifest" href="./manifest.json">
+        <link rel="manifest" href="./manifest.json">
+    <script>
+    if('serviceWorker' in navigator){
+      navigator.serviceWorker.register('./sw.js').catch(function(){});
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
@@ -16,39 +22,40 @@
 
     <style>
         :root {
-            --bg-color: #F1F5F9;
+            --bg-color: #E8E3DB;
             --card-bg: #FFFFFF;
             --text-main: #0F172A;
             --text-light: #64748B;
-            --primary: #1D4ED8;
-            --primary-light: #DBEAFE;
-            --primary-dark: #1E40AF;
+            --primary: #0C1E3A;
+            --primary-light: #D4DDE8;
+            --primary-dark: #091428;
             --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        body {
+        html, body {
             font-family: 'Inter', system-ui, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             min-height: 100vh;
+            min-height: -webkit-fill-available;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: background-color 0.5s ease;
+            overflow-x: hidden;
         }
 
         body.tema-ceo {
-            --primary: #1D4ED8;
-            --primary-light: #DBEAFE;
-            --primary-dark: #1E40AF;
+            --primary: #0C1E3A;
+            --primary-light: #D4DDE8;
+            --primary-dark: #091428;
         }
         body.tema-tania {
-            --primary: #BE185D;
-            --primary-light: #FCE7F3;
-            --primary-dark: #9D174D;
+            --primary: #5E1638;
+            --primary-light: #E8D0DD;
+            --primary-dark: #3D0E25;
         }
 
         /* ========== LOGIN ========== */
@@ -98,12 +105,12 @@
         }
         .check-icon svg { width: 14px; height: 14px; fill: none; stroke: white; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity 0.2s; }
 
-        .user-btn.active-abelardo { border-color: #1D4ED8; background: #EFF6FF; }
-        .user-btn.active-abelardo .check-icon { background: #1D4ED8; border-color: #1D4ED8; }
+        .user-btn.active-abelardo { border-color: #0C1E3A; background: #E8EDF4; }
+        .user-btn.active-abelardo .check-icon { background: #0C1E3A; border-color: #0C1E3A; }
         .user-btn.active-abelardo .check-icon svg { opacity: 1; }
 
-        .user-btn.active-tania { border-color: #BE185D; background: #FDF2F8; }
-        .user-btn.active-tania .check-icon { background: #BE185D; border-color: #BE185D; }
+        .user-btn.active-tania { border-color: #5E1638; background: #F4E8EF; }
+        .user-btn.active-tania .check-icon { background: #5E1638; border-color: #5E1638; }
         .user-btn.active-tania .check-icon svg { opacity: 1; }
 
         .input-wrapper { position: relative; margin-top: 24px; }
@@ -120,8 +127,8 @@
             color: #0F172A;
         }
         .password-input::placeholder { color: #94A3B8; }
-        .password-input.abelardo-theme { border-color: #1D4ED8; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.1); }
-        .password-input.tania-theme { border-color: #BE185D; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(190, 24, 93, 0.1); }
+        .password-input.abelardo-theme { border-color: #0C1E3A; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(12, 30, 58, 0.1); }
+        .password-input.tania-theme { border-color: #5E1638; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(94, 22, 56, 0.1); }
 
         .submit-btn {
             position: absolute;
@@ -141,18 +148,10 @@
             justify-content: center;
             transition: all 0.3s ease;
         }
-        .submit-btn.ready-abelardo { background: #1D4ED8; }
-        .submit-btn.ready-tania { background: #BE185D; }
+        .submit-btn.ready-abelardo { background: #0C1E3A; }
+        .submit-btn.ready-tania { background: #5E1638; }
         .submit-btn:active { transform: translateY(-50%) scale(0.92); }
         .submit-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-
-        .password-hint {
-            text-align: center;
-            margin-top: 12px;
-            font-size: 0.8rem;
-            color: #94A3B8;
-            font-weight: 500;
-        }
 
         .error-message {
             color: #EF4444;
@@ -174,7 +173,7 @@
         .shake { animation: shake 0.3s ease-in-out; }
 
         /* ========== DASHBOARD ========== */
-        #dashboardScreen { display: none; width: 100%; min-height: 100vh; }
+        #dashboardScreen { display: none; width: 100%; min-height: 100vh; min-height: -webkit-fill-available; }
 
         .top-bar {
             background: var(--primary);
@@ -183,21 +182,21 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         .user-info-top { font-weight: 600; font-size: 0.95rem; }
-        .logout-btn {
+                .logout-btn {
             padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(232,227,219,0.35);
             color: white;
-            border: none;
+            border: 1px solid rgba(255,255,255,0.25);
             border-radius: 8px;
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
             transition: background 0.3s;
         }
-        .logout-btn:hover { background: rgba(255, 255, 255, 0.3); }
+        .logout-btn:hover { background: rgba(232,227,219,0.5); }
 
         .nav-container {
             display: flex;
@@ -211,18 +210,19 @@
         .nav-container::-webkit-scrollbar { display: none; }
 
         .nav-btn {
-            flex: 1;
-            min-width: 110px;
+            flex-shrink: 0;
+            min-width: auto;
             padding: 12px 16px;
             background: #F1F5F9;
             color: var(--text-main);
             border: none;
             border-radius: 10px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             white-space: nowrap;
+            text-align: center;
         }
         .nav-btn.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 
@@ -296,7 +296,6 @@
         .action-btn:hover { opacity: 0.92; transform: translateY(-1px); }
         .action-btn:active { transform: translateY(0); }
 
-        /* Calculadora */
         .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .result-box {
             background: #F8FAFC;
@@ -340,7 +339,6 @@
             display: none;
         }
         .status-msg.success { display: block; background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
-        .status-msg.error { display: block; background: #FEF2F2; color: #991B1B; border: 1px solid #FECACA; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -353,7 +351,7 @@
 </head>
 <body>
 
-    <!-- PANTALLA DE LOGIN -->
+    <!-- LOGIN -->
     <div id="loginScreen">
         <div class="header">
             <h1 class="app-title">
@@ -398,11 +396,10 @@
                 <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
         </div>
-        <p class="password-hint" id="passwordHint"></p>
         <div class="error-message" id="errorMessage">Contrase&ntilde;a incorrecta</div>
     </div>
 
-    <!-- PANTALLA PRINCIPAL -->
+    <!-- DASHBOARD -->
     <div id="dashboardScreen">
         <div class="top-bar">
             <div class="user-info-top" id="topBarInfo">Bienvenido</div>
@@ -410,11 +407,11 @@
         </div>
 
         <div class="nav-container">
-            <button class="nav-btn active" onclick="mostrarFase(1)">1. Radar</button>
-            <button class="nav-btn" onclick="mostrarFase(2)">2. Negociaci&oacute;n</button>
-            <button class="nav-btn" onclick="mostrarFase(3)">3. Log&iacute;stica</button>
-            <button class="nav-btn" onclick="mostrarFase(4)">4. Nacionalizaci&oacute;n</button>
-            <button class="nav-btn" onclick="mostrarFase(5)">5. Recepci&oacute;n</button>
+            <button class="nav-btn active" onclick="mostrarFase(1)">Radar</button>
+            <button class="nav-btn" onclick="mostrarFase(2)">Negociaci&oacute;n</button>
+            <button class="nav-btn" onclick="mostrarFase(3)">Log&iacute;stica</button>
+            <button class="nav-btn" onclick="mostrarFase(4)">Nacionalizaci&oacute;n</button>
+            <button class="nav-btn" onclick="mostrarFase(5)">Recepci&oacute;n</button>
         </div>
 
         <div class="content-area">
@@ -479,7 +476,6 @@
             <div id="fase4" class="phase-card">
                 <h2 class="phase-title">4. Nacionalizaci&oacute;n y Costos</h2>
                 <p class="phase-desc">Calculadora de impuestos aduaneros. Datos cargados desde Google Sheets.</p>
-
                 <div class="input-group">
                     <label>Seleccionar Producto</label>
                     <select id="calcProducto" onchange="actualizarDatosProducto()">
@@ -491,7 +487,6 @@
                     <div class="input-group"><label>Flete + Seguro (USD)</label><input type="number" id="calcFlete" placeholder="0.00" oninput="calcular()"></div>
                 </div>
                 <div class="input-group"><label>Tasa de Cambio (Bs/USD)</label><input type="number" id="calcTasa" value="6.96" step="0.01" oninput="calcular()"></div>
-
                 <div class="result-box" id="calcResultados">
                     <div class="result-row"><span class="result-label">Partida Arancelaria:</span><span class="result-value" id="resPartida">-</span></div>
                     <div class="result-row"><span class="result-label">Valor CIF (USD):</span><span class="result-value" id="resCIF">0.00</span></div>
@@ -524,7 +519,6 @@
         // ==========================================
         const enlaceGoogleSheet = "https://docs.google.com/spreadsheets/d/1CdI4J1KqBTifUDHBLNESEzrXN5gaLOthcxNS3UVdn8I/export?format=csv&gid=0";
         let productosDB = {};
-        let sheetsLoaded = false;
 
         function cargarDatosDeGoogle() {
             try {
@@ -536,7 +530,6 @@
                         const select = document.getElementById('calcProducto');
                         select.innerHTML = '<option value="">-- Elige un producto --</option>';
                         let count = 0;
-
                         datos.forEach(fila => {
                             if (fila.Nombre && fila.Nombre.trim() !== "") {
                                 productosDB[fila.Nombre] = {
@@ -551,7 +544,6 @@
                                 count++;
                             }
                         });
-                        sheetsLoaded = true;
                         console.log("Productos cargados:", count);
                     },
                     error: function(err) {
@@ -569,8 +561,8 @@
         // 2. LOGIN
         // ==========================================
         const usuariosDB = {
-            abelardo: { nombre: 'Abelardo', cargo: 'CEO', password: '7512', tema: 'tema-ceo', hint: '7512' },
-            tania: { nombre: 'Tania', cargo: 'Responsable de Comercio Internacional', password: 'TA25', tema: 'tema-tania', hint: 'TA25' }
+            abelardo: { nombre: 'Abelardo', cargo: 'CEO', password: '7512', tema: 'tema-ceo' },
+            tania: { nombre: 'Tania', cargo: 'Responsable de Comercio Internacional', password: 'TA25', tema: 'tema-tania' }
         };
 
         let selectedUser = null;
@@ -595,7 +587,6 @@
             passwordInput.value = '';
             passwordInput.focus();
             document.getElementById('errorMessage').classList.remove('show');
-            document.getElementById('passwordHint').textContent = 'Contrase\u00f1a: ' + usuariosDB[userType].hint;
         }
 
         function onPasswordInput() {
@@ -642,7 +633,6 @@
             document.getElementById('dashboardScreen').style.display = 'none';
             document.getElementById('loginScreen').style.display = 'block';
             document.getElementById('passwordInput').value = '';
-            document.getElementById('passwordHint').textContent = '';
             document.getElementById('btnAbelardo').classList.remove('active-abelardo');
             document.getElementById('btnTania').classList.remove('active-tania');
             document.getElementById('submitBtn').className = 'submit-btn';
