@@ -1,18 +1,3 @@
-const CACHE_NAME = 'duava-puente-v2';
-const urlsToCache = [
-  './',
-  './index.html',
-  './manifest.json'
-];
-
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
-  );
-});
-
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request).then(response => response || fetch(event.request))
-  );
-});
+self.addEventListener('install', function(e){self.skipWaiting();});
+self.addEventListener('activate', function(e){e.waitUntil(clients.claim());});
+self.addEventListener('fetch', function(e){e.respondWith(fetch(e.request).catch(function(){return new Response('Offline');}));});
