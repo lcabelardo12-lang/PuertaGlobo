@@ -438,33 +438,35 @@ function switchTab(n){if(curImport&&n!==1)saveStepData();document.querySelectorA
 
 /* ===== PRODUCTOS (NUEVA ESTRUCTURA) ===== */
 function cargarProductos(){
-    try{Papa.parse(PROD_URL,{download:true,header:true,
+    try{Papa.parse(PROD_URL,{download:false,header:false,
         complete:function(r){
             var s1=document.getElementById("f1Producto");
             s1.innerHTML='<option value="">Elige un producto</option>';
             var count=0;
-            r.data.forEach(function(raw){
-                var f={};for(var k in raw)f[k.trim()]=raw[k];
-                var nombre=f["Nombre del Producto"]||"";
-                if(nombre.trim()){
-                    var gaNum=parseFloat(f["GA (Decimal)"])||0;
-                    productosDB[nombre.trim()]={
-                        partida:f["Partida Arancelaria"]||"N/A",
+            for(var i=1;i<r.data.length;i++){
+                var row=r.data[i];
+                var nombre=(row[0]||"").trim();
+                if(nombre){
+                    var gaNum=parseFloat(row[2])||0;
+                    if(gaNum>1)gaNum=gaNum/100;
+                    productosDB[nombre]={
+                        partida:(row[1]||"N/A").trim(),
                         ga:gaNum,
-                        agemed:!!(f["Requiere AGEMED"]||"").toString().match(/si/i),
-                        docsBase:f["Documentos Base (SIEMPRE)"]||"",
-                        docExtraDist:f["Documento EXTRA si es Distribuidor"]||"",
-                        fabricanteOriginal:f["Fabricante Original de Referencia"]||"",
-                        restricciones:f["Restricciones / Alertas"]||""
+                        agemed:(row[3]||"").toUpperCase().trim()==="SI",
+                        docsBase:(row[4]||"").trim(),
+                        docExtraDist:(row[5]||"").trim(),
+                        fabricanteOriginal:(row[6]||"").trim(),
+                        restricciones:(row[7]||"").trim()
                     };
-                    var o1=document.createElement("option");
-                    o1.value=nombre.trim();o1.textContent=nombre.trim();
-                    s1.appendChild(o1);count++
+                    var o=document.createElement("option");
+                    o.value=nombre;o.textContent=nombre;
+                    s1.appendChild(o);count++
                 }
-            });
-            console.log("Productos:",count);
+            }
+            console.log("Productos cargados:",count);
+            if(count===0)console.log("CSV:",JSON.stringify(r.data.slice(0,3)));
             if(curImport)loadStepData();
-        },error:function(e){console.error("Error productos:",e)}
+        },error:function(e){console.error("Error:",e)}
     })}catch(e){console.error(e)}
 }
 
