@@ -441,23 +441,28 @@ function cargarProductos(){
     try{Papa.parse(PROD_URL,{download:true,header:true,
         complete:function(r){
             var s1=document.getElementById("f1Producto");
-            s1.innerHTML='<option value="">-- Elige un producto --</option>';
+            s1.innerHTML='<option value="">Elige un producto</option>';
+            var count=0;
             r.data.forEach(function(raw){
                 var f={};for(var k in raw)f[k.trim()]=raw[k];
-                if(f.Nombre&&f.Nombre.trim()){
-                    productosDB[f.Nombre]={
-                        partida:f.Partida||"N/A",
-                        ga:parseFloat(f.GA)||0,
-                        agemed:!!(f.Agemed&&f.Agemed.toUpperCase().trim()==="SI"),
-                        docsBase:f["Documentos Base"]||"",
-                        docExtraDist:f["Doc Extra Distribuidor"]||"",
-                        fabricanteOriginal:f["Fabricante Original"]||"",
-                        restricciones:f.Restricciones||""
+                var nombre=f["Nombre del Producto"]||"";
+                if(nombre.trim()){
+                    var gaNum=parseFloat(f["GA (Decimal)"])||0;
+                    productosDB[nombre.trim()]={
+                        partida:f["Partida Arancelaria"]||"N/A",
+                        ga:gaNum,
+                        agemed:!!(f["Requiere AGEMED"]||"").toString().match(/si/i),
+                        docsBase:f["Documentos Base (SIEMPRE)"]||"",
+                        docExtraDist:f["Documento EXTRA si es Distribuidor"]||"",
+                        fabricanteOriginal:f["Fabricante Original de Referencia"]||"",
+                        restricciones:f["Restricciones / Alertas"]||""
                     };
-                    var o1=document.createElement("option");o1.value=f.Nombre;o1.textContent=f.Nombre;s1.appendChild(o1);
+                    var o1=document.createElement("option");
+                    o1.value=nombre.trim();o1.textContent=nombre.trim();
+                    s1.appendChild(o1);count++
                 }
             });
-            console.log("Productos:",Object.keys(productosDB).length);
+            console.log("Productos:",count);
             if(curImport)loadStepData();
         },error:function(e){console.error("Error productos:",e)}
     })}catch(e){console.error(e)}
