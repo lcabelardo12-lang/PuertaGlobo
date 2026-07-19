@@ -77,7 +77,7 @@
         .checkbox-group input[type="checkbox"]{width:20px;height:20px;cursor:pointer;accent-color:var(--pri)}
         .checkbox-group label{font-size:.95rem;color:var(--txt);cursor:pointer;font-weight:500}
         .action-btn{width:100%;padding:16px;background:var(--pri);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s;margin-top:16px;box-shadow:0 4px 14px rgba(0,0,0,.15)}
-        .action-btn:hover{opacity:.92}.action-btn:active{transform:translateY(1px)}
+        .action-btn:active{transform:translateY(1px)}
         .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
         .result-box{background:#F8FAFC;padding:20px;border-radius:12px;margin-top:20px;border-left:4px solid var(--pri)}
         .result-row{display:flex;justify-content:space-between;margin-bottom:12px;font-size:.95rem}
@@ -115,13 +115,14 @@
         .doc-badge{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.3px;padding:3px 8px;border-radius:4px}
         .doc-badge.pendiente{background:#F3F4F6;color:#6B7280}.doc-badge.solicitado{background:#FEF3C7;color:#92400E}.doc-badge.recibido{background:#D1FAE5;color:#065F46}
         .restriction-box{background:#FEF2F2;border-left:3px solid #EF4444;padding:12px 16px;border-radius:8px;font-size:.9rem;font-weight:500;color:#991B1B;margin-top:4px}
-        .paso-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F1F5F9}.paso-item:last-child{border-bottom:none}
-        .paso-num{width:24px;height:24px;border-radius:50%;background:var(--priL);color:var(--pri);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
-        .paso-text{font-size:.85rem;color:var(--txt);font-weight:500}
         .provider-reminder{background:#EFF6FF;border-left:3px solid #3B82F6;padding:14px 16px;border-radius:8px;margin-bottom:16px}
         .provider-reminder h4{font-size:.75rem;font-weight:700;color:#1E40AF;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
         .provider-reminder li{font-size:.85rem;color:#1E3A8A;padding:2px 0;list-style:none}
         .provider-reminder li::before{content:"→ ";color:#3B82F6;font-weight:700}
+
+        .vendedor-btn{flex:1;padding:16px;border:2px solid #E2E8F0;border-radius:12px;background:#fff;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .3s;text-align:center;color:var(--txt)}
+        .vendedor-btn:active{transform:scale(.98)}
+        .vendedor-btn.active{background:var(--pri);color:#fff;border-color:var(--pri);box-shadow:0 4px 12px rgba(0,0,0,.15)}
 
         .equipo-card{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px;margin-bottom:12px}
         .equipo-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
@@ -130,7 +131,19 @@
         .add-equip-btn{width:100%;padding:14px;background:transparent;color:var(--txt2);border:2px dashed #CBD5E1;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;margin-top:12px}
         .add-equip-btn:active{background:#F1F5F9;border-color:#94A3B8}
 
-        .import-card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;transition:all .2s}
+        .tax-info{background:#F0FDF4;padding:10px 14px;border-radius:8px;font-size:.8rem;color:#166534;margin-top:4px}
+        .tax-info.warn{background:#FEF2F2;color:#991B1B}
+        .eq-result-card{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:20px;margin-bottom:16px}
+        .eq-result-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+        .tax-section{margin-top:12px;padding-top:12px;border-top:1px solid #E2E8F0}
+        .tax-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--pri);margin-bottom:8px}
+        .profit-badge{padding:4px 10px;border-radius:6px;font-size:.75rem;font-weight:700}
+        .profit-badge.si{background:#D1FAE5;color:#065F46}.profit-badge.no{background:#FEE2E2;color:#991B1B}
+        .big-profit{text-align:center;padding:24px;border-radius:12px;border:2px solid}
+        .big-profit.si{background:#F0FDF4;border-color:#16A34A}.big-profit.no{background:#FEF2F2;border-color:#EF4444}
+        .big-profit-text{font-size:1.8rem;font-weight:800}.big-profit-text.si{color:#166534}.big-profit-text.no{color:#991B1B}
+
+        .import-card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
         .import-card-info{flex:1}
         .import-card-title{font-size:.95rem;font-weight:700;color:var(--txt);margin-bottom:4px}
         .import-card-meta{font-size:.8rem;color:var(--txt2)}
@@ -164,23 +177,12 @@
         .glosario-source-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--pri);color:#fff;border:none;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .2s;margin-top:4px}
         .glosario-source-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
 
-        .tax-info{background:#F0FDF4;padding:10px 14px;border-radius:8px;font-size:.8rem;color:#166534;margin-top:4px}
-        .tax-info.warn{background:#FEF2F2;color:#991B1B}
-        .eq-result-card{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:20px;margin-bottom:16px}
-        .eq-result-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
-        .tax-section{margin-top:12px;padding-top:12px;border-top:1px solid #E2E8F0}
-        .tax-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--pri);margin-bottom:8px}
-        .profit-badge{padding:4px 10px;border-radius:6px;font-size:.75rem;font-weight:700}
-        .profit-badge.si{background:#D1FAE5;color:#065F46}.profit-badge.no{background:#FEE2E2;color:#991B1B}
-        .big-profit{text-align:center;padding:24px;border-radius:12px;border:2px solid}
-        .big-profit.si{background:#F0FDF4;border-color:#16A34A}.big-profit.no{background:#FEF2F2;border-color:#EF4444}
-        .big-profit-text{font-size:1.8rem;font-weight:800}.big-profit-text.si{color:#166534}.big-profit-text.no{color:#991B1B}
-
         @media(max-width:600px){.calc-grid{grid-template-columns:1fr}.app-title{font-size:2rem}.card{padding:24px 20px}.step-dot{width:24px;height:24px;font-size:.65rem}.step-line{width:8px}}
     </style>
 </head>
 <body>
 
+<!-- ======================== LOGIN ======================== -->
 <div id="loginScreen">
     <div class="header">
         <h1 class="app-title"><span class="duava">DUAVA</span><span class="puente">Puente</span></h1>
@@ -203,6 +205,7 @@
     <div class="error-msg" id="errorMsg">Contraseña incorrecta</div>
 </div>
 
+<!-- ======================== DASHBOARD ======================== -->
 <div id="dashboardScreen">
     <div class="top-bar">
         <div class="top-bar-info" id="topInfo">Bienvenido</div>
@@ -216,7 +219,7 @@
     </div>
     <div class="content-area">
 
-        <!-- TAB 1 -->
+        <!-- TAB 1: IMPORTACION -->
         <div id="tab1" class="tab-content active">
             <div id="newImportStart" class="card">
                 <h2 class="phase-title">Nueva Importación</h2>
@@ -233,17 +236,39 @@
                 <p class="phase-desc" id="stepperDesc" style="margin-top:4px"></p>
                 <div class="stepper-bar" id="stepperBar"></div>
 
+                <!-- PASO 1: PRODUCTO -->
                 <div id="step1" class="step-form">
                     <div class="input-group"><label>Seleccionar Producto</label><select id="f1Producto" onchange="onStep1Producto()"><option value="">-- Elige un producto --</option></select></div>
                     <div id="reqPanel" style="display:none">
-                        <div class="req-panel"><div class="req-title">Requisitos de documentación</div><div id="reqBadges"></div></div>
+                        <div id="agemedAlert" class="alert-box"><strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario o Certificado de Libre Venta.</div>
+                        <div class="req-panel" id="vendedorPanel" style="margin-top:16px">
+                            <div class="req-title">¿Quién te vende este equipo?</div>
+                            <div style="display:flex;gap:12px;margin-top:12px">
+                                <button class="vendedor-btn" id="btnFabrica" onclick="selectVendedor('fabrica')">Fábrica Directa</button>
+                                <button class="vendedor-btn" id="btnDist" onclick="selectVendedor('distribuidor')">Distribuidor / Revendedor</button>
+                            </div>
+                        </div>
+                        <div id="fabricaMsg" class="tax-info" style="display:none;margin-top:12px">Verificar que los certificados (ISO, CFG) estén emitidos a nombre de este mismo proveedor.</div>
+                        <div id="distAlert" style="display:none;margin-top:12px">
+                            <div style="background:#FFFBEB;border:2px solid #F59E0B;padding:14px 16px;border-radius:10px;font-size:.9rem;font-weight:600;color:#92400E">ATENCIÓN: Los certificados (ISO, CFG) deben estar emitidos a nombre de: <strong id="fabricanteNombre">—</strong>, NO a nombre del distribuidor.</div>
+                        </div>
+                        <div class="doc-panel" id="docPanel" style="display:none;margin-top:16px">
+                            <div class="req-title">Documentos requeridos</div>
+                            <p class="doc-hint">Toca cada documento para cambiar su estado: pendiente &rarr; solicitado &rarr; recibido</p>
+                            <div id="docList"></div>
+                        </div>
+                        <div id="docExtraPanel" style="display:none;margin-top:16px">
+                            <div class="req-panel" style="border:2px solid #F59E0B;background:#FFFBEB">
+                                <div class="req-title" style="color:#92400E">Documento adicional (Distribuidor)</div>
+                                <div id="docExtraList"></div>
+                            </div>
+                        </div>
+                        <div id="restrPanel" style="display:none;margin-top:16px"><div class="req-title">Restricciones / Alertas</div><div id="restrContent"></div></div>
                         <div style="margin-top:16px"><div class="req-panel"><div class="req-title">Equipos de esta importación</div><div id="equiposList"></div><button class="add-equip-btn" onclick="addEquipoImport()">+ Agregar Equipo</button></div></div>
-                        <div class="doc-panel" id="docPanel" style="display:none;margin-top:16px"><div class="req-title">Seguimiento de documentos</div><p class="doc-hint">Toca cada documento para cambiar su estado: pendiente → solicitado → recibido</p><div id="docList"></div></div>
-                        <div id="restrPanel" style="display:none;margin-top:16px"><div class="req-title">Restricciones</div><div id="restrContent"></div></div>
-                        <div id="pasosPanel" style="display:none;margin-top:16px"><div class="req-title">Pasos recomendados</div><div id="pasosContent"></div></div>
                     </div>
                 </div>
 
+                <!-- PASO 2: PROVEEDOR -->
                 <div id="step2" class="step-form">
                     <div id="providerReminder"></div>
                     <div class="input-group"><label>Nombre del Proveedor</label><input type="text" id="f2Proveedor" placeholder="Ej: Foshan Gladen Medical"></div>
@@ -253,6 +278,7 @@
                     <div class="checkbox-group"><input type="checkbox" id="f2Muestra"><label for="f2Muestra">Solicitó muestra del producto</label></div>
                 </div>
 
+                <!-- PASO 3: NEGOCIACION -->
                 <div id="step3" class="step-form">
                     <div class="input-group"><label>Número de Proforma</label><input type="text" id="f3Proforma" placeholder="Ej: PI-2026-001"></div>
                     <div class="calc-grid"><div class="input-group"><label>Incoterm</label><select id="f3Incoterm"><option>FOB</option><option>EXW</option><option>CIF</option><option>DDP</option></select></div><div class="input-group"><label>Moneda</label><select id="f3Moneda"><option>USD</option><option>EUR</option><option>CNY</option></select></div></div>
@@ -260,6 +286,7 @@
                     <div class="input-group"><label>Fecha Estimada de Embarque</label><input type="date" id="f3Fecha"></div>
                 </div>
 
+                <!-- PASO 4: LOGISTICA -->
                 <div id="step4" class="step-form">
                     <div class="calc-grid"><div class="input-group"><label>Tipo de Envío</label><select id="f4Tipo"><option>Marítimo FCL</option><option>Marítimo LCL</option><option>Aéreo</option><option>Terrestre</option></select></div><div class="input-group"><label>Número de Contenedor</label><input type="text" id="f4Contenedor" placeholder="Ej: TCLU1234567"></div></div>
                     <div class="calc-grid"><div class="input-group"><label>Costo de Flete (USD)</label><input type="number" id="f4Flete" placeholder="0.00"></div><div class="input-group"><label>Seguro (USD)</label><input type="number" id="f4Seguro" placeholder="0.00"></div></div>
@@ -267,16 +294,15 @@
                     <div class="input-group"><label>Puerto de Destino</label><input type="text" id="f4Destino" placeholder="Ej: Arica, Bolivia"></div>
                 </div>
 
+                <!-- PASO 5: RESUMEN ECONOMICO -->
                 <div id="step5" class="step-form">
-                    <p style="font-size:.85rem;color:var(--txt2);margin-bottom:16px">Resumen económico con impuestos detallados por nombre.</p>
-                    <div class="calc-grid">
-                        <div class="input-group"><label>Valor FOB (USD)</label><input type="number" id="f5FOB" placeholder="0.00" oninput="calcularLocal()"></div>
-                        <div class="input-group"><label>Flete + Seguro (USD)</label><input type="number" id="f5FleteSeg" placeholder="0.00" oninput="calcularLocal()"></div>
-                    </div>
+                    <p style="font-size:.85rem;color:var(--txt2);margin-bottom:16px">Calculadora de impuestos con desglose por nombre de cada tasa.</p>
+                    <div class="calc-grid"><div class="input-group"><label>Valor FOB (USD)</label><input type="number" id="f5FOB" placeholder="0.00" oninput="calcularLocal()"></div><div class="input-group"><label>Flete + Seguro (USD)</label><input type="number" id="f5FleteSeg" placeholder="0.00" oninput="calcularLocal()"></div></div>
                     <div class="input-group"><label>Tasa de Cambio (Bs/USD)</label><input type="number" id="f5Tasa" placeholder="Ej: 6.96" step="0.01" oninput="calcularLocal()"></div>
+                    <a href="https://www.bcb.gob.bo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 16px;background:var(--pri);color:#fff;border-radius:8px;font-size:.85rem;font-weight:600;text-decoration:none;margin-bottom:16px;transition:opacity .2s"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Consultar tasa en Banco Central</a>
                     <div class="result-box" id="f5Result" style="display:none">
                         <div class="result-row"><span class="result-label">Partida Arancelaria:</span><span class="result-value" id="rPartida">-</span></div>
-                        <div class="result-row"><span class="result-label">Valor CIF (USD):</span><span class="result-value" id="rCIF">-</span></div>
+                        <div class="result-row"><span class="result-label">Valor CIF (USD / Bs):</span><span class="result-value" id="rCIF">-</span></div>
                         <div id="r5TaxBreak"></div>
                         <div class="result-row result-total"><span class="result-label">Total Impuestos:</span><span class="result-value" id="rTotal">-</span></div>
                         <div class="result-row"><span class="result-label">Costo Total Bolivia (USD):</span><span class="result-value" id="rTotalUSD">-</span></div>
@@ -285,6 +311,7 @@
                     <div class="alert-box" id="f5Alert"><strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario o Certificado de Libre Venta.</div>
                 </div>
 
+                <!-- PASO 6: RECEPCION -->
                 <div id="step6" class="step-form">
                     <div class="input-group"><label>Fecha de Recepción</label><input type="date" id="f6Fecha"></div>
                     <div class="checkbox-group"><input type="checkbox" id="f6Caja"><label for="f6Caja">Caja sin daños visibles</label></div>
@@ -299,7 +326,7 @@
             </div>
         </div>
 
-        <!-- TAB 2 -->
+        <!-- TAB 2: MIS CASOS -->
         <div id="tab2" class="tab-content">
             <div class="card">
                 <h2 class="phase-title">Mis Importaciones</h2>
@@ -309,7 +336,7 @@
             </div>
         </div>
 
-        <!-- TAB 3: CALCULADORA LOTES -->
+        <!-- TAB 3: CALCULADORA -->
         <div id="tab3" class="tab-content">
             <div id="calcListView" class="card">
                 <h2 class="phase-title">Calculadora de Rentabilidad</h2>
@@ -320,22 +347,22 @@
             <div id="calcEditorView" style="display:none">
                 <div class="card">
                     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-                        <h2 class="phase-title" id="loteEditorTitle" style="margin-bottom:0">Nuevo Lote</h2>
+                        <h2 class="phase-title" id="loteEditorTitle" style="margin-bottom:0">Nueva Cotización</h2>
                         <button onclick="cerrarLoteEditor()" style="background:none;border:none;color:#94A3B8;font-size:1.4rem;cursor:pointer;padding:4px 8px">&times;</button>
                     </div>
-                    <div class="input-group"><label>Nombre del Lote</label><input type="text" id="loteNombre" placeholder="Ej: Autoclaves Julio 2026"></div>
+                    <div class="input-group"><label>Nombre de la Cotización</label><input type="text" id="loteNombre" placeholder="Ej: Autoclaves Julio 2026"></div>
                     <div class="req-panel">
-                        <div class="req-title">Equipos del Lote</div>
+                        <div class="req-title">Equipos de la Cotización</div>
                         <div id="loteEquipos"></div>
                         <button class="add-equip-btn" onclick="addLoteEquipo()">+ Agregar Equipo</button>
                     </div>
                     <div style="margin-top:20px;padding-top:16px;border-top:2px solid #F1F5F9">
                         <div class="calc-grid"><div class="input-group"><label>Flete Total (USD)</label><input type="number" id="loteFlete" placeholder="0.00" step="0.01"></div><div class="input-group"><label>Seguro Total (USD)</label><input type="number" id="loteSeguro" placeholder="0.00" step="0.01"></div></div>
                         <div class="input-group"><label>Tasa de Cambio (Bs/USD)</label><input type="number" id="loteTasa" placeholder="Ej: 6.96" step="0.01"></div>
-<a href="https://www.bcb.gob.bo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 16px;background:var(--pri);color:#fff;border-radius:8px;font-size:.85rem;font-weight:600;text-decoration:none;margin-bottom:16px;transition:opacity .2s"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Consultar tasa en Banco Central</a>
+                        <a href="https://www.bcb.gob.bo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 16px;background:var(--pri);color:#fff;border-radius:8px;font-size:.85rem;font-weight:600;text-decoration:none;margin-bottom:16px;transition:opacity .2s"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Consultar tasa en Banco Central</a>
                     </div>
                     <button class="action-btn" onclick="calcularLote()">Calcular</button>
-                    <button class="action-btn" onclick="guardarLote()" style="background:#166534;margin-top:8px">Guardar Lote</button>
+                    <button class="action-btn" onclick="guardarLote()" style="background:#166534;margin-top:8px">Guardar Cotización</button>
                     <div id="loteCalcStatus" class="status-msg"></div>
                 </div>
                 <div id="loteResultadoView" style="display:none">
@@ -346,7 +373,7 @@
             </div>
         </div>
 
-        <!-- TAB 4 -->
+        <!-- TAB 4: GLOSARIO -->
         <div id="tab4" class="tab-content">
             <div class="card">
                 <h2 class="phase-title">Glosario de Términos</h2>
@@ -387,7 +414,11 @@ var curLoteEquipos=[];
 var _loteResults=null;
 
 var USERS={abelardo:{n:"Abelardo",c:"CEO",p:"7512",t:"tema-ceo"},tania:{n:"Tania",c:"Responsable de Comercio Internacional",p:"TA25",t:"tema-tania"}};
-var STEP_D=["Selecciona el producto, revisa requisitos y agrega los equipos específicos de esta importación.","Registra los datos del proveedor. La app te indica qué documentos pedirle.","Datos de la Factura Proforma y condiciones comerciales.","Seguimiento de flete, ruta y documentación de transporte.","Resumen económico con impuestos detallados en USD y Bs.","Verificación del producto recibido y activación de garantía."];
+var STEP_D=["Selecciona el producto, indica quién te vende y gestiona los documentos.","Registra los datos del proveedor. La app te indica qué documentos pedirle.","Datos de la Factura Proforma y condiciones comerciales.","Seguimiento de flete, ruta y documentación de transporte.","Resumen económico con impuestos detallados por nombre en USD y Bs.","Verificación del producto recibido y activación de garantía."];
+
+/* ===== HELPERS ===== */
+function taxRow(label,usd,tasa){var bs=usd*tasa;return'<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:.85rem"><span style="color:var(--txt2);font-weight:500">'+hx(label)+'</span><span style="font-weight:600">$'+usd.toFixed(2)+' USD / '+bs.toFixed(2)+' Bs</span></div>'}
+function taxRowBold(label,usd,tasa){var bs=usd*tasa;return'<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:.95rem;font-weight:700"><span style="color:var(--txt2)">'+hx(label)+'</span><span>$'+usd.toFixed(2)+' USD / '+bs.toFixed(2)+' Bs</span></div>'}
 
 /* ===== STORAGE ===== */
 function loadImports(){try{allImports=JSON.parse(localStorage.getItem("puente_imports")||"[]")}catch(e){allImports=[]}}
@@ -396,17 +427,7 @@ function loadLotes(){try{allLotes=JSON.parse(localStorage.getItem("puente_lotes"
 function saveLotes(){try{localStorage.setItem("puente_lotes",JSON.stringify(allLotes))}catch(e){}}
 
 /* ===== LOGIN ===== */
-function selectUser(t){
-    selectedUser=t;
-    document.getElementById("btnAbelardo").classList.remove("active-abelardo");
-    document.getElementById("btnTania").classList.remove("active-tania");
-    document.getElementById("submitBtn").className="submit-btn";
-    if(t==="abelardo"){document.getElementById("btnAbelardo").classList.add("active-abelardo");document.getElementById("submitBtn").classList.add("ready-abelardo")}
-    else{document.getElementById("btnTania").classList.add("active-tania");document.getElementById("submitBtn").classList.add("ready-tania")}
-    var pi=document.getElementById("passwordInput");
-    pi.classList.remove("abelardo-theme","tania-theme");pi.classList.add(USERS[t].t);
-    pi.value="";pi.blur();document.getElementById("errorMsg").classList.remove("show");
-}
+function selectUser(t){selectedUser=t;document.getElementById("btnAbelardo").classList.remove("active-abelardo");document.getElementById("btnTania").classList.remove("active-tania");document.getElementById("submitBtn").className="submit-btn";if(t==="abelardo"){document.getElementById("btnAbelardo").classList.add("active-abelardo");document.getElementById("submitBtn").classList.add("ready-abelardo")}else{document.getElementById("btnTania").classList.add("active-tania");document.getElementById("submitBtn").classList.add("ready-tania")}var pi=document.getElementById("passwordInput");pi.classList.remove("abelardo-theme","tania-theme");pi.classList.add(USERS[t].t);pi.value="";pi.blur();document.getElementById("errorMsg").classList.remove("show")}
 function onPwdInput(){if(!selectedUser)return;var v=document.getElementById("passwordInput").value;var u=USERS[selectedUser];document.getElementById("errorMsg").classList.toggle("show",v.length>=u.p.length&&v!==u.p)}
 function intentarLogin(){if(!selectedUser)return;var pi=document.getElementById("passwordInput");var u=USERS[selectedUser];if(pi.value===u.p)abrirApp(u);else{document.getElementById("errorMsg").classList.add("show");document.querySelector(".user-card").classList.add("shake");setTimeout(function(){pi.value="";document.getElementById("errorMsg").classList.remove("show");document.querySelector(".user-card").classList.remove("shake")},1500)}}
 function abrirApp(u){document.getElementById("loginScreen").style.display="none";document.getElementById("dashboardScreen").style.display="block";document.body.className=u.t;document.getElementById("topInfo").textContent="Hola, "+u.n+" | "+u.c;loadImports();loadLotes();renderMisCasos();renderLotesList();cargarProductos()}
@@ -415,7 +436,7 @@ function cerrarSesion(){if(curImport)saveStepData();document.body.className="";d
 /* ===== NAV ===== */
 function switchTab(n){if(curImport&&n!==1)saveStepData();document.querySelectorAll(".tab-content").forEach(function(el){el.classList.remove("active")});document.querySelectorAll(".nav-btn").forEach(function(el){el.classList.remove("active")});document.getElementById("tab"+n).classList.add("active");document.querySelectorAll(".nav-btn")[n-1].classList.add("active");if(n===2)renderMisCasos();if(n===3)renderLotesList();if(n===4&&!glosarioLoaded)cargarGlosario();window.scrollTo({top:0,behavior:"smooth"})}
 
-/* ===== PRODUCTOS ===== */
+/* ===== PRODUCTOS (NUEVA ESTRUCTURA) ===== */
 function cargarProductos(){
     try{Papa.parse(PROD_URL,{download:true,header:true,
         complete:function(r){
@@ -424,22 +445,26 @@ function cargarProductos(){
             r.data.forEach(function(raw){
                 var f={};for(var k in raw)f[k.trim()]=raw[k];
                 if(f.Nombre&&f.Nombre.trim()){
-                    productosDB[f.Nombre]={partida:f.Partida||"N/A",ga:parseFloat(f.GA)||0,agemed:!!(f.Agemed&&f.Agemed.toUpperCase().trim()==="SI"),reqCE:!!(f["Requiere CE"]&&f["Requiere CE"].toUpperCase().trim()==="SI"),reqISO:!!(f["Requiere ISO"]&&f["Requiere ISO"].toUpperCase().trim()==="SI"),reqCFG:!!(f["Requiere CFG"]&&f["Requiere CFG"].toUpperCase().trim()==="SI"),reqOrigen:!!(f["Requiere Origen"]&&f["Requiere Origen"].toUpperCase().trim()==="SI"),documentos:f.Documentos||"",restricciones:f.Restricciones||"",pasos:f.Pasos||""};
+                    productosDB[f.Nombre]={
+                        partida:f.Partida||"N/A",
+                        ga:parseFloat(f.GA)||0,
+                        agemed:!!(f.Agemed&&f.Agemed.toUpperCase().trim()==="SI"),
+                        docsBase:f["Documentos Base"]||"",
+                        docExtraDist:f["Doc Extra Distribuidor"]||"",
+                        fabricanteOriginal:f["Fabricante Original"]||"",
+                        restricciones:f.Restricciones||""
+                    };
                     var o1=document.createElement("option");o1.value=f.Nombre;o1.textContent=f.Nombre;s1.appendChild(o1);
                 }
             });
+            console.log("Productos:",Object.keys(productosDB).length);
             if(curImport)loadStepData();
         },error:function(e){console.error("Error productos:",e)}
     })}catch(e){console.error(e)}
 }
 
 /* ===== GLOSARIO ===== */
-function cargarGlosario(){if(glosarioLoaded)return;
-    try{Papa.parse(GLOS_URL,{download:true,header:true,complete:function(r){glosarioDB=[];
-        r.data.forEach(function(raw){var f={};for(var k in raw)f[k.trim()]=raw[k];var keys=Object.keys(f);var t=keys.length>=1?(f[keys[0]]||"").trim():"";
-            if(t)glosarioDB.push({termino:t,definicion:keys.length>=2?(f[keys[1]]||"").trim():"",aplicacion:keys.length>=3?(f[keys[2]]||"").trim():"",fuente:keys.length>=4?(f[keys[3]]||"").trim():""});
-        });glosarioLoaded=true;renderGlosario(glosarioDB);
-    },error:function(e){document.getElementById("glosarioList").innerHTML='<div class="empty-state">Error al cargar.</div>'}})}catch(e){}}
+function cargarGlosario(){if(glosarioLoaded)return;try{Papa.parse(GLOS_URL,{download:true,header:true,complete:function(r){glosarioDB=[];r.data.forEach(function(raw){var f={};for(var k in raw)f[k.trim()]=raw[k];var keys=Object.keys(f);var t=keys.length>=1?(f[keys[0]]||"").trim():"";if(t)glosarioDB.push({termino:t,definicion:keys.length>=2?(f[keys[1]]||"").trim():"",aplicacion:keys.length>=3?(f[keys[2]]||"").trim():"",fuente:keys.length>=4?(f[keys[3]]||"").trim():""})});glosarioLoaded=true;renderGlosario(glosarioDB)},error:function(e){document.getElementById("glosarioList").innerHTML='<div class="empty-state">Error al cargar.</div>'}})}catch(e){}}
 function renderGlosario(lista){var c=document.getElementById("glosarioList");document.getElementById("glosarioCount").textContent=lista.length+" términos";if(!lista.length){c.innerHTML='<div class="empty-state">No se encontraron.</div>';return}var h="";for(var i=0;i<lista.length;i++)h+='<div class="glosario-item" onclick="abrirGlosarioItem('+i+')"><span class="glosario-item-title">'+hx(lista[i].termino)+'</span><span class="glosario-item-arrow">\u203A</span></div>';c.innerHTML=h}
 function filtrarGlosario(){var t=document.getElementById("glosarioInput").value.toLowerCase().trim();if(!t){renderGlosario(glosarioDB);return}var f=[];for(var i=0;i<glosarioDB.length;i++){var s=(glosarioDB[i].termino+" "+glosarioDB[i].definicion+" "+glosarioDB[i].aplicacion).toLowerCase();if(s.indexOf(t)>=0)f.push(glosarioDB[i])}renderGlosario(f)}
 function abrirGlosarioItem(i){var it=glosarioDB[i];if(!it)return;document.getElementById("glosarioTitle").textContent=it.termino;var b=document.getElementById("glosarioBody");var h="";if(it.definicion)h+='<div class="glosario-section"><div class="glosario-section-label">Definición</div><div class="glosario-section-text">'+hx(it.definicion)+'</div></div>';if(it.aplicacion)h+='<div class="glosario-section"><div class="glosario-section-label">Aplicación en Bolivia</div><div class="glosario-section-text">'+hx(it.aplicacion)+'</div></div>';if(it.fuente)h+='<div class="glosario-section"><div class="glosario-section-label">Fuente Legal</div><div class="glosario-section-text">'+renderFuente(it.fuente)+'</div></div>';b.innerHTML=h;document.getElementById("glosarioOverlay").classList.remove("hidden")}
@@ -452,307 +477,127 @@ function crearImportacion(){
     if(!nm){var ss=document.getElementById("startStatus");ss.className="status-msg warn";ss.textContent="\u26A0 Escribe un nombre.";setTimeout(function(){ss.className="status-msg"},3000);return}
     if(curImport)saveStepData();
     var imp={id:"imp_"+Date.now(),nombre:nm,estado:"en_curso",paso:1,fecha:new Date().toISOString().split("T")[0],
-        fase1:{producto:"",equipos:[],docStatus:{}},fase2:{proveedor:"",pais:"",iso:false,ce:false,muestra:false},
+        fase1:{producto:"",vendedor:"",equipos:[],docStatus:{}},
+        fase2:{proveedor:"",pais:"",iso:false,ce:false,muestra:false},
         fase3:{proforma:"",incoterm:"FOB",moneda:"USD",monto:"",plazo:"30% anticipo - 70% BL",fecha:""},
         fase4:{tipo:"Marítimo FCL",contenedor:"",flete:"",seguro:"",origen:"",destino:""},
-        fase5:{tasa:""},fase6:{fecha:"",caja:false,contenido:false,funciona:false,garantia:"",obs:""}};
-    allImports.unshift(imp);saveImports();curImport=imp;curStep=1;
-    document.getElementById("importNameInput").value="";showStepper();
+        fase5:{tasa:""},
+        fase6:{fecha:"",caja:false,contenido:false,funciona:false,garantia:"",obs:""}};
+    allImports.unshift(imp);saveImports();curImport=imp;curStep=1;document.getElementById("importNameInput").value="";showStepper();
 }
 function continuarImportacion(id){for(var i=0;i<allImports.length;i++){if(allImports[i].id===id){curImport=allImports[i];break}}if(!curImport)return;curStep=curImport.paso||1;switchTab(1);showStepper();loadStepData()}
 function eliminarImportacion(id){if(!confirm("¿Eliminar?"))return;allImports=allImports.filter(function(x){return x.id!==id});saveImports();renderMisCasos()}
-function completarImportacion(){
-    saveStepData();var faltas=[];
-    if(!curImport.fase1.producto)faltas.push("Producto (Paso 1)");
-    if(!curImport.fase2.proveedor)faltas.push("Proveedor (Paso 2)");
-    if(faltas.length){var ss=document.getElementById("stepStatus");ss.className="status-msg warn";ss.textContent="\u26A0 Faltan: "+faltas.join(", ");setTimeout(function(){ss.className="status-msg"},5000);return}
-    curImport.estado="completada";curImport.paso=6;saveImports();
-    var ss=document.getElementById("stepStatus");ss.className="status-msg success";ss.textContent="\u2714 Importación completada.";
-    setTimeout(function(){ss.className="status-msg";curImport=null;hideStepper();switchTab(2)},2000);
-}
-function renderMisCasos(){
-    var la=document.getElementById("listaActivas");var lc=document.getElementById("listaCompletadas");
-    var activas=allImports.filter(function(x){return x.estado==="en_curso"});
-    var completadas=allImports.filter(function(x){return x.estado==="completada"});
-    if(!activas.length)la.innerHTML='<div class="empty-state">No hay importaciones en curso.</div>';
-    else{var h="";activas.forEach(function(imp){h+='<div class="import-card"><div class="import-card-info"><div class="import-card-title">'+hx(imp.nombre)+'</div><div class="import-card-meta"><span class="import-badge active">Paso '+(imp.paso||1)+'/6</span> · '+imp.fecha+'</div></div><div class="import-card-actions"><button class="import-card-btn continue" onclick="continuarImportacion(\''+imp.id+'\')">Continuar</button><button class="import-card-btn delete" onclick="eliminarImportacion(\''+imp.id+'\')">Eliminar</button></div></div>'});la.innerHTML=h}
-    if(!completadas.length)lc.innerHTML='<div class="empty-state">No hay completadas.</div>';
-    else{var h="";completadas.forEach(function(imp){h+='<div class="import-card"><div class="import-card-info"><div class="import-card-title">'+hx(imp.nombre)+'</div><div class="import-card-meta"><span class="import-badge done">Completada</span> · '+imp.fecha+'</div></div><div class="import-card-actions"><button class="import-card-btn delete" onclick="eliminarImportacion(\''+imp.id+'\')">Eliminar</button></div></div>'});lc.innerHTML=h}
-}
+function completarImportacion(){saveStepData();var faltas=[];if(!curImport.fase1.producto)faltas.push("Producto (Paso 1)");if(!curImport.fase2.proveedor)faltas.push("Proveedor (Paso 2)");if(faltas.length){var ss=document.getElementById("stepStatus");ss.className="status-msg warn";ss.textContent="\u26A0 Faltan: "+faltas.join(", ");setTimeout(function(){ss.className="status-msg"},5000);return}curImport.estado="completada";curImport.paso=6;saveImports();var ss=document.getElementById("stepStatus");ss.className="status-msg success";ss.textContent="\u2714 Importación completada.";setTimeout(function(){ss.className="status-msg";curImport=null;hideStepper();switchTab(2)},2000)}
+function renderMisCasos(){var la=document.getElementById("listaActivas");var lc=document.getElementById("listaCompletadas");var activas=allImports.filter(function(x){return x.estado==="en_curso"});var completadas=allImports.filter(function(x){return x.estado==="completada"});if(!activas.length)la.innerHTML='<div class="empty-state">No hay importaciones en curso.</div>';else{var h="";activas.forEach(function(imp){h+='<div class="import-card"><div class="import-card-info"><div class="import-card-title">'+hx(imp.nombre)+'</div><div class="import-card-meta"><span class="import-badge active">Paso '+(imp.paso||1)+'/6</span> · '+imp.fecha+'</div></div><div class="import-card-actions"><button class="import-card-btn continue" onclick="continuarImportacion(\''+imp.id+'\')">Continuar</button><button class="import-card-btn delete" onclick="eliminarImportacion(\''+imp.id+'\')">Eliminar</button></div></div>'});la.innerHTML=h}if(!completadas.length)lc.innerHTML='<div class="empty-state">No hay completadas.</div>';else{var h="";completadas.forEach(function(imp){h+='<div class="import-card"><div class="import-card-info"><div class="import-card-title">'+hx(imp.nombre)+'</div><div class="import-card-meta"><span class="import-badge done">Completada</span> · '+imp.fecha+'</div></div><div class="import-card-actions"><button class="import-card-btn delete" onclick="eliminarImportacion(\''+imp.id+'\')">Eliminar</button></div></div>'});lc.innerHTML=h}}
 
 /* ===== STEPPER ===== */
 function showStepper(){document.getElementById("newImportStart").style.display="none";document.getElementById("stepperContainer").style.display="block";document.getElementById("stepperTitle").textContent=curImport.nombre;renderStepperBar();goToStep(curStep)}
 function hideStepper(){document.getElementById("stepperContainer").style.display="none";document.getElementById("newImportStart").style.display="block"}
 function cerrarStepper(){saveStepData();curImport=null;hideStepper()}
 function renderStepperBar(){var bar=document.getElementById("stepperBar");var h="";for(var i=1;i<=6;i++){if(i>1)h+='<div class="step-line'+(i<=curStep?" done":"")+'"></div>';var cls=i<curStep?"done":i===curStep?"active":"";h+='<div class="step-dot '+cls+'" onclick="jumpStep('+i+')">'+i+'</div>'}bar.innerHTML=h}
-function goToStep(n){if(n<1||n>6)return;saveStepData();curStep=n;curImport.paso=n;saveImports();for(var i=1;i<=6;i++){var el=document.getElementById("step"+i);if(el)el.classList.toggle("active",i===n)}document.getElementById("stepperDesc").textContent=STEP_D[n-1];renderStepperBar();renderStepNav()}
+function goToStep(n){if(n<1||n>6)return;saveStepData();curStep=n;curImport.paso=n;saveImports();for(var i=1;i<=6;i++){var el=document.getElementById("step"+i);if(el)el.classList.toggle("active",i===n)}document.getElementById("stepperDesc").textContent=STEP_D[n-1];renderStepperBar();renderStepNav();if(n===2)renderProviderReminder();if(n===5)calcularLocal()}
 function jumpStep(n){goToStep(n)}
 function nextStep(){saveStepData();if(curStep>=6){completarImportacion();return}goToStep(curStep+1)}
 function prevStep(){saveStepData();if(curStep>1)goToStep(curStep-1)}
 function renderStepNav(){var nav=document.getElementById("stepNav");var prev='<button class="btn-prev" onclick="prevStep()" '+(curStep<=1?"disabled style='opacity:.4;pointer-events:none'":"")+'>Anterior</button>';var next=curStep>=6?'<button class="btn-next btn-complete" onclick="nextStep()">Completar Importación</button>':'<button class="btn-next" onclick="nextStep()">Siguiente</button>';nav.innerHTML=prev+next}
 
-/* ===== STEP 1 ===== */
+/* ===== STEP 1: PRODUCTO + FABRICA/DISTRIBUIDOR ===== */
 function onStep1Producto(){
     var prod=document.getElementById("f1Producto").value;var panel=document.getElementById("reqPanel");
-    if(!prod||!productosDB[prod]){panel.style.display="none";return}panel.style.display="block";
-    var d=productosDB[prod];
-    var badges=reqBadge("Registro AGEMED",d.agemed)+reqBadge("Certificado CE",d.reqCE)+reqBadge("ISO 13485",d.reqISO)+reqBadge("Certificado de Libre Venta",d.reqCFG)+reqBadge("Certificado de Origen",d.reqOrigen);
-    document.getElementById("reqBadges").innerHTML=badges;
-    renderEquiposImport();
-    if(d.documentos){var docs=d.documentos.split(",");var ds=curImport&&curImport.fase1?curImport.fase1.docStatus||{}:{};var h="";docs.forEach(function(doc){var dn=doc.trim();if(dn){var st=ds[dn]||"pendiente";h+=docItem(dn,st)}});document.getElementById("docList").innerHTML=h;document.getElementById("docPanel").style.display="block"}else document.getElementById("docPanel").style.display="none";
+    if(!prod||!productosDB[prod]){panel.style.display="none";return}
+    panel.style.display="block";var d=productosDB[prod];
+    if(curImport&&curImport.fase1.producto!==prod){curImport.fase1.vendedor="";curImport.fase1.docStatus={}}
+    if(curImport)curImport.fase1.producto=prod;
+    document.getElementById("agemedAlert").classList.toggle("show",d.agemed);
+    var vendedor=curImport?(curImport.fase1.vendedor||""):"";
+    document.getElementById("btnFabrica").classList.remove("active");document.getElementById("btnDist").classList.remove("active");
+    if(vendedor==="fabrica"){
+        document.getElementById("btnFabrica").classList.add("active");document.getElementById("fabricaMsg").style.display="block";
+        document.getElementById("distAlert").style.display="none";renderDocChecklist(d,"fabrica");
+    }else if(vendedor==="distribuidor"){
+        document.getElementById("btnDist").classList.add("active");document.getElementById("fabricaMsg").style.display="none";
+        document.getElementById("distAlert").style.display="block";document.getElementById("fabricanteNombre").textContent=d.fabricanteOriginal||"el fabricante original";
+        renderDocChecklist(d,"distribuidor");
+    }else{document.getElementById("fabricaMsg").style.display="none";document.getElementById("distAlert").style.display="none";document.getElementById("docPanel").style.display="none";document.getElementById("docExtraPanel").style.display="none"}
     if(d.restricciones){document.getElementById("restrContent").innerHTML='<div class="restriction-box">\u26A0 '+hx(d.restricciones)+'</div>';document.getElementById("restrPanel").style.display="block"}else document.getElementById("restrPanel").style.display="none";
-    if(d.pasos){document.getElementById("pasosContent").innerHTML=parsePasos(d.pasos);document.getElementById("pasosPanel").style.display="block"}else document.getElementById("pasosPanel").style.display="none";
+    renderEquiposImport();
 }
-function reqBadge(name,needed){return'<div class="req-row"><span class="req-dot '+(needed?"si":"no")+'"></span><span class="req-name">'+hx(name)+'</span><span class="req-tag '+(needed?"si":"no")+'">'+(needed?"Necesita":"No requiere")+'</span></div>'}
-function docItem(name,status){return'<div class="doc-item '+status+'" onclick="toggleDoc(\''+hx(name).replace(/'/g,"\\'")+'\')"><span class="doc-name">'+hx(name)+'</span><span class="doc-badge '+status+'">'+status+'</span></div>'}
+function selectVendedor(tipo){if(!curImport)return;curImport.fase1.vendedor=tipo;saveImports();onStep1Producto()}
+function renderDocChecklist(d,tipo){
+    var ds=curImport&&curImport.fase1?curImport.fase1.docStatus||{}:{};
+    if(d.docsBase){var docs=d.docsBase.split(",");var h="";docs.forEach(function(doc){var dn=doc.trim();if(dn){var st=ds[dn]||"pendiente";h+=docItem(dn,st)}});document.getElementById("docList").innerHTML=h;document.getElementById("docPanel").style.display="block"}else document.getElementById("docPanel").style.display="none";
+    if(tipo==="distribuidor"&&d.docExtraDist){var st=ds[d.docExtraDist]||"pendiente";document.getElementById("docExtraList").innerHTML=docItem(d.docExtraDist,st);document.getElementById("docExtraPanel").style.display="block"}else document.getElementById("docExtraPanel").style.display="none";
+}
+function docItem(name,status){var safe=name.replace(/'/g,"\\'");return'<div class="doc-item '+status+'" onclick="toggleDoc(\''+safe+'\')"><span class="doc-name">'+hx(name)+'</span><span class="doc-badge '+status+'">'+status+'</span></div>'}
 function toggleDoc(name){if(!curImport)return;if(!curImport.fase1.docStatus)curImport.fase1.docStatus={};var cur=curImport.fase1.docStatus[name]||"pendiente";var nxt=cur==="pendiente"?"solicitado":cur==="solicitado"?"recibido":"pendiente";curImport.fase1.docStatus[name]=nxt;saveImports();onStep1Producto()}
-function parsePasos(text){var parts=text.split(/\d+\./);var h="";var n=0;parts.forEach(function(p){var t=p.trim();if(t){n++;h+='<div class="paso-item"><span class="paso-num">'+n+'</span><span class="paso-text">'+hx(t)+'</span></div>'}});return h}
 function addEquipoImport(){if(!curImport)return;if(!curImport.fase1.equipos)curImport.fase1.equipos=[];curImport.fase1.equipos.push({marca:"",modelo:"",cantidad:1});saveImports();renderEquiposImport()}
 function removeEquipoImport(i){if(!curImport||!curImport.fase1.equipos)return;curImport.fase1.equipos.splice(i,1);saveImports();renderEquiposImport()}
 function updateEquipoImport(i,f,v){if(!curImport||!curImport.fase1.equipos)return;curImport.fase1.equipos[i][f]=v;saveImports()}
-function renderEquiposImport(){if(!curImport)return;if(!curImport.fase1.equipos)curImport.fase1.equipos=[];var equipos=curImport.fase1.equipos;var el=document.getElementById("equiposList");if(!equipos.length){el.innerHTML='<div style="text-align:center;padding:16px;color:#94A3B8;font-size:.85rem">Agrega equipos.</div>';return}var h="";equipos.forEach(function(eq,i){h+='<div class="equipo-card"><div class="equipo-header"><span class="equipo-num">Equipo '+(i+1)+'</span><button class="equipo-del" onclick="removeEquipoImport('+i+')">&times;</button></div><div class="calc-grid"><div class="input-group"><label>Marca</label><input type="text" value="'+hx(eq.marca)+'" oninput="updateEquipoImport('+i+',\'marca\',this.value)"></div><div class="input-group"><label>Modelo</label><input type="text" value="'+hx(eq.modelo)+'" oninput="updateEquipoImport('+i+',\'modelo\',this.value)"></div></div><div class="input-group"><label>Cantidad</label><input type="number" value="'+eq.cantidad+'" min="1" oninput="updateEquipoImport('+i+',\'cantidad\',parseInt(this.value)||1)"></div></div>'});el.innerHTML=h}
+function renderEquiposImport(){if(!curImport)return;if(!curImport.fase1.equipos)curImport.fase1.equipos=[];var equipos=curImport.fase1.equipos;var el=document.getElementById("equiposList");if(!equipos.length){el.innerHTML='<div style="text-align:center;padding:16px;color:#94A3B8;font-size:.85rem">Agrega los equipos.</div>';return}var h="";equipos.forEach(function(eq,i){h+='<div class="equipo-card"><div class="equipo-header"><span class="equipo-num">Equipo '+(i+1)+'</span><button class="equipo-del" onclick="removeEquipoImport('+i+')">&times;</button></div><div class="calc-grid"><div class="input-group"><label>Marca</label><input type="text" value="'+hx(eq.marca)+'" oninput="updateEquipoImport('+i+',\'marca\',this.value)"></div><div class="input-group"><label>Modelo</label><input type="text" value="'+hx(eq.modelo)+'" oninput="updateEquipoImport('+i+',\'modelo\',this.value)"></div></div><div class="input-group"><label>Cantidad</label><input type="number" value="'+eq.cantidad+'" min="1" oninput="updateEquipoImport('+i+',\'cantidad\',parseInt(this.value)||1)"></div></div>'});el.innerHTML=h}
 
 /* ===== STEP 2 ===== */
-function renderProviderReminder(){var el=document.getElementById("providerReminder");if(!curImport||!curImport.fase1.producto){el.innerHTML="";return}var d=productosDB[curImport.fase1.producto];if(!d){el.innerHTML="";return}var items=[];if(d.reqCE)items.push("Certificado CE");if(d.reqISO)items.push("ISO 13485");if(d.reqCFG)items.push("Certificado de Libre Venta");if(d.reqOrigen)items.push("Certificado de Origen");if(!items.length){el.innerHTML="";return}var h='<div class="provider-reminder"><h4>Documentos que debes pedir al proveedor</h4><ul>';items.forEach(function(it){h+='<li>'+hx(it)+'</li>'});h+='</ul></div>';el.innerHTML=h}
+function renderProviderReminder(){var el=document.getElementById("providerReminder");if(!curImport||!curImport.fase1.producto){el.innerHTML="";return}var d=productosDB[curImport.fase1.producto];if(!d){el.innerHTML="";return}var items=[];if(d.docsBase)d.docsBase.split(",").forEach(function(doc){var dn=doc.trim();if(dn)items.push(dn)});if(curImport.fase1.vendedor==="distribuidor"&&d.docExtraDist)items.push(d.docExtraDist);if(!items.length){el.innerHTML="";return}var h='<div class="provider-reminder"><h4>Documentos a gestionar</h4><ul>';items.forEach(function(it){h+='<li>'+hx(it)+'</li>'});h+='</ul></div>';el.innerHTML=h}
 
 /* ===== STEP 5: IMPUESTOS DETALLADOS ===== */
 function calcularLocal(){
-    var prod=curImport?curImport.fase1.producto:"";
-    var fob=parseFloat(document.getElementById("f5FOB").value)||0;
-    var flete=parseFloat(document.getElementById("f5FleteSeg").value)||0;
-    var tasa=parseFloat(document.getElementById("f5Tasa").value)||0;
-    if(prod&&productosDB[prod]&&(fob>0||flete>0)&&tasa>0){
-        var d=productosDB[prod];var cif=fob+flete;var cifBs=cif*tasa;
-        var ga=cifBs*d.ga;var iva=(cifBs+ga)*0.1494;var totalImp=ga+iva;
-        var totalUSD=cif+(totalImp/tasa);var totalBs=cifBs+totalImp;
+    var prod=curImport?curImport.fase1.producto:"";var fob=parseFloat(document.getElementById("f5FOB").value)||0;var flete=parseFloat(document.getElementById("f5FleteSeg").value)||0;var tasa=parseFloat(document.getElementById("f5Tasa").value)||0;
+    if(prod&&productosDB[prod]&&(fob>0||flete>0)&&tasa>0){var d=productosDB[prod];var cif=fob+flete;var cifBs=cif*tasa;var ga=cifBs*d.ga;var gaUSD=tasa>0?ga/tasa:0;var iva=(cifBs+ga)*0.1494;var ivaUSD=tasa>0?iva/tasa:0;var totalImp=ga+iva;var totalImpUSD=gaUSD+ivaUSD;var totalUSD=cif+totalImpUSD;var totalBs=cifBs+totalImp;
         document.getElementById("rPartida").textContent=d.partida+" (GA: "+(d.ga*100).toFixed(1)+"%)";
         document.getElementById("rCIF").textContent="$"+cif.toFixed(2)+" USD / "+cifBs.toFixed(2)+" Bs";
-        var taxH="";
-        if(d.ga>0)taxH+=resumenRow("Gravamen Arancelario ("+(d.ga*100).toFixed(1)+"%)",ga/tasa,tasa);
-        taxH+=resumenRow("IVA (14.94%)",iva/tasa,tasa);
+        var taxH="";if(d.ga>0)taxH+=taxRow("Gravamen Arancelario ("+(d.ga*100).toFixed(1)+"%)",gaUSD,tasa);taxH+=taxRow("IVA (14.94%)",ivaUSD,tasa);
         document.getElementById("r5TaxBreak").innerHTML=taxH;
-        document.getElementById("rTotal").textContent="$"+(totalImp/tasa).toFixed(2)+" USD / "+totalImp.toFixed(2)+" Bs";
-        document.getElementById("rTotalUSD").textContent="$"+totalUSD.toFixed(2)+" USD";
-        document.getElementById("rTotalBs").textContent=totalBs.toFixed(2)+" Bs";
-        document.getElementById("f5Result").style.display="block";
-        document.getElementById("f5Alert").classList.toggle("show",d.agemed);
+        document.getElementById("rTotal").textContent="$"+totalImpUSD.toFixed(2)+" USD / "+totalImp.toFixed(2)+" Bs";
+        document.getElementById("rTotalUSD").textContent="$"+totalUSD.toFixed(2)+" USD";document.getElementById("rTotalBs").textContent=totalBs.toFixed(2)+" Bs";
+        document.getElementById("f5Result").style.display="block";document.getElementById("f5Alert").classList.toggle("show",d.agemed);
     }else{document.getElementById("f5Result").style.display="none";document.getElementById("f5Alert").classList.remove("show")}
 }
 
-/* ===== RESUMEN ROW HELPER ===== */
-function resumenRow(label,usd,tasa){
-    var bs=usd*tasa;
-    return'<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:.85rem"><span style="color:var(--txt2);font-weight:500">'+hx(label)+'</span><span style="font-weight:600">$'+usd.toFixed(2)+' USD / '+bs.toFixed(2)+' Bs</span></div>';
-}
-
 /* ===== CALCULADORA LOTES ===== */
-function renderLotesList(){
-    var el=document.getElementById("lotesListContainer");
-    if(!allLotes.length){el.innerHTML='<div class="empty-state">No hay lotes guardados.</div>';return}
-    var h="";allLotes.forEach(function(l){
-        h+='<div class="import-card"><div class="import-card-info"><div class="import-card-title">'+hx(l.nombre)+'</div><div class="import-card-meta">'+l.equipos.length+' equipos · '+l.fecha+'</div></div><div class="import-card-actions"><button class="import-card-btn continue" onclick="editarLote(\''+l.id+'\')">Editar</button><button class="import-card-btn delete" onclick="eliminarLote(\''+l.id+'\')">Eliminar</button></div></div>';
-    });el.innerHTML=h;
-}
-function nuevoLote(){
-    curLote=null;curLoteEquipos=[];
-    document.getElementById("calcListView").style.display="none";
-    document.getElementById("calcEditorView").style.display="block";
-    document.getElementById("loteEditorTitle").textContent="Nueva Cotización";
-    document.getElementById("loteNombre").value="";
-    document.getElementById("loteFlete").value="";document.getElementById("loteSeguro").value="";document.getElementById("loteTasa").value="";
-    document.getElementById("loteResultadoView").style.display="none";
-    renderLoteEquipos();
-}
-function editarLote(id){
-    var lote=null;for(var i=0;i<allLotes.length;i++){if(allLotes[i].id===id){lote=allLotes[i];break}}if(!lote)return;
-    curLote=lote;curLoteEquipos=JSON.parse(JSON.stringify(lote.equipos));
-    document.getElementById("calcListView").style.display="none";
-    document.getElementById("calcEditorView").style.display="block";
-    document.getElementById("loteEditorTitle").textContent="Editar Cotización";
-    document.getElementById("loteNombre").value=lote.nombre;
-    document.getElementById("loteFlete").value=lote.flete||"";
-    document.getElementById("loteSeguro").value=lote.seguro||"";
-    document.getElementById("loteTasa").value=lote.tasa||"";
-    document.getElementById("loteResultadoView").style.display="none";
-    renderLoteEquipos();
-}
-function cerrarLoteEditor(){
-    curLote=null;curLoteEquipos=[];
-    document.getElementById("calcEditorView").style.display="none";
-    document.getElementById("calcListView").style.display="block";
-    renderLotesList();
-}
-function eliminarLote(id){if(!confirm("¿Eliminar lote?"))return;allLotes=allLotes.filter(function(x){return x.id!==id});saveLotes();renderLotesList()}
-function guardarLote(){
-    var nombre=document.getElementById("loteNombre").value.trim();
-    if(!nombre){var ss=document.getElementById("loteCalcStatus");ss.className="status-msg warn";ss.textContent="\u26A0 Ponle nombre al lote.";setTimeout(function(){ss.className="status-msg"},3000);return}
-    var flete=parseFloat(document.getElementById("loteFlete").value)||0;
-    var seguro=parseFloat(document.getElementById("loteSeguro").value)||0;
-    var tasa=parseFloat(document.getElementById("loteTasa").value)||0;
-    if(curLote){curLote.nombre=nombre;curLote.equipos=curLoteEquipos;curLote.flete=flete;curLote.seguro=seguro;curLote.tasa=tasa}
-    else{var l={id:"lote_"+Date.now(),nombre:nombre,fecha:new Date().toISOString().split("T")[0],equipos:curLoteEquipos,flete:flete,seguro:seguro,tasa:tasa};allLotes.unshift(l);curLote=l}
-    saveLotes();var ss=document.getElementById("loteCalcStatus");ss.className="status-msg success";ss.textContent="\u2714 Lote guardado.";setTimeout(function(){ss.className="status-msg"},3000);
-}
+function renderLotesList(){var el=document.getElementById("lotesListContainer");if(!allLotes.length){el.innerHTML='<div class="empty-state">No hay cotizaciones guardadas.</div>';return}var h="";allLotes.forEach(function(l){h+='<div class="import-card"><div class="import-card-info"><div class="import-card-title">'+hx(l.nombre)+'</div><div class="import-card-meta">'+l.equipos.length+' equipos · '+l.fecha+'</div></div><div class="import-card-actions"><button class="import-card-btn continue" onclick="editarLote(\''+l.id+'\')">Editar</button><button class="import-card-btn delete" onclick="eliminarLote(\''+l.id+'\')">Eliminar</button></div></div>'});el.innerHTML=h}
+function nuevoLote(){curLote=null;curLoteEquipos=[];document.getElementById("calcListView").style.display="none";document.getElementById("calcEditorView").style.display="block";document.getElementById("loteEditorTitle").textContent="Nueva Cotización";document.getElementById("loteNombre").value="";document.getElementById("loteFlete").value="";document.getElementById("loteSeguro").value="";document.getElementById("loteTasa").value="";document.getElementById("loteResultadoView").style.display="none";renderLoteEquipos()}
+function editarLote(id){var lote=null;for(var i=0;i<allLotes.length;i++){if(allLotes[i].id===id){lote=allLotes[i];break}}if(!lote)return;curLote=lote;curLoteEquipos=JSON.parse(JSON.stringify(lote.equipos));document.getElementById("calcListView").style.display="none";document.getElementById("calcEditorView").style.display="block";document.getElementById("loteEditorTitle").textContent="Editar Cotización";document.getElementById("loteNombre").value=lote.nombre;document.getElementById("loteFlete").value=lote.flete||"";document.getElementById("loteSeguro").value=lote.seguro||"";document.getElementById("loteTasa").value=lote.tasa||"";document.getElementById("loteResultadoView").style.display="none";renderLoteEquipos()}
+function cerrarLoteEditor(){curLote=null;curLoteEquipos=[];document.getElementById("calcEditorView").style.display="none";document.getElementById("calcListView").style.display="block";renderLotesList()}
+function eliminarLote(id){if(!confirm("¿Eliminar cotización?"))return;allLotes=allLotes.filter(function(x){return x.id!==id});saveLotes();renderLotesList()}
+function guardarLote(){var nombre=document.getElementById("loteNombre").value.trim();if(!nombre){var ss=document.getElementById("loteCalcStatus");ss.className="status-msg warn";ss.textContent="\u26A0 Ponle nombre a la cotización.";setTimeout(function(){ss.className="status-msg"},3000);return}var flete=parseFloat(document.getElementById("loteFlete").value)||0;var seguro=parseFloat(document.getElementById("loteSeguro").value)||0;var tasa=parseFloat(document.getElementById("loteTasa").value)||0;if(curLote){curLote.nombre=nombre;curLote.equipos=curLoteEquipos;curLote.flete=flete;curLote.seguro=seguro;curLote.tasa=tasa}else{var l={id:"lote_"+Date.now(),nombre:nombre,fecha:new Date().toISOString().split("T")[0],equipos:curLoteEquipos,flete:flete,seguro:seguro,tasa:tasa};allLotes.unshift(l);curLote=l}saveLotes();var ss=document.getElementById("loteCalcStatus");ss.className="status-msg success";ss.textContent="\u2714 Cotización guardada.";setTimeout(function(){ss.className="status-msg"},3000)}
 function addLoteEquipo(){curLoteEquipos.push({producto:"",marca:"",modelo:"",cantidad:1,precioCompra:0,precioVenta:0});renderLoteEquipos()}
 function removeLoteEquipo(i){curLoteEquipos.splice(i,1);renderLoteEquipos()}
 function updateLoteEquipo(i,f,v){curLoteEquipos[i][f]=v}
-function renderLoteEquipos(){
-    var el=document.getElementById("loteEquipos");
-    if(!curLoteEquipos.length){el.innerHTML='<div style="text-align:center;padding:16px;color:#94A3B8;font-size:.85rem">Agrega equipos al lote.</div>';return}
-    var h="";var prodKeys=Object.keys(productosDB);
-    curLoteEquipos.forEach(function(eq,i){
-        h+='<div class="equipo-card"><div class="equipo-header"><span class="equipo-num">Equipo '+(i+1)+'</span><button class="equipo-del" onclick="removeLoteEquipo('+i+')">&times;</button></div>';
-        h+='<div class="input-group"><label>Producto (para calcular impuestos)</label><select onchange="updateLoteEquipo('+i+',\'producto\',this.value);renderLoteEquipos()">';
-        h+='<option value="">-- Selecciona producto --</option>';
-        prodKeys.forEach(function(n){h+='<option value="'+hx(n)+'"'+(eq.producto===n?' selected':'')+'>'+hx(n)+'</option>'});
-        h+='</select></div>';
-        h+='<div class="calc-grid"><div class="input-group"><label>Marca</label><input type="text" value="'+hx(eq.marca)+'" placeholder="Ej: BrandX" oninput="updateLoteEquipo('+i+',\'marca\',this.value)"></div><div class="input-group"><label>Modelo</label><input type="text" value="'+hx(eq.modelo)+'" placeholder="Ej: MX-200" oninput="updateLoteEquipo('+i+',\'modelo\',this.value)"></div></div>';
-        h+='<div class="calc-grid"><div class="input-group"><label>Cantidad</label><input type="number" value="'+eq.cantidad+'" min="1" oninput="updateLoteEquipo('+i+',\'cantidad\',parseFloat(this.value)||1)"></div><div class="input-group"><label>Precio Compra c/u (USD)</label><input type="number" value="'+eq.precioCompra+'" step="0.01" oninput="updateLoteEquipo('+i+',\'precioCompra\',parseFloat(this.value)||0)"></div></div>';
-        h+='<div class="input-group"><label>Precio Venta c/u (USD)</label><input type="number" value="'+eq.precioVenta+'" step="0.01" oninput="updateLoteEquipo('+i+',\'precioVenta\',parseFloat(this.value)||0)"></div>';
-        if(eq.producto&&productosDB[eq.producto]){
-            var d=productosDB[eq.producto];
-            h+='<div class="tax-info'+(d.agemed?' warn':'')+'"><strong>Partida:</strong> '+hx(d.partida)+' · <strong>GA:</strong> '+(d.ga*100).toFixed(1)+'%';
-            if(d.agemed)h+=' · <strong>AGEMED</strong>';
-            h+='</div>';
-        }
-        h+='</div>';
-    });el.innerHTML=h;
-}
+function renderLoteEquipos(){var el=document.getElementById("loteEquipos");if(!curLoteEquipos.length){el.innerHTML='<div style="text-align:center;padding:16px;color:#94A3B8;font-size:.85rem">Agrega equipos a la cotización.</div>';return}var h="";var prodKeys=Object.keys(productosDB);curLoteEquipos.forEach(function(eq,i){h+='<div class="equipo-card"><div class="equipo-header"><span class="equipo-num">Equipo '+(i+1)+'</span><button class="equipo-del" onclick="removeLoteEquipo('+i+')">&times;</button></div>';h+='<div class="input-group"><label>Producto (para impuestos)</label><select onchange="updateLoteEquipo('+i+',\'producto\',this.value);renderLoteEquipos()"><option value="">-- Selecciona producto --</option>';prodKeys.forEach(function(n){h+='<option value="'+hx(n)+'"'+(eq.producto===n?' selected':'')+'>'+hx(n)+'</option>'});h+='</select></div>';h+='<div class="calc-grid"><div class="input-group"><label>Marca</label><input type="text" value="'+hx(eq.marca)+'" placeholder="Ej: BrandX" oninput="updateLoteEquipo('+i+',\'marca\',this.value)"></div><div class="input-group"><label>Modelo</label><input type="text" value="'+hx(eq.modelo)+'" placeholder="Ej: MX-200" oninput="updateLoteEquipo('+i+',\'modelo\',this.value)"></div></div>';h+='<div class="calc-grid"><div class="input-group"><label>Cantidad</label><input type="number" value="'+eq.cantidad+'" min="1" oninput="updateLoteEquipo('+i+',\'cantidad\',parseFloat(this.value)||1)"></div><div class="input-group"><label>Precio Compra c/u (USD)</label><input type="number" value="'+eq.precioCompra+'" step="0.01" oninput="updateLoteEquipo('+i+',\'precioCompra\',parseFloat(this.value)||0)"></div></div>';h+='<div class="input-group"><label>Precio Venta c/u (USD)</label><input type="number" value="'+eq.precioVenta+'" step="0.01" oninput="updateLoteEquipo('+i+',\'precioVenta\',parseFloat(this.value)||0)"></div>';if(eq.producto&&productosDB[eq.producto]){var d=productosDB[eq.producto];h+='<div class="tax-info'+(d.agemed?' warn':'')+'"><strong>Partida:</strong> '+hx(d.partida)+' · <strong>GA:</strong> '+(d.ga*100).toFixed(1)+'%';if(d.agemed)h+=' · <strong>AGEMED</strong>';h+='</div>'}h+='</div>'});el.innerHTML=h}
 
 /* ===== CALCULAR LOTE ===== */
-function calcularLote(){
-    if(!curLoteEquipos.length){alert("Agrega al menos un equipo.");return}
-    var flete=parseFloat(document.getElementById("loteFlete").value)||0;
-    var seguro=parseFloat(document.getElementById("loteSeguro").value)||0;
-    var tasa=parseFloat(document.getElementById("loteTasa").value)||0;
-    if(tasa<=0){alert("Ingresa la tasa de cambio.");return}
-
-    var totalCompra=0;curLoteEquipos.forEach(function(eq){totalCompra+=eq.cantidad*eq.precioCompra});
-    var results=[];var ltCompra=0,ltFlete=0,ltSeguro=0,ltGA=0,ltIVA=0,ltImpUSD=0,ltCosto=0,ltVenta=0;
-
-    curLoteEquipos.forEach(function(eq,i){
-        var costoChina=eq.cantidad*eq.precioCompra;
-        var fProrr=totalCompra>0?(costoChina/totalCompra)*flete:0;
-        var sProrr=totalCompra>0?(costoChina/totalCompra)*seguro:0;
-        var cif=costoChina+fProrr+sProrr;var cifBs=cif*tasa;
-        var gaPct=0,partida="N/A",agemed=false,taxes=[];
-        if(eq.producto&&productosDB[eq.producto]){var d=productosDB[eq.producto];gaPct=d.ga;partida=d.partida;agemed=d.agemed}
-        var ga=cifBs*gaPct;var gaUSD=tasa>0?ga/tasa:0;
-        if(gaPct>0)taxes.push({nombre:"Gravamen Arancelario ("+(gaPct*100).toFixed(1)+"%)",usd:gaUSD,bs:ga});
-        var iva=(cifBs+ga)*0.1494;var ivaUSD=tasa>0?iva/tasa:0;
-        taxes.push({nombre:"IVA (14.94%)",usd:ivaUSD,bs:iva});
-        var totalImp=ga+iva;var totalImpUSD=gaUSD+ivaUSD;
-        var costoBoliviaUSD=cif+totalImpUSD;var costoBoliviaBs=cifBs+totalImp;
-        var ventaUSD=eq.cantidad*eq.precioVenta;var ventaBs=ventaUSD*tasa;
-        var gananciaUSD=ventaUSD-costoBoliviaUSD;var gananciaBs=gananciaUSD*tasa;
-        var pct=costoBoliviaUSD>0?(gananciaUSD/costoBoliviaUSD)*100:0;
-        results.push({eq:eq,costoChina:costoChina,fleteProrr:fProrr,seguroProrr:sProrr,cif:cif,cifBs:cifBs,partida:partida,agemed:agemed,taxes:taxes,totalImpUSD:totalImpUSD,totalImpBs:totalImp,costoBoliviaUSD:costoBoliviaUSD,costoBoliviaBs:costoBoliviaBs,ventaUSD:ventaUSD,ventaBs:ventaBs,gananciaUSD:gananciaUSD,gananciaBs:gananciaBs,pct:pct});
-        ltCompra+=costoChina;ltFlete+=fProrr;ltSeguro+=sProrr;ltGA+=ga;ltIVA+=iva;ltImpUSD+=totalImpUSD;ltCosto+=costoBoliviaUSD;ltVenta+=ventaUSD;
-    });
-    _loteResults={nombre:document.getElementById("loteNombre").value||"Sin nombre",tasa:tasa,flete:flete,seguro:seguro,results:results,totalCompra:ltCompra,totalFlete:ltFlete,totalSeguro:ltSeguro,totalGA:ltGA,totalIVA:ltIVA,totalImpUSD:ltImpUSD,totalCostoBolivia:ltCosto,totalVenta:ltVenta,gananciaTotal:ltVenta-ltCosto,pctTotal:ltCosto>0?((ltVenta-ltCosto)/ltCosto*100):0};
-    renderLoteResultado(results,tasa);
-}
+function calcularLote(){if(!curLoteEquipos.length){alert("Agrega al menos un equipo.");return}var flete=parseFloat(document.getElementById("loteFlete").value)||0;var seguro=parseFloat(document.getElementById("loteSeguro").value)||0;var tasa=parseFloat(document.getElementById("loteTasa").value)||0;if(tasa<=0){alert("Ingresa la tasa de cambio.");return}var totalCompra=0;curLoteEquipos.forEach(function(eq){totalCompra+=eq.cantidad*eq.precioCompra});var results=[];var ltCompra=0,ltFlete=0,ltSeguro=0,ltGA=0,ltIVA=0,ltImpUSD=0,ltCosto=0,ltVenta=0;
+curLoteEquipos.forEach(function(eq,i){var costoChina=eq.cantidad*eq.precioCompra;var fProrr=totalCompra>0?(costoChina/totalCompra)*flete:0;var sProrr=totalCompra>0?(costoChina/totalCompra)*seguro:0;var cif=costoChina+fProrr+sProrr;var cifBs=cif*tasa;var gaPct=0,partida="N/A",agemed=false,taxes=[];if(eq.producto&&productosDB[eq.producto]){var d=productosDB[eq.producto];gaPct=d.ga;partida=d.partida;agemed=d.agemed}var ga=cifBs*gaPct;var gaUSD=tasa>0?ga/tasa:0;if(gaPct>0)taxes.push({nombre:"Gravamen Arancelario ("+(gaPct*100).toFixed(1)+"%)",usd:gaUSD,bs:ga});var iva=(cifBs+ga)*0.1494;var ivaUSD=tasa>0?iva/tasa:0;taxes.push({nombre:"IVA (14.94%)",usd:ivaUSD,bs:iva});var totalImp=ga+iva;var totalImpUSD=gaUSD+ivaUSD;var costoBoliviaUSD=cif+totalImpUSD;var costoBoliviaBs=cifBs+totalImp;var ventaUSD=eq.cantidad*eq.precioVenta;var ventaBs=ventaUSD*tasa;var gananciaUSD=ventaUSD-costoBoliviaUSD;var gananciaBs=gananciaUSD*tasa;var pct=costoBoliviaUSD>0?(gananciaUSD/costoBoliviaUSD)*100:0;results.push({eq:eq,costoChina:costoChina,fleteProrr:fProrr,seguroProrr:sProrr,cif:cif,cifBs:cifBs,partida:partida,agemed:agemed,taxes:taxes,totalImpUSD:totalImpUSD,totalImpBs:totalImp,costoBoliviaUSD:costoBoliviaUSD,costoBoliviaBs:costoBoliviaBs,ventaUSD:ventaUSD,ventaBs:ventaBs,gananciaUSD:gananciaUSD,gananciaBs:gananciaBs,pct:pct});ltCompra+=costoChina;ltFlete+=fProrr;ltSeguro+=sProrr;ltGA+=ga;ltIVA+=iva;ltImpUSD+=totalImpUSD;ltCosto+=costoBoliviaUSD;ltVenta+=ventaUSD});
+_loteResults={nombre:document.getElementById("loteNombre").value||"Sin nombre",tasa:tasa,flete:flete,seguro:seguro,results:results,totalCompra:ltCompra,totalFlete:ltFlete,totalSeguro:ltSeguro,totalGA:ltGA,totalIVA:ltIVA,totalImpUSD:ltImpUSD,totalCostoBolivia:ltCosto,totalVenta:ltVenta,gananciaTotal:ltVenta-ltCosto,pctTotal:ltCosto>0?((ltVenta-ltCosto)/ltCosto*100):0};
+renderLoteResultado(results,tasa)}
 
 function renderLoteResultado(results,tasa){
-    var h1='<h2 class="phase-title">Resumen por Equipo</h2><p class="phase-desc">Desglose de costos, impuestos por nombre, y rentabilidad de cada equipo.</p>';
-    results.forEach(function(r,i){
-        var c=r.gananciaUSD>0;
-        h1+='<div class="eq-result-card"><div class="eq-result-header"><div><strong style="font-size:1rem">'+hx(r.eq.marca||"Equipo "+(i+1))+' '+hx(r.eq.modelo||"")+'</strong><div style="font-size:.8rem;color:var(--txt2)">×'+r.eq.cantidad+' · '+hx(r.eq.producto||"Sin producto")+' · Partida: '+hx(r.partida)+'</div></div><span class="profit-badge '+(c?"si":"no")+'">'+(c?"✓ CONVIENE":"✗ NO CONVIENE")+'</span></div>';
-        h1+='<div style="font-size:.85rem">';
-        h1+=resumenRow("Costo en China",r.costoChina,tasa);
-        if(r.fleteProrr>0)h1+=resumenRow("Flete (prorrateado)",r.fleteProrr,tasa);
-        if(r.seguroProrr>0)h1+=resumenRow("Seguro (prorrateado)",r.seguroProrr,tasa);
-        h1+=resumenRowBold("Valor CIF",r.cif,tasa);
-        h1+='<div class="tax-section"><div class="tax-label">Impuestos</div>';
-        r.taxes.forEach(function(tax){h1+=resumenRow(tax.nombre,tax.usd,tasa)});
-        h1+=resumenRowBold("Total Impuestos",r.totalImpUSD,tasa)+'</div>';
-        h1+='<div class="tax-section">';
-        h1+=resumenRowBold("Costo Total Bolivia",r.costoBoliviaUSD,tasa);
-        h1+=resumenRow("Precio de Venta",r.ventaUSD,tasa);
-        h1+='<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:.95rem;font-weight:800;color:'+(c?'#166534':'#991B1B')+'"><span>Ganancia ('+r.pct.toFixed(1)+'%)</span><span>$'+r.gananciaUSD.toFixed(2)+' USD / '+r.gananciaBs.toFixed(2)+' Bs</span></div></div>';
-        if(r.agemed)h1+='<div style="background:#FEF2F2;padding:10px 14px;border-radius:8px;font-size:.8rem;color:#991B1B;margin-top:12px;border-left:3px solid #EF4444"><strong>⚠ AGEMED:</strong> Requiere Registro Sanitario o Certificado de Libre Venta.</div>';
-        h1+='</div></div>';
-    });
+    var h1='<h2 class="phase-title">Resumen por Equipo</h2><p class="phase-desc">Costos, impuestos detallados por nombre, y rentabilidad de cada equipo.</p>';
+    results.forEach(function(r,i){var c=r.gananciaUSD>0;h1+='<div class="eq-result-card"><div class="eq-result-header"><div><strong style="font-size:1rem">'+hx(r.eq.marca||"Equipo "+(i+1))+' '+hx(r.eq.modelo||"")+'</strong><div style="font-size:.8rem;color:var(--txt2)">×'+r.eq.cantidad+' · '+hx(r.eq.producto||"Sin producto")+' · Partida: '+hx(r.partida)+'</div></div><span class="profit-badge '+(c?"si":"no")+'">'+(c?"CONVIENE":"NO CONVIENE")+'</span></div>';
+    h1+='<div style="font-size:.85rem">';h1+=taxRow("Costo en China",r.costoChina,tasa);if(r.fleteProrr>0)h1+=taxRow("Flete (prorrateado)",r.fleteProrr,tasa);if(r.seguroProrr>0)h1+=taxRow("Seguro (prorrateado)",r.seguroProrr,tasa);h1+=taxRowBold("Valor CIF",r.cif,tasa);h1+='<div class="tax-section"><div class="tax-label">Impuestos</div>';r.taxes.forEach(function(tax){h1+=taxRow(tax.nombre,tax.usd,tasa)});h1+=taxRowBold("Total Impuestos",r.totalImpUSD,tasa)+'</div>';
+    h1+='<div class="tax-section">';h1+=taxRowBold("Costo Total Bolivia",r.costoBoliviaUSD,tasa);h1+=taxRow("Precio de Venta",r.ventaUSD,tasa);h1+='<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:.95rem;font-weight:800;color:'+(c?'#166534':'#991B1B')+'"><span>Ganancia ('+r.pct.toFixed(1)+'%)</span><span>$'+r.gananciaUSD.toFixed(2)+' USD / '+r.gananciaBs.toFixed(2)+' Bs</span></div></div>';
+    if(r.agemed)h1+='<div style="background:#FEF2F2;padding:10px 14px;border-radius:8px;font-size:.8rem;color:#991B1B;margin-top:12px;border-left:3px solid #EF4444"><strong>AGEMED:</strong> Requiere Registro Sanitario o Certificado de Libre Venta.</div>';
+    h1+='</div></div>'});
     document.getElementById("loteResumenEquipos").innerHTML=h1;
 
-    var lr=_loteResults;var cl=lr.gananciaTotal>0;
-    var h2='<h2 class="phase-title">Resumen del Lote</h2><p class="phase-desc">Totales de la importación completa.</p>';
-    h2+=resumenRow("Total Costo China",lr.totalCompra,tasa);
-    h2+=resumenRow("Total Flete",lr.totalFlete,tasa);
-    h2+=resumenRow("Total Seguro",lr.totalSeguro,tasa);
-    h2+=resumenRowBold("Valor CIF Total",lr.totalCompra+lr.totalFlete+lr.totalSeguro,tasa);
+    var lr=_loteResults;var cl=lr.gananciaTotal>0;var cifTotal=lr.totalCompra+lr.totalFlete+lr.totalSeguro;
+    var h2='<h2 class="phase-title">Resumen de la Cotización</h2><p class="phase-desc">Totales con impuestos detallados por nombre.</p>';
+    h2+=taxRow("Total Costo China",lr.totalCompra,tasa);h2+=taxRow("Total Flete",lr.totalFlete,tasa);h2+=taxRow("Total Seguro",lr.totalSeguro,tasa);h2+=taxRowBold("Valor CIF Total",cifTotal,tasa);
     h2+='<div class="tax-section"><div class="tax-label">Impuestos Totales</div>';
-    if(lr.totalGA>0)h2+=resumenRow("Gravamen Arancelario (total)",lr.totalGA/tasa,tasa);
-    h2+=resumenRow("IVA (14.94%) (total)",lr.totalIVA/tasa,tasa);
-    h2+=resumenRowBold("Total Impuestos",lr.totalImpUSD,tasa)+'</div>';
-    h2+='<div class="tax-section">';
-    h2+=resumenRowBold("Costo Total Bolivia",lr.totalCostoBolivia,tasa);
-    h2+=resumenRow("Venta Total",lr.totalVenta,tasa)+'</div>';
-    h2+='<div class="big-profit '+(cl?"si":"no")+'" style="margin-top:20px">';
-    h2+='<div class="big-profit-text '+(cl?"si":"no")+'">'+(cl?"✓ CONVIENE":"✗ NO CONVIENE")+'</div>';
+    if(lr.totalGA>0)h2+=taxRow("Gravamen Arancelario (total)",lr.totalGA/tasa,tasa);h2+=taxRow("IVA (14.94%) (total)",lr.totalIVA/tasa,tasa);h2+=taxRowBold("Total Impuestos",lr.totalImpUSD,tasa)+'</div>';
+    h2+='<div class="tax-section">';h2+=taxRowBold("Costo Total Bolivia",lr.totalCostoBolivia,tasa);h2+=taxRow("Venta Total",lr.totalVenta,tasa)+'</div>';
+    h2+='<div class="big-profit '+(cl?"si":"no")+'" style="margin-top:20px">';h2+='<div class="big-profit-text '+(cl?"si":"no")+'">'+(cl?"CONVIENE":"NO CONVIENE")+'</div>';
     h2+='<div style="font-size:1.3rem;font-weight:700;margin-top:8px;color:'+(cl?'#166534':'#991B1B')+'">$'+lr.gananciaTotal.toFixed(2)+' USD / '+(lr.gananciaTotal*tasa).toFixed(2)+' Bs</div>';
     h2+='<div style="font-size:1rem;margin-top:4px;color:var(--txt2)">Margen: '+lr.pctTotal.toFixed(1)+'%</div></div>';
     document.getElementById("loteResumenTotal").innerHTML=h2;
     document.getElementById("loteResultadoView").style.display="block";
-    document.getElementById("loteResultadoView").scrollIntoView({behavior:"smooth"});
-}
-
-function resumenRowBold(label,usd,tasa){
-    var bs=usd*tasa;
-    return'<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:.95rem;font-weight:700"><span style="color:var(--txt2)">'+hx(label)+'</span><span>$'+usd.toFixed(2)+' USD / '+bs.toFixed(2)+' Bs</span></div>';
-}
+    document.getElementById("loteResultadoView").scrollIntoView({behavior:"smooth"})}
 
 /* ===== WHATSAPP ===== */
-function compartirWhatsApp(){
-    var lr=_loteResults;if(!lr)return;var t=lr.tasa;
-    var msg="📊 *DUAVA Puente - Análisis de Lote*\n📋 "+lr.nombre+"\n💱 Tasa: "+t+" Bs/USD\n\n";
-    lr.results.forEach(function(r,i){
-        var c=r.gananciaUSD>0;
-        msg+="*Equipo "+(i+1)+": "+(r.eq.marca||"")+" "+(r.eq.modelo||"")+"* (×"+r.eq.cantidad+")\n";
-        msg+="Producto: "+(r.eq.producto||"N/A")+"\nPartida: "+r.partida+"\n";
-        msg+="  Costo China: $"+r.costoChina.toFixed(2)+" / "+(r.costoChina*t).toFixed(2)+" Bs\n";
-        if(r.fleteProrr>0)msg+="  Flete: $"+r.fleteProrr.toFixed(2)+" / "+(r.fleteProrr*t).toFixed(2)+" Bs\n";
-        if(r.seguroProrr>0)msg+="  Seguro: $"+r.seguroProrr.toFixed(2)+" / "+(r.seguroProrr*t).toFixed(2)+" Bs\n";
-        msg+="  CIF: $"+r.cif.toFixed(2)+" / "+r.cifBs.toFixed(2)+" Bs\n";
-        r.taxes.forEach(function(tax){msg+="  "+tax.nombre+": $"+tax.usd.toFixed(2)+" / "+tax.bs.toFixed(2)+" Bs\n"});
-        msg+="  Total Impuestos: $"+r.totalImpUSD.toFixed(2)+" / "+r.totalImpBs.toFixed(2)+" Bs\n";
-        msg+="  Costo Bolivia: $"+r.costoBoliviaUSD.toFixed(2)+" / "+r.costoBoliviaBs.toFixed(2)+" Bs\n";
-        msg+="  Venta: $"+r.ventaUSD.toFixed(2)+" / "+r.ventaBs.toFixed(2)+" Bs\n";
-        msg+="  *Ganancia: $"+r.gananciaUSD.toFixed(2)+" / "+r.gananciaBs.toFixed(2)+" Bs ("+r.pct.toFixed(1)+"%)*\n";
-        msg+=(c?"  ✅ CONVIENE\n\n":"  ❌ NO CONVIENE\n\n");
-    });
-    msg+="━━━━━━━━━━━━━━━━\n*RESUMEN DEL LOTE*\n";
-    msg+="Costo Total: $"+lr.totalCostoBolivia.toFixed(2)+" / "+(lr.totalCostoBolivia*t).toFixed(2)+" Bs\n";
-    msg+="Venta Total: $"+lr.totalVenta.toFixed(2)+" / "+(lr.totalVenta*t).toFixed(2)+" Bs\n";
-    msg+="*Ganancia: $"+lr.gananciaTotal.toFixed(2)+" / "+(lr.gananciaTotal*t).toFixed(2)+" Bs ("+lr.pctTotal.toFixed(1)+"%)*\n";
-    msg+=(lr.gananciaTotal>0?"✅ EL LOTE CONVIENE":"❌ EL LOTE NO CONVIENE");
-    window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank");
-}
+function compartirWhatsApp(){var lr=_loteResults;if(!lr)return;var t=lr.tasa;var msg="*DUAVA Puente - Cotización*\n"+lr.nombre+"\nTasa: "+t+" Bs/USD\n\n";lr.results.forEach(function(r,i){var c=r.gananciaUSD>0;msg+="*Equipo "+(i+1)+": "+(r.eq.marca||"")+" "+(r.eq.modelo||"")+"* (×"+r.eq.cantidad+")\n";msg+="Producto: "+(r.eq.producto||"N/A")+"\nPartida: "+r.partida+"\n";msg+="  Costo China: $"+r.costoChina.toFixed(2)+" / "+(r.costoChina*t).toFixed(2)+" Bs\n";if(r.fleteProrr>0)msg+="  Flete: $"+r.fleteProrr.toFixed(2)+" / "+(r.fleteProrr*t).toFixed(2)+" Bs\n";if(r.seguroProrr>0)msg+="  Seguro: $"+r.seguroProrr.toFixed(2)+" / "+(r.seguroProrr*t).toFixed(2)+" Bs\n";msg+="  CIF: $"+r.cif.toFixed(2)+" / "+r.cifBs.toFixed(2)+" Bs\n";r.taxes.forEach(function(tax){msg+="  "+tax.nombre+": $"+tax.usd.toFixed(2)+" / "+tax.bs.toFixed(2)+" Bs\n"});msg+="  Total Impuestos: $"+r.totalImpUSD.toFixed(2)+" / "+r.totalImpBs.toFixed(2)+" Bs\n";msg+="  Costo Bolivia: $"+r.costoBoliviaUSD.toFixed(2)+" / "+r.costoBoliviaBs.toFixed(2)+" Bs\n";msg+="  Venta: $"+r.ventaUSD.toFixed(2)+" / "+r.ventaBs.toFixed(2)+" Bs\n";msg+="  *Ganancia: $"+r.gananciaUSD.toFixed(2)+" / "+r.gananciaBs.toFixed(2)+" Bs ("+r.pct.toFixed(1)+"%)*\n";msg+=(c?"  CONVIENE\n\n":"  NO CONVIENE\n\n")});msg+="\n*RESUMEN*\n";msg+="Costo Total: $"+lr.totalCostoBolivia.toFixed(2)+" / "+(lr.totalCostoBolivia*t).toFixed(2)+" Bs\n";msg+="Venta Total: $"+lr.totalVenta.toFixed(2)+" / "+(lr.totalVenta*t).toFixed(2)+" Bs\n";msg+="*Ganancia: $"+lr.gananciaTotal.toFixed(2)+" / "+(lr.gananciaTotal*t).toFixed(2)+" Bs ("+lr.pctTotal.toFixed(1)+"%)*\n";msg+=(lr.gananciaTotal>0?"CONVIENE":"NO CONVIENE");window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank")}
 
-/* ===== SAVE/LOAD STEPS ===== */
-function saveStepData(){
-    if(!curImport)return;var p=curStep;
-    if(p===1)curImport.fase1.producto=document.getElementById("f1Producto").value;
-    else if(p===2){var f=curImport.fase2;f.proveedor=document.getElementById("f2Proveedor").value;f.pais=document.getElementById("f2Pais").value;f.iso=document.getElementById("f2ISO").checked;f.ce=document.getElementById("f2CE").checked;f.muestra=document.getElementById("f2Muestra").checked}
-    else if(p===3){var f=curImport.fase3;f.proforma=document.getElementById("f3Proforma").value;f.incoterm=document.getElementById("f3Incoterm").value;f.moneda=document.getElementById("f3Moneda").value;f.monto=document.getElementById("f3Monto").value;f.plazo=document.getElementById("f3Plazo").value;f.fecha=document.getElementById("f3Fecha").value}
-    else if(p===4){var f=curImport.fase4;f.tipo=document.getElementById("f4Tipo").value;f.contenedor=document.getElementById("f4Contenedor").value;f.flete=document.getElementById("f4Flete").value;f.seguro=document.getElementById("f4Seguro").value;f.origen=document.getElementById("f4Origen").value;f.destino=document.getElementById("f4Destino").value}
-    else if(p===5)curImport.fase5.tasa=document.getElementById("f5Tasa").value;
-    else if(p===6){var f=curImport.fase6;f.fecha=document.getElementById("f6Fecha").value;f.caja=document.getElementById("f6Caja").checked;f.contenido=document.getElementById("f6Contenido").checked;f.funciona=document.getElementById("f6Funciona").checked;f.garantia=document.getElementById("f6Garantia").value;f.obs=document.getElementById("f6Obs").value}
-    saveImports();
-}
-function loadStepData(){
-    if(!curImport)return;
-    var f1=curImport.fase1||{};var f2=curImport.fase2||{};var f3=curImport.fase3||{};var f4=curImport.fase4||{};var f5=curImport.fase5||{};var f6=curImport.fase6||{};
-    if(!f1.equipos)f1.equipos=[];
-    document.getElementById("f1Producto").value=f1.producto||"";
-    document.getElementById("f2Proveedor").value=f2.proveedor||"";document.getElementById("f2Pais").value=f2.pais||"";
-    document.getElementById("f2ISO").checked=!!f2.iso;document.getElementById("f2CE").checked=!!f2.ce;document.getElementById("f2Muestra").checked=!!f2.muestra;
-    document.getElementById("f3Proforma").value=f3.proforma||"";document.getElementById("f3Incoterm").value=f3.incoterm||"FOB";document.getElementById("f3Moneda").value=f3.moneda||"USD";document.getElementById("f3Monto").value=f3.monto||"";document.getElementById("f3Plazo").value=f3.plazo||"30% anticipo - 70% BL";document.getElementById("f3Fecha").value=f3.fecha||"";
-    document.getElementById("f4Tipo").value=f4.tipo||"Marítimo FCL";document.getElementById("f4Contenedor").value=f4.contenedor||"";document.getElementById("f4Flete").value=f4.flete||"";document.getElementById("f4Seguro").value=f4.seguro||"";document.getElementById("f4Origen").value=f4.origen||"";document.getElementById("f4Destino").value=f4.destino||"";
-    document.getElementById("f5Tasa").value=f5.tasa||"";
-    document.getElementById("f6Fecha").value=f6.fecha||"";document.getElementById("f6Caja").checked=!!f6.caja;document.getElementById("f6Contenido").checked=!!f6.contenido;document.getElementById("f6Funciona").checked=!!f6.funciona;document.getElementById("f6Garantia").value=f6.garantia||"";document.getElementById("f6Obs").value=f6.obs||"";
-    onStep1Producto();renderProviderReminder();calcularLocal();
-}
+/* ===== SAVE/LOAD ===== */
+function saveStepData(){if(!curImport)return;var p=curStep;if(p===1)curImport.fase1.producto=document.getElementById("f1Producto").value;else if(p===2){var f=curImport.fase2;f.proveedor=document.getElementById("f2Proveedor").value;f.pais=document.getElementById("f2Pais").value;f.iso=document.getElementById("f2ISO").checked;f.ce=document.getElementById("f2CE").checked;f.muestra=document.getElementById("f2Muestra").checked}else if(p===3){var f=curImport.fase3;f.proforma=document.getElementById("f3Proforma").value;f.incoterm=document.getElementById("f3Incoterm").value;f.moneda=document.getElementById("f3Moneda").value;f.monto=document.getElementById("f3Monto").value;f.plazo=document.getElementById("f3Plazo").value;f.fecha=document.getElementById("f3Fecha").value}else if(p===4){var f=curImport.fase4;f.tipo=document.getElementById("f4Tipo").value;f.contenedor=document.getElementById("f4Contenedor").value;f.flete=document.getElementById("f4Flete").value;f.seguro=document.getElementById("f4Seguro").value;f.origen=document.getElementById("f4Origen").value;f.destino=document.getElementById("f4Destino").value}else if(p===5)curImport.fase5.tasa=document.getElementById("f5Tasa").value;else if(p===6){var f=curImport.fase6;f.fecha=document.getElementById("f6Fecha").value;f.caja=document.getElementById("f6Caja").checked;f.contenido=document.getElementById("f6Contenido").checked;f.funciona=document.getElementById("f6Funciona").checked;f.garantia=document.getElementById("f6Garantia").value;f.obs=document.getElementById("f6Obs").value}saveImports()}
+function loadStepData(){if(!curImport)return;var f1=curImport.fase1||{};var f2=curImport.fase2||{};var f3=curImport.fase3||{};var f4=curImport.fase4||{};var f5=curImport.fase5||{};var f6=curImport.fase6||{};if(!f1.equipos)f1.equipos=[];if(!f1.vendedor)f1.vendedor="";document.getElementById("f1Producto").value=f1.producto||"";document.getElementById("f2Proveedor").value=f2.proveedor||"";document.getElementById("f2Pais").value=f2.pais||"";document.getElementById("f2ISO").checked=!!f2.iso;document.getElementById("f2CE").checked=!!f2.ce;document.getElementById("f2Muestra").checked=!!f2.muestra;document.getElementById("f3Proforma").value=f3.proforma||"";document.getElementById("f3Incoterm").value=f3.incoterm||"FOB";document.getElementById("f3Moneda").value=f3.moneda||"USD";document.getElementById("f3Monto").value=f3.monto||"";document.getElementById("f3Plazo").value=f3.plazo||"30% anticipo - 70% BL";document.getElementById("f3Fecha").value=f3.fecha||"";document.getElementById("f4Tipo").value=f4.tipo||"Marítimo FCL";document.getElementById("f4Contenedor").value=f4.contenedor||"";document.getElementById("f4Flete").value=f4.flete||"";document.getElementById("f4Seguro").value=f4.seguro||"";document.getElementById("f4Origen").value=f4.origen||"";document.getElementById("f4Destino").value=f4.destino||"";document.getElementById("f5Tasa").value=f5.tasa||"";document.getElementById("f6Fecha").value=f6.fecha||"";document.getElementById("f6Caja").checked=!!f6.caja;document.getElementById("f6Contenido").checked=!!f6.contenido;document.getElementById("f6Funciona").checked=!!f6.funciona;document.getElementById("f6Garantia").value=f6.garantia||"";document.getElementById("f6Obs").value=f6.obs||"";onStep1Producto();renderProviderReminder();calcularLocal()}
 
 /* ===== INIT ===== */
 document.addEventListener("DOMContentLoaded",function(){loadImports();loadLotes()});
