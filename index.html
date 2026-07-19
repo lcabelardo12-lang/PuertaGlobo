@@ -397,7 +397,7 @@
 function hx(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 
 var SID="1CdI4J1KqBTifUDHBLNESEzrXN5gaLOthcxNS3UVdn8I";
-var PROD_URL="https://docs.google.com/spreadsheets/d/"+SID+"/export?format=csv&gid=382618591";
+var PROD_URL="https://docs.google.com/spreadsheets/d/"+SID+"/gviz/tq?tqx=out:csv&sheet=Productos";
 var GLOS_GID="382618591";
 var GLOS_URL="https://docs.google.com/spreadsheets/d/"+SID+"/export?format=csv&gid="+GLOS_GID;
 
@@ -438,7 +438,7 @@ function switchTab(n){if(curImport&&n!==1)saveStepData();document.querySelectorA
 
 /* ===== PRODUCTOS (NUEVA ESTRUCTURA) ===== */
 function cargarProductos(){
-    try{Papa.parse(PROD_URL,{download:false,header:false,
+    try{Papa.parse(PROD_URL,{download:true,header:false,
         complete:function(r){
             var s1=document.getElementById("f1Producto");
             s1.innerHTML='<option value="">Elige un producto</option>';
