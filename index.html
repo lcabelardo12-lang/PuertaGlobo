@@ -798,7 +798,7 @@ function cargarBiblioteca(){
     bibliotecaDB=DEFAULT_BIBLIOTECA;
     try{Papa.parse(BIB_URL,{download:true,header:true,
         complete:function(r){var data=[];r.data.forEach(function(row){
-            var keys=Object.keys(row);var t=(row["Tema"]||row[keys[1]]||"").trim();
+            var keys=Object.keys(row);var t=(row["Nombre"]||row[keys[1]]||"").trim();
             if(t)data.push({id:(row["ID"]||row[keys[0]]||"").trim().toLowerCase(),tema:t,cat:(row["Categoría"]||row[keys[2]]||"").trim(),teoria:(row["Teoría"]||row[keys[3]]||"").trim(),practica:(row["Aplicación práctica"]||row[keys[4]]||"").trim(),duava:(row["Aplicación DUAVA"]||row[keys[5]]||"").trim(),docs:(row["Documentos relacionados"]||row[keys[6]]||"").trim(),actores:(row["Actores relacionados"]||row[keys[7]]||"").trim(),normativa:(row["Normativa"]||row[keys[8]]||"").trim(),fuente:(row["Fuente oficial"]||row[keys[9]]||"").trim(),url:(row["URL"]||row[keys[10]]||"").trim(),duava_exp:(row["Experiencias DUAVA"]||row[keys[11]]||"").trim()});
         });if(data.length>0)bibliotecaDB=data;bibLoaded=true;renderBiblioteca()},
         error:function(){bibLoaded=true;renderBiblioteca()}
