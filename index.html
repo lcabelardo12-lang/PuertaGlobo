@@ -71,8 +71,9 @@
         .card{background:#fff;padding:32px;border-radius:16px;box-shadow:var(--sh);margin-bottom:24px}
         .input-group{margin-bottom:20px}
         .input-group label{display:block;font-size:.9rem;font-weight:600;color:var(--txt2);margin-bottom:8px}
-        .input-group input,.input-group select{width:100%;padding:14px 16px;border:2px solid #E2E8F0;border-radius:10px;font-size:1rem;outline:none;transition:border-color .3s,box-shadow .3s;font-family:'Inter',sans-serif;background:#FAFBFC}
-        .input-group input:focus,.input-group select:focus{border-color:var(--pri);box-shadow:0 0 0 3px var(--priL);background:#fff}
+        .input-group input,.input-group select,.input-group textarea{width:100%;padding:14px 16px;border:2px solid #E2E8F0;border-radius:10px;font-size:1rem;outline:none;transition:border-color .3s,box-shadow .3s;font-family:'Inter',sans-serif;background:#FAFBFC}
+        .input-group input:focus,.input-group select:focus,.input-group textarea:focus{border-color:var(--pri);box-shadow:0 0 0 3px var(--priL);background:#fff}
+        .input-group textarea{resize:vertical;min-height:70px}
         .checkbox-group{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding:12px 16px;background:#F8FAFC;border-radius:10px}
         .checkbox-group input[type="checkbox"]{width:20px;height:20px;cursor:pointer;accent-color:var(--pri)}
         .checkbox-group label{font-size:.95rem;color:var(--txt);cursor:pointer;font-weight:500}
@@ -119,18 +120,15 @@
         .provider-reminder h4{font-size:.75rem;font-weight:700;color:#1E40AF;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
         .provider-reminder li{font-size:.85rem;color:#1E3A8A;padding:2px 0;list-style:none}
         .provider-reminder li::before{content:"→ ";color:#3B82F6;font-weight:700}
-
         .vendedor-btn{flex:1;padding:16px;border:2px solid #E2E8F0;border-radius:12px;background:#fff;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .3s;text-align:center;color:var(--txt)}
         .vendedor-btn:active{transform:scale(.98)}
         .vendedor-btn.active{background:var(--pri);color:#fff;border-color:var(--pri);box-shadow:0 4px 12px rgba(0,0,0,.15)}
-
         .equipo-card{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px;margin-bottom:12px}
         .equipo-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
         .equipo-num{font-size:.75rem;font-weight:700;color:var(--pri);background:var(--priL);padding:4px 10px;border-radius:6px}
         .equipo-del{background:none;border:none;color:#EF4444;font-size:1.2rem;cursor:pointer;padding:4px 8px;border-radius:6px;line-height:1}
         .add-equip-btn{width:100%;padding:14px;background:transparent;color:var(--txt2);border:2px dashed #CBD5E1;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;margin-top:12px}
         .add-equip-btn:active{background:#F1F5F9;border-color:#94A3B8}
-
         .tax-info{background:#F0FDF4;padding:10px 14px;border-radius:8px;font-size:.8rem;color:#166534;margin-top:4px}
         .tax-info.warn{background:#FEF2F2;color:#991B1B}
         .eq-result-card{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:20px;margin-bottom:16px}
@@ -142,7 +140,6 @@
         .big-profit{text-align:center;padding:24px;border-radius:12px;border:2px solid}
         .big-profit.si{background:#F0FDF4;border-color:#16A34A}.big-profit.no{background:#FEF2F2;border-color:#EF4444}
         .big-profit-text{font-size:1.8rem;font-weight:800}.big-profit-text.si{color:#166534}.big-profit-text.no{color:#991B1B}
-
         .import-card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
         .import-card-info{flex:1}
         .import-card-title{font-size:.95rem;font-weight:700;color:var(--txt);margin-bottom:4px}
@@ -154,30 +151,74 @@
         .import-badge.active{background:#FEF3C7;color:#92400E}.import-badge.done{background:#D1FAE5;color:#065F46}
         .empty-state{text-align:center;padding:40px 20px;color:#94A3B8;font-size:.9rem}
 
-        .glosario-search{margin-bottom:20px;position:relative}
-        .glosario-search input{width:100%;padding:14px 16px 14px 44px;border:2px solid #E2E8F0;border-radius:10px;font-size:1rem;outline:none;background:#FAFBFC;font-family:'Inter',sans-serif;transition:border-color .3s}
-        .glosario-search input:focus{border-color:var(--pri)}
-        .glosario-search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:#94A3B8;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-        .glosario-list{display:flex;flex-direction:column;gap:10px}
-        .glosario-item{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;cursor:pointer;transition:all .2s}
-        .glosario-item:active{transform:scale(.98);background:#F1F5F9}
-        .glosario-item-title{font-size:.95rem;font-weight:600;color:var(--txt);flex:1}
-        .glosario-item-arrow{color:#CBD5E1;font-size:1.2rem;margin-left:10px}
-        .glosario-count{font-size:.8rem;color:#94A3B8;margin-bottom:16px;font-weight:500}
-        .glosario-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;display:flex;align-items:flex-end;justify-content:center}
-        .glosario-overlay.hidden{display:none}
-        .glosario-modal{background:#fff;width:100%;max-width:480px;max-height:90vh;border-radius:18px 18px 0 0;display:flex;flex-direction:column;overflow:hidden;animation:slideUp .3s ease}
-        .glosario-modal-top{padding:20px 24px;border-bottom:1px solid #E2E8F0;display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0}
-        .glosario-modal-top h3{font-size:1.15rem;font-weight:700;color:var(--pri);line-height:1.3;flex:1;margin-right:12px}
-        .glosario-close{width:32px;height:32px;border-radius:50%;border:none;background:#F1F5F9;color:#64748B;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-        .glosario-modal-body{padding:24px;overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
-        .glosario-section{margin-bottom:24px}.glosario-section:last-child{margin-bottom:0}
-        .glosario-section-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pri);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #E2E8F0}
-        .glosario-section-text{font-size:.95rem;color:var(--txt);line-height:1.8;word-wrap:break-word}
-        .glosario-source-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--pri);color:#fff;border:none;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .2s;margin-top:4px}
-        .glosario-source-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+        /* ===== NUEVOS ESTILOS ===== */
+        .back-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:#F1F5F9;color:var(--txt);border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;margin-bottom:20px}
+        .back-btn:active{transform:scale(.97);background:#E2E8F0}
 
-        @media(max-width:600px){.calc-grid{grid-template-columns:1fr}.app-title{font-size:2rem}.card{padding:24px 20px}.step-dot{width:24px;height:24px;font-size:.65rem}.step-line{width:8px}}
+        .mod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:8px}
+        .mod-card{background:#F8FAFC;border:2px solid #E2E8F0;border-radius:14px;padding:24px;cursor:pointer;transition:all .25s}
+        .mod-card:active{transform:scale(.97)}
+        .mod-card:hover{border-color:var(--pri);box-shadow:0 8px 30px rgba(0,0,0,.08)}
+        .mod-card-icon{width:48px;height:48px;background:var(--priL);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px}
+        .mod-card-title{font-size:1.05rem;font-weight:700;color:var(--txt);margin-bottom:6px}
+        .mod-card-desc{font-size:.85rem;color:var(--txt2);line-height:1.5}
+        .mod-section{margin-bottom:28px}
+        .mod-section-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pri);margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #F1F5F9}
+        .mod-section-text{font-size:.92rem;color:var(--txt);line-height:1.8;white-space:pre-line}
+        .mod-doc-link{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;margin-bottom:8px;cursor:pointer;transition:all .2s;font-size:.9rem;font-weight:500;color:var(--txt)}
+        .mod-doc-link:active{background:#F1F5F9;transform:scale(.98)}
+        .mod-doc-link .arrow{color:var(--pri);font-weight:700;font-size:1.1rem}
+        .pago-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+        .pago-card{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:20px}
+        .pago-card-title{font-size:1rem;font-weight:700;color:var(--txt);margin-bottom:6px}
+        .pago-card-text{font-size:.85rem;color:var(--txt2);line-height:1.5}
+        .pago-card-link{display:inline-block;margin-top:8px;font-size:.8rem;font-weight:600;color:var(--pri);text-decoration:none}
+
+        .bib-sub-nav{display:flex;gap:8px;margin-bottom:20px}
+        .bib-sub-btn{flex:1;padding:12px;border:2px solid #E2E8F0;border-radius:10px;background:#FFF;text-align:center;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .25s;color:var(--txt)}
+        .bib-sub-btn.active{background:var(--pri);color:#fff;border-color:var(--pri)}
+        .bib-cat-filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+        .bib-cat-btn{padding:8px 14px;background:#F1F5F9;border:1px solid #E2E8F0;border-radius:8px;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--txt)}
+        .bib-cat-btn.active{background:var(--pri);color:#fff;border-color:var(--pri)}
+        .bib-search{margin-bottom:16px;position:relative}
+        .bib-search input{width:100%;padding:14px 16px 14px 44px;border:2px solid #E2E8F0;border-radius:10px;font-size:1rem;outline:none;background:#FAFBFC;font-family:'Inter',sans-serif;transition:border-color .3s}
+        .bib-search input:focus{border-color:var(--pri)}
+        .bib-search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:#94A3B8;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .bib-count{font-size:.8rem;color:#94A3B8;margin-bottom:12px;font-weight:500}
+        .bib-list{display:flex;flex-direction:column;gap:10px}
+        .bib-item{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;cursor:pointer;transition:all .2s}
+        .bib-item:active{transform:scale(.98);background:#F1F5F9}
+        .bib-item-title{font-size:.95rem;font-weight:600;color:var(--txt);flex:1}
+        .bib-item-cat{font-size:.7rem;font-weight:700;padding:3px 8px;border-radius:4px;background:var(--priL);color:var(--pri);margin-right:10px;text-transform:uppercase;letter-spacing:.3px}
+        .bib-item-arrow{color:#CBD5E1;font-size:1.2rem;margin-left:10px}
+        .bib-article-cat{display:inline-block;padding:4px 10px;border-radius:6px;font-size:.7rem;font-weight:700;background:var(--priL);color:var(--pri);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+        .bib-article-title{font-size:1.5rem;font-weight:800;color:var(--pri);margin-bottom:16px;line-height:1.2}
+        .bib-section{margin-bottom:28px}
+        .bib-section-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pri);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #E2E8F0}
+        .bib-section-text{font-size:.92rem;color:var(--txt);line-height:1.8;white-space:pre-line}
+        .bib-related-wrap{display:flex;flex-wrap:wrap;gap:8px}
+        .bib-related-item{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;font-size:.85rem;font-weight:500;color:var(--txt);cursor:pointer;transition:all .2s}
+        .bib-related-item:active{background:var(--priL);border-color:var(--pri)}
+        .bib-source-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--pri);color:#fff;border:none;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .2s;margin-top:4px}
+        .bib-source-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+        .bib-mini-btn{width:28px;height:28px;border-radius:6px;border:1px solid #E2E8F0;background:#F8FAFC;color:var(--pri);font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+        .bib-mini-btn:active{background:var(--priL);transform:scale(.9)}
+        .bib-explain-box{background:linear-gradient(135deg,#F8FAFC,#EFF6FF);border:2px solid #BFDBFE;border-radius:14px;padding:20px;margin-top:24px;text-align:center}
+        .bib-explain-box p{font-size:.9rem;color:var(--txt2);margin-bottom:12px;font-weight:500}
+        .bib-explain-links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+        .bib-inline-link{color:inherit;text-decoration:underline;font-weight:700;cursor:pointer}
+
+        .contact-card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:16px;margin-bottom:12px}
+        .contact-name{font-size:1rem;font-weight:700;color:var(--txt)}
+        .contact-type{display:inline-block;padding:3px 8px;border-radius:4px;font-size:.7rem;font-weight:700;background:var(--priL);color:var(--pri);text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px}
+        .contact-company{font-size:.85rem;color:var(--txt2);margin-bottom:4px}
+        .contact-details{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+        .contact-detail{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:6px;font-size:.8rem;color:var(--txt);text-decoration:none}
+        .contact-actions{display:flex;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid #F1F5F9}
+        .contact-action-btn{padding:6px 12px;border-radius:6px;border:none;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .2s}
+        .contact-action-btn.edit{background:#EFF6FF;color:#1E40AF}.contact-action-btn.delete{background:#FEF2F2;color:#991B1B}.contact-action-btn.whatsapp{background:#F0FDF4;color:#166534}
+
+        @media(max-width:600px){.calc-grid{grid-template-columns:1fr}.app-title{font-size:2rem}.card{padding:24px 20px}.step-dot{width:24px;height:24px;font-size:.65rem}.step-line{width:8px}.mod-grid{grid-template-columns:1fr}.pago-grid{grid-template-columns:1fr}.import-card{flex-direction:column;align-items:flex-start;gap:12px}.import-card-actions{margin-left:0}}
     </style>
 </head>
 <body>
@@ -186,7 +227,7 @@
 <div id="loginScreen">
     <div class="header">
         <h1 class="app-title"><span class="duava">DUAVA</span><span class="puente">Puente</span></h1>
-        <p class="app-subtitle">Gestión de Comercio Exterior</p>
+        <p class="app-subtitle">Centro de Gestión de Importaciones</p>
     </div>
     <div class="user-card">
         <button class="user-btn" id="btnAbelardo" onclick="selectUser('abelardo')">
@@ -212,15 +253,33 @@
         <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesión</button>
     </div>
     <div class="nav-container">
-        <button class="nav-btn active" onclick="switchTab(1)">Importación</button>
-        <button class="nav-btn" onclick="switchTab(2)">Mis casos</button>
-        <button class="nav-btn" onclick="switchTab(3)">Calculadora</button>
-        <button class="nav-btn" onclick="switchTab(4)">Glosario</button>
+        <button class="nav-btn active" onclick="switchTab(1)">Modalidades</button>
+        <button class="nav-btn" onclick="switchTab(2)">Importación</button>
+        <button class="nav-btn" onclick="switchTab(3)">Historial</button>
+        <button class="nav-btn" onclick="switchTab(4)">Calculadora</button>
+        <button class="nav-btn" onclick="switchTab(5)">Biblioteca</button>
     </div>
     <div class="content-area">
 
-        <!-- TAB 1: IMPORTACION -->
+        <!-- ============ TAB 1: MODALIDADES ============ -->
         <div id="tab1" class="tab-content active">
+            <div id="modListView">
+                <div class="card">
+                    <h2 class="phase-title">Modalidades de Importación</h2>
+                    <p class="phase-desc">Conoce todas las formas legales de importar en Bolivia. Cada modalidad tiene requisitos, ventajas y limitaciones diferentes.</p>
+                    <div class="mod-grid" id="modGrid"></div>
+                </div>
+                <div class="card">
+                    <h2 class="phase-title">Pagos Internacionales</h2>
+                    <p class="phase-desc">Métodos de pago para compras en el exterior. Cada uno tiene niveles de protección y costos diferentes.</p>
+                    <div class="pago-grid" id="pagosGrid"></div>
+                </div>
+            </div>
+            <div id="modDetailView" style="display:none"></div>
+        </div>
+
+        <!-- ============ TAB 2: IMPORTACION ============ -->
+        <div id="tab2" class="tab-content">
             <div id="newImportStart" class="card">
                 <h2 class="phase-title">Nueva Importación</h2>
                 <p class="phase-desc">Ingresa un nombre para esta importación y comienza el proceso guiado paso a paso.</p>
@@ -236,11 +295,10 @@
                 <p class="phase-desc" id="stepperDesc" style="margin-top:4px"></p>
                 <div class="stepper-bar" id="stepperBar"></div>
 
-                <!-- PASO 1: PRODUCTO -->
                 <div id="step1" class="step-form">
                     <div class="input-group"><label>Seleccionar Producto</label><select id="f1Producto" onchange="onStep1Producto()"><option value="">-- Elige un producto --</option></select></div>
                     <div id="reqPanel" style="display:none">
-                        <div id="agemedAlert" class="alert-box"><strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario o Certificado de Libre Venta.</div>
+                        <div id="agemedAlert" class="alert-box"><strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario o Certificado de Libre Venta. <span class="bib-inline-link" onclick="abrirBibDesde('AGEMED')">Ver en Biblioteca →</span></div>
                         <div class="req-panel" id="vendedorPanel" style="margin-top:16px">
                             <div class="req-title">¿Quién te vende este equipo?</div>
                             <div style="display:flex;gap:12px;margin-top:12px">
@@ -254,7 +312,7 @@
                         </div>
                         <div class="doc-panel" id="docPanel" style="display:none;margin-top:16px">
                             <div class="req-title">Documentos requeridos</div>
-                            <p class="doc-hint">Toca cada documento para cambiar su estado: pendiente &rarr; solicitado &rarr; recibido</p>
+                            <p class="doc-hint">Toca cada documento para cambiar su estado. Usa el ícono 📖 para ver en Biblioteca.</p>
                             <div id="docList"></div>
                         </div>
                         <div id="docExtraPanel" style="display:none;margin-top:16px">
@@ -268,7 +326,6 @@
                     </div>
                 </div>
 
-                <!-- PASO 2: PROVEEDOR -->
                 <div id="step2" class="step-form">
                     <div id="providerReminder"></div>
                     <div class="input-group"><label>Nombre del Proveedor</label><input type="text" id="f2Proveedor" placeholder="Ej: Foshan Gladen Medical"></div>
@@ -278,7 +335,6 @@
                     <div class="checkbox-group"><input type="checkbox" id="f2Muestra"><label for="f2Muestra">Solicitó muestra del producto</label></div>
                 </div>
 
-                <!-- PASO 3: NEGOCIACION -->
                 <div id="step3" class="step-form">
                     <div class="input-group"><label>Número de Proforma</label><input type="text" id="f3Proforma" placeholder="Ej: PI-2026-001"></div>
                     <div class="calc-grid"><div class="input-group"><label>Incoterm</label><select id="f3Incoterm"><option>FOB</option><option>EXW</option><option>CIF</option><option>DDP</option></select></div><div class="input-group"><label>Moneda</label><select id="f3Moneda"><option>USD</option><option>EUR</option><option>CNY</option></select></div></div>
@@ -286,7 +342,6 @@
                     <div class="input-group"><label>Fecha Estimada de Embarque</label><input type="date" id="f3Fecha"></div>
                 </div>
 
-                <!-- PASO 4: LOGISTICA -->
                 <div id="step4" class="step-form">
                     <div class="calc-grid"><div class="input-group"><label>Tipo de Envío</label><select id="f4Tipo"><option>Marítimo FCL</option><option>Marítimo LCL</option><option>Aéreo</option><option>Terrestre</option></select></div><div class="input-group"><label>Número de Contenedor</label><input type="text" id="f4Contenedor" placeholder="Ej: TCLU1234567"></div></div>
                     <div class="calc-grid"><div class="input-group"><label>Costo de Flete (USD)</label><input type="number" id="f4Flete" placeholder="0.00"></div><div class="input-group"><label>Seguro (USD)</label><input type="number" id="f4Seguro" placeholder="0.00"></div></div>
@@ -294,12 +349,11 @@
                     <div class="input-group"><label>Puerto de Destino</label><input type="text" id="f4Destino" placeholder="Ej: Arica, Bolivia"></div>
                 </div>
 
-                <!-- PASO 5: RESUMEN ECONOMICO -->
                 <div id="step5" class="step-form">
                     <p style="font-size:.85rem;color:var(--txt2);margin-bottom:16px">Calculadora de impuestos con desglose por nombre de cada tasa.</p>
                     <div class="calc-grid"><div class="input-group"><label>Valor FOB (USD)</label><input type="number" id="f5FOB" placeholder="0.00" oninput="calcularLocal()"></div><div class="input-group"><label>Flete + Seguro (USD)</label><input type="number" id="f5FleteSeg" placeholder="0.00" oninput="calcularLocal()"></div></div>
                     <div class="input-group"><label>Tasa de Cambio (Bs/USD)</label><input type="number" id="f5Tasa" placeholder="Ej: 6.96" step="0.01" oninput="calcularLocal()"></div>
-                    <a href="https://www.bcb.gob.bo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 16px;background:var(--pri);color:#fff;border-radius:8px;font-size:.85rem;font-weight:600;text-decoration:none;margin-bottom:16px;transition:opacity .2s"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Consultar tasa en Banco Central</a>
+                    <a href="https://www.bcb.gob.bo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 16px;background:var(--pri);color:#fff;border-radius:8px;font-size:.85rem;font-weight:600;text-decoration:none;margin-bottom:16px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Consultar tasa en Banco Central</a>
                     <div class="result-box" id="f5Result" style="display:none">
                         <div class="result-row"><span class="result-label">Partida Arancelaria:</span><span class="result-value" id="rPartida">-</span></div>
                         <div class="result-row"><span class="result-label">Valor CIF (USD / Bs):</span><span class="result-value" id="rCIF">-</span></div>
@@ -308,10 +362,18 @@
                         <div class="result-row"><span class="result-label">Costo Total Bolivia (USD):</span><span class="result-value" id="rTotalUSD">-</span></div>
                         <div class="result-row"><span class="result-label">Costo Total Bolivia (Bs):</span><span class="result-value" id="rTotalBs">-</span></div>
                     </div>
-                    <div class="alert-box" id="f5Alert"><strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario o Certificado de Libre Venta.</div>
+                    <div class="alert-box" id="f5Alert"><strong>ALERTA AGEMED:</strong> Este producto requiere Registro Sanitario o Certificado de Libre Venta. <span class="bib-inline-link" onclick="abrirBibDesde('AGEMED')">Ver en Biblioteca →</span></div>
+                    <div class="bib-explain-box" id="f5Explain" style="display:none">
+                        <p>¿Deseas entender cómo se obtiene este cálculo?</p>
+                        <div class="bib-explain-links">
+                            <button class="action-btn" style="width:auto;padding:10px 18px;margin:0;font-size:.85rem" onclick="abrirBibDesde('Costo CIF')">Costo CIF</button>
+                            <button class="action-btn" style="width:auto;padding:10px 18px;margin:0;font-size:.85rem" onclick="abrirBibDesde('Gravamen Arancelario')">Gravamen Arancelario</button>
+                            <button class="action-btn" style="width:auto;padding:10px 18px;margin:0;font-size:.85rem" onclick="abrirBibDesde('IVA')">IVA</button>
+                            <button class="action-btn" style="width:auto;padding:10px 18px;margin:0;font-size:.85rem" onclick="abrirBibDesde('Incoterms')">Incoterms</button>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- PASO 6: RECEPCION -->
                 <div id="step6" class="step-form">
                     <div class="input-group"><label>Fecha de Recepción</label><input type="date" id="f6Fecha"></div>
                     <div class="checkbox-group"><input type="checkbox" id="f6Caja"><label for="f6Caja">Caja sin daños visibles</label></div>
@@ -326,18 +388,18 @@
             </div>
         </div>
 
-        <!-- TAB 2: MIS CASOS -->
-        <div id="tab2" class="tab-content">
+        <!-- ============ TAB 3: HISTORIAL ============ -->
+        <div id="tab3" class="tab-content">
             <div class="card">
-                <h2 class="phase-title">Mis Importaciones</h2>
-                <p class="phase-desc">Tus casos en curso y completados.</p>
+                <h2 class="phase-title">Historial de Importaciones</h2>
+                <p class="phase-desc">Tus importaciones en curso y completadas.</p>
                 <div id="secActivas"><h3 style="font-size:.8rem;font-weight:700;color:#92400E;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">En curso</h3><div id="listaActivas"></div></div>
                 <div id="secCompletadas" style="margin-top:24px"><h3 style="font-size:.8rem;font-weight:700;color:#065F46;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Completadas</h3><div id="listaCompletadas"></div></div>
             </div>
         </div>
 
-        <!-- TAB 3: CALCULADORA -->
-        <div id="tab3" class="tab-content">
+        <!-- ============ TAB 4: CALCULADORA ============ -->
+        <div id="tab4" class="tab-content">
             <div id="calcListView" class="card">
                 <h2 class="phase-title">Calculadora de Rentabilidad</h2>
                 <p class="phase-desc">Crea cotizaciones de importación, agrega equipos y calcula costos reales con impuestos detallados por nombre.</p>
@@ -359,7 +421,7 @@
                     <div style="margin-top:20px;padding-top:16px;border-top:2px solid #F1F5F9">
                         <div class="calc-grid"><div class="input-group"><label>Flete Total (USD)</label><input type="number" id="loteFlete" placeholder="0.00" step="0.01"></div><div class="input-group"><label>Seguro Total (USD)</label><input type="number" id="loteSeguro" placeholder="0.00" step="0.01"></div></div>
                         <div class="input-group"><label>Tasa de Cambio (Bs/USD)</label><input type="number" id="loteTasa" placeholder="Ej: 6.96" step="0.01"></div>
-                        <a href="https://www.bcb.gob.bo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 16px;background:var(--pri);color:#fff;border-radius:8px;font-size:.85rem;font-weight:600;text-decoration:none;margin-bottom:16px;transition:opacity .2s"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Consultar tasa en Banco Central</a>
+                        <a href="https://www.bcb.gob.bo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 16px;background:var(--pri);color:#fff;border-radius:8px;font-size:.85rem;font-weight:600;text-decoration:none;margin-bottom:16px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Consultar tasa en Banco Central</a>
                     </div>
                     <button class="action-btn" onclick="calcularLote()">Calcular</button>
                     <button class="action-btn" onclick="guardarLote()" style="background:#166534;margin-top:8px">Guardar Cotización</button>
@@ -368,42 +430,59 @@
                 <div id="loteResultadoView" style="display:none">
                     <div class="card" id="loteResumenEquipos"></div>
                     <div class="card" id="loteResumenTotal"></div>
+                    <div class="card" id="loteBibExplain"></div>
                     <button class="action-btn" onclick="compartirWhatsApp()" style="background:#25D366;margin-top:8px">Compartir por WhatsApp</button>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 4: GLOSARIO -->
-        <div id="tab4" class="tab-content">
-            <div class="card">
-                <h2 class="phase-title">Glosario de Términos</h2>
-                <p class="phase-desc">Definiciones oficiales de documentos y términos de importación.</p>
-                <div class="glosario-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="glosarioInput" placeholder="Buscar término..." oninput="filtrarGlosario()"></div>
-                <p class="glosario-count" id="glosarioCount"></p>
-                <div class="glosario-list" id="glosarioList"><div style="text-align:center;padding:40px;color:#94A3B8">Cargando glosario...</div></div>
+        <!-- ============ TAB 5: BIBLIOTECA ============ -->
+        <div id="tab5" class="tab-content">
+            <div id="bibListView">
+                <div class="card">
+                    <h2 class="phase-title">Biblioteca</h2>
+                    <p class="phase-desc">Centro de conocimiento sobre importaciones en Bolivia. Todo lo que necesitas saber, conectado y organizado.</p>
+                    <div class="bib-sub-nav">
+                        <button class="bib-sub-btn active" id="bibSubArticulos" onclick="switchBibView('articulos')">Artículos</button>
+                        <button class="bib-sub-btn" id="bibSubContactos" onclick="switchBibView('contactos')">Contactos</button>
+                    </div>
+                    <div id="bibArticulosView">
+                        <div class="bib-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="bibSearchInput" placeholder="Buscar artículo..." oninput="filtrarBiblioteca()"></div>
+                        <div class="bib-cat-filter" id="bibCatFilter"></div>
+                        <p class="bib-count" id="bibCount"></p>
+                        <div class="bib-list" id="bibList"><div class="empty-state">Cargando biblioteca...</div></div>
+                    </div>
+                    <div id="bibContactosView" style="display:none">
+                        <div class="bib-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="contSearchInput" placeholder="Buscar contacto..." oninput="filtrarContactos()"></div>
+                        <button class="action-btn" onclick="openContactForm()" style="margin-bottom:16px">+ Agregar Contacto</button>
+                        <div id="contactosList"></div>
+                    </div>
+                </div>
             </div>
+            <div id="bibArticleView" style="display:none"></div>
+            <div id="bibContactFormView" style="display:none"></div>
         </div>
     </div>
 </div>
 
-<div class="glosario-overlay hidden" id="glosarioOverlay" onclick="if(event.target===this)cerrarGlosario()">
-    <div class="glosario-modal">
-        <div class="glosario-modal-top"><h3 id="glosarioTitle"></h3><button class="glosario-close" onclick="cerrarGlosario()">&times;</button></div>
-        <div class="glosario-modal-body" id="glosarioBody"></div>
-    </div>
-</div>
-
 <script>
-function hx(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function hx(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}
 
+/* ===== GOOGLE SHEETS URLS ===== */
 var SID="1CdI4J1KqBTifUDHBLNESEzrXN5gaLOthcxNS3UVdn8I";
 var PROD_URL="https://docs.google.com/spreadsheets/d/"+SID+"/gviz/tq?tqx=out:csv&sheet=Productos";
-var GLOS_GID="382618591";
-var GLOS_URL="https://docs.google.com/spreadsheets/d/"+SID+"/export?format=csv&gid="+GLOS_GID;
+var MOD_URL="https://docs.google.com/spreadsheets/d/"+SID+"/gviz/tq?tqx=out:csv&sheet=Modalidades_Importacion";
+var BIB_URL="https://docs.google.com/spreadsheets/d/"+SID+"/gviz/tq?tqx=out:csv&sheet=Biblioteca";
+var CONT_URL="https://docs.google.com/spreadsheets/d/"+SID+"/gviz/tq?tqx=out:csv&sheet=Contactos_Actores";
 
+/* ===== STATE ===== */
 var productosDB={};
-var glosarioDB=[];
-var glosarioLoaded=false;
+var modalidadesDB=[];
+var pagosDB=[];
+var bibliotecaDB=[];
+var contactosDB=[];
+var bibLoaded=false;
+var modLoaded=false;
 var allImports=[];
 var allLotes=[];
 var curImport=null;
@@ -412,71 +491,443 @@ var selectedUser=null;
 var curLote=null;
 var curLoteEquipos=[];
 var _loteResults=null;
+var curBibCat="Todos";
+var curBibView="articulos";
 
 var USERS={abelardo:{n:"Abelardo",c:"CEO",p:"7512",t:"tema-ceo"},tania:{n:"Tania",c:"Responsable de Comercio Internacional",p:"TA25",t:"tema-tania"}};
 var STEP_D=["Selecciona el producto, indica quién te vende y gestiona los documentos.","Registra los datos del proveedor. La app te indica qué documentos pedirle.","Datos de la Factura Proforma y condiciones comerciales.","Seguimiento de flete, ruta y documentación de transporte.","Resumen económico con impuestos detallados por nombre en USD y Bs.","Verificación del producto recibido y activación de garantía."];
 
+/* ===== DEFAULT DATA: MODALIDADES ===== */
+var DEFAULT_MODALIDADES=[
+{id:"carnet",modalidad:"Importación con Carnet Personal",icono:"🪪",
+descripcion:"Cualquier persona natural con cédula de identidad vigente puede realizar importaciones para uso personal sin necesidad de constituir una empresa. Se utiliza el NIT personal y se paga el total de impuestos en aduana. Es la forma más simple de importar pero tiene límites de valor y cantidad.",
+ventajas:"• No requiere constitución de empresa\n• Trámite más simple y rápido\n• Menor costo inicial\n• Ideal para pruebas de mercado y muestras\n• Sin contabilidad empresarial obligatoria",
+desventajas:"• Límites de valor por envío establecidos por Aduana\n• Sin beneficios tributarios empresariales\n• No puede emitir facturas para reventa formal\n• Percepción de menor seriedad ante proveedores\n• No permite deducir gastos como costo operativo",
+requisitos:"• Cédula de identidad vigente\n• NIT personal habilitado\n• Declaración Única de Importación (DUI)\n• Factura comercial del proveedor\n• Packing List",
+documentos:"Factura Comercial,Packing List,Certificado de Origen,DUI,Guía de transporte",
+obligaciones:"• Pago de Gravamen Arancelario según partida\n• Pago de IVA del 14.94%\n• Pago de ICE si el producto aplica\n• Declarar correctamente el valor y contenido",
+limitaciones:"• Valor máximo por operación según normativa Aduana\n• Cantidad limitada por tipo de producto\n• No aplica para todos los códigos arancelarios\n• Sin acceso a Drawback o devolución de gravámenes",
+cuando_conviene:"Cuando se quiere probar un producto antes de constituir empresa, para importar muestras, o para uso personal de equipamiento.",
+fuente:"Aduana Nacional de Bolivia",url:"https://www.aduana.gob.bo",
+notas_duava:"Útil para pruebas iniciales de mercado y muestras. DUAVA usará esta modalidad solo para envíos de prueba antes de constituir empresa. La importación comercial real se hará mediante Empresa Unipersonal."},
+{id:"unipersonal",modalidad:"Empresa Unipersonal",icono:"🏢",
+descripcion:"Tipo societario creado por una sola persona, con personalidad jurídica propia y responsabilidad limitada al capital aportado. Se registra en FUNDEMPRESA y obtiene NIT propio en SIAT. Es la forma más ágil de constituir una empresa formal para importar en Bolivia.",
+ventajas:"• Un solo titular con control total\n• Constitución rápida (días hábiles)\n• Personalidad jurídica propia\n• Responsabilidad limitada al capital aportado\n• Puede emitir facturas y contratar personal\n• Acceso a NIT empresarial para importar",
+desventajas:"• Un solo titular (no admite socios)\n• Capital limitado a los recursos propios\n• Menor percepción de solidez que una SRL\n• Crecimiento limitado a capacidad individual\n• Si el titular falla, la empresa se extingue",
+requisitos:"• Cédula de identidad vigente\n• Minuta de constitución (notariada)\n• Matrícula de comercio\n• NIT en SIAT\n• Objeto social que incluya importación\n• Capital social declarado",
+documentos:"Minuta de Constitución,Matrícula de Comercio,NIT,Resolución de NIT,Objeto Social",
+obligaciones:"• Llevar contabilidad formal\n• Presentar declaraciones juradas mensuales y anuales\n• Pago de IVA, IT y RC-IVA\n• Inscripción en el Padrón de Contribuyentes\n• Registro como importador en Aduana",
+limitaciones:"• Solo un titular\n• No puede emitir acciones\n• Difícil incorporar socios después\n• Responsabilidad puede extenderse si no se lleva contabilidad formal",
+cuando_conviene:"Cuando una persona quiere importar comercialmente con su propia estructura, sin depender de socios. Es la opción recomendada para iniciar operaciones de importación de forma rápida y legal.",
+fuente:"FUNDEMPRESA - Fundación para el Desarrollo Empresarial",url:"https://www.fundempresa.gob.bo",
+notas_duava:"Esta será la modalidad inicial de DUAVA. Tania será la titular. El objeto social incluirá importación de equipos odontológicos y productos de salud. Posteriormente se migrará a SRL cuando sea necesario incorporar socios o escalar."},
+{id:"srl",modalidad:"Sociedad de Responsabilidad Limitada (SRL)",icono:"🏛️",
+descripcion:"Tipo societario formado por entre 2 y 25 socios, cada uno con responsabilidad limitada a su aporte. Es la forma más común de sociedad comercial en Bolivia para operaciones medianas. Ofrece mayor credibilidad ante proveedores internacionales y entidades financieras.",
+ventajas:"• Mayor credibilidad y solidez ante proveedores\n• Responsabilidad limitada de cada socio\n• Permite compartir riesgos y capital entre socios\n• Mejor acceso a financiamiento bancario\n• Estructura más formal y escalable\n• Permite incorporar nuevos socios",
+desventajas:"• Mínimo 2 socios requeridos\n• Constitución más compleja y costosa\n• Asambleas y decisiones colectivas obligatorias\n• Más trámites contables y legales\n• Cambios de socios requieren modificación de estatutos",
+requisitos:"• Mínimo 2 socios con cédula de identidad\n• Pacto Social y Estatutos (notariados)\n• Matrícula de comercio\n• NIT en SIAT\n• Capital social dividido en partes de interés\n• Objeto social que incluya importación",
+documentos:"Pacto Social,Estatutos Sociales,Matrícula de Comercio,NIT,Resolución de NIT,Designación de Representante Legal",
+obligaciones:"• Llevar contabilidad formal completa\n• Asambleas ordinarias anuales\n• Presentar balances y estados financieros\n• Declaraciones juradas mensuales y anuales\n• Pago de IVA, IT y RC-IVA\n• Registro como importador en Aduana",
+limitaciones:"• Máximo 25 socios\n• No puede cotizar en bolsa\n• Cambios de socios requieren escritura pública\n• Más costos operativos que Empresa Unipersonal",
+cuando_conviene:"Cuando se quiere escalar el negocio, incorporar socios inversores, o cuando se necesita mayor credibilidad ante proveedores extranjeros y bancos. Recomendada cuando DUAVA supere la fase inicial.",
+fuente:"FUNDEMPRESA - Ley 16098 de Sociedades Comerciales",url:"https://www.fundempresa.gob.bo",
+notas_duava:"Esta será la segunda etapa de DUAVA. Se migrará de Empresa Unipersonal a SRL cuando sea necesario incorporar socios o cuando el volumen de importaciones requiera mayor estructura. El objetivo es que DUAVA Importaciones SRL sea la entidad operativa a largo plazo."}
+];
+
+var DEFAULT_PAGOS=[
+{nombre:"Alibaba Trade Assurance",descripcion:"Sistema de protección de pagos de Alibaba. El dinero se retiene en una cuenta de garantía hasta que el comprador confirma la recepción del producto. Oficial de Alibaba.",url:"https://tradeassurance.alibaba.com"},
+{nombre:"Transferencia Bancaria (T/T)",descripcion:"Transferencia directa desde cuenta bancaria boliviana a la cuenta del proveedor. Generalmente se usa 30% anticipo y 70% contra copia de BL. Es el método más común.",url:"https://www.bcb.gob.bo"},
+{nombre:"Western Union / MoneyGram",descripcion:"Útil para pagos pequeños o muestras. Rápido pero sin protección de garantía. Costos de comisión más altos que transferencia bancaria.",url:"https://www.westernunion.com"},
+{nombre:"Carta de Crédito (L/C)",descripcion:"Documento bancario que garantiza el pago al proveedor una vez que cumple las condiciones documentarias. Es el método más seguro pero más costoso y complejo. Ideal para montos altos.",url:"https://www.bcb.gob.bo"}
+];
+
+/* ===== DEFAULT DATA: BIBLIOTECA ===== */
+var DEFAULT_BIBLIOTECA=[
+{id:"nit",tema:"NIT",cat:"Documentos",
+teoria:"El NIT (Número de Identificación Tributaria) es el identificador fiscal único asignado por el Servicio de Impuestos Nacionales (SIN) a toda persona natural o jurídica que realiza actividades económicas en Bolivia. Es obligatorio para emitir facturas, importar, exportar y realizar cualquier transacción comercial formal.",
+practica:"Se tramita en línea en el portal del SIN o presencialmente en una oficina. Se necesita cédula de identidad, dirección y actividad económica. El trámite es gratuito y puede completarse en 24-48 horas. Una vez obtenido, se debe imprimir la Resolución de NIT y el Padrón de Contribuyentes.",
+duava:"DUAVA necesita NIT propio para importar. Se obtendrá mediante la constitución de Empresa Unipersonal a nombre de Tania. El NIT será el número con el que DUAVA realizará todas sus operaciones tributarias, importaciones y facturación. Es el primer paso formal del proyecto.",
+docs:"Empresa Unipersonal,Matrícula de Comercio,Resolución de NIT",
+actores:"SIAT,Contador,FUNDEMPRESA",
+normativa:"Ley 843 (Código Tributario), DS 21531, RND 10-0024-16",
+fuente:"Servicio de Impuestos Nacionales",url:"https://siat.at.gob.bo",
+duava_exp:"El NIT se gestionará como primera etapa del proyecto. Tania será la responsable legal. El NIT se usará para toda la operación de importación de DUAVA."},
+
+{id:"eu",tema:"Empresa Unipersonal",cat:"Conceptos",
+teoria:"La Empresa Unipersonal es un tipo societario regulado por el Código de Comercio boliviano donde una sola persona natural constituye una empresa con personalidad jurídica propia. El titular tiene responsabilidad limitada al capital aportado. Se registra en FUNDEMPRESA.",
+practica:"Para constituirla se necesita: acudir a FUNDEMPRESA con cédula de identidad, definir el objeto social, el capital social y la denominación. El trámite toma de 3 a 7 días hábiles. Luego se obtiene NIT en SIAT y Matrícula de Comercio. Costo aproximado: Bs 200-500 según notaría.",
+duava:"Primera estructura legal de DUAVA. Será constituida por Tania como titular. El objeto social incluirá importación, comercialización y distribución de equipos odontológicos y productos afines al sector salud. Esta estructura permitirá importar legalmente con NIT propio.",
+docs:"NIT,Matrícula de Comercio,SIAT,Objeto Social,Designación de Representante Legal",
+actores:"FUNDEMPRESA,SIAT,Contador,Notario de Fe Pública",
+normativa:"Código de Comercio Libro II Título III, Ley 16098 de Sociedades Comerciales",
+fuente:"FUNDEMPRESA",url:"https://www.fundempresa.gob.bo",
+duava_exp:"Esta será la modalidad inicial de DUAVA Importaciones. Tania será la titular y representante legal. La migración a SRL se planifica para cuando sea necesario incorporar socios o escalar operaciones."},
+
+{id:"srl_art",tema:"SRL (Sociedad de Responsabilidad Limitada)",cat:"Conceptos",
+teoria:"La SRL es una sociedad comercial formada entre 2 y 25 socios, cada uno con responsabilidad limitada al monto de su aporte. El capital se divide en partes de interés (no acciones). Es la forma societaria más usada en Bolivia para empresas medianas.",
+practica:"Se constituye ante notario con un Pacto Social y Estatutos. Se registra en FUNDEMPRESA, se obtiene NIT y Matrícula. Los socios deben definir la administración (gerente o consejo). Las decisiones se toman en asambleas. Costo: Bs 1,000-3,000 según complejidad.",
+duava:"Será la segunda etapa de DUAVA cuando sea necesario incorporar socios o cuando el volumen de operaciones justifique una estructura más robusta. La SRL dará mayor credibilidad ante proveedores internacionales y acceso a líneas de crédito.",
+docs:"NIT,Matrícula de Comercio,Pacto Social,Estatutos Sociales,Designación de Representante Legal",
+actores:"FUNDEMPRESA,SIAT,Contador,Notario de Fe Pública",
+normativa:"Código de Comercio Libro II Título IV, Ley 16098 de Sociedades Comerciales",
+fuente:"FUNDEMPRESA",url:"https://www.fundempresa.gob.bo",
+duava_exp:"Migración planificada desde Empresa Unipersonal. Se constituirá cuando DUAVA necesite más de un socio operativo o cuando el banco requiera estructura SRL para líneas de crédito mayores."},
+
+{id:"agemed",tema:"AGEMED",cat:"Entidades",
+teoria:"AGEMED (Agencia Estatal de Medicamentos y Tecnologías en Salud) es el organismo regulador boliviano encargado de controlar la calidad, seguridad y eficacia de medicamentos, dispositivos médicos y equipos biomédicos que ingresan al país. Otorga el Registro Sanitario y el Certificado de Libre Venta.",
+practica:"Todo equipo o producto que entre en categoría de dispositivo médico o equipo biomédico requiere Registro Sanitario o Certificado de Libre Venta emitido por AGEMED. El trámite requiere presentar ficha técnica, certificados del fabricante (ISO, CE), y documentación del producto. Tiempo: 30-90 días.",
+duava:"Los equipos odontológicos que DUAVA importa están sujetos a regulación AGEMED. Esto significa que además de los trámites aduaneros normales, se debe gestionar el Registro Sanitario o Certificado de Libre Venta antes de poder comercializarlos. Este es un paso crítico en el proceso de importación.",
+docs:"Registro Sanitario,Certificado de Libre Venta,Ficha Técnica,Certificado ISO 13485,Certificado CE",
+actores:"AGEMED,Proveedor,Fabricante,Representante Legal",
+normativa:"Ley 1152 de Medicamentos, DS 28788, RAGEMED",
+fuente:"AGEMED",url:"https://www.agemed.gob.bo",
+duava_exp:"AGEMED es un actor clave en las importaciones de DUAVA. Cada producto importado debe tener su documentación AGEMED. El costo y tiempo de este trámite debe considerarse en toda cotización."},
+
+{id:"fc",tema:"Factura Comercial",cat:"Documentos",
+teoria:"La Factura Comercial (Commercial Invoice) es el documento emitido por el vendedor/proveedor que detalla los productos vendidos, cantidades, precios unitarios, valor total, términos de pago y datos de ambas partes. Es obligatoria para toda importación y se presenta ante Aduana.",
+practica:"Debe contener: datos del exportador e importador, descripción detallada de mercancía, cantidades, precios unitarios y totales, moneda, términos Incoterm, país de origen, forma de pago. Debe estar en inglés o español. Se presenta original + copias según requiera la aduana.",
+duava:"Para cada importación de DUAVA, el proveedor debe emitir una Factura Comercial con los datos de DUAVA (Empresa Unipersonal de Tania) como importador. Los datos deben coincidir exactamente con los del NIT y los documentos de constitución.",
+docs:"Packing List,Certificado de Origen,Bill of Lading,DUI",
+actores:"Proveedor,Importador,Despachante de Aduana",
+normativa:"DS 27310 Reglamento Aduanero, Resolución de Directorio Aduanero",
+fuente:"Aduana Nacional de Bolivia",url:"https://www.aduana.gob.bo",
+duava_exp:"Cada factura debe tener los datos exactos de DUAVA: Razón social, NIT, dirección. Cualquier error puede causar retrasos en aduana. Verificar siempre antes de enviar la orden al proveedor."},
+
+{id:"pl",tema:"Packing List",cat:"Documentos",
+teoria:"El Packing List es un documento que detalla el contenido de cada bulto, caja o contenedor enviado. Incluye: descripción de cada artículo, cantidad, peso bruto y neto, dimensiones y tipo de embalaje. Complementa la Factura Comercial y es esencial para el despacho aduanero.",
+practica:"Se emite generalmente por el proveedor/fabricante junto con la Factura Comercial. Debe coincidir exactamente con lo que se envía. La aduana lo usa para verificar que el contenido declarado coincida con el contenido real. Cualquier discrepancia genera multas o retención.",
+duava:"DUAVA debe exigir al proveedor un Packing List detallado para cada embarque. Este documento será comparado con el contenido real al momento de la recepción en el paso 6 del proceso de importación. La verificación física debe hacerse antes de firmar el Acta de Recepción.",
+docs:"Factura Comercial,Bill of Lading,DUI",
+actores:"Proveedor,Agente de Carga,Despachante de Aduana",
+normativa:"DS 27310 Reglamento Aduanero",
+fuente:"Aduana Nacional de Bolivia",url:"https://www.aduana.gob.bo",
+duava_exp:"El Packing List es clave para la verificación en el paso 6 de importación. DUAVA debe comparar el Packing List con el contenido real antes de firmar cualquier documento de recepción."},
+
+{id:"bl",tema:"Bill of Lading (BL)",cat:"Documentos",
+teoria:"El Bill of Lading (Conocimiento de Embarque) es el documento emitido por la naviera o agente de carga que certifica que la mercancía ha sido recibida para transporte marítimo. Funciona como: recibo de mercancía, contrato de transporte y título de propiedad de la carga.",
+practica:"Es emitido por la naviera una vez cargado el contenedor. Contiene: datos del embarcador, consignatario, buque, puertos, descripción de mercancía y contenedor. El BL original es necesario para retirar la carga en destino. Se puede negociar el pago del saldo restante contra presentación de BL.",
+duava:"Para DUAVA, el BL es fundamental porque: (1) acredita que la mercancía fue embarcada, (2) permite retirar la carga en el puerto de destino, y (3) es el documento que activa el pago del 70% restante según las condiciones comerciales típicas (30% anticipo - 70% BL).",
+docs:"Factura Comercial,Packing List,Certificado de Origen,DUI",
+actores:"Naviera,Agente de Carga,Proveedor,Despachante de Aduana",
+normativa:"Ley de Navegación, DS 27310 Reglamento Aduanero",
+fuente:"Aduana Nacional de Bolivia",url:"https://www.aduana.gob.bo",
+duava_exp:"El BL determina cuándo DUAVA debe pagar el saldo restante al proveedor. Verificar siempre que los datos del BL coincidan con la Factura Comercial y el Packing List. El BL original es necesario para retirar la carga."},
+
+{id:"co",tema:"Certificado de Origen",cat:"Documentos",
+teoria:"El Certificado de Origen es un documento que certifica el país donde fue producido o manufacturado el producto. Puede dar acceso a preferencias arancelarias si existen acuerdos comerciales entre Bolivia y el país de origen. Es emitido por entidades autorizadas.",
+practica:"Se tramita en el país del exportador ante cámaras de comercio o entidades gubernamentales autorizadas. Bolivia tiene acuerdos comerciales con varios países (MERCOSUR, CAN, etc.) que pueden reducir o eliminar el Gravamen Arancelario. Si China es origen, generalmente no hay preferencias.",
+duava:"Para equipos importados de China, el Certificado de Origen no otorga preferencia arancelaria ya que Bolivia no tiene TLC con China. Sin embargo, es un documento que algunos despachantes solicitan. Verificar con el despachante si es obligatorio para la partida arancelaria del producto.",
+docs:"Factura Comercial,Packing List,DUI",
+actores:"Proveedor,Cámara de Comercio del país de origen,Despachante de Aduana",
+normativa:"DS 27310, Acuerdos Comerciales de Bolivia",
+fuente:"Aduana Nacional de Bolivia",url:"https://www.aduana.gob.bo",
+duava_exp:"Para importaciones de China, el Certificado de Origen no genera beneficio arancelario directo. Sin embargo, DUAVA debe verificar caso por caso según el producto y partida."},
+
+{id:"despachante",tema:"Despachante de Aduana",cat:"Entidades",
+teoria:"El Despachante de Aduana es un profesional autorizado por la Aduana Nacional para realizar trámites de importación y exportación en nombre de terceros. Está habilitado legalmente para presentar declaraciones aduaneras, calcular impuestos y gestionar el retiro de mercancía.",
+practica:"El despachante se encarga de: preparar y presentar la DUI, calcular los impuestos a pagar, coordinar con Aduana para inspección, gestionar el retiro de la mercancía del puerto o almacén. Sus honorarios varían según el valor de la carga (generalmente 1-3% del valor CIF o monto fijo).",
+duava:"DUAVA necesitará un despachante de aduana confiable para todas sus importaciones. El despachante será el responsable de presentar la DUI, calcular correctamente los impuestos y coordinar todo el proceso de nacionalización. Es una de las decisiones más importantes del proyecto.",
+docs:"DUI,Factura Comercial,Bill of Lading,Packing List,Certificado de Origen",
+actores:"Aduana Nacional,Agente de Carga,Transportista,Importador",
+normativa:"Ley 1990 Código Aduanero, DS 27310 Reglamento Aduanero, Reglamento de Despachantes de Aduana",
+fuente:"Aduana Nacional de Bolivia",url:"https://www.aduana.gob.bo",
+duava_exp:"La elección del despachante es crítica para DUAVA. Se recomienda elegir uno con experiencia en importación de equipos médicos/odontológicos y que conozca las regulaciones AGEMED."},
+
+{id:"ga",tema:"Gravamen Arancelario",cat:"Impuestos",
+teoria:"El Gravamen Arancelario (GA) es un impuesto aduanero que se aplica sobre el valor CIF (Costo + Seguro + Flete) de las mercancías importadas. La tasa varía según la partida arancelaria del producto (codificación del Sistema Armonizado). Las tasas en Bolivia van desde 0% hasta 40% según el tipo de producto.",
+practica:"Se calcula así: Valor CIF (en Bs) × tasa del GA según partida arancelaria. El valor CIF se obtiene sumando el valor FOB + flete + seguro, convertido a bolivianos a la tasa de cambio oficial del día. La partida arancelaria se determina por el código del producto en el Sistema Armonizado.",
+duava:"Para los equipos que DUAVA importa, el GA dependerá de la partida arancelaria específica de cada producto. Los equipos odontológicos generalmente tienen partidas en el rango 9018-9022 con tasas que varían. Es fundamental verificar la partida correcta antes de cotizar.",
+docs:"Factura Comercial,Bill of Lading,Packing List,DUI",
+actores:"Aduana Nacional,Despachante de Aduana,BCB (tasa de cambio)",
+normativa:"Ley 843 Art. 8, Decreto Supremo de Arancel, NALADISA",
+fuente:"Aduana Nacional de Bolivia",url:"https://www.aduana.gob.bo",
+duava_exp:"El GA es uno de los costos más importantes en la importación. La calculadora de DUAVA lo calcula automáticamente según la partida del producto. Siempre verificar la partida con el despachante antes de confirmar una compra."},
+
+{id:"iva",tema:"IVA en Importación",cat:"Impuestos",
+teoria:"El Impuesto al Valor Agregado (IVA) en importación es un tributo del 13% que se aplica sobre el valor CIF más el Gravamen Arancelario. En la práctica, con el IT (Impuesto a las Transacciones) integrado, la tasa efectiva es del 14.94%. Se paga obligatoriamente al momento de la nacionalización.",
+practica:"Fórmula: IVA = (Valor CIF en Bs + GA en Bs) × 14.94%. Este impuesto se paga junto con el GA al momento de presentar la DUI. El IVA pagado en importación puede ser utilizado como crédito fiscal si el importador está inscrito como contribuyente formal con NIT.",
+duava:"Al importar con Empresa Unipersonal y NIT propio, DUAVA puede utilizar el IVA pagado como crédito fiscal contra el IVA cobrado en ventas. Esto reduce significativamente el costo real de importación. Es una ventaja importante de importar con empresa formal vs. carnet personal.",
+docs:"DUI,Factura Comercial,NIT,Declaración Jurada IVA",
+actores:"Aduana Nacional,SIN (Servicio de Impuestos Nacionales),Despachante,Contador",
+normativa:"Ley 843 Art. 55-66, DS 21531, RND 10-0024-16",
+fuente:"Servicio de Impuestos Nacionales",url:"https://siat.at.gob.bo",
+duava_exp:"El IVA como crédito fiscal es una ventaja clave de importar con NIT propio. DUAVA debe llevar contabilidad formal para poder aprovechar este beneficio. El contador debe registrar correctamente cada DUI."},
+
+{id:"cif",tema:"Costo CIF",cat:"Conceptos",
+teoria:"CIF significa Cost, Insurance and Freight (Costo, Seguro y Flete). Es el valor total de la mercancía incluyendo el precio de compra (FOB), el costo del seguro y el flete hasta el puerto de destino. Es la base sobre la cual se calculan los impuestos de importación en Bolivia.",
+practica:"CIF = FOB + Seguro + Flete. Se expresa en la moneda de la factura generalmente en USD. Para calcular impuestos, se convierte a bolivianos usando la tasa de cambio oficial del BCB del día. Es el valor declarado en la DUI y sobre el cual se aplican GA e IVA.",
+duava:"En la calculadora de DUAVA, el CIF se calcula automáticamente al ingresar el FOB, flete y seguro. Es la base para el cálculo de todos los impuestos. Un error en el CIF produce un error en todos los impuestos. Verificar siempre con la Factura Comercial del proveedor.",
+docs:"Factura Comercial,Bill of Lading,Packing List,DUI",
+actores:"Proveedor,Agente de Carga,Despachante de Aduana,BCB",
+normativa:"Artículo 34 del Reglamento al Código Aduanero, Acuerdo de Valoración GATT/OMC",
+fuente:"Aduana Nacional de Bolivia",url:"https://www.aduana.gob.bo",
+duava_exp:"El CIF es el punto de partida de todos los cálculos de DUAVA. La calculadora lo usa como base para GA, IVA y costo total. Siempre verificar que el CIF calculado coincida con el de la Factura Comercial."},
+
+{id:"incoterms",tema:"Incoterms",cat:"Conceptos",
+teoria:"Los Incoterms (International Commercial Terms) son reglas internacionales publicadas por la Cámara de Comercio Internacional (ICC) que definen las responsabilidades del comprador y vendedor en una transacción internacional. Determinan quién paga el transporte, seguro, despacho de exportación e importación, y dónde se transfiere el riesgo.",
+practica:"Los más usados en importaciones a Bolivia:\n• EXW (Ex Works): El comprador paga todo desde la fábrica.\n• FOB (Free On Board): El vendedor paga hasta el puerto de origen. El comprador paga flete y seguro.\n• CIF (Cost, Insurance, Freight): El vendedor paga flete y seguro hasta el puerto de destino.\n• DDP (Delivered Duty Paid): El vendedor paga todo hasta la entrega final incluyendo impuestos.",
+duava:"Para DUAVA se recomienda FOB como Incoterm base. Esto permite controlar el flete y seguro (elegir agente de carga propio) y obtener mejores tarifas. Con CIF el proveedor elige el transportista y puede cobrar de más. FOB da más control y generalmente menor costo total.",
+docs:"Factura Comercial,Bill of Lading,Cotización del Proveedor",
+actores:"Proveedor,Agente de Carga,Importador",
+normativa:"Incoterms 2020 - Cámara de Comercio Internacional (ICC)",
+fuente:"ICC - International Chamber of Commerce",url:"https://iccwbo.org",
+duava_exp:"DUAVA debe negociar siempre en FOB para tener control del flete. Si el proveedor solo ofrece CIF, comparar el costo del flete que incluye con tarifas de agentes de carga independientes."},
+
+{id:"ac",tema:"Agente de Carga",cat:"Entidades",
+teoria:"El Agente de Carga (Freight Forwarder) es la empresa que coordina el transporte internacional de la mercancía. Se encarga de reservar espacio en el buque o avión, gestionar la documentación de transporte, coordinar el despacho aduanero en origen y ofrecer servicios logísticos integrales.",
+practica:"El agente de carga cotiza el flete según: ruta, tipo de carga, volumen y peso. También puede gestionar el seguro de transporte. En Bolivia, los agentes de carga operan desde los puertos de Arica e Iquique (Chile) como principales puntos de ingreso para carga marítima china.",
+duava:"DUAVA necesita un agente de carga confiable con experiencia en la ruta China-Bolivia. El agente será responsable de: cotizar flete, reservar espacio, coordinar el transporte desde el puerto de origen hasta Bolivia, y asistir con documentación. Comparar al menos 3 cotizaciones.",
+docs:"Bill of Lading,Cotización de Flete,Booking,Packing List",
+actores:"Naviera,Transportista,Despachante de Aduana,Proveedor",
+normativa:"Ley de Aduanas, Normativa de Transporte Internacional",
+fuente:"Aduana Nacional de Bolivia",url:"https://www.aduana.gob.bo",
+duava_exp:"La elección del agente de carga impacta directamente en el costo y tiempo de importación. DUAVA debe comparar tarifas y tiempos de al menos 3 agentes antes de cada embarque."}
+];
+
 /* ===== HELPERS ===== */
 function taxRow(label,usd,tasa){var bs=usd*tasa;return'<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:.85rem"><span style="color:var(--txt2);font-weight:500">'+hx(label)+'</span><span style="font-weight:600">$'+usd.toFixed(2)+' USD / '+bs.toFixed(2)+' Bs</span></div>'}
 function taxRowBold(label,usd,tasa){var bs=usd*tasa;return'<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:.95rem;font-weight:700"><span style="color:var(--txt2)">'+hx(label)+'</span><span>$'+usd.toFixed(2)+' USD / '+bs.toFixed(2)+' Bs</span></div>'}
+function modSec(title,text){return text?'<div class="mod-section"><div class="mod-section-title">'+hx(title)+'</div><div class="mod-section-text">'+hx(text)+'</div></div>':''}
+function bibSec(label,text){return text?'<div class="bib-section"><div class="bib-section-label">'+hx(label)+'</div><div class="bib-section-text">'+hx(text)+'</div></div>':''}
+function bibLinks(str,icon){if(!str)return'';var items=str.split(","),h='<div class="bib-related-wrap">';for(var i=0;i<items.length;i++){var t=items[i].trim();if(t)h+='<span class="bib-related-item" onclick="abrirBibDesde(\''+t.replace(/'/g,"\\'")+'\')">'+(icon||'📄')+' '+hx(t)+'</span>'}return h+'</div>'}
 
 /* ===== STORAGE ===== */
 function loadImports(){try{allImports=JSON.parse(localStorage.getItem("puente_imports")||"[]")}catch(e){allImports=[]}}
 function saveImports(){try{localStorage.setItem("puente_imports",JSON.stringify(allImports))}catch(e){}}
 function loadLotes(){try{allLotes=JSON.parse(localStorage.getItem("puente_lotes")||"[]")}catch(e){allLotes=[]}}
 function saveLotes(){try{localStorage.setItem("puente_lotes",JSON.stringify(allLotes))}catch(e){}}
+function loadContactos(){try{contactosDB=JSON.parse(localStorage.getItem("puente_contactos")||"[]")}catch(e){contactosDB=[]}}
+function saveContactos(){try{localStorage.setItem("puente_contactos",JSON.stringify(contactosDB))}catch(e){}}
 
 /* ===== LOGIN ===== */
 function selectUser(t){selectedUser=t;document.getElementById("btnAbelardo").classList.remove("active-abelardo");document.getElementById("btnTania").classList.remove("active-tania");document.getElementById("submitBtn").className="submit-btn";if(t==="abelardo"){document.getElementById("btnAbelardo").classList.add("active-abelardo");document.getElementById("submitBtn").classList.add("ready-abelardo")}else{document.getElementById("btnTania").classList.add("active-tania");document.getElementById("submitBtn").classList.add("ready-tania")}var pi=document.getElementById("passwordInput");pi.classList.remove("abelardo-theme","tania-theme");pi.classList.add(USERS[t].t);pi.value="";pi.blur();document.getElementById("errorMsg").classList.remove("show")}
 function onPwdInput(){if(!selectedUser)return;var v=document.getElementById("passwordInput").value;var u=USERS[selectedUser];document.getElementById("errorMsg").classList.toggle("show",v.length>=u.p.length&&v!==u.p)}
 function intentarLogin(){if(!selectedUser)return;var pi=document.getElementById("passwordInput");var u=USERS[selectedUser];if(pi.value===u.p)abrirApp(u);else{document.getElementById("errorMsg").classList.add("show");document.querySelector(".user-card").classList.add("shake");setTimeout(function(){pi.value="";document.getElementById("errorMsg").classList.remove("show");document.querySelector(".user-card").classList.remove("shake")},1500)}}
-function abrirApp(u){document.getElementById("loginScreen").style.display="none";document.getElementById("dashboardScreen").style.display="block";document.body.className=u.t;document.getElementById("topInfo").textContent="Hola, "+u.n+" | "+u.c;loadImports();loadLotes();renderMisCasos();renderLotesList();cargarProductos()}
+function abrirApp(u){document.getElementById("loginScreen").style.display="none";document.getElementById("dashboardScreen").style.display="block";document.body.className=u.t;document.getElementById("topInfo").textContent="Hola, "+u.n+" | "+u.c;loadImports();loadLotes();loadContactos();renderMisCasos();renderLotesList();cargarProductos();cargarModalidades();renderPagos()}
 function cerrarSesion(){if(curImport)saveStepData();document.body.className="";document.getElementById("dashboardScreen").style.display="none";document.getElementById("loginScreen").style.display="block";document.getElementById("passwordInput").value="";document.getElementById("btnAbelardo").classList.remove("active-abelardo");document.getElementById("btnTania").classList.remove("active-tania");document.getElementById("submitBtn").className="submit-btn";selectedUser=null}
 
-/* ===== NAV ===== */
-function switchTab(n){if(curImport&&n!==1)saveStepData();document.querySelectorAll(".tab-content").forEach(function(el){el.classList.remove("active")});document.querySelectorAll(".nav-btn").forEach(function(el){el.classList.remove("active")});document.getElementById("tab"+n).classList.add("active");document.querySelectorAll(".nav-btn")[n-1].classList.add("active");if(n===2)renderMisCasos();if(n===3)renderLotesList();if(n===4&&!glosarioLoaded)cargarGlosario();window.scrollTo({top:0,behavior:"smooth"})}
+/* ===== NAV (5 tabs) ===== */
+function switchTab(n){
+    if(curImport&&n!==2)saveStepData();
+    document.querySelectorAll(".tab-content").forEach(function(el){el.classList.remove("active")});
+    document.querySelectorAll(".nav-btn").forEach(function(el){el.classList.remove("active")});
+    document.getElementById("tab"+n).classList.add("active");
+    document.querySelectorAll(".nav-btn")[n-1].classList.add("active");
+    if(n===3)renderMisCasos();
+    if(n===4)renderLotesList();
+    if(n===5){if(!bibLoaded)cargarBiblioteca();else renderBiblioteca();renderContactos()}
+    if(n===1){renderModalidades()}
+    window.scrollTo({top:0,behavior:"smooth"})
+}
 
-/* ===== PRODUCTOS (NUEVA ESTRUCTURA) ===== */
+/* ===== PRODUCTOS ===== */
 function cargarProductos(){
     try{Papa.parse(PROD_URL,{download:true,header:false,
         complete:function(r){
-            var s1=document.getElementById("f1Producto");
-            s1.innerHTML='<option value="">Elige un producto</option>';
+            var s1=document.getElementById("f1Producto");s1.innerHTML='<option value="">Elige un producto</option>';
             var count=0;
-            for(var i=1;i<r.data.length;i++){
-                var row=r.data[i];
-                var nombre=(row[0]||"").trim();
-                if(nombre){
-                    var gaNum=parseFloat(row[2])||0;
-                    if(gaNum>1)gaNum=gaNum/100;
-                    productosDB[nombre]={
-                        partida:(row[1]||"N/A").trim(),
-                        ga:gaNum,
-                        agemed:(row[3]||"").toUpperCase().trim()==="SI",
-                        docsBase:(row[4]||"").trim(),
-                        docExtraDist:(row[5]||"").trim(),
-                        fabricanteOriginal:(row[6]||"").trim(),
-                        restricciones:(row[7]||"").trim()
-                    };
-                    var o=document.createElement("option");
-                    o.value=nombre;o.textContent=nombre;
-                    s1.appendChild(o);count++
-                }
-            }
-            console.log("Productos cargados:",count);
-            if(count===0)console.log("CSV:",JSON.stringify(r.data.slice(0,3)));
+            for(var i=1;i<r.data.length;i++){var row=r.data[i];var nombre=(row[0]||"").trim();
+                if(nombre){var gaNum=parseFloat(row[2])||0;if(gaNum>1)gaNum=gaNum/100;
+                    productosDB[nombre]={partida:(row[1]||"N/A").trim(),ga:gaNum,agemed:(row[3]||"").toUpperCase().trim()==="SI",docsBase:(row[4]||"").trim(),docExtraDist:(row[5]||"").trim(),fabricanteOriginal:(row[6]||"").trim(),restricciones:(row[7]||"").trim()};
+                    var o=document.createElement("option");o.value=nombre;o.textContent=nombre;s1.appendChild(o);count++}}
             if(curImport)loadStepData();
-        },error:function(e){console.error("Error:",e)}
+        },error:function(e){console.error("Error productos:",e)}
     })}catch(e){console.error(e)}
 }
 
-/* ===== GLOSARIO ===== */
-function cargarGlosario(){if(glosarioLoaded)return;try{Papa.parse(GLOS_URL,{download:true,header:true,complete:function(r){glosarioDB=[];r.data.forEach(function(raw){var f={};for(var k in raw)f[k.trim()]=raw[k];var keys=Object.keys(f);var t=keys.length>=1?(f[keys[0]]||"").trim():"";if(t)glosarioDB.push({termino:t,definicion:keys.length>=2?(f[keys[1]]||"").trim():"",aplicacion:keys.length>=3?(f[keys[2]]||"").trim():"",fuente:keys.length>=4?(f[keys[3]]||"").trim():""})});glosarioLoaded=true;renderGlosario(glosarioDB)},error:function(e){document.getElementById("glosarioList").innerHTML='<div class="empty-state">Error al cargar.</div>'}})}catch(e){}}
-function renderGlosario(lista){var c=document.getElementById("glosarioList");document.getElementById("glosarioCount").textContent=lista.length+" términos";if(!lista.length){c.innerHTML='<div class="empty-state">No se encontraron.</div>';return}var h="";for(var i=0;i<lista.length;i++)h+='<div class="glosario-item" onclick="abrirGlosarioItem('+i+')"><span class="glosario-item-title">'+hx(lista[i].termino)+'</span><span class="glosario-item-arrow">\u203A</span></div>';c.innerHTML=h}
-function filtrarGlosario(){var t=document.getElementById("glosarioInput").value.toLowerCase().trim();if(!t){renderGlosario(glosarioDB);return}var f=[];for(var i=0;i<glosarioDB.length;i++){var s=(glosarioDB[i].termino+" "+glosarioDB[i].definicion+" "+glosarioDB[i].aplicacion).toLowerCase();if(s.indexOf(t)>=0)f.push(glosarioDB[i])}renderGlosario(f)}
-function abrirGlosarioItem(i){var it=glosarioDB[i];if(!it)return;document.getElementById("glosarioTitle").textContent=it.termino;var b=document.getElementById("glosarioBody");var h="";if(it.definicion)h+='<div class="glosario-section"><div class="glosario-section-label">Definición</div><div class="glosario-section-text">'+hx(it.definicion)+'</div></div>';if(it.aplicacion)h+='<div class="glosario-section"><div class="glosario-section-label">Aplicación en Bolivia</div><div class="glosario-section-text">'+hx(it.aplicacion)+'</div></div>';if(it.fuente)h+='<div class="glosario-section"><div class="glosario-section-label">Fuente Legal</div><div class="glosario-section-text">'+renderFuente(it.fuente)+'</div></div>';b.innerHTML=h;document.getElementById("glosarioOverlay").classList.remove("hidden")}
-function renderFuente(txt){var re=/(https?:\/\/[^\s<]+)/g;var p=txt.split(re);var h="";for(var i=0;i<p.length;i++){if(p[i].match(re))h+='<a class="glosario-source-btn" href="'+hx(p[i])+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ver fuente</a>';else if(p[i].trim())h+='<span>'+hx(p[i].trim())+'</span><br>'}return h}
-function cerrarGlosario(){document.getElementById("glosarioOverlay").classList.add("hidden")}
+/* ===== MODALIDADES ===== */
+function cargarModalidades(){
+    modalidadesDB=DEFAULT_MODALIDADES;pagosDB=DEFAULT_PAGOS;modLoaded=true;
+    try{Papa.parse(MOD_URL,{download:true,header:true,
+        complete:function(r){var data=[];r.data.forEach(function(row){
+            var keys=Object.keys(row);var m=(row[keys[1]]||"").trim();
+            if(m)data.push({id:(row[keys[0]]||"").trim(),modalidad:m,icono:(row[keys[2]]||"📋").trim(),descripcion:(row[keys[3]]||"").trim(),ventajas:(row[keys[4]]||"").trim(),desventajas:(row[keys[5]]||"").trim(),requisitos:(row[keys[6]]||"").trim(),documentos:(row[keys[7]]||"").trim(),obligaciones:(row[keys[8]]||"").trim(),limitaciones:(row[keys[9]]||"").trim(),cuando_conviene:(row[keys[10]]||"").trim(),forma_pago:(row[keys[11]]||"").trim(),fuente:(row[keys[12]]||"").trim(),url:(row[keys[13]]||"").trim(),notas_duava:(row[keys[14]]||"").trim()});
+        });if(data.length>0)modalidadesDB=data;renderModalidades()},
+        error:function(){renderModalidades()}
+    })}catch(e){renderModalidades()}
+}
+function renderModalidades(){
+    var grid=document.getElementById("modGrid");var h="";
+    for(var i=0;i<modalidadesDB.length;i++){var m=modalidadesDB[i];
+        h+='<div class="mod-card" onclick="openModalidad(\''+m.id+'\')">';
+        h+='<div class="mod-card-icon">'+(m.icono||'📋')+'</div>';
+        h+='<div class="mod-card-title">'+hx(m.modalidad)+'</div>';
+        h+='<div class="mod-card-desc">'+hx((m.descripcion||'').substring(0,100))+'...</div>';
+        h+='</div>'}
+    grid.innerHTML=h;renderPagos();
+}
+function renderPagos(){
+    var grid=document.getElementById("pagosGrid");var h="";
+    for(var i=0;i<pagosDB.length;i++){var p=pagosDB[i];
+        h+='<div class="pago-card"><div class="pago-card-title">'+hx(p.nombre)+'</div>';
+        h+='<div class="pago-card-text">'+hx(p.descripcion)+'</div>';
+        if(p.url)h+='<a class="pago-card-link" href="'+hx(p.url)+'" target="_blank" rel="noopener">Sitio oficial →</a>';
+        h+='</div>'}
+    grid.innerHTML=h;
+}
+function openModalidad(id){
+    var m=null;for(var i=0;i<modalidadesDB.length;i++)if(modalidadesDB[i].id===id){m=modalidadesDB[i];break}
+    if(!m)return;
+    var h='<button class="back-btn" onclick="backToModList()">← Volver a Modalidades</button><div class="card">';
+    h+='<div style="font-size:2rem;margin-bottom:12px">'+(m.icono||'📋')+'</div>';
+    h+='<h2 class="phase-title">'+hx(m.modalidad)+'</h2>';
+    h+=modSec('¿Qué es?',m.descripcion);
+    h+=modSec('Ventajas',m.ventajas);
+    h+=modSec('Desventajas',m.desventajas);
+    h+=modSec('Limitaciones',m.limitaciones);
+    h+=modSec('¿Cuándo conviene?',m.cuando_conviene);
+    h+=modSec('Requisitos',m.requisitos);
+    h+=modSec('Obligaciones',m.obligaciones);
+    if(m.documentos){h+='<div class="mod-section"><div class="mod-section-title">Documentos Requeridos</div>';
+        var docs=m.documentos.split(",");for(var i=0;i<docs.length;i++){var d=docs[i].trim();
+            if(d)h+='<div class="mod-doc-link" onclick="abrirBibDesde(\''+d.replace(/'/g,"\\'")+'\')"><span>📄 '+hx(d)+'</span><span class="arrow">→</span></div>'}h+='</div>'}
+    if(m.fuente||m.url){h+='<div class="mod-section"><div class="mod-section-title">Fuente Oficial</div><div class="mod-section-text">'+hx(m.fuente||'');
+        if(m.url)h+='<br><a class="bib-source-btn" href="'+hx(m.url)+'" target="_blank" rel="noopener" style="margin-top:8px"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Visitar sitio oficial</a>';
+        h+='</div></div>'}
+    if(m.notas_duava){h+='<div class="mod-section"><div class="mod-section-title" style="color:#5E1638">Notas DUAVA</div><div class="mod-section-text" style="background:#FDF2F8;padding:16px;border-radius:10px;border-left:4px solid #5E1638">'+hx(m.notas_duava)+'</div></div>'}
+    h+='</div>';
+    document.getElementById("modDetailView").innerHTML=h;
+    document.getElementById("modListView").style.display="none";
+    document.getElementById("modDetailView").style.display="block";
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+function backToModList(){document.getElementById("modDetailView").style.display="none";document.getElementById("modListView").style.display="block"}
+
+/* ===== BIBLIOTECA ===== */
+function cargarBiblioteca(){
+    bibliotecaDB=DEFAULT_BIBLIOTECA;
+    try{Papa.parse(BIB_URL,{download:true,header:true,
+        complete:function(r){var data=[];r.data.forEach(function(row){
+            var keys=Object.keys(row);var t=(row["Tema"]||row[keys[1]]||"").trim();
+            if(t)data.push({id:(row["ID"]||row[keys[0]]||"").trim().toLowerCase(),tema:t,cat:(row["Categoría"]||row[keys[2]]||"").trim(),teoria:(row["Teoría"]||row[keys[3]]||"").trim(),practica:(row["Aplicación práctica"]||row[keys[4]]||"").trim(),duava:(row["Aplicación DUAVA"]||row[keys[5]]||"").trim(),docs:(row["Documentos relacionados"]||row[keys[6]]||"").trim(),actores:(row["Actores relacionados"]||row[keys[7]]||"").trim(),normativa:(row["Normativa"]||row[keys[8]]||"").trim(),fuente:(row["Fuente oficial"]||row[keys[9]]||"").trim(),url:(row["URL"]||row[keys[10]]||"").trim(),duava_exp:(row["Experiencias DUAVA"]||row[keys[11]]||"").trim()});
+        });if(data.length>0)bibliotecaDB=data;bibLoaded=true;renderBiblioteca()},
+        error:function(){bibLoaded=true;renderBiblioteca()}
+    })}catch(e){bibLoaded=true;renderBiblioteca()}
+}
+function renderBiblioteca(){
+    var cats={"Todos":0};for(var i=0;i<bibliotecaDB.length;i++){var c=bibliotecaDB[i].cat||"Sin categoría";if(!cats[c])cats[c]=0;cats[c]++}
+    var cf=document.getElementById("bibCatFilter");var ch="";
+    for(var c in cats){ch+='<button class="bib-cat-btn'+(curBibCat===c?' active':'')+'" onclick="setBibCat(\''+hx(c)+'\')">'+hx(c)+' ('+cats[c]+')</button>'}
+    cf.innerHTML=ch;
+    var t=document.getElementById("bibSearchInput").value.toLowerCase().trim();
+    var lista=[];for(var i=0;i<bibliotecaDB.length;i++){var b=bibliotecaDB[i];
+        if(curBibCat!=="Todos"&&b.cat!==curBibCat)continue;
+        if(t){var s=(b.tema+" "+b.cat+" "+b.teoria+" "+b.practica).toLowerCase();if(s.indexOf(t)<0)continue}
+        lista.push(b)}
+    var cl=document.getElementById("bibList");document.getElementById("bibCount").textContent=lista.length+" artículos";
+    if(!lista.length){cl.innerHTML='<div class="empty-state">No se encontraron artículos.</div>';return}
+    var h="";for(var i=0;i<lista.length;i++){var b=lista[i];
+        h+='<div class="bib-item" onclick="openBibArticle(\''+b.id+'\')"><span class="bib-item-cat">'+hx(b.cat||"")+'</span><span class="bib-item-title">'+hx(b.tema)+'</span><span class="bib-item-arrow">›</span></div>'}
+    cl.innerHTML=h;
+}
+function setBibCat(c){curBibCat=c;renderBiblioteca()}
+function filtrarBiblioteca(){renderBiblioteca()}
+function openBibArticle(id){
+    var b=null;for(var i=0;i<bibliotecaDB.length;i++)if(bibliotecaDB[i].id===id){b=bibliotecaDB[i];break}
+    if(!b)return;
+    var h='<button class="back-btn" onclick="backToBibList()">← Volver a Biblioteca</button><div class="card">';
+    h+='<div class="bib-article-cat">'+hx(b.cat||"")+'</div>';
+    h+='<h2 class="bib-article-title">'+hx(b.tema)+'</h2>';
+    h+=bibSec('1. Teoría',b.teoria);
+    h+=bibSec('2. Aplicación Práctica',b.practica);
+    h+=bibSec('3. Aplicación en DUAVA',b.duava);
+    if(b.docs){h+='<div class="bib-section"><div class="bib-section-label">4. Documentos Relacionados</div>'+bibLinks(b.docs,"📄")+'</div>'}
+    if(b.actores){h+='<div class="bib-section"><div class="bib-section-label">5. Actores Relacionados</div>'+bibLinks(b.actores,"👤")+'</div>'}
+    h+=bibSec('6. Normativa',b.normativa);
+    if(b.fuente||b.url){h+='<div class="bib-section"><div class="bib-section-label">7. Fuente Oficial</div><div class="bib-section-text">'+hx(b.fuente||"");
+        if(b.url)h+='<br><a class="bib-source-btn" href="'+hx(b.url)+'" target="_blank" rel="noopener" style="margin-top:8px"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Visitar fuente oficial</a>';
+        h+='</div></div>'}
+    if(b.duava_exp){h+='<div class="bib-section"><div class="bib-section-label" style="color:#5E1638">8. Experiencias DUAVA</div><div class="bib-section-text" style="background:#FDF2F8;padding:16px;border-radius:10px;border-left:4px solid #5E1638">'+hx(b.duava_exp)+'</div></div>'}
+    h+='</div>';
+    document.getElementById("bibArticleView").innerHTML=h;
+    document.getElementById("bibListView").style.display="none";
+    document.getElementById("bibArticleView").style.display="block";
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+function backToBibList(){document.getElementById("bibArticleView").style.display="none";document.getElementById("bibListView").style.display="block"}
+function switchBibView(view){
+    curBibView=view;
+    document.getElementById("bibSubArticulos").classList.toggle("active",view==="articulos");
+    document.getElementById("bibSubContactos").classList.toggle("active",view==="contactos");
+    document.getElementById("bibArticulosView").style.display=view==="articulos"?"block":"none";
+    document.getElementById("bibContactosView").style.display=view==="contactos"?"block":"none";
+    if(view==="contactos")renderContactos();
+}
+
+/* ===== CROSS-LINKING ===== */
+function abrirBibDesde(termino){
+    backToBibList();switchTab(5);
+    document.getElementById("bibSearchInput").value=termino;
+    curBibCat="Todos";
+    renderBiblioteca();
+    var found=null;for(var i=0;i<bibliotecaDB.length;i++){if(bibliotecaDB[i].tema.toLowerCase()===termino.toLowerCase()){found=bibliotecaDB[i];break}}
+    if(found)openBibArticle(found.id);
+}
+
+/* ===== CONTACTOS ===== */
+function renderContactos(){
+    var t=document.getElementById("contSearchInput").value.toLowerCase().trim();
+    var lista=[];
+    for(var i=0;i<contactosDB.length;i++){var c=contactosDB[i];
+        if(t){var s=(c.nombre+" "+c.tipo+" "+c.empresa+" "+c.especialidad+" "+c.ciudad).toLowerCase();if(s.indexOf(t)<0)continue}
+        lista.push(c)}
+    var el=document.getElementById("contactosList");
+    if(!lista.length){el.innerHTML='<div class="empty-state">No hay contactos. Agrega tu primer contacto.</div>';return}
+    var h="";for(var i=0;i<lista.length;i++){var c=lista[i];
+        h+='<div class="contact-card">';
+        h+='<div class="contact-type">'+hx(c.tipo||"")+'</div>';
+        h+='<div class="contact-name">'+hx(c.nombre||"")+'</div>';
+        if(c.empresa)h+='<div class="contact-company">'+hx(c.empresa)+'</div>';
+        if(c.ciudad||c.pais)h+='<div style="font-size:.8rem;color:var(--txt2);margin-bottom:4px">'+hx(c.ciudad||"")+(c.ciudad&&c.pais?", ":"")+hx(c.pais||"")+'</div>';
+        if(c.especialidad)h+='<div style="font-size:.8rem;color:var(--txt2);font-style:italic;margin-bottom:4px">'+hx(c.especialidad)+'</div>';
+        h+='<div class="contact-details">';
+        if(c.whatsapp)h+='<a class="contact-detail" href="https://wa.me/'+c.whatsapp.replace(/[^0-9]/g,"")+'" target="_blank">📱 '+hx(c.whatsapp)+'</a>';
+        if(c.correo)h+='<a class="contact-detail" href="mailto:'+hx(c.correo)+'">✉ '+hx(c.correo)+'</a>';
+        if(c.sitio_web)h+='<a class="contact-detail" href="'+hx(c.sitio_web)+'" target="_blank">🌐 Sitio</a>';
+        h+='</div>';
+        h+='<div class="contact-actions">';
+        h+='<button class="contact-action-btn whatsapp" onclick="compartirContactoWA('+i+')">WhatsApp</button>';
+        h+='<button class="contact-action-btn edit" onclick="openContactForm(\''+c.id+'\')">Editar</button>';
+        h+='<button class="contact-action-btn delete" onclick="eliminarContacto(\''+c.id+'\')">Eliminar</button>';
+        h+='</div></div>'}
+    el.innerHTML=h;
+}
+function filtrarContactos(){renderContactos()}
+function openContactForm(id){
+    var c=null;if(id){for(var i=0;i<contactosDB.length;i++)if(contactosDB[i].id===id){c=contactosDB[i];break}}
+    var h='<button class="back-btn" onclick="backToContactList()">← Volver a Contactos</button><div class="card">';
+    h+='<h2 class="phase-title">'+(c?"Editar":"Nuevo")+' Contacto</h2>';
+    h+='<div class="input-group"><label>Nombre</label><input type="text" id="cNombre" value="'+hx(c?c.nombre:'')+'"></div>';
+    h+='<div class="input-group"><label>Tipo de Actor</label><select id="cTipo">';
+    var tipos=["Proveedor","Despachante","Agente de carga","Contador","Transportista","Aduana","Certificadora","AGEMED","Otro"];
+    for(var i=0;i<tipos.length;i++)h+='<option'+(c&&c.tipo===tipos[i]?' selected':'')+'>'+tipos[i]+'</option>';
+    h+='</select></div>';
+    h+='<div class="input-group"><label>Empresa</label><input type="text" id="cEmpresa" value="'+hx(c?c.empresa:'')+'"></div>';
+    h+='<div class="calc-grid"><div class="input-group"><label>Ciudad</label><input type="text" id="cCiudad" value="'+hx(c?c.ciudad:'')+'"></div><div class="input-group"><label>País</label><input type="text" id="cPais" value="'+hx(c?c.pais:'')+'"></div></div>';
+    h+='<div class="input-group"><label>WhatsApp (con código de país)</label><input type="text" id="cWhatsApp" placeholder="Ej: +59171234567" value="'+hx(c?c.whatsapp:'')+'"></div>';
+    h+='<div class="input-group"><label>Correo</label><input type="email" id="cCorreo" value="'+hx(c?c.correo:'')+'"></div>';
+    h+='<div class="input-group"><label>Sitio Web</label><input type="text" id="cSitioWeb" value="'+hx(c?c.sitio_web:'')+'"></div>';
+    h+='<div class="input-group"><label>Especialidad</label><input type="text" id="cEspecialidad" value="'+hx(c?c.especialidad:'')+'"></div>';
+    h+='<div class="input-group"><label>Observaciones</label><textarea id="cObs">'+hx(c?c.observaciones:'')+'</textarea></div>';
+    h+='<div class="input-group"><label>Estado</label><select id="cEstado"><option'+(c&&c.estado==="Activo"?' selected':'')+'>Activo</option><option'+(c&&c.estado==="Inactivo"?' selected':'')+'>Inactivo</option></select></div>';
+    h+='<button class="action-btn" onclick="guardarContacto(\''+(id||"")+'\')">Guardar Contacto</button>';
+    h+='</div>';
+    document.getElementById("bibContactFormView").innerHTML=h;
+    document.getElementById("bibListView").style.display="none";
+    document.getElementById("bibContactFormView").style.display="block";
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+function backToContactList(){document.getElementById("bibContactFormView").style.display="none";document.getElementById("bibListView").style.display="block";renderContactos()}
+function guardarContacto(id){
+    var n=document.getElementById("cNombre").value.trim();
+    if(!n){alert("Escribe un nombre.");return}
+    var obj={id:id||"cont_"+Date.now(),nombre:n,tipo:document.getElementById("cTipo").value,empresa:document.getElementById("cEmpresa").value.trim(),ciudad:document.getElementById("cCiudad").value.trim(),pais:document.getElementById("cPais").value.trim(),whatsapp:document.getElementById("cWhatsApp").value.trim(),correo:document.getElementById("cCorreo").value.trim(),sitio_web:document.getElementById("cSitioWeb").value.trim(),especialidad:document.getElementById("cEspecialidad").value.trim(),observaciones:document.getElementById("cObs").value.trim(),estado:document.getElementById("cEstado").value,fecha:new Date().toISOString().split("T")[0]};
+    if(id){for(var i=0;i<contactosDB.length;i++)if(contactosDB[i].id===id){contactosDB[i]=obj;break}}
+    else contactosDB.push(obj);
+    saveContactos();backToContactList();
+}
+function eliminarContacto(id){if(!confirm("¿Eliminar contacto?"))return;contactosDB=contactosDB.filter(function(x){return x.id!==id});saveContactos();renderContactos()}
+function compartirContactoWA(i){var c=contactosDB[i];if(!c)return;var msg="*Contacto DUAVA*\n"+c.nombre+"\nTipo: "+c.tipo;if(c.empresa)msg+="\nEmpresa: "+c.empresa;if(c.whatsapp)msg+="\nWhatsApp: "+c.whatsapp;if(c.correo)msg+="\nCorreo: "+c.correo;if(c.especialidad)msg+="\nEspecialidad: "+c.especialidad;window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank")}
 
 /* ===== IMPORT CRUD ===== */
 function crearImportacion(){
@@ -484,17 +935,15 @@ function crearImportacion(){
     if(!nm){var ss=document.getElementById("startStatus");ss.className="status-msg warn";ss.textContent="\u26A0 Escribe un nombre.";setTimeout(function(){ss.className="status-msg"},3000);return}
     if(curImport)saveStepData();
     var imp={id:"imp_"+Date.now(),nombre:nm,estado:"en_curso",paso:1,fecha:new Date().toISOString().split("T")[0],
-        fase1:{producto:"",vendedor:"",equipos:[],docStatus:{}},
-        fase2:{proveedor:"",pais:"",iso:false,ce:false,muestra:false},
+        fase1:{producto:"",vendedor:"",equipos:[],docStatus:{}},fase2:{proveedor:"",pais:"",iso:false,ce:false,muestra:false},
         fase3:{proforma:"",incoterm:"FOB",moneda:"USD",monto:"",plazo:"30% anticipo - 70% BL",fecha:""},
-        fase4:{tipo:"Marítimo FCL",contenedor:"",flete:"",seguro:"",origen:"",destino:""},
-        fase5:{tasa:""},
+        fase4:{tipo:"Marítimo FCL",contenedor:"",flete:"",seguro:"",origen:"",destino:""},fase5:{tasa:""},
         fase6:{fecha:"",caja:false,contenido:false,funciona:false,garantia:"",obs:""}};
     allImports.unshift(imp);saveImports();curImport=imp;curStep=1;document.getElementById("importNameInput").value="";showStepper();
 }
-function continuarImportacion(id){for(var i=0;i<allImports.length;i++){if(allImports[i].id===id){curImport=allImports[i];break}}if(!curImport)return;curStep=curImport.paso||1;switchTab(1);showStepper();loadStepData()}
+function continuarImportacion(id){for(var i=0;i<allImports.length;i++){if(allImports[i].id===id){curImport=allImports[i];break}}if(!curImport)return;curStep=curImport.paso||1;switchTab(2);setTimeout(function(){showStepper();loadStepData()},100)}
 function eliminarImportacion(id){if(!confirm("¿Eliminar?"))return;allImports=allImports.filter(function(x){return x.id!==id});saveImports();renderMisCasos()}
-function completarImportacion(){saveStepData();var faltas=[];if(!curImport.fase1.producto)faltas.push("Producto (Paso 1)");if(!curImport.fase2.proveedor)faltas.push("Proveedor (Paso 2)");if(faltas.length){var ss=document.getElementById("stepStatus");ss.className="status-msg warn";ss.textContent="\u26A0 Faltan: "+faltas.join(", ");setTimeout(function(){ss.className="status-msg"},5000);return}curImport.estado="completada";curImport.paso=6;saveImports();var ss=document.getElementById("stepStatus");ss.className="status-msg success";ss.textContent="\u2714 Importación completada.";setTimeout(function(){ss.className="status-msg";curImport=null;hideStepper();switchTab(2)},2000)}
+function completarImportacion(){saveStepData();var faltas=[];if(!curImport.fase1.producto)faltas.push("Producto (Paso 1)");if(!curImport.fase2.proveedor)faltas.push("Proveedor (Paso 2)");if(faltas.length){var ss=document.getElementById("stepStatus");ss.className="status-msg warn";ss.textContent="\u26A0 Faltan: "+faltas.join(", ");setTimeout(function(){ss.className="status-msg"},5000);return}curImport.estado="completada";curImport.paso=6;saveImports();var ss=document.getElementById("stepStatus");ss.className="status-msg success";ss.textContent="\u2714 Importación completada.";setTimeout(function(){ss.className="status-msg";curImport=null;hideStepper();switchTab(3)},2000)}
 function renderMisCasos(){var la=document.getElementById("listaActivas");var lc=document.getElementById("listaCompletadas");var activas=allImports.filter(function(x){return x.estado==="en_curso"});var completadas=allImports.filter(function(x){return x.estado==="completada"});if(!activas.length)la.innerHTML='<div class="empty-state">No hay importaciones en curso.</div>';else{var h="";activas.forEach(function(imp){h+='<div class="import-card"><div class="import-card-info"><div class="import-card-title">'+hx(imp.nombre)+'</div><div class="import-card-meta"><span class="import-badge active">Paso '+(imp.paso||1)+'/6</span> · '+imp.fecha+'</div></div><div class="import-card-actions"><button class="import-card-btn continue" onclick="continuarImportacion(\''+imp.id+'\')">Continuar</button><button class="import-card-btn delete" onclick="eliminarImportacion(\''+imp.id+'\')">Eliminar</button></div></div>'});la.innerHTML=h}if(!completadas.length)lc.innerHTML='<div class="empty-state">No hay completadas.</div>';else{var h="";completadas.forEach(function(imp){h+='<div class="import-card"><div class="import-card-info"><div class="import-card-title">'+hx(imp.nombre)+'</div><div class="import-card-meta"><span class="import-badge done">Completada</span> · '+imp.fecha+'</div></div><div class="import-card-actions"><button class="import-card-btn delete" onclick="eliminarImportacion(\''+imp.id+'\')">Eliminar</button></div></div>'});lc.innerHTML=h}}
 
 /* ===== STEPPER ===== */
@@ -502,13 +951,13 @@ function showStepper(){document.getElementById("newImportStart").style.display="
 function hideStepper(){document.getElementById("stepperContainer").style.display="none";document.getElementById("newImportStart").style.display="block"}
 function cerrarStepper(){saveStepData();curImport=null;hideStepper()}
 function renderStepperBar(){var bar=document.getElementById("stepperBar");var h="";for(var i=1;i<=6;i++){if(i>1)h+='<div class="step-line'+(i<=curStep?" done":"")+'"></div>';var cls=i<curStep?"done":i===curStep?"active":"";h+='<div class="step-dot '+cls+'" onclick="jumpStep('+i+')">'+i+'</div>'}bar.innerHTML=h}
-function goToStep(n){if(n<1||n>6)return;saveStepData();curStep=n;curImport.paso=n;saveImports();for(var i=1;i<=6;i++){var el=document.getElementById("step"+i);if(el)el.classList.toggle("active",i===n)}document.getElementById("stepperDesc").textContent=STEP_D[n-1];renderStepperBar();renderStepNav();if(n===2)renderProviderReminder();if(n===5)calcularLocal()}
+function goToStep(n){if(n<1||n>6)return;saveStepData();curStep=n;curImport.paso=n;saveImports();for(var i=1;i<=6;i++){var el=document.getElementById("step"+i);if(el)el.classList.toggle("active",i===n)}document.getElementById("stepperDesc").textContent=STEP_D[n-1];renderStepperBar();renderStepNav();if(n===2)renderProviderReminder();if(n===5){calcularLocal();document.getElementById("f5Explain").style.display="block"}}
 function jumpStep(n){goToStep(n)}
 function nextStep(){saveStepData();if(curStep>=6){completarImportacion();return}goToStep(curStep+1)}
 function prevStep(){saveStepData();if(curStep>1)goToStep(curStep-1)}
 function renderStepNav(){var nav=document.getElementById("stepNav");var prev='<button class="btn-prev" onclick="prevStep()" '+(curStep<=1?"disabled style='opacity:.4;pointer-events:none'":"")+'>Anterior</button>';var next=curStep>=6?'<button class="btn-next btn-complete" onclick="nextStep()">Completar Importación</button>':'<button class="btn-next" onclick="nextStep()">Siguiente</button>';nav.innerHTML=prev+next}
 
-/* ===== STEP 1: PRODUCTO + FABRICA/DISTRIBUIDOR ===== */
+/* ===== STEP 1 ===== */
 function onStep1Producto(){
     var prod=document.getElementById("f1Producto").value;var panel=document.getElementById("reqPanel");
     if(!prod||!productosDB[prod]){panel.style.display="none";return}
@@ -518,14 +967,9 @@ function onStep1Producto(){
     document.getElementById("agemedAlert").classList.toggle("show",d.agemed);
     var vendedor=curImport?(curImport.fase1.vendedor||""):"";
     document.getElementById("btnFabrica").classList.remove("active");document.getElementById("btnDist").classList.remove("active");
-    if(vendedor==="fabrica"){
-        document.getElementById("btnFabrica").classList.add("active");document.getElementById("fabricaMsg").style.display="block";
-        document.getElementById("distAlert").style.display="none";renderDocChecklist(d,"fabrica");
-    }else if(vendedor==="distribuidor"){
-        document.getElementById("btnDist").classList.add("active");document.getElementById("fabricaMsg").style.display="none";
-        document.getElementById("distAlert").style.display="block";document.getElementById("fabricanteNombre").textContent=d.fabricanteOriginal||"el fabricante original";
-        renderDocChecklist(d,"distribuidor");
-    }else{document.getElementById("fabricaMsg").style.display="none";document.getElementById("distAlert").style.display="none";document.getElementById("docPanel").style.display="none";document.getElementById("docExtraPanel").style.display="none"}
+    if(vendedor==="fabrica"){document.getElementById("btnFabrica").classList.add("active");document.getElementById("fabricaMsg").style.display="block";document.getElementById("distAlert").style.display="none";renderDocChecklist(d,"fabrica")}
+    else if(vendedor==="distribuidor"){document.getElementById("btnDist").classList.add("active");document.getElementById("fabricaMsg").style.display="none";document.getElementById("distAlert").style.display="block";document.getElementById("fabricanteNombre").textContent=d.fabricanteOriginal||"el fabricante original";renderDocChecklist(d,"distribuidor")}
+    else{document.getElementById("fabricaMsg").style.display="none";document.getElementById("distAlert").style.display="none";document.getElementById("docPanel").style.display="none";document.getElementById("docExtraPanel").style.display="none"}
     if(d.restricciones){document.getElementById("restrContent").innerHTML='<div class="restriction-box">\u26A0 '+hx(d.restricciones)+'</div>';document.getElementById("restrPanel").style.display="block"}else document.getElementById("restrPanel").style.display="none";
     renderEquiposImport();
 }
@@ -535,7 +979,7 @@ function renderDocChecklist(d,tipo){
     if(d.docsBase){var docs=d.docsBase.split(",");var h="";docs.forEach(function(doc){var dn=doc.trim();if(dn){var st=ds[dn]||"pendiente";h+=docItem(dn,st)}});document.getElementById("docList").innerHTML=h;document.getElementById("docPanel").style.display="block"}else document.getElementById("docPanel").style.display="none";
     if(tipo==="distribuidor"&&d.docExtraDist){var st=ds[d.docExtraDist]||"pendiente";document.getElementById("docExtraList").innerHTML=docItem(d.docExtraDist,st);document.getElementById("docExtraPanel").style.display="block"}else document.getElementById("docExtraPanel").style.display="none";
 }
-function docItem(name,status){var safe=name.replace(/'/g,"\\'");return'<div class="doc-item '+status+'" onclick="toggleDoc(\''+safe+'\')"><span class="doc-name">'+hx(name)+'</span><span class="doc-badge '+status+'">'+status+'</span></div>'}
+function docItem(name,status){var safe=name.replace(/'/g,"\\'");return'<div class="doc-item '+status+'" onclick="toggleDoc(\''+safe+'\')"><span class="doc-name">'+hx(name)+'</span><span style="display:flex;align-items:center;gap:8px"><button class="bib-mini-btn" onclick="event.stopPropagation();abrirBibDesde(\''+safe+'\')" title="Ver en Biblioteca">📖</button><span class="doc-badge '+status+'">'+status+'</span></span></div>'}
 function toggleDoc(name){if(!curImport)return;if(!curImport.fase1.docStatus)curImport.fase1.docStatus={};var cur=curImport.fase1.docStatus[name]||"pendiente";var nxt=cur==="pendiente"?"solicitado":cur==="solicitado"?"recibido":"pendiente";curImport.fase1.docStatus[name]=nxt;saveImports();onStep1Producto()}
 function addEquipoImport(){if(!curImport)return;if(!curImport.fase1.equipos)curImport.fase1.equipos=[];curImport.fase1.equipos.push({marca:"",modelo:"",cantidad:1});saveImports();renderEquiposImport()}
 function removeEquipoImport(i){if(!curImport||!curImport.fase1.equipos)return;curImport.fase1.equipos.splice(i,1);saveImports();renderEquiposImport()}
@@ -545,7 +989,7 @@ function renderEquiposImport(){if(!curImport)return;if(!curImport.fase1.equipos)
 /* ===== STEP 2 ===== */
 function renderProviderReminder(){var el=document.getElementById("providerReminder");if(!curImport||!curImport.fase1.producto){el.innerHTML="";return}var d=productosDB[curImport.fase1.producto];if(!d){el.innerHTML="";return}var items=[];if(d.docsBase)d.docsBase.split(",").forEach(function(doc){var dn=doc.trim();if(dn)items.push(dn)});if(curImport.fase1.vendedor==="distribuidor"&&d.docExtraDist)items.push(d.docExtraDist);if(!items.length){el.innerHTML="";return}var h='<div class="provider-reminder"><h4>Documentos a gestionar</h4><ul>';items.forEach(function(it){h+='<li>'+hx(it)+'</li>'});h+='</ul></div>';el.innerHTML=h}
 
-/* ===== STEP 5: IMPUESTOS DETALLADOS ===== */
+/* ===== STEP 5 ===== */
 function calcularLocal(){
     var prod=curImport?curImport.fase1.producto:"";var fob=parseFloat(document.getElementById("f5FOB").value)||0;var flete=parseFloat(document.getElementById("f5FleteSeg").value)||0;var tasa=parseFloat(document.getElementById("f5Tasa").value)||0;
     if(prod&&productosDB[prod]&&(fob>0||flete>0)&&tasa>0){var d=productosDB[prod];var cif=fob+flete;var cifBs=cif*tasa;var ga=cifBs*d.ga;var gaUSD=tasa>0?ga/tasa:0;var iva=(cifBs+ga)*0.1494;var ivaUSD=tasa>0?iva/tasa:0;var totalImp=ga+iva;var totalImpUSD=gaUSD+ivaUSD;var totalUSD=cif+totalImpUSD;var totalBs=cifBs+totalImp;
@@ -571,7 +1015,6 @@ function removeLoteEquipo(i){curLoteEquipos.splice(i,1);renderLoteEquipos()}
 function updateLoteEquipo(i,f,v){curLoteEquipos[i][f]=v}
 function renderLoteEquipos(){var el=document.getElementById("loteEquipos");if(!curLoteEquipos.length){el.innerHTML='<div style="text-align:center;padding:16px;color:#94A3B8;font-size:.85rem">Agrega equipos a la cotización.</div>';return}var h="";var prodKeys=Object.keys(productosDB);curLoteEquipos.forEach(function(eq,i){h+='<div class="equipo-card"><div class="equipo-header"><span class="equipo-num">Equipo '+(i+1)+'</span><button class="equipo-del" onclick="removeLoteEquipo('+i+')">&times;</button></div>';h+='<div class="input-group"><label>Producto (para impuestos)</label><select onchange="updateLoteEquipo('+i+',\'producto\',this.value);renderLoteEquipos()"><option value="">-- Selecciona producto --</option>';prodKeys.forEach(function(n){h+='<option value="'+hx(n)+'"'+(eq.producto===n?' selected':'')+'>'+hx(n)+'</option>'});h+='</select></div>';h+='<div class="calc-grid"><div class="input-group"><label>Marca</label><input type="text" value="'+hx(eq.marca)+'" placeholder="Ej: BrandX" oninput="updateLoteEquipo('+i+',\'marca\',this.value)"></div><div class="input-group"><label>Modelo</label><input type="text" value="'+hx(eq.modelo)+'" placeholder="Ej: MX-200" oninput="updateLoteEquipo('+i+',\'modelo\',this.value)"></div></div>';h+='<div class="calc-grid"><div class="input-group"><label>Cantidad</label><input type="number" value="'+eq.cantidad+'" min="1" oninput="updateLoteEquipo('+i+',\'cantidad\',parseFloat(this.value)||1)"></div><div class="input-group"><label>Precio Compra c/u (USD)</label><input type="number" value="'+eq.precioCompra+'" step="0.01" oninput="updateLoteEquipo('+i+',\'precioCompra\',parseFloat(this.value)||0)"></div></div>';h+='<div class="input-group"><label>Precio Venta c/u (USD)</label><input type="number" value="'+eq.precioVenta+'" step="0.01" oninput="updateLoteEquipo('+i+',\'precioVenta\',parseFloat(this.value)||0)"></div>';if(eq.producto&&productosDB[eq.producto]){var d=productosDB[eq.producto];h+='<div class="tax-info'+(d.agemed?' warn':'')+'"><strong>Partida:</strong> '+hx(d.partida)+' · <strong>GA:</strong> '+(d.ga*100).toFixed(1)+'%';if(d.agemed)h+=' · <strong>AGEMED</strong>';h+='</div>'}h+='</div>'});el.innerHTML=h}
 
-/* ===== CALCULAR LOTE ===== */
 function calcularLote(){if(!curLoteEquipos.length){alert("Agrega al menos un equipo.");return}var flete=parseFloat(document.getElementById("loteFlete").value)||0;var seguro=parseFloat(document.getElementById("loteSeguro").value)||0;var tasa=parseFloat(document.getElementById("loteTasa").value)||0;if(tasa<=0){alert("Ingresa la tasa de cambio.");return}var totalCompra=0;curLoteEquipos.forEach(function(eq){totalCompra+=eq.cantidad*eq.precioCompra});var results=[];var ltCompra=0,ltFlete=0,ltSeguro=0,ltGA=0,ltIVA=0,ltImpUSD=0,ltCosto=0,ltVenta=0;
 curLoteEquipos.forEach(function(eq,i){var costoChina=eq.cantidad*eq.precioCompra;var fProrr=totalCompra>0?(costoChina/totalCompra)*flete:0;var sProrr=totalCompra>0?(costoChina/totalCompra)*seguro:0;var cif=costoChina+fProrr+sProrr;var cifBs=cif*tasa;var gaPct=0,partida="N/A",agemed=false,taxes=[];if(eq.producto&&productosDB[eq.producto]){var d=productosDB[eq.producto];gaPct=d.ga;partida=d.partida;agemed=d.agemed}var ga=cifBs*gaPct;var gaUSD=tasa>0?ga/tasa:0;if(gaPct>0)taxes.push({nombre:"Gravamen Arancelario ("+(gaPct*100).toFixed(1)+"%)",usd:gaUSD,bs:ga});var iva=(cifBs+ga)*0.1494;var ivaUSD=tasa>0?iva/tasa:0;taxes.push({nombre:"IVA (14.94%)",usd:ivaUSD,bs:iva});var totalImp=ga+iva;var totalImpUSD=gaUSD+ivaUSD;var costoBoliviaUSD=cif+totalImpUSD;var costoBoliviaBs=cifBs+totalImp;var ventaUSD=eq.cantidad*eq.precioVenta;var ventaBs=ventaUSD*tasa;var gananciaUSD=ventaUSD-costoBoliviaUSD;var gananciaBs=gananciaUSD*tasa;var pct=costoBoliviaUSD>0?(gananciaUSD/costoBoliviaUSD)*100:0;results.push({eq:eq,costoChina:costoChina,fleteProrr:fProrr,seguroProrr:sProrr,cif:cif,cifBs:cifBs,partida:partida,agemed:agemed,taxes:taxes,totalImpUSD:totalImpUSD,totalImpBs:totalImp,costoBoliviaUSD:costoBoliviaUSD,costoBoliviaBs:costoBoliviaBs,ventaUSD:ventaUSD,ventaBs:ventaBs,gananciaUSD:gananciaUSD,gananciaBs:gananciaBs,pct:pct});ltCompra+=costoChina;ltFlete+=fProrr;ltSeguro+=sProrr;ltGA+=ga;ltIVA+=iva;ltImpUSD+=totalImpUSD;ltCosto+=costoBoliviaUSD;ltVenta+=ventaUSD});
 _loteResults={nombre:document.getElementById("loteNombre").value||"Sin nombre",tasa:tasa,flete:flete,seguro:seguro,results:results,totalCompra:ltCompra,totalFlete:ltFlete,totalSeguro:ltSeguro,totalGA:ltGA,totalIVA:ltIVA,totalImpUSD:ltImpUSD,totalCostoBolivia:ltCosto,totalVenta:ltVenta,gananciaTotal:ltVenta-ltCosto,pctTotal:ltCosto>0?((ltVenta-ltCosto)/ltCosto*100):0};
@@ -582,7 +1025,7 @@ function renderLoteResultado(results,tasa){
     results.forEach(function(r,i){var c=r.gananciaUSD>0;h1+='<div class="eq-result-card"><div class="eq-result-header"><div><strong style="font-size:1rem">'+hx(r.eq.marca||"Equipo "+(i+1))+' '+hx(r.eq.modelo||"")+'</strong><div style="font-size:.8rem;color:var(--txt2)">×'+r.eq.cantidad+' · '+hx(r.eq.producto||"Sin producto")+' · Partida: '+hx(r.partida)+'</div></div><span class="profit-badge '+(c?"si":"no")+'">'+(c?"CONVIENE":"NO CONVIENE")+'</span></div>';
     h1+='<div style="font-size:.85rem">';h1+=taxRow("Costo en China",r.costoChina,tasa);if(r.fleteProrr>0)h1+=taxRow("Flete (prorrateado)",r.fleteProrr,tasa);if(r.seguroProrr>0)h1+=taxRow("Seguro (prorrateado)",r.seguroProrr,tasa);h1+=taxRowBold("Valor CIF",r.cif,tasa);h1+='<div class="tax-section"><div class="tax-label">Impuestos</div>';r.taxes.forEach(function(tax){h1+=taxRow(tax.nombre,tax.usd,tasa)});h1+=taxRowBold("Total Impuestos",r.totalImpUSD,tasa)+'</div>';
     h1+='<div class="tax-section">';h1+=taxRowBold("Costo Total Bolivia",r.costoBoliviaUSD,tasa);h1+=taxRow("Precio de Venta",r.ventaUSD,tasa);h1+='<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:.95rem;font-weight:800;color:'+(c?'#166534':'#991B1B')+'"><span>Ganancia ('+r.pct.toFixed(1)+'%)</span><span>$'+r.gananciaUSD.toFixed(2)+' USD / '+r.gananciaBs.toFixed(2)+' Bs</span></div></div>';
-    if(r.agemed)h1+='<div style="background:#FEF2F2;padding:10px 14px;border-radius:8px;font-size:.8rem;color:#991B1B;margin-top:12px;border-left:3px solid #EF4444"><strong>AGEMED:</strong> Requiere Registro Sanitario o Certificado de Libre Venta.</div>';
+    if(r.agemed)h1+='<div style="background:#FEF2F2;padding:10px 14px;border-radius:8px;font-size:.8rem;color:#991B1B;margin-top:12px;border-left:3px solid #EF4444"><strong>AGEMED:</strong> Requiere Registro Sanitario o Certificado de Libre Venta. <span class="bib-inline-link" onclick="abrirBibDesde(\'AGEMED\')">Ver en Biblioteca →</span></div>';
     h1+='</div></div>'});
     document.getElementById("loteResumenEquipos").innerHTML=h1;
 
@@ -596,6 +1039,16 @@ function renderLoteResultado(results,tasa){
     h2+='<div style="font-size:1.3rem;font-weight:700;margin-top:8px;color:'+(cl?'#166534':'#991B1B')+'">$'+lr.gananciaTotal.toFixed(2)+' USD / '+(lr.gananciaTotal*tasa).toFixed(2)+' Bs</div>';
     h2+='<div style="font-size:1rem;margin-top:4px;color:var(--txt2)">Margen: '+lr.pctTotal.toFixed(1)+'%</div></div>';
     document.getElementById("loteResumenTotal").innerHTML=h2;
+
+    var h3='<h2 class="phase-title" style="font-size:1.1rem">¿Cómo se calcula?</h2><p class="phase-desc" style="border:none;padding:0;margin-bottom:12px">Aprende más sobre cada concepto en la Biblioteca.</p>';
+    h3+='<div style="display:flex;flex-wrap:wrap;gap:8px">';
+    h3+='<button class="action-btn" style="width:auto;padding:10px 18px;margin:0;font-size:.85rem" onclick="abrirBibDesde(\'Costo CIF\')">Costo CIF</button>';
+    h3+='<button class="action-btn" style="width:auto;padding:10px 18px;margin:0;font-size:.85rem" onclick="abrirBibDesde(\'Gravamen Arancelario\')">Gravamen Arancelario</button>';
+    h3+='<button class="action-btn" style="width:auto;padding:10px 18px;margin:0;font-size:.85rem" onclick="abrirBibDesde(\'IVA\')">IVA</button>';
+    h3+='<button class="action-btn" style="width:auto;padding:10px 18px;margin:0;font-size:.85rem" onclick="abrirBibDesde(\'Incoterms\')">Incoterms</button>';
+    h3+='</div>';
+    document.getElementById("loteBibExplain").innerHTML=h3;
+
     document.getElementById("loteResultadoView").style.display="block";
     document.getElementById("loteResultadoView").scrollIntoView({behavior:"smooth"})}
 
@@ -603,11 +1056,9 @@ function renderLoteResultado(results,tasa){
 function compartirWhatsApp(){var lr=_loteResults;if(!lr)return;var t=lr.tasa;var msg="*DUAVA Puente - Cotización*\n"+lr.nombre+"\nTasa: "+t+" Bs/USD\n\n";lr.results.forEach(function(r,i){var c=r.gananciaUSD>0;msg+="*Equipo "+(i+1)+": "+(r.eq.marca||"")+" "+(r.eq.modelo||"")+"* (×"+r.eq.cantidad+")\n";msg+="Producto: "+(r.eq.producto||"N/A")+"\nPartida: "+r.partida+"\n";msg+="  Costo China: $"+r.costoChina.toFixed(2)+" / "+(r.costoChina*t).toFixed(2)+" Bs\n";if(r.fleteProrr>0)msg+="  Flete: $"+r.fleteProrr.toFixed(2)+" / "+(r.fleteProrr*t).toFixed(2)+" Bs\n";if(r.seguroProrr>0)msg+="  Seguro: $"+r.seguroProrr.toFixed(2)+" / "+(r.seguroProrr*t).toFixed(2)+" Bs\n";msg+="  CIF: $"+r.cif.toFixed(2)+" / "+r.cifBs.toFixed(2)+" Bs\n";r.taxes.forEach(function(tax){msg+="  "+tax.nombre+": $"+tax.usd.toFixed(2)+" / "+tax.bs.toFixed(2)+" Bs\n"});msg+="  Total Impuestos: $"+r.totalImpUSD.toFixed(2)+" / "+r.totalImpBs.toFixed(2)+" Bs\n";msg+="  Costo Bolivia: $"+r.costoBoliviaUSD.toFixed(2)+" / "+r.costoBoliviaBs.toFixed(2)+" Bs\n";msg+="  Venta: $"+r.ventaUSD.toFixed(2)+" / "+r.ventaBs.toFixed(2)+" Bs\n";msg+="  *Ganancia: $"+r.gananciaUSD.toFixed(2)+" / "+r.gananciaBs.toFixed(2)+" Bs ("+r.pct.toFixed(1)+"%)*\n";msg+=(c?"  CONVIENE\n\n":"  NO CONVIENE\n\n")});msg+="\n*RESUMEN*\n";msg+="Costo Total: $"+lr.totalCostoBolivia.toFixed(2)+" / "+(lr.totalCostoBolivia*t).toFixed(2)+" Bs\n";msg+="Venta Total: $"+lr.totalVenta.toFixed(2)+" / "+(lr.totalVenta*t).toFixed(2)+" Bs\n";msg+="*Ganancia: $"+lr.gananciaTotal.toFixed(2)+" / "+(lr.gananciaTotal*t).toFixed(2)+" Bs ("+lr.pctTotal.toFixed(1)+"%)*\n";msg+=(lr.gananciaTotal>0?"CONVIENE":"NO CONVIENE");window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank")}
 
 /* ===== SAVE/LOAD ===== */
-function saveStepData(){if(!curImport)return;var p=curStep;if(p===1)curImport.fase1.producto=document.getElementById("f1Producto").value;else if(p===2){var f=curImport.fase2;f.proveedor=document.getElementById("f2Proveedor").value;f.pais=document.getElementById("f2Pais").value;f.iso=document.getElementById("f2ISO").checked;f.ce=document.getElementById("f2CE").checked;f.muestra=document.getElementById("f2Muestra").checked}else if(p===3){var f=curImport.fase3;f.proforma=document.getElementById("f3Proforma").value;f.incoterm=document.getElementById("f3Incoterm").value;f.moneda=document.getElementById("f3Moneda").value;f.monto=document.getElementById("f3Monto").value;f.plazo=document.getElementById("f3Plazo").value;f.fecha=document.getElementById("f3Fecha").value}else if(p===4){var f=curImport.fase4;f.tipo=document.getElementById("f4Tipo").value;f.contenedor=document.getElementById("f4Contenedor").value;f.flete=document.getElementById("f4Flete").value;f.seguro=document.getElementById("f4Seguro").value;f.origen=document.getElementById("f4Origen").value;f.destino=document.getElementById("f4Destino").value}else if(p===5)curImport.fase5.tasa=document.getElementById("f5Tasa").value;else if(p===6){var f=curImport.fase6;f.fecha=document.getElementById("f6Fecha").value;f.caja=document.getElementById("f6Caja").checked;f.contenido=document.getElementById("f6Contenido").checked;f.funciona=document.getElementById("f6Funciona").checked;f.garantia=document.getElementById("f6Garantia").value;f.obs=document.getElementById("f6Obs").value}saveImports()}
+function saveStepData(){if(!curImport)return;var p=curStep;if(p===1)curImport.fase1.producto=document.getElementById("f1Producto").value;else if(p===2){var f=curImport.fase2;f.proveedor=document.getElementById("f2Proveedor").value;f.pais=document.getElementById("f2Pais").value;f.iso=document.getElementById("f2ISO").checked;f.ce=document.getElementById("f2CE").checked;f.muestra=document.getElementById("f2Muestra").checked}else if(p===3){var f=curImport.fase3;f.proforma=document.getElementById("f3Proforma").value;f.incoterm=document.getElementById("f3Incoterm").value;f.moneda=document.getElementById("f3Moneda").value;f.monto=document.getElementById("f3Monto").value;f.plazo=document.getElementById("f3Plazo").value;f.fecha=document.getElementById("f3Fecha").value}else if(p===4){var f=curImport.fase4;f.tipo=document.getElementById("f4Tipo").value;f.contenedor=document.getElementById("f4Contenedor").value;f.flete=document.getElementById("f4Flete").value;f.seguro=document.getElementById("f4Seguro").value;f.origen=document.getElementById("f4Origen").value;f.destino=document.getElementById("f4Destino").value}else if(p===5)curImport.fase5.tasa=document.getElementById("f5Tasa").value;else if(p===6){var f=curImport.fase6;Fecha").value;f.caja=document.getElementById("f6Caja").checked;f.contenido=document.getElementById("f6Contenido").checked;f.funciona=document.getElementById("f6Funciona").checked;f.garantia=document.getElementById("f6Garantia").value;f.obs=document.getElementById("f6Obs").value}saveImports()}
 function loadStepData(){if(!curImport)return;var f1=curImport.fase1||{};var f2=curImport.fase2||{};var f3=curImport.fase3||{};var f4=curImport.fase4||{};var f5=curImport.fase5||{};var f6=curImport.fase6||{};if(!f1.equipos)f1.equipos=[];if(!f1.vendedor)f1.vendedor="";document.getElementById("f1Producto").value=f1.producto||"";document.getElementById("f2Proveedor").value=f2.proveedor||"";document.getElementById("f2Pais").value=f2.pais||"";document.getElementById("f2ISO").checked=!!f2.iso;document.getElementById("f2CE").checked=!!f2.ce;document.getElementById("f2Muestra").checked=!!f2.muestra;document.getElementById("f3Proforma").value=f3.proforma||"";document.getElementById("f3Incoterm").value=f3.incoterm||"FOB";document.getElementById("f3Moneda").value=f3.moneda||"USD";document.getElementById("f3Monto").value=f3.monto||"";document.getElementById("f3Plazo").value=f3.plazo||"30% anticipo - 70% BL";document.getElementById("f3Fecha").value=f3.fecha||"";document.getElementById("f4Tipo").value=f4.tipo||"Marítimo FCL";document.getElementById("f4Contenedor").value=f4.contenedor||"";document.getElementById("f4Flete").value=f4.flete||"";document.getElementById("f4Seguro").value=f4.seguro||"";document.getElementById("f4Origen").value=f4.origen||"";document.getElementById("f4Destino").value=f4.destino||"";document.getElementById("f5Tasa").value=f5.tasa||"";document.getElementById("f6Fecha").value=f6.fecha||"";document.getElementById("f6Caja").checked=!!f6.caja;document.getElementById("f6Contenido").checked=!!f6.contenido;document.getElementById("f6Funciona").checked=!!f6.funciona;document.getElementById("f6Garantia").value=f6.garantia||"";document.getElementById("f6Obs").value=f6.obs||"";onStep1Producto();renderProviderReminder();calcularLocal()}
-
-/* ===== INIT ===== */
-document.addEventListener("DOMContentLoaded",function(){loadImports();loadLotes()});
+document.addEventListener("DOMContentLoaded",function(){loadImports();loadLotes();loadContactos()});
 </script>
 </body>
 </html>
